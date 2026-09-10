@@ -14,7 +14,7 @@
 * **演示文稿**：从左到右机械堆砌的假流程卡片，全页无重点、处处是粗体；
 * **视觉与动态**：光滑无毛孔的 3D 塑料假人、无物理光源的悬浮发光，以及死寂无动效的静态交付。
 
-**Muse 的使命不是提供千篇一律的死模板，而是作为 AI 的「审美心智中枢」与「品味资产调度器」，用认知科学、克制哲学与工业级工程标准，彻底根除 AI 塑料味。**
+**Muse 的使命不是提供千篇一律的死模板，而是作为 AI 的「审美心智中枢」与「品味资产调度器」，用认知科学、克制哲学与确定性工程标准，彻底根除 AI 塑料味。**
 
 ---
 
@@ -35,8 +35,21 @@ Muse 采用分层调度架构，将**底层认知心智**与**各媒介具体手
       │
 [3. 跨媒介构件组合] ──► 依据 5 大手段库 (Toolkit) 严格绑定蓝图 Token 交付
       │
-[4. Anti-Slop 门禁] ──► 输出前执行 5 项机器自检 (Concept / Hierarchy / Restraint / Truth / Completeness)
+[4. 确定性硬门禁] ──► 运行 node scripts/lint_ui.js 自动化执行无障碍/动效/禁忌硬断言
 ```
+
+---
+
+## 六大品牌与美学 Token 预设 (涵盖多元风格)
+
+告别单一科技冷淡风，Muse 内置 6 大经过工业级校准的 Token 矩阵（位于 `references/toolkit/ui_product_tool.md`），开箱即用：
+
+1. **`linear-dark` (深曜石极简工匠)**：低照度暗黑、1px 细微倒角光，面向高频开发者工具与核心 SaaS；
+2. **`stripe-modern` (现代空气感)**：高清晰冷白、通透呼吸感，面向金融支付与高质感 C 端产品；
+3. **`apple-editorial` (人文纸质)**：暖米白底色与大字阶，面向创作者工具与高端官网；
+4. **`vercel-mono` (硬核黑白几何)**：纯黑纯白、极精细网格线，面向极客 DevTools 与终端界面；
+5. **`oriental-zen` (东方写意留白)**：米暖宣纸色底（`#f7f4ed`）配焦墨宿墨阶、朱砂赤点睛，留白率达 70%；
+6. **`neo-brutalism` (新粗野主义 / 先锋朋克)**：纯黑粗边线（`2px solid #000`）与高反差硬投影（`4px 4px 0 #000`），面向 Web3 与潮流先锋。
 
 ---
 
@@ -46,11 +59,34 @@ Muse 将统一的审美心智穿透至创作的各个物理载体：
 
 | 媒介 | 专属手段库 | 核心工业标准与交付规范 |
 | :--- | :--- | :--- |
-| 🖥️ **前端 / UI 工程** | `references/toolkit/ui_product_tool.md`<br>`references/archetypes.md` | 内置 4 大顶级品牌 Token 矩阵（`linear-dark` / `stripe-modern` / `apple-editorial` / `vercel-mono`）；强制 **Minimal 8-State** 闭环脚手架；6 大非对称拓扑骨架。 |
+| 🖥️ **前端 / UI 工程** | `references/toolkit/ui_product_tool.md`<br>`references/archetypes.md` | 内置 6 大美学 Token 矩阵；强制 **Minimal 8-State** 闭环脚手架；6 大非对称拓扑骨架；正文行长限制 `< 80ch`。 |
 | ✍️ **文字 / 叙事表达** | `references/toolkit/text_narrative_tool.md` | **海明威式短句**；BLUF 结论先行模型；禁用假大空词汇；以用户心智命名；动作与反馈严格闭环（`Publish` ➔ `Published`）。 |
 | 📄 **PPT / 演示文稿** | `references/toolkit/presentation_tool.md` | **一页一观点 (One Slide, One Idea)**；1.25 大三度字阶比；事实结构优先；严禁两张大图抢视线。 |
 | 🎬 **动态 / 视频时序** | `references/toolkit/motion_video_tool.md` | 四轨工业分镜脚本（景别/光影/拟音/台词）；**UI 动效三档绝对时长**；弹簧贝塞尔曲线；列表错落进场时序（Stagger Delay）；强制走 GPU 合成层。 |
 | 🖼️ **视觉 / 生图 Prompt** | `references/toolkit/visual_prompt_tool.md` | 单一真实物理光源与漫反射衰减；35mm/85mm 真实光学景深；剔除漂浮发光杂质。 |
+
+---
+
+## 确定性工程验证工具 (Deterministic Tooling)
+
+告别大模型“口头承诺遵守”，Muse 提供原生的确定性 CLI 工具集：
+
+### 1. 物理级硬 Linter (`scripts/lint_ui.js`)
+零依赖原生 Node.js 脚本。在 Agent 交付代码前自动运行，执行物理硬断言：
+```bash
+node scripts/lint_ui.js <path-to-file-or-dir>
+```
+* **8 态无障碍检测**：强制检查交互元素是否包含 `:focus-visible` 焦点环与 `:disabled` 声明；
+* **动效履约与防死寂**：检查是否遗漏微物理过渡，强制检查 `@media (prefers-reduced-motion)`；
+* **光影与禁忌拦截**：扫描大面积高斯模糊光晕与死黑阴影；
+* **AI 塑料味扫描**：检测是否含有 `ARCHITECTURE // 01` 类套路化双斜杠 Eyebrow。
+
+### 2. 资产 Schema 自动迁移 (`scripts/migrate_vault.js`)
+当 Muse 底层规约升级时，使用者可一键无损升级个人资产库：
+```bash
+node scripts/migrate_vault.js
+```
+自动备份旧文件为 `.bak`，安全向后兼容迁移字段。
 
 ---
 
@@ -90,7 +126,7 @@ git clone https://github.com/shangxiuyu/muse.git .agents/skills/muse
 ```text
 "用 muse 帮我重构我们产品的官网首页，要求具备极高工匠质感与细腻动效"
 "参考 muse 的文字叙事标准，帮我把这份融资 Deck 的文案精简为海明威短句"
-"根据 muse 规范，为我们的设计系统制定一份 Minimal 8-State 组件脚手架"
+"运行 muse 的 linter 扫描当前项目，检查是否有 8 态缺失和 AI 塑料套路"
 ```
 
 ---

@@ -101,14 +101,61 @@
 }
 ```
 
+### 预设 E：`oriental-zen` (东方写意留白 · 文化/艺术/茶道/人文出版)
+```css
+:root[data-theme="oriental-zen"] {
+  --bg-canvas: #f7f4ed; /* 米暖生宣纸色 */
+  --bg-surface: #ffffff;
+  --bg-subtle: #eeeae1;
+  --border-subtle: rgba(28, 26, 23, 0.07);
+  --border-highlight: rgba(255, 255, 255, 0.95);
+
+  --text-primary: #1c1a17; /* 焦墨黑 */
+  --text-secondary: #5c5750; /* 宿墨深灰 */
+  --text-tertiary: #9e978d; /* 飞白浅灰 */
+
+  --accent: #c25e40; /* 朱砂赤印 */
+  --accent-surface: rgba(194, 94, 64, 0.08);
+
+  --shadow-micro: 0 1px 2px rgba(28, 26, 23, 0.03);
+  --shadow-card: 0 2px 8px -2px rgba(28, 26, 23, 0.04), 0 12px 24px -6px rgba(28, 26, 23, 0.05);
+  --shadow-inner-bevel: inset 0 1px 0 0 var(--border-highlight);
+}
+```
+
+### 预设 F：`neo-brutalism` (新粗野主义 / 先锋朋克 · Web3/潮流厂牌/极客先锋)
+```css
+:root[data-theme="neo-brutalism"] {
+  --bg-canvas: #fef08a; /* 波普高亮黄或纯白 #ffffff */
+  --bg-surface: #ffffff;
+  --bg-subtle: #f4f4f5;
+  --border-subtle: #000000;
+  --border-highlight: transparent;
+
+  --text-primary: #000000;
+  --text-secondary: #27272a;
+  --text-tertiary: #52525b;
+
+  --accent: #ff4b4b; /* 撞色高饱和红 */
+  --accent-surface: #000000;
+
+  --shadow-micro: 2px 2px 0px #000000;
+  --shadow-card: 4px 4px 0px #000000; /* 硬边缘无模糊阴影 */
+  --shadow-elevated: 6px 6px 0px #000000;
+  --shadow-inner-bevel: none;
+}
+```
+
 ---
 
 ## 💎 2. 核心质感与微工艺规范 (Micro-Craftsmanship)
 
 ### (1) 物理光影与内发光配方
-* **1px 顶光内描边 (Top Inset Highlight)**：容器顶部必须带 `inset 0 1px 0 0 var(--border-highlight)`，模拟物理光照反光。
-* **分层微阴影 (Layered Micro-Shadows)**：杜绝单层粗黑阴影，必须采用 2~3 层环境漫反射叠加。
-* **圆角纪律**：默认 4px-8px 微圆角（对齐 `tight_subtle` 偏好），工具类组件严禁滥用 `rounded-3xl`。
+* **1px 顶光内描边 (Top Inset Highlight)**：科技与纸质容器顶部必须带 `inset 0 1px 0 0 var(--border-highlight)`，模拟物理单侧光反光（粗野主义除外）。
+* **分层微阴影 (Layered Micro-Shadows)**：杜绝单层粗黑死投影，主流模式必须采用 2~3 层环境漫反射叠加。
+* **圆角纪律**：默认 4px-8px 微圆角（对齐 `tight_subtle` 偏好），粗野主义优先直角（0px）或强硬大圆角配 2px 黑边。
+* **阅读行长限制 (< 80ch)**：正文行宽严格约束在 `max-width: 65ch ~ 80ch` 之间，留足视线回行余量，禁止无边际满宽文字。
+* **CSS 选择器权重避坑 (Specificity Discipline)**：严禁标签类选择器（如 `.section`）与元素类选择器（如 `.cta`）在 `padding/margin` 上产生隐式冲突覆盖。
 
 ### (2) 统一物理动效参数 (Spring Motion Tuning)
 ```css

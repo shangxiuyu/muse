@@ -78,6 +78,8 @@
 | **开发者工具 / CLI** | Split-Screen Console | `linear-dark` (深曜石工匠) 或 `vercel-mono` | Snap 极快档 (120ms) |
 | **多智能体协作 / SaaS** | Bento Grid + 悬浮微岛 | `stripe-modern` (现代空气感) | Smooth 平滑档 (220ms) |
 | **知识资产 / 个人系统** | Timeline Rail + Bento | `apple-editorial` (人文纸质) | Smooth 平滑档 (220ms) |
+| **文化艺术 / 人文茶道 / 东方出版** | Swiss High-Typography 或 Timeline Rail | `oriental-zen` (东方写意留白) | Deep 沉浸档 (420ms) |
+| **Web3 / 潮流厂牌 / 先锋极客** | Bento Grid (硬边直角) | `neo-brutalism` (新粗野硬阴影) | Snap 机械硬弹 (100ms) |
 | **设计系统 / 审美工具** | Swiss High-Typography | `stripe-modern` 或 `apple-editorial` | Smooth 平滑档 (220ms) |
 
 ---
