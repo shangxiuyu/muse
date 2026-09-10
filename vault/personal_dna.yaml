@@ -1,0 +1,35 @@
+# 个人专属审美 DNA 模版 (Personal Aesthetic DNA Template)
+# 在与使用者的协作中由捕获协议动态记录与进化，拥有最高优先级。
+
+version: "1.0.0"
+last_updated: "2026-01-01"
+
+typography:
+  tone_of_voice: "冷峻、克制、事实驱动、海明威式短句"
+  sentence_length_max: 25
+  forbidden_words:
+    - "颠覆性"
+    - "赋能"
+    - "在当今快节奏的世界中"
+    - "不可否认"
+    - "全方位引领"
+
+layout_and_space:
+  alignment_preference: "left_aligned_asymmetrical" # 优先左对齐非对称网格，拒绝死板居中三板斧
+  border_style: "1px subtle border, zero heavy dirty shadow"
+  radius_preference: "tight_subtle" # 4px-8px 微圆角或直角
+
+palette_and_materials:
+  background_style: "pure_monochrome_clean" # 纯净单色，拒绝大面积彩色高斯模糊光晕
+  contrast_style: "high_clarity_restrained"
+
+interaction_and_motion:
+  motion_first_citizen: "动效是一等公民而非次级修饰。UI 宏观构建必须首发全量交付进场错落时序 (stagger reveal)、动态时序推演与弹簧微物理反馈，严禁交出死寂的静态页面。"
+
+# 被毙案例档案：逼近用户判断函数的核心数据（捕获协议 §5.2 自动维护）
+# 同一 distilled_principle 出现 2 次以上 → 自动升级为上方正式偏好条目
+rejected_cases: []
+  # - date: "YYYY-MM-DD"
+  #   artifact: "一句话描述被毙的产出（如：深色 Hero + 大渐变光效落地页首屏）"
+  #   rejected_because: "用户原话或精炼后的毙因"
+  #   distilled_principle: "抽象出的可复用判断（如：品牌首屏不接受任何发光效果）"
