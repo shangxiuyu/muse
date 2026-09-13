@@ -71,17 +71,26 @@ Muse 将统一的审美心智穿透至创作的各个物理载体：
 
 告别大模型“口头承诺遵守”，Muse 提供原生的确定性 CLI 工具集：
 
-### 1. 物理级硬 Linter (`scripts/lint_ui.js`)
+### 1. 物理级硬 Linter (`scripts/lint_ui.js` & `scripts/lint_text.js`)
 零依赖原生 Node.js 脚本。在 Agent 交付代码前自动运行，执行物理硬断言：
 ```bash
+# UI 与交互门禁：断言 :focus-visible 键盘焦点环、Reduced-motion 无障碍兜底、拦截失控光晕与脏阴影
 node scripts/lint_ui.js <path-to-file-or-dir>
-```
-* **8 态无障碍检测**：强制检查交互元素是否包含 `:focus-visible` 焦点环与 `:disabled` 声明；
-* **动效履约与防死寂**：检查是否遗漏微物理过渡，强制检查 `@media (prefers-reduced-motion)`；
-* **光影与禁忌拦截**：扫描大面积高斯模糊光晕与死黑阴影；
-* **AI 塑料味扫描**：检测是否含有 `ARCHITECTURE // 01` 类套路化双斜杠 Eyebrow。
 
-### 2. 资产 Schema 自动迁移 (`scripts/migrate_vault.js`)
+# 文字叙事门禁：断言中英文假大空禁词、长句断句节奏与模板化 Eyebrow
+node scripts/lint_text.js <path-to-file-or-dir>
+```
+
+### 2. 黄金基准回归评测与进化 (`scripts/eval_skill.js` & `scripts/slow_update.js`)
+```bash
+# 验证 benchmarks/golden_cases.json 黄金测试集无退化
+node scripts/eval_skill.js
+
+# 被毙反馈带阻尼更新
+node scripts/slow_update.js --type rejection --artifact "..." --because "..." --principle "..."
+```
+
+### 3. 资产 Schema 自动迁移 (`scripts/migrate_vault.js`)
 当 Muse 底层规约升级时，使用者可一键无损升级个人资产库：
 ```bash
 node scripts/migrate_vault.js

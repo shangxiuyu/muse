@@ -4,8 +4,8 @@
 
 rotation_window: 3  # 最近 3 次内用过的拓扑不可复用；用户显式指定时除外
 
-history: []
-  # - date: "YYYY-MM-DD"
-  #   project: "项目代号"
-  #   archetype: "bento_grid"
-  #   page: "页面名称"
+history:
+  - date: "2026-09-09"
+    project: "eden"
+    archetype: "bento_grid"
+    page: "Eden AI 官网落地页（website/eden-official.html）"

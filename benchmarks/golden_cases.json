@@ -1,0 +1,74 @@
+{
+  "version": "1.0.0",
+  "description": "Muse Aesthetic & Craftsmanship Golden Benchmark Split (SkillOpt Hold-out Validation)",
+  "cases": [
+    {
+      "id": "bento_saas_hero",
+      "name": "Bento Grid SaaS 官网首屏",
+      "medium": "ui",
+      "category": "landing_page",
+      "archetype": "Bento Grid (非对称多格)",
+      "density": "Comfortable",
+      "target_tokens": {
+        "theme": "linear-dark",
+        "bg_base": "#0c0d0e",
+        "border_subtle": "rgba(255, 255, 255, 0.08)",
+        "accent": "#f5f5f5"
+      },
+      "validation_criteria": [
+        "singular_focus_element_must_exist",
+        "zero_ambient_colored_blur_blobs",
+        "no_centered_pill_three_piece_combo",
+        "has_stagger_reveal_animation",
+        "has_prefers_reduced_motion"
+      ]
+    },
+    {
+      "id": "developer_console_table",
+      "name": "极客高密度运维控制台数据表",
+      "medium": "ui",
+      "category": "devtools",
+      "archetype": "Split-Screen Console",
+      "density": "Compact",
+      "target_tokens": {
+        "theme": "vercel-mono",
+        "font": "monospace / Inter",
+        "radius": "2px-4px"
+      },
+      "validation_criteria": [
+        "minimal_8_states_closed_loop",
+        "focus_visible_on_all_interactive",
+        "micro_hierarchy_font_weights_400_vs_500",
+        "tabular_nums_on_metrics"
+      ]
+    },
+    {
+      "id": "product_launch_narrative",
+      "name": "产品发布与硬核叙事文案",
+      "medium": "text",
+      "category": "narrative",
+      "tone": "Hemingway / BLUF",
+      "validation_criteria": [
+        "zero_slop_buzzwords",
+        "sentence_length_under_25_chars_average",
+        "max_commas_per_sentence_under_3",
+        "factual_numbers_instead_of_adjectives",
+        "no_uppercase_double_slash_eyebrow"
+      ]
+    },
+    {
+      "id": "interactive_action_button",
+      "name": "高完成度物理微交互按钮",
+      "medium": "ui_component",
+      "category": "atoms",
+      "motion_budget_ms": 120,
+      "validation_criteria": [
+        "complete_8_states",
+        "active_micro_scale_0_985",
+        "inset_1px_top_highlight",
+        "focus_visible_ring_defined",
+        "disabled_opacity_and_cursor"
+      ]
+    }
+  ]
+}

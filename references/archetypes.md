@@ -8,7 +8,7 @@
 ## 🏛️ 6 大非对称页面拓扑骨架 (Page Topologies)
 
 ### 1. Bento Grid 错落魔方网格 (Modern SaaS / Product Showcase)
-* **适用场景**：功能聚合展示、核心能力矩阵、多维度产品特性。
+* **适用场景**：功能聚合展示、核心能力矩阵、复杂产品特性组合。
 * **结构规则**：
   - 采用 12 列或 3-4 列不规则跨度网格（`grid-column: span 2` / `span 1`）。
   - **核心卡片（Hero Card）** 占 2x2 面积，具备深色背景或高对比视觉锚点；
@@ -52,7 +52,7 @@
 
 ---
 
-### 5. Swiss High-Typography Editorial 瑞士排版沉浸画卷 (Brand / Philosophy)
+### 5. Swiss High-Typography Editorial 瑞士排版沉浸叙事 (Brand / Philosophy)
 * **适用场景**：设计系统、品牌宣言、高端内容叙事。
 * **结构规则**：
   - 极端克制的颜色（95% 黑白灰阶 + 5% 点睛色）。

@@ -13,47 +13,66 @@
 
 根据业务场景（decision_matrix）与用户画像，直接挂载或派生以下工业级 Token 矩阵：
 
-### 预设 A：`linear-dark` (深曜石极简工匠 · 开发者/SaaS 默认)
+### 预设 A：`linear-dark` (深曜石极简工匠 · 开发者/SaaS 标杆，源自 Laith0003/ux-skill 逆向数据)
 ```css
 :root[data-theme="linear-dark"] {
-  --bg-canvas: #090a0f;
-  --bg-surface: #12141a;
-  --bg-subtle: #1a1d26;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.15);
+  /* 真实 Linear 画布为极端纯黑 #010102 */
+  --bg-canvas: #010102;
+  /* 4 阶表面灰度天梯：依靠灰度梯差与边框表达空间，零脏阴影 */
+  --bg-surface-1: #0f1011;
+  --bg-surface-2: #141516;
+  --bg-surface-3: #18191a;
+  --bg-surface-4: #191a1b;
   
-  --text-primary: #f0f3f8;
-  --text-secondary: #949aa8;
-  --text-tertiary: #5c6270;
+  --border-hairline: #23252a;
+  --border-subtle: #18191b;
+  --border-highlight: rgba(255, 255, 255, 0.14);
   
+  --text-primary: #ffffff;
+  --text-secondary: #8a8f98;
+  --text-tertiary: #62666d;
+  
+  /* 单一高饱和重点色 (Electric Indigo)，严禁第二彩色杂音 */
   --accent: #5e6ad2;
-  --accent-surface: rgba(94, 106, 210, 0.15);
+  --accent-surface: rgba(94, 106, 210, 0.12);
+  --accent-hover: #6872e5;
 
-  --shadow-micro: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 12px 28px -4px rgba(0, 0, 0, 0.6);
-  --shadow-inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  /* 严禁扩散大阴影，只保留极简 1px 或零阴影 */
+  --shadow-micro: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 0 0 1px var(--border-hairline);
+  --shadow-inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+  /* Linear 负字距标尺 (Display Negative Tracking) */
+  --tracking-display: -0.035em; /* 对应大标题 56-80px */
+  --tracking-heading: -0.025em; /* 对应小标题 24-40px */
+  --tracking-body: -0.005em;    /* 正文 */
 }
 ```
 
-### 预设 B：`stripe-modern` (现代空气感 · 支付/金融/C端高质感)
+### 预设 B：`stripe-modern` (现代空气感 · 支付/金融/C端标杆，源自 Laith0003/ux-skill 逆向数据)
 ```css
 :root[data-theme="stripe-modern"] {
-  --bg-canvas: #f8fafc;
+  /* 真实 Stripe 画布为带微蓝冷意的纯净底色 #f6f9fc，绝非纯白 */
+  --bg-canvas: #f6f9fc;
   --bg-surface: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --border-subtle: rgba(15, 23, 42, 0.06);
+  --bg-subtle: #e3e8ee;
+  
+  --border-subtle: rgba(0, 0, 0, 0.08);
   --border-highlight: rgba(255, 255, 255, 0.9);
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #94a3b8;
+  /* 文本为深邃藏青墨色 #0d253d，绝非刺眼死黑 #000 */
+  --text-primary: #0d253d;
+  --text-secondary: #425466;
+  --text-tertiary: #8898aa;
 
-  --accent: #6366f1;
-  --accent-surface: #eef2ff;
+  /* Stripe 标志性电光靛蓝 */
+  --accent: #533afd;
+  --accent-surface: #f4f3ff;
+  --accent-hover: #432cd9;
 
-  --shadow-micro: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 10px 25px -5px rgba(15, 23, 42, 0.05);
-  --shadow-inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  --shadow-micro: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.04), 0 12px 24px -6px rgba(0, 0, 0, 0.06);
+  --shadow-inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
 }
 ```
 
@@ -264,3 +283,19 @@
   100% { background-position: -200% 0; }
 }
 ```
+
+---
+
+## 🌟 6. The Wow Layer 记忆锚点法则 (Ceiling Doctrine)
+
+> **汲取自 GitHub `Laith0003/ux-skill/references/foundations/wow.md`**：
+> "Clean and responsive is the floor. It prevents failure; it does not produce love. The wow layer is the ceiling."
+> 仅仅把功能做对、对齐网格，只能算 60 分及格。真正令人惊艳的顶级产品必须具备 2-3 个精心编排的记忆锚点：
+
+1. **One Dominant Entrance Moment (首屏震撼入场焦点)**：
+   - 拒绝平铺直叙：首屏必须有一个强烈的视觉张力点（如压倒性的悬殊字号、负字距紧绷排印、极高反差的实时物理数据态）。
+2. **One Recurring Motion Signature (全站一致的微动效签名)**：
+   - 全站所有按钮、弹窗、抽屉必须共享同一个弹簧物理阻尼（如 `cubic-bezier(0.16, 1, 0.3, 1)`），形成如同物理机械按键一般的肌肉记忆。
+3. **One Mid-Page Interactive Delight (中段意外惊喜)**：
+   - 在用户滚动或探索至页面中段时，提供一个超出预期的交互反馈（例如拖拽数字实时计算、悬停磁吸、极度细腻的微阴影顺应光标位移）。
+
