@@ -1,0 +1,17 @@
+{
+  "name": "muse-aesthetic-skill",
+  "version": "5.0.0",
+  "private": true,
+  "description": "Cross-media aesthetic reasoning and personal taste memory",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node scripts/eval_skill.js",
+    "test:tools": "node --test tests/*.test.js",
+    "serve:website": "npx -y serve website -p 4200"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  }
+}

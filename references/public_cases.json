@@ -1,0 +1,578 @@
+{
+  "schema_version": 2,
+  "updated_at": "2026-09-13T00:00:00.000Z",
+  "entries": [
+    {
+      "id": "public-ui-task-hierarchy-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "任务驱动的文字层级：原创教学对照",
+        "status": "active",
+        "tags": [
+          "ui",
+          "教学",
+          "工作台",
+          "层级"
+        ],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/ui/task_hierarchy.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/ui/task_hierarchy.md#两种处理",
+            "observation": "A 使用统一字号、微小字重差和极淡次要信息；B 加强任务标题、保留可读负责人，并为状态提供文字标记。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，不是真实品牌原稿、截图或用户偏好。",
+          "本条未提供渲染、可用性测试或效果提升数据。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-ui-task-hierarchy",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "任务驱动的文字层级",
+        "status": "ready",
+        "tags": [
+          "ui",
+          "教学",
+          "工作台",
+          "层级"
+        ],
+        "media": [
+          "web"
+        ],
+        "scope": "高频工作台：快速分辨任务标题、负责人和状态。",
+        "intent": "让目标信息容易找到，保持紧凑但可读。",
+        "principles": [
+          {
+            "name": "任务驱动的文字层级",
+            "rule": "先分清标题、辅助信息和状态的任务角色，再用可感知的差异表达层级。",
+            "rationale": "在高频搜索场景，扫描目标比均匀克制更有价值。",
+            "applies_when": "密集工作台需要反复辨认任务与状态。",
+            "avoid_when": "低密度说明页的细微层级已经足够时，不必扩大每个文本的反差。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-ui-task-hierarchy-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，是有条件的设计启发，不是经过用户验证的效果结论。",
+          "没有固定组件、品牌色值或可直接套用的页面模板；需在实际内容和尺寸中验证。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-ui-brand-continuity-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "保留品牌，改善比较结构：原创教学对照",
+        "status": "active",
+        "tags": [
+          "ui",
+          "教学",
+          "账单",
+          "表格",
+          "品牌"
+        ],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/ui/brand_continuity_table.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/ui/brand_continuity_table.md#两种处理",
+            "observation": "A 改为冷白靛蓝并重新分卡；B 保留暖色品牌，通过数值与单位对齐、组间距和标签对比改善账单。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，不是真实品牌原稿、截图或用户偏好。",
+          "本条未提供渲染、可用性测试或效果提升数据。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-ui-brand-continuity",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "保留品牌，改善比较结构",
+        "status": "ready",
+        "tags": [
+          "ui",
+          "教学",
+          "账单",
+          "表格",
+          "品牌"
+        ],
+        "media": [
+          "web"
+        ],
+        "scope": "已有暖白、橙色品牌的账单页，改进金额比较。",
+        "intent": "提升比较效率，同时保留既有品牌识别。",
+        "principles": [
+          {
+            "name": "保留品牌，改善比较结构",
+            "rule": "比较效率问题先处理对齐、单位、分组和密度；配色变化应有独立理由。",
+            "rationale": "结构收益不依赖更换为一种所谓高级的配色。",
+            "applies_when": "已有品牌有效，当前问题集中在扫描和比较。",
+            "avoid_when": "用户明确要求重新定位品牌时，需要重新探索；窄屏表格还需验证滚动或摘要方案。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-ui-brand-continuity-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，是有条件的设计启发，不是经过用户验证的效果结论。",
+          "没有固定组件、品牌色值或可直接套用的页面模板；需在实际内容和尺寸中验证。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-ui-vivid-order-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "高饱和品牌中的信息秩序：原创教学对照",
+        "status": "active",
+        "tags": [
+          "ui",
+          "教学",
+          "品牌",
+          "活动",
+          "色彩"
+        ],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/ui/vivid_brand.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/ui/vivid_brand.md#两种处理",
+            "observation": "A 为追求高级感改成灰阶细线；B 保留品牌色，通过面积、对比和分组组织活动信息。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，不是真实品牌原稿、截图或用户偏好。",
+          "本条未提供渲染、可用性测试或效果提升数据。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-ui-vivid-order",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "高饱和品牌中的信息秩序",
+        "status": "ready",
+        "tags": [
+          "ui",
+          "教学",
+          "品牌",
+          "活动",
+          "色彩"
+        ],
+        "media": [
+          "web"
+        ],
+        "scope": "音乐活动品牌使用亮黄和洋红，首页需要表达能量。",
+        "intent": "保留品牌的能量，使标题、时间和购票信息清楚。",
+        "principles": [
+          {
+            "name": "高饱和品牌中的信息秩序",
+            "rule": "按角色分配色彩与面积，让信息秩序支撑鲜明表达。",
+            "rationale": "颜色数量本身不能判断杂乱，任务主次和分组决定可读性。",
+            "applies_when": "活动、文化或消费品牌已有鲜明多色语言，且本页需要表达能量。",
+            "avoid_when": "持续监控等高频操作页面可能需要减少装饰色面积；真实色对对比必须另行检查。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-ui-vivid-order-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，是有条件的设计启发，不是经过用户验证的效果结论。",
+          "没有固定组件、品牌色值或可直接套用的页面模板；需在实际内容和尺寸中验证。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-ui-scoped-change-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "保留成立的设计，限制修改范围：原创教学对照",
+        "status": "active",
+        "tags": [
+          "ui",
+          "教学",
+          "局部修改",
+          "登录"
+        ],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/ui/preserve_working_design.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/ui/preserve_working_design.md#两种处理",
+            "observation": "A 重做非对称布局并添加进场动画；B 只修改提示，检查换行、焦点和相关状态。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，不是真实品牌原稿、截图或用户偏好。",
+          "本条未提供渲染、可用性测试或效果提升数据。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-ui-scoped-change",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "保留成立的设计，限制修改范围",
+        "status": "ready",
+        "tags": [
+          "ui",
+          "教学",
+          "局部修改",
+          "登录"
+        ],
+        "media": [
+          "web"
+        ],
+        "scope": "已有清楚、可读、响应式的居中登录页，用户只要求修改一行提示。",
+        "intent": "完成必要修改并维护原有体验。",
+        "principles": [
+          {
+            "name": "保留成立的设计，限制修改范围",
+            "rule": "根据任务范围修改；可用设计的局部需求不自动触发整体重设计。",
+            "rationale": "不必要的结构变动会增加验证范围和使用者的学习成本。",
+            "applies_when": "已有界面成立，修改需求局部且没有主任务受阻的证据。",
+            "avoid_when": "真实观察显示结构阻碍主任务时，应提出有范围的结构修复。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-ui-scoped-change-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，是有条件的设计启发，不是经过用户验证的效果结论。",
+          "没有固定组件、品牌色值或可直接套用的页面模板；需在实际内容和尺寸中验证。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-voice-preservation-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "去机械感不能磨平作者：原创教学对照",
+        "status": "active",
+        "tags": ["text", "教学", "声音", "改写"],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/text/preserve_author_voice.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/text/preserve_author_voice.md#两种处理",
+            "observation": "A 把直接、干笑和承认失误改成统一机构语气；B 只修真正难读之处并保留作者有意义的不整齐。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，不是真实作者原稿或用户偏好。",
+          "没有真实读者测试，声音判断需由当前作者样本重新验证。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-voice-preservation",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "最小编辑与作者声音保护",
+        "status": "ready",
+        "tags": ["text", "教学", "声音", "改写"],
+        "media": ["text"],
+        "scope": "用户给出自己的草稿或样本，要求润色、去机械感或保持个人声音。",
+        "intent": "提高可读性，同时让作者仍能认出自己的判断姿态和节奏。",
+        "principles": [
+          {
+            "name": "先标出要保留的声音，再做最小有效编辑",
+            "rule": "识别作者的直接程度、幽默、迟疑、岔开和段落节奏，只修改真正妨碍任务的部分。",
+            "rationale": "统一的流畅和整齐会删除作者身份，而声音本身也是内容关系。",
+            "applies_when": "有作者草稿、相近体裁样本或明确声音要求。",
+            "avoid_when": "机构声明、法律文本或跨体裁写作需要改变发布身份时，应先服从责任和格式边界。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-text-voice-preservation-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，不证明任何特定改写更像真实作者。",
+          "没有作者样本时只能形成当前任务的暂定声音，不能声称完成个人模仿。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-evidence-bound-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "具体表达不能来自虚构：原创教学对照",
+        "status": "active",
+        "tags": ["text", "教学", "品牌文案", "证据"],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/text/evidence_bound_brand_copy.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/text/evidence_bound_brand_copy.md#两种处理",
+            "observation": "A 为空泛收益补造功能和百分比；B 收窄主张并保留机制与结果的明确证据占位。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，不是真实产品或品牌资料。",
+          "本条不提供可直接发布的产品事实。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-evidence-bound",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "证据约束的具体表达",
+        "status": "ready",
+        "tags": ["text", "教学", "品牌文案", "证据"],
+        "media": ["text"],
+        "scope": "材料只有抽象收益，用户要求将品牌、产品或项目文案写得更具体。",
+        "intent": "提高表达负载而不把合理猜测变成事实。",
+        "principles": [
+          {
+            "name": "具体化先判断来源",
+            "rule": "把新增细节标为来源、窄推导、占位或不安全；没有证据的功能、数字、经历和结果不得进入正式成稿。",
+            "rationale": "具体细节增加可信感，也最容易让虚构内容被误认成真实承诺。",
+            "applies_when": "产品、品牌、支持、研究或报告文案缺少机制和证据。",
+            "avoid_when": "用户明确创作虚构故事或概念产品时可以生成细节，但需维持虚构边界。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-text-evidence-bound-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，不是特定品牌的写作规范。",
+          "文案效果仍需在真实素材和发布场景中验证。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-register-context-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "同一事实按体裁改变表达：原创教学对照",
+        "status": "active",
+        "tags": ["text", "教学", "体裁", "语气"],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/text/register_changes_expression.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/text/register_changes_expression.md#三种处理",
+            "observation": "同一组产品事实在产品更新、客服回复和社交动态中改变信息顺序、读者关系和节奏，但不改变事实。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，没有提供真实品牌声音和完整成稿。",
+          "三种体裁只是教学范围，不代表完整体裁分类。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-register-context",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "体裁决定作者与读者的关系",
+        "status": "ready",
+        "tags": ["text", "教学", "体裁", "语气"],
+        "media": ["text"],
+        "scope": "同一事实需要进入公告、客服、社交、报告或其他不同发布场景。",
+        "intent": "让信息顺序、语气和节奏适合载体，同时保持事实一致。",
+        "principles": [
+          {
+            "name": "先判断文字的工作和发布身份",
+            "rule": "根据读者要完成的事决定进入方式、直接程度、段落结构和节奏，不把自然统一解释成口语或短句。",
+            "rationale": "体裁改变作者与读者的关系，却不授权改变事实或补造承诺。",
+            "applies_when": "相同素材需要跨渠道改写，或用户只说‘自然’但发布场景不同。",
+            "avoid_when": "已有明确品牌规范或作者样本时，应在体裁边界内优先沿用它们。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-text-register-context-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，不提供每种体裁的固定模板。",
+          "实际文本仍需结合受众、品牌和载体复读。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-concrete-ending-reference",
+      "kind": "reference",
+      "revision": 1,
+      "data": {
+        "title": "结尾不必总结或升华：原创教学对照",
+        "status": "active",
+        "tags": ["text", "教学", "结尾", "叙事"],
+        "source": {
+          "kind": "article",
+          "locator": "exemplars/text/concrete_ending.md",
+          "captured_at": "2026-09-13T00:00:00.000Z",
+          "coverage": "text-only"
+        },
+        "observations": [
+          {
+            "id": "comparison",
+            "locator": "exemplars/text/concrete_ending.md#两种处理",
+            "observation": "A 把无依据升华改成更漂亮的金句；B 删除宏大意义并停在材料中的最后一个具体动作。"
+          }
+        ],
+        "limits": [
+          "人为编写的教学描述，不是真实活动记录或作者偏好。",
+          "本条只讨论结尾职责，不证明具体结尾总是优于抽象判断。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "public-text-concrete-ending",
+      "kind": "system",
+      "revision": 1,
+      "data": {
+        "title": "让结尾完成最后一个真实动作",
+        "status": "ready",
+        "tags": ["text", "教学", "结尾", "叙事"],
+        "media": ["text"],
+        "scope": "叙事、复盘、品牌或文章结尾出现重复总结、假深刻金句或无依据升华。",
+        "intent": "让结尾与全文已经建立的内容和情绪相称。",
+        "principles": [
+          {
+            "name": "结尾按最后职责选择",
+            "rule": "判断最后需要完成行动、后果、判断、画面、余问还是自然停止；总结和升华都不是默认动作。",
+            "rationale": "未经前文建立的宏大意义会替代观察，并削弱读者自己形成判断的空间。",
+            "applies_when": "正文已完成但结尾又重复、拔高或制造通用金句。",
+            "avoid_when": "演讲、纪念文或品牌宣言确实需要集中主张，且前文已经提供依据。",
+            "confidence": "provisional",
+            "evidence": [
+              {
+                "reference_id": "public-text-concrete-ending-reference",
+                "reference_revision": 1,
+                "observation_id": "comparison"
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "原则来自原创教学对照，不是一条禁止总结或修辞的普遍规则。",
+          "需结合全文、作者身份和发布场景判断结尾是否成立。"
+        ]
+      },
+      "history": [],
+      "updated_at": "2026-09-13T00:00:00.000Z"
+    }
+  ]
+}

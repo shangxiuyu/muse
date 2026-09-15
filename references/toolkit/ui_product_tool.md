@@ -1,301 +1,179 @@
-# UI 与产品界面手段库 (UI & Product Craftsmanship Toolkit)
+# UI／UX · 场景美学与前端全能实战手册
 
-> 本手段库提炼自顶级品牌规范（Linear / Stripe / Vercel / Apple / Raycast）与 Anti-Slop 工业级最佳实践。
-> 严禁生成未经调优的粗糙原型，所有 UI 必须满足以下 **工业级工艺标准 (Craftsmanship Standard)**。
->
-> 🏛️ **流程前置要求**：
-> 1. 先由 [ui_blueprint_protocol.md](ui_blueprint_protocol.md) 执行 **Phase 0 用户画像推导** 与 **Phase 1 四维设计蓝图**；
-> 2. 由 [archetypes.md](../archetypes.md) 选取 1 种页面拓扑骨架（遵守 `vault/topology_log.yaml` 轮换纪律），从物理结构上杜绝居中三板斧与单调卡片堆叠。
+用于网站、Web App、SaaS 控制台、数字产品界面和高保真原型开发。
+**核心哲学：美是关系的艺术。** UI 让深层业务秩序与人机关系在时空中可见、可理解、可操作；美不是孤立元素的装饰，而是色彩、空间、动效、组件与用户在具体情境中达成的“恰当”共振。
+
+> **AI 专注指南（Single Source of Truth）**：本手册为 UI/UX 任务的**自包含全能作战指南**。处理 UI 设计与前端代码生成时，阅读本篇即可获得完整的色彩搭配法则、排版系统、活体原型、交互兵器库、性能铁律与交付契约，无需频繁跳转查阅子文件。
 
 ---
 
-## 📐 1. 顶级品牌 4 大 Design Token 矩阵 (Brand Archetype Presets)
+## 🏛️ 顶层架构：道 · 法 · 技（体术合一）· 契
 
-根据业务场景（decision_matrix）与用户画像，直接挂载或派生以下工业级 Token 矩阵：
-
-### 预设 A：`linear-dark` (深曜石极简工匠 · 开发者/SaaS 标杆，源自 Laith0003/ux-skill 逆向数据)
-```css
-:root[data-theme="linear-dark"] {
-  /* 真实 Linear 画布为极端纯黑 #010102 */
-  --bg-canvas: #010102;
-  /* 4 阶表面灰度天梯：依靠灰度梯差与边框表达空间，零脏阴影 */
-  --bg-surface-1: #0f1011;
-  --bg-surface-2: #141516;
-  --bg-surface-3: #18191a;
-  --bg-surface-4: #191a1b;
-  
-  --border-hairline: #23252a;
-  --border-subtle: #18191b;
-  --border-highlight: rgba(255, 255, 255, 0.14);
-  
-  --text-primary: #ffffff;
-  --text-secondary: #8a8f98;
-  --text-tertiary: #62666d;
-  
-  /* 单一高饱和重点色 (Electric Indigo)，严禁第二彩色杂音 */
-  --accent: #5e6ad2;
-  --accent-surface: rgba(94, 106, 210, 0.12);
-  --accent-hover: #6872e5;
-
-  /* 严禁扩散大阴影，只保留极简 1px 或零阴影 */
-  --shadow-micro: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-card: 0 0 0 1px var(--border-hairline);
-  --shadow-inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
-
-  /* Linear 负字距标尺 (Display Negative Tracking) */
-  --tracking-display: -0.035em; /* 对应大标题 56-80px */
-  --tracking-heading: -0.025em; /* 对应小标题 24-40px */
-  --tracking-body: -0.005em;    /* 正文 */
-}
 ```
-
-### 预设 B：`stripe-modern` (现代空气感 · 支付/金融/C端标杆，源自 Laith0003/ux-skill 逆向数据)
-```css
-:root[data-theme="stripe-modern"] {
-  /* 真实 Stripe 画布为带微蓝冷意的纯净底色 #f6f9fc，绝非纯白 */
-  --bg-canvas: #f6f9fc;
-  --bg-surface: #ffffff;
-  --bg-subtle: #e3e8ee;
-  
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.9);
-
-  /* 文本为深邃藏青墨色 #0d253d，绝非刺眼死黑 #000 */
-  --text-primary: #0d253d;
-  --text-secondary: #425466;
-  --text-tertiary: #8898aa;
-
-  /* Stripe 标志性电光靛蓝 */
-  --accent: #533afd;
-  --accent-surface: #f4f3ff;
-  --accent-hover: #432cd9;
-
-  --shadow-micro: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.04), 0 12px 24px -6px rgba(0, 0, 0, 0.06);
-  --shadow-inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
-}
-```
-
-### 预设 C：`apple-editorial` (人文纸质大字 · 创作者/官网/阅读)
-```css
-:root[data-theme="apple-editorial"] {
-  --bg-canvas: #fbf9f6;
-  --bg-surface: #ffffff;
-  --bg-subtle: #f4f0eb;
-  --border-subtle: rgba(25, 22, 21, 0.07);
-  --border-highlight: rgba(255, 255, 255, 0.8);
-
-  --text-primary: #191615;
-  --text-secondary: #5c534e;
-  --text-tertiary: #8c827a;
-
-  --accent: #b87c4c;
-  --accent-surface: rgba(184, 124, 76, 0.1);
-
-  --shadow-micro: 0 1px 2px rgba(25, 22, 21, 0.04);
-  --shadow-card: 0 1px 3px rgba(25, 22, 21, 0.05), 0 8px 24px -4px rgba(25, 22, 21, 0.06);
-  --shadow-inner-bevel: inset 0 1px 0 0 var(--border-highlight);
-}
-```
-
-### 预设 D：`vercel-mono` (硬核黑白几何 · 极客/DevTools)
-```css
-:root[data-theme="vercel-mono"] {
-  --bg-canvas: #000000;
-  --bg-surface: #0a0a0a;
-  --bg-subtle: #171717;
-  --border-subtle: #333333;
-  --border-highlight: #555555;
-
-  --text-primary: #ededed;
-  --text-secondary: #888888;
-  --text-tertiary: #555555;
-
-  --accent: #ffffff;
-  --accent-surface: rgba(255, 255, 255, 0.1);
-
-  --shadow-micro: none;
-  --shadow-card: 0 0 0 1px var(--border-subtle);
-  --shadow-inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
-}
-```
-
-### 预设 E：`oriental-zen` (东方写意留白 · 文化/艺术/茶道/人文出版)
-```css
-:root[data-theme="oriental-zen"] {
-  --bg-canvas: #f7f4ed; /* 米暖生宣纸色 */
-  --bg-surface: #ffffff;
-  --bg-subtle: #eeeae1;
-  --border-subtle: rgba(28, 26, 23, 0.07);
-  --border-highlight: rgba(255, 255, 255, 0.95);
-
-  --text-primary: #1c1a17; /* 焦墨黑 */
-  --text-secondary: #5c5750; /* 宿墨深灰 */
-  --text-tertiary: #9e978d; /* 飞白浅灰 */
-
-  --accent: #c25e40; /* 朱砂赤印 */
-  --accent-surface: rgba(194, 94, 64, 0.08);
-
-  --shadow-micro: 0 1px 2px rgba(28, 26, 23, 0.03);
-  --shadow-card: 0 2px 8px -2px rgba(28, 26, 23, 0.04), 0 12px 24px -6px rgba(28, 26, 23, 0.05);
-  --shadow-inner-bevel: inset 0 1px 0 0 var(--border-highlight);
-}
-```
-
-### 预设 F：`neo-brutalism` (新粗野主义 / 先锋朋克 · Web3/潮流厂牌/极客先锋)
-```css
-:root[data-theme="neo-brutalism"] {
-  --bg-canvas: #fef08a; /* 波普高亮黄或纯白 #ffffff */
-  --bg-surface: #ffffff;
-  --bg-subtle: #f4f4f5;
-  --border-subtle: #000000;
-  --border-highlight: transparent;
-
-  --text-primary: #000000;
-  --text-secondary: #27272a;
-  --text-tertiary: #52525b;
-
-  --accent: #ff4b4b; /* 撞色高饱和红 */
-  --accent-surface: #000000;
-
-  --shadow-micro: 2px 2px 0px #000000;
-  --shadow-card: 4px 4px 0px #000000; /* 硬边缘无模糊阴影 */
-  --shadow-elevated: 6px 6px 0px #000000;
-  --shadow-inner-bevel: none;
-}
+┌────────────────────────────────────────────────────────────────────────┐
+│ 1. 【道 · 审美原则】美是关系的艺术，判断先于生成，最终目标是恰当           │
+├────────────────────────────────────────────────────────────────────────┤
+│ 2. 【法 · 参数分流】模式三选一 + 三旋钮离散阶梯 (1~10) + Content DNA 提炼   │
+├────────────────────────────────────────────────────────────────────────┤
+│ 3. 【技 · 体术融合】四大实战构件（规范 + 兵器库 + 禁令合一）：             │
+│    ① 色彩与材质：客体提纯专属色板、和谐搭配、去 AI 廉价色、真折射毛玻璃    │
+│    ② 空间与排版：负字距精密系统、非对称布局、行宽限制、封杀 3 等分卡片     │
+│    ③ 活体与交互：物理弹簧阻尼、Bento 5 大活体原型、Creative Arsenal 兵器库 │
+│    ④ 组件与数据：有机真实数据、Anti-Card Overuse、完整 7 态契约、44px 靶心 │
+├────────────────────────────────────────────────────────────────────────┤
+│ 4. 【契 · 交付守卫】DESIGN.md 标准工程契约 + React 性能守卫 + 6 轴自省打分  │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 💎 2. 核心质感与微工艺规范 (Micro-Craftsmanship)
+## 一、道与法：模式分流与参数标定
 
-### (1) 物理光影与内发光配方
-* **1px 顶光内描边 (Top Inset Highlight)**：科技与纸质容器顶部必须带 `inset 0 1px 0 0 var(--border-highlight)`，模拟物理单侧光反光（粗野主义除外）。
-* **分层微阴影 (Layered Micro-Shadows)**：杜绝单层粗黑死投影，主流模式必须采用 2~3 层环境漫反射叠加。
-* **圆角纪律**：默认 4px-8px 微圆角（对齐 `tight_subtle` 偏好），粗野主义优先直角（0px）或强硬大圆角配 2px 黑边。
-* **阅读行长限制 (< 80ch)**：正文行宽严格约束在 `max-width: 65ch ~ 80ch` 之间，留足视线回行余量，禁止无边际满宽文字。
-* **CSS 选择器权重避坑 (Specificity Discipline)**：严禁标签类选择器（如 `.section`）与元素类选择器（如 `.cta`）在 `padding/margin` 上产生隐式冲突覆盖。
+### 1. 业务模式三选一与生命周期
+- **Expressive 表达模式**（官网、品牌 Landing Page、产品 Hero）：提炼一个签名级视觉主角（Signature Element），建立不可替代的第一印象。
+- **Convention 效率模式**（控制台、数据看板、设置、表单）：熟悉与高效就是最高审美，专注层级、密度、间距与键盘无障碍。
+- **Existing 继承模式**（既有项目改版、新增功能模块）：“先考古，后复用”，严密匹配既有 Token 与组件体系。
 
-### (2) 统一物理动效参数 (Spring Motion Tuning)
-```css
-:root {
-  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-snap: 120ms;   /* 点击、微交互 */
-  --duration-smooth: 220ms; /* 浮现、折叠、卡片过渡 */
-  --duration-deep: 420ms;   /* 页面入场、大模态框 */
-}
-```
+> **生命周期与协议关联**：
+> - 跨项目或复杂迭代依 [UI 项目上下文](ui_project_context.md) 判定系统边界（`existing` / `new_in_system` / `blank_slate`）；
+> - 依 [UI 迭代协议](ui_iteration_protocol.md) 选择修改策略（`direct_edit` / `replace` / `branch` / `revert`）；
+> - 依 [UI 资产协议](ui_asset_protocol.md) 管理品牌与内容图像；
+> - 全新立项或重构时，依 [UI 审美综合](ui_aesthetic_synthesis.md) 提炼 **Content DNA**、定义 **Distinctive Relation（辨识关系）** 与 **Restraint Rule（克制规则）**，并率先交付 **Critical Slice（关键体验切片）** 验证核心假设。
 
----
-
-## 🧩 3. 生产级组件状态机与防崩规范 (Robust Components)
-
-### (1) 交互组件 8 态闭环检查表
-所有可交互组件（Button / Input / Tab / Card）**必须显式提供以下 8 种状态样式**：
-
-| # | 状态 | 规范与代码实现 |
-|---|---|---|
-| 1 | `default` | 包含 1px 顶光内描边与微阴影，稳健高雅 |
-| 2 | `hover` | `transform: translateY(-1px);` + 阴影扩展 + 边框高亮 |
-| 3 | `active` | 瞬时物理微缩：`transform: scale(0.98) translateY(0.5px);` |
-| 4 | `focus-visible` | 必须带键盘导航轮廓：`outline: 2px solid var(--accent); outline-offset: 2px;` |
-| 5 | `disabled` | `opacity: 0.4; cursor: not-allowed; pointer-events: none;` |
-| 6 | `loading` | 骨架屏扫光波或微型 Spinner，文本保持占位不抖动 |
-| 7 | `error` | 语义红描边 + 错误提示气泡/行内文本 |
-| 8 | `empty` | 空数据占位，包含引导性图标 + 说明文案 + 行动邀请 CTA |
-
-#### 8 态工业级极简脚手架 (Minimal 8-State Code Spec)
-为避免代码冗长导致输出被截断，在生成组件时可严格套用以下紧凑模式：
-
-```css
-/* 1. default: 顶光内描边 + 物理微阴影 + 字体微阶 */
-.c-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  border-radius: 6px;
-  background: var(--bg-surface);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), var(--shadow-micro);
-  transition: all var(--duration-snap) var(--ease-spring);
-  cursor: pointer;
-  user-select: none;
-}
-/* 2. hover & 3. active */
-.c-btn:hover:not(:disabled) { border-color: var(--border-highlight); transform: translateY(-1px); }
-.c-btn:active:not(:disabled) { transform: scale(0.98) translateY(0.5px); }
-/* 4. focus-visible */
-.c-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-/* 5. disabled */
-.c-btn:disabled, .c-btn[aria-disabled="true"] { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-/* 6. loading */
-.c-btn[data-loading="true"] { pointer-events: none; color: transparent !important; }
-.c-btn[data-loading="true"]::after {
-  content: ""; position: absolute; width: 14px; height: 14px;
-  border: 2px solid var(--text-secondary); border-top-color: transparent; border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-/* 7. error */
-.c-btn[data-state="error"], .c-input[data-state="error"] { border-color: #ef4444 !important; }
-/* 8. empty (容器状态示范) */
-.c-empty-state {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 48px 24px; text-align: center; border: 1px dashed var(--border-subtle); border-radius: 8px;
-}
-```
-
-### (2) 防御性工程代码片段 (Defensive CSS)
-
-#### ① 文本溢出截断 (Text Truncation)
-```css
-.truncate-line {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.truncate-2-lines {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-```
-
-#### ② 骨架屏扫描光波 (Shimmer Wave Effect)
-```css
-.skeleton-shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--bg-subtle) 0%,
-    var(--bg-surface) 50%,
-    var(--bg-subtle) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.8s infinite var(--ease-spring);
-}
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-```
+### 2. 审美调节三旋钮（工程级离散阶梯）
+根据业务情境标定数值：
+- **`DESIGN_VARIANCE` (1-10)**：`1~3` 经典居中/对称网格 ➔ `4~7` 50/50分屏/负边距重叠/多比例混排 ➔ `8~10` 非对称分数网格/巨幅留白（**移动端 `<768px` 强制单列回退**）。
+- **`MOTION_INTENSITY` (1-10)**：`1~3` 静态 CSS 状态 ➔ `4~7` 现代贝塞尔微动效（`<200ms`） ➔ `8~10` 物理弹簧阻尼/常驻活体微交互/全局单点编排。
+- **`VISUAL_DENSITY` (1-10)**：`1~3` Art Gallery 展陈大留白 ➔ `4~7` Daily App 标准应用 ➔ `8~10` Cockpit 紧凑无卡片（1px 细线分隔/等宽数字）。
 
 ---
 
-## 🌟 6. The Wow Layer 记忆锚点法则 (Ceiling Doctrine)
+## 二、技 · 体术融合四大实战构件
 
-> **汲取自 GitHub `Laith0003/ux-skill/references/foundations/wow.md`**：
-> "Clean and responsive is the floor. It prevents failure; it does not produce love. The wow layer is the ceiling."
-> 仅仅把功能做对、对齐网格，只能算 60 分及格。真正令人惊艳的顶级产品必须具备 2-3 个精心编排的记忆锚点：
+### 🎨 1. 色彩与材质系统（和谐配色、客体提纯与去 AI 廉价色）
 
-1. **One Dominant Entrance Moment (首屏震撼入场焦点)**：
-   - 拒绝平铺直叙：首屏必须有一个强烈的视觉张力点（如压倒性的悬殊字号、负字距紧绷排印、极高反差的实时物理数据态）。
-2. **One Recurring Motion Signature (全站一致的微动效签名)**：
-   - 全站所有按钮、弹窗、抽屉必须共享同一个弹簧物理阻尼（如 `cubic-bezier(0.16, 1, 0.3, 1)`），形成如同物理机械按键一般的肌肉记忆。
-3. **One Mid-Page Interactive Delight (中段意外惊喜)**：
-   - 在用户滚动或探索至页面中段时，提供一个超出预期的交互反馈（例如拖拽数字实时计算、悬停磁吸、极度细腻的微阴影顺应光标位移）。
+色彩是用户的第一感知界面。建立产品专属、和谐悦目、有温度的色彩系统是设计的灵魂。
 
+- **从真实客体（Subject Matter）推导专属调色板**：
+  - 严禁凭空盲猜色彩。必须从产品的情境客体中提炼（如健康代谢提取自植物鼠尾草与晨光、知识工具提取自手工纸张与温和墨水、精密工程提取自冷钛与冷轧钢）。
+  - **6:3:1 面积黄金律配比**：
+    - `Canvas (60%)`：底层基底（主画布中性色）；
+    - `Surfaces (30%)`：一二级面板、卡片与容器衬底；
+    - `Accent (10%)`：核心主强调色（饱和度严格控制在 80% 以内，单点用于核心 Primary 操作与焦点）；
+    - `Borders & Text`：单像素边界细线与 3 阶文字层次（Primary / Secondary / Muted）。
+- **坚决剔除“AI 廉价味”色彩（Anti-AI Color Tropes）**：
+  - **严禁纯黑死黑（No Pure Black `#000000`）**：深色场景使用深岩灰、钛矿黑（如 `#090B0E` / `#0F1115`）；
+  - **严禁紫蓝/紫红霓虹大渐变（The Lila Ban）**：封杀全黑底配紫蓝发光按钮与浮夸 outer glow；
+  - **严禁冷暖灰混用**：同一项目中全局色温必须严格统一，不可忽冷忽暖；
+  - **严禁高饱和刺眼大色块**：辅助与强调色需融入中性底色，保持克制与高级感。
+- **材质质感与明暗适配**：
+  - **真折射毛玻璃（Liquid Glass Refraction）**：超越普通 `backdrop-blur`，添加 1px 半透内边框（`border-white/10`）与顶部微透内高光阴影（`shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]`）；
+  - **浅色画廊范式（Bento 2.0 Light）**：精致浅底（`#f9fafb` / `#FBFBFA`）+ 纯白面板 + 扩散漫反射轻投影（`box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05)`），标题外置于下方；
+  - **深色微暗范式（Precision Dark）**：微暗半透面板（`rgba(255,255,255,0.035)`）+ 单像素微透细线边框（`1px solid rgba(255,255,255,0.08)`）。
+
+---
+
+### 📐 2. 空间与排版系统
+
+- **负字距精密系统（Negative Tracking）**：
+  - Display 大标题（40px~80px）：字距收紧至 `-0.03em ~ -0.05em`（`-1.5px ~ -3px`），行高紧凑 `1.05 ~ 1.15`；**严禁大标题使用斜体（No Italic Headers）**；
+  - Headline 章节标题（24px~32px）：字距微收 `-0.01em ~ -0.02em`；
+  - Body 正文：字距归零，行长严格限制 **`max-w-[65ch]`**，行高 `1.5 ~ 1.65`。
+- **角色化字体配对**：
+  - 现代科技/极客：`Geist` / `Satoshi` + `JetBrains Mono`；
+  - 人文叙事/生活：`Outfit` / `Cabinet Grotesk` + `Newsreader` / 高质感 Serif；
+  - 严谨金融/数据：`Plus Jakarta Sans` + 等宽数字（`font-variant-numeric: tabular-nums`）；
+  - **铁律**：控制台与数据仪表盘**严禁使用 Serif 衬线体**。
+- **布局反模式清扫**：
+  - **封杀横排 3 等分卡片（NO 3-Column Equal Cards）**：采用 2 列错位 Zig-Zag、7:3 黄金分割网格或裸排数据列表；
+  - **反默认居中（Anti-Center Bias）**：优先采用左对齐杂志流或 50/50 动态分屏；
+  - **CSS Grid over Flex-Math**：宏观结构使用 CSS Grid，异步容器显式声明 `aspect-ratio` 杜绝 CLS 跳跃。
+
+---
+
+### ⚡ 3. 活体动效与高阶兵器库
+
+- **物理弹簧阻尼与单一编排**：
+  - 拒绝机械线性动画，采用弹簧阻尼（`type: "spring", stiffness: 100, damping: 20` 或 `cubic-bezier(0.16, 1, 0.3, 1)`）；
+  - 全页聚焦**单一编排视觉焦点（The Single Orchestrated Moment）**，常规微动效 `<200ms`；无条件支持 `@media (prefers-reduced-motion: reduce)` 静态降级。
+- **Bento 2.0 五大活体卡片原型（5-Card Archetypes）**：
+  1. *The Intelligent List*：基于 `layoutId` 的任务自排序列表，模拟 AI 实时重排；
+  2. *The Command Input*：多步打字机 Prompts 轮播，带呼吸光标与 Shimmer 流光；
+  3. *The Live Status*：呼吸微光指示点 + 带 Overshoot 弹簧阻尼的微通知浮层；
+  4. *The Wide Data Stream*：无缝滚动的指标轮播走马灯（`x: ["0%", "-100%"]`）；
+  5. *The Contextual Focus*：文档阅读交替平滑高亮 + Float-in 浮动微工具栏。
+- **The Creative Arsenal 高阶交互兵器库**：
+  - *Spotlight Border Card*：光标追踪径向聚光边框（Mouse-tracking radial highlight）；
+  - *Magnetic Physics Button*：光标接近时的物理弹簧微吸附按钮；
+  - *Dynamic Island / Morphing Pill*：利用 `layoutId` 平滑形变的胶囊通知/工具条；
+  - *Kinetic Stagger Cascade*：`animation-delay: calc(var(--i) * 60ms)` 瀑布流入场；
+  - *Text Scramble Decoder*：精密字符瞬时解码转场。
+
+---
+
+### 🧩 4. 组件规范与真实数据
+
+- **Anti-Card Overuse 军规**：信息密集时**严禁卡片套卡片（No Card-in-Card）**，使用单像素分割线（`border-t` / `divide-y`）或负空间逻辑分组。
+- **组件完整 7 态契约**：每一个核心组件交代清楚：`Default` ➔ `Hover` ➔ `Active`（`scale(0.98)` / `-translate-y-[1px]`）➔ `Focus-visible`（高反差外环，严禁 `outline:none`）➔ `Loading`（骨架屏，严禁通用旋转小菊花）➔ `Disabled`（`opacity: 0.45`）➔ `Empty / Error`。
+- **消灭 Jane Doe 虚假数据**：严禁出现 `John Doe`、`Acme Corp`、`99.99%`、`1234567`；采用真实、有机杂乱的数据（如 `47.2%`、`+1 (312) 847-1928`、`$1,248.50`）。
+- **工程与无障碍底线**：
+  - 严禁 Emoji 充当 UI 图标（必须使用 Phosphor / Radix / Lucide 矢量图标，统一描边）；
+  - 严禁同一视窗并列多个 Primary 按钮；
+  - 表单输入框必须包含带 `for="..."` 属性绑定的显式 `<label>`；
+  - 移动端触控靶心强制保证 `>= 44×44px`，全屏容器使用 **`min-h-[100dvh]`**（严禁 `h-screen`）。
+
+---
+
+## 三、规 · React / Next.js / GPU 运行时性能守卫
+
+1. **依赖前置验证（Dependency Verification）**：import 任何第三方库（`framer-motion`, `@phosphor-icons/react`）前**必须检查 `package.json`**，未安装时必须在代码前显式给出安装命令。
+2. **动效叶子节点隔离**：常驻活体动效必须封装在极小的叶子节点 Client Component 中（`'use client'`）并使用 `React.memo`，**严禁触发父级布局组件的 Reflow / Re-render**。
+3. **光标动画脱离渲染树**：连续鼠标追踪（Magnetic / Spotlight）**强制使用 `useMotionValue` 与 `useTransform`，严禁使用 React `useState` 记录坐标**。
+4. **GPU 噪点层隔离**：Grain/Noise 滤镜必须严格挂载在 `fixed inset-0 z-50 pointer-events-none` 独立固定层，严禁放在滚动容器上。
+
+---
+
+## 四、器 · 交付契约与 Pre-emit 自省
+
+> **铁律：写代码前先立契约**。全新设计或重构任务，必须先在项目根目录交付或增量更新自包含且工程级详尽的 `DESIGN.md`：
+
+```markdown
+# [Project Name] · Design System & Execution Contract
+
+## 1. Context & Baseline Knobs
+- **Subject Matter**: 业务客体与核心情绪
+- **Mode Balance**: Expressive (X%) / Convention (Y%)
+- **Baseline Knobs**: VARIANCE: [1-10] | MOTION: [1-10] | DENSITY: [1-10]
+
+## 2. Color System & Material (6:3:1)
+- **Palette**: Canvas (60%) `#...` | Surfaces (30%) `#...` | Accent (10%) `#...` | Text 3-Tier `#...`
+- **Material Specs**: Border hairline, Glass refraction, or Diffusion shadow parameters
+
+## 3. Layout & ASCII Wireframe
+- **ASCII Wireframe**: (宏观栅格、签名主角位置、流动排版)
+- **Responsive Breakpoints**: Desktop (Grid) ➔ Tablet ➔ Mobile (Single Column)
+
+## 4. Component 7-State Matrix & Archetypes
+- **7 States Table**: Default | Hover | Active | Focus | Loading (Skeleton) | Disabled | Error
+- **Active Bento Archetypes / Creative Arsenal**: (e.g. The Intelligent List + Spotlight Border)
+
+## 5. Motion Physics & Performance Rules
+- **Spring Parameters**: stiffness: 100, damping: 20
+- **Reduced Motion & Isolation**: Client Component leaf isolation verified
+
+## 6. Pre-emit Self-Critique Score
+/* [P] Philosophy: 5/5 | [H] Hierarchy: 5/5 | [E] Execution: 5/5 | [S] Specificity: 5/5 | [R] Restraint: 5/5 | [V] Variety: 5/5 */
+```
+
+### Pre-emit 6 轴自省打分（代码顶部必备）
+```css
+/* Muse · Pre-emit Self-Critique:
+ * [P] Philosophy (关系契合): 5/5
+ * [H] Hierarchy (层级骨力): 5/5
+ * [E] Execution (代码工艺): 5/5
+ * [S] Specificity (具体真实): 5/5
+ * [R] Restraint (克制不自恋): 5/5
+ * [V] Variety (拒绝模板化): 5/5
+ */
+```
+任何一项 < 3 分必须触发自动修正重构。

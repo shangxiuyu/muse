@@ -1,74 +1,162 @@
 {
-  "version": "1.0.0",
-  "description": "Muse Aesthetic & Craftsmanship Golden Benchmark Split (SkillOpt Hold-out Validation)",
+  "version": "5.0.0",
+  "kind": "deterministic-tool-fixtures",
+  "description": "Only tests observable review cues. Not a hold-out aesthetic benchmark.",
   "cases": [
     {
-      "id": "bento_saas_hero",
-      "name": "Bento Grid SaaS 官网首屏",
-      "medium": "ui",
-      "category": "landing_page",
-      "archetype": "Bento Grid (非对称多格)",
-      "density": "Comfortable",
-      "target_tokens": {
-        "theme": "linear-dark",
-        "bg_base": "#0c0d0e",
-        "border_subtle": "rgba(255, 255, 255, 0.08)",
-        "accent": "#f5f5f5"
-      },
-      "validation_criteria": [
-        "singular_focus_element_must_exist",
-        "zero_ambient_colored_blur_blobs",
-        "no_centered_pill_three_piece_combo",
-        "has_stagger_reveal_animation",
-        "has_prefers_reduced_motion"
+      "id": "focus-cue",
+      "type": "ui",
+      "input": "<button>保存</button>",
+      "present": [
+        "ui.focus-review"
+      ],
+      "absent": []
+    },
+    {
+      "id": "comment-is-not-focus",
+      "type": "ui",
+      "input": "<!-- :focus-visible --><button>保存</button>",
+      "present": [
+        "ui.focus-review"
+      ],
+      "absent": []
+    },
+    {
+      "id": "tailwind-motion-safe",
+      "type": "ui",
+      "input": "<div class=\"animate-spin motion-reduce:animate-none\">加载中</div>",
+      "present": [],
+      "absent": [
+        "ui.motion-review"
       ]
     },
     {
-      "id": "developer_console_table",
-      "name": "极客高密度运维控制台数据表",
-      "medium": "ui",
-      "category": "devtools",
-      "archetype": "Split-Screen Console",
-      "density": "Compact",
-      "target_tokens": {
-        "theme": "vercel-mono",
-        "font": "monospace / Inter",
-        "radius": "2px-4px"
-      },
-      "validation_criteria": [
-        "minimal_8_states_closed_loop",
-        "focus_visible_on_all_interactive",
-        "micro_hierarchy_font_weights_400_vs_500",
-        "tabular_nums_on_metrics"
+      "id": "motion-missing-alternative",
+      "type": "ui",
+      "input": ".card { animation: fly 1s; }",
+      "present": [
+        "ui.motion-review"
+      ],
+      "absent": []
+    },
+    {
+      "id": "shadow-color-last",
+      "type": "ui",
+      "input": ".card { box-shadow: 0 20px 80px rgba(0,0,0,0.8); }",
+      "present": [
+        "ui.shadow-review"
+      ],
+      "absent": []
+    },
+    {
+      "id": "shadow-color-first",
+      "type": "ui",
+      "input": ".card { box-shadow: rgba(0,0,0,0.8) 0 20px 80px; }",
+      "present": [
+        "ui.shadow-review"
+      ],
+      "absent": []
+    },
+    {
+      "id": "static-vivid-center",
+      "type": "ui",
+      "input": "<h1 style=\"text-align:center;background:#ffde00;color:#a10060\">纸艺活动</h1>",
+      "present": [],
+      "absent": [
+        "ui.motion-review",
+        "ui.blur-review"
       ]
     },
     {
-      "id": "product_launch_narrative",
-      "name": "产品发布与硬核叙事文案",
-      "medium": "text",
-      "category": "narrative",
-      "tone": "Hemingway / BLUF",
-      "validation_criteria": [
-        "zero_slop_buzzwords",
-        "sentence_length_under_25_chars_average",
-        "max_commas_per_sentence_under_3",
-        "factual_numbers_instead_of_adjectives",
-        "no_uppercase_double_slash_eyebrow"
+      "id": "ordinary-term",
+      "type": "text",
+      "input": "The safety harness weighs 300 grams.",
+      "present": [],
+      "absent": [
+        "text.vague-phrase"
       ]
     },
     {
-      "id": "interactive_action_button",
-      "name": "高完成度物理微交互按钮",
-      "medium": "ui_component",
-      "category": "atoms",
-      "motion_budget_ms": 120,
-      "validation_criteria": [
-        "complete_8_states",
-        "active_micro_scale_0_985",
-        "inset_1px_top_highlight",
-        "focus_visible_ring_defined",
-        "disabled_opacity_and_cursor"
+      "id": "vague-phrase-review",
+      "type": "text",
+      "input": "在当今快节奏的世界中，我们全方位引领未来。",
+      "present": [
+        "text.vague-phrase"
+      ],
+      "absent": []
+    },
+    {
+      "id": "research-qualification",
+      "type": "text",
+      "input": "本次观察覆盖一个城市的20名参与者，观察发现使用记录功能的人报告了更多阅读时间；由于没有随机分组，不能判断记录功能导致阅读时间增长。",
+      "present": [],
+      "absent": [
+        "text.dense-sentence",
+        "text.vague-phrase"
       ]
+    },
+    {
+      "id": "code-quote-not-prose",
+      "type": "text",
+      "input": "```txt\n全方位引领\n```",
+      "present": [],
+      "absent": [
+        "text.vague-phrase"
+      ]
+    },
+    {
+      "id": "single-valid-contrast",
+      "type": "text",
+      "input": "这不是随机试验，而是一项观察性研究。结果只能说明相关性。",
+      "present": [],
+      "absent": [
+        "text.formulaic-contrast"
+      ]
+    },
+    {
+      "id": "repeated-formulaic-contrast",
+      "type": "text",
+      "input": "这不是速度问题，而是信任问题。真正的产品从来不是工具，而是伙伴。",
+      "present": [
+        "text.formulaic-contrast"
+      ],
+      "absent": []
+    },
+    {
+      "id": "assistant-residue",
+      "type": "text",
+      "input": "这是本周的项目结论。希望这能帮助你。如有需要，我可以继续补充。",
+      "present": [
+        "text.chat-residue"
+      ],
+      "absent": []
+    },
+    {
+      "id": "repeated-sentence-opener",
+      "type": "text",
+      "input": "我们检查了样本。我们保留了限定。我们删除了空话。",
+      "present": [
+        "text.repeated-opener"
+      ],
+      "absent": []
+    },
+    {
+      "id": "uniform-sentence-rhythm",
+      "type": "text",
+      "input": "团队今天完成第一轮测试。用户明天开始第二轮试用。项目后天进入第三轮复核。报告月底提交最终版结论。",
+      "present": [
+        "text.uniform-rhythm"
+      ],
+      "absent": []
+    },
+    {
+      "id": "tiny-screen-text",
+      "type": "ui",
+      "input": ".meta { font-size: 8px; } .body { font-size: 16px; }",
+      "present": [
+        "ui.small-text-review"
+      ],
+      "absent": []
     }
   ]
 }

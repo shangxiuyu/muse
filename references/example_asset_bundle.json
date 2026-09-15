@@ -1,0 +1,41 @@
+{
+  "entries": [
+    {
+      "id": "teaching-repair-text",
+      "kind": "reference",
+      "expected_revision": 0,
+      "data": {
+        "title": "修补叙述：人为编写的两段教学材料",
+        "status": "active",
+        "tags": ["教学", "叙述"],
+        "source": {"kind": "article", "locator": "Muse references/asset_schema.md：最小教学示例", "captured_at": "2026-09-13T00:00:00.000Z", "coverage": "text-only"},
+        "observations": [{"id": "sequence", "locator": "第一段与第二段", "observation": "先写对齐杯沿、细绳固定两个具体动作，下一段才解释修补的意义。"}],
+        "limits": ["仅两段教学文字，没有排版、作者其他作品或读者反馈。"]
+      }
+    },
+    {
+      "id": "teaching-action-before-meaning",
+      "kind": "system",
+      "expected_revision": 0,
+      "data": {
+        "title": "动作先于解释",
+        "status": "ready",
+        "tags": ["教学", "具体动作", "叙述"],
+        "system_type": "aesthetic",
+        "media": ["text"],
+        "scope": "有真实细节可写的手工过程与人物叙述",
+        "intent": "让读者先看到行动，再理解意义",
+        "principles": [{
+          "name": "行动引出意义",
+          "rule": "先呈现可观察的行动，再用一段解释其意义。",
+          "rationale": "让抽象判断与前文细节建立联系；具体阅读效果仍需实测。",
+          "applies_when": "有真实动作细节，并允许读者逐步进入情境。",
+          "avoid_when": "紧急通知、必须先给结论的摘要，或没有真实细节时。",
+          "confidence": "provisional",
+          "evidence": [{"kind": "reference_observation", "reference_id": "teaching-repair-text", "reference_revision": 1, "observation_id": "sequence"}]
+        }],
+        "limits": ["示例支持叙述顺序，不支持对用户喜好、视觉风格或读者效果的判断。"]
+      }
+    }
+  ]
+}

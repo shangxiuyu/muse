@@ -1,106 +1,41 @@
 #!/usr/bin/env node
-
-/**
- * Muse Vault Schema Migration Engine
- * Zero dependencies. Runs on native Node.js.
- * Ensures seamless, non-destructive migration of user personal taste assets across schema versions.
- */
-
-const fs = require('fs');
-const path = require('path');
-
-const TARGET_VERSION = "1.1.0";
-
-const MIGRATIONS = [
-  {
-    from: "1.0.0",
-    to: "1.1.0",
-    description: "Add interaction_and_motion guidelines and formal rejected_cases schema",
-    migrate: (content) => {
-      let updated = content;
-
-      // Update version string
-      updated = updated.replace(/version:\s*"1\.0\.0"/, `version: "${TARGET_VERSION}"`);
-
-      // Ensure interaction_and_motion exists
-      if (!updated.includes("interaction_and_motion:")) {
-        const motionSnippet = `
-interaction_and_motion:
-  motion_first_citizen: "动效是一等公民而非次级修饰。UI 宏观构建必须首发全量交付进场错落时序 (stagger reveal)、动态时序推演与弹簧微物理反馈，严禁交出死寂的静态页面。"
-`;
-        // Insert after palette_and_materials block
-        if (updated.includes("contrast_style:")) {
-          updated = updated.replace(
-            /(contrast_style:.*?\n)/,
-            `$1${motionSnippet}`
-          );
-        } else {
-          updated += motionSnippet;
-        }
-      }
-
-      // Ensure rejected_cases exists as array
-      if (!updated.includes("rejected_cases:")) {
-        updated += `
-# 被毙案例档案：逼近用户判断函数的核心数据（捕获协议 §5.2 维护）
-rejected_cases: []
-`;
-      }
-
-      return updated;
-    }
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const { VERSION, parse, initVault, readVault } = require('./vault');
+function migrate(source, destination) {
+  if (!source || !destination) throw new Error('Usage: node scripts/migrate_vault.js <old-vault> --output <new-private-dir>');
+  const dnaFile = path.join(source, 'personal_dna.yaml');
+  const original = fs.readFileSync(dnaFile, 'utf8');
+  let text = original; let repaired = false;
+  // Narrow recovery for the published 1.x inline block-list defect; never generic YAML repair.
+  if (/^version:\s*["']?1\.[01]\.0["']?\s*$/m.test(text) && /^rejected_cases:[ \t]+- /m.test(text)) {
+    text = text.replace(/^rejected_cases:[ \t]+- /m, 'rejected_cases:\n  - '); repaired = true;
   }
-];
-
-function run() {
-  const vaultDir = process.argv[2] || path.join(__dirname, '..', 'vault');
-  const dnaPath = path.join(vaultDir, 'personal_dna.yaml');
-
-  console.log(`\n🏛️  Muse Vault Schema Migration Manager`);
-  console.log(`Scanning: ${path.resolve(dnaPath)}\n`);
-
-  if (!fs.existsSync(dnaPath)) {
-    console.log(`✖ Cannot find personal_dna.yaml in ${vaultDir}`);
-    process.exit(1);
+  const old = parse(text);
+  if (!old || typeof old !== 'object' || Array.isArray(old)) throw new Error('Invalid legacy DNA');
+  if (!['1.0.0', '1.1.0', VERSION].includes(old.version)) throw new Error('Unsupported vault version: ' + old.version);
+  const tabooFile = path.join(source, 'personal_taboos.yaml');
+  const tabooOriginal = fs.existsSync(tabooFile) ? fs.readFileSync(tabooFile, 'utf8') : null;
+  const oldTaboos = tabooOriginal === null ? null : parse(tabooOriginal);
+  let dna; let taboos;
+  if (old.version === VERSION) ({ dna, taboos } = readVault(source));
+  else {
+    // Preserve all old information without assuming it was confirmed by the current user.
+    dna = { version: VERSION, last_updated: null, preferences: [], rejected_cases: [],
+      legacy_import: { status: 'candidate', source: path.resolve(source), original_version: old.version, data: old, taboos: oldTaboos } };
+    taboos = { version: VERSION, taboos: [] };
   }
-
-  const content = fs.readFileSync(dnaPath, 'utf8');
-  const versionMatch = content.match(/version:\s*"([^"]+)"/);
-  const currentVersion = versionMatch ? versionMatch[1] : "1.0.0";
-
-  console.log(`Current Vault Schema Version : v${currentVersion}`);
-  console.log(`Target Schema Version        : v${TARGET_VERSION}`);
-
-  if (currentVersion === TARGET_VERSION) {
-    console.log(`✓ Vault schema is already up to date!\n`);
-    process.exit(0);
-  }
-
-  // Find applicable migrations
-  let migratingContent = content;
-  let appliedCount = 0;
-
-  MIGRATIONS.forEach(m => {
-    if (m.from === currentVersion) {
-      console.log(`Applying migration [${m.from} ➔ ${m.to}]: ${m.description}`);
-      migratingContent = m.migrate(migratingContent);
-      appliedCount++;
-    }
-  });
-
-  if (appliedCount === 0) {
-    console.log(`▲ No migration path found from v${currentVersion} to v${TARGET_VERSION}. Manual upgrade may be needed.\n`);
-    process.exit(0);
-  }
-
-  // Create backup
-  const backupPath = `${dnaPath}.bak-${Date.now()}`;
-  fs.writeFileSync(backupPath, content, 'utf8');
-  console.log(`✓ Created safe backup at: ${path.basename(backupPath)}`);
-
-  // Write migrated file
-  fs.writeFileSync(dnaPath, migratingContent, 'utf8');
-  console.log(`✓ Successfully migrated personal_dna.yaml to v${TARGET_VERSION}!\n`);
+  const backups = { 'legacy-personal_dna.yaml.bak': original };
+  if (tabooOriginal !== null) backups['legacy-personal_taboos.yaml.bak'] = tabooOriginal;
+  const result = initVault(destination, dna, taboos, backups);
+  return { ...result, version: VERSION, repairedKnownLegacySyntax: repaired, preferencesRequireReview: old.version !== VERSION };
 }
-
-run();
+if (require.main === module) {
+  try {
+    const a = process.argv.slice(2);
+    if (a.length !== 3 || a[1] !== '--output') throw new Error('Usage: node scripts/migrate_vault.js <old-vault> --output <new-private-dir>');
+    console.log(JSON.stringify(migrate(a[0], a[2]), null, 2));
+  } catch (e) { console.error(e.message); process.exitCode = 1; }
+}
+module.exports = { migrate };
