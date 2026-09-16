@@ -25,6 +25,9 @@ function lintContent(source) {
   if (/blur\(\s*(?:[6-9]\d|[1-9]\d{2,})(?:\.\d+)?px\s*\)/i.test(content)) add('ui.blur-review', 'Large blur: inspect legibility, purpose and rendering cost in context.');
   const tinyPx = [...content.matchAll(/font-size\s*:\s*(\d+(?:\.\d+)?)px\b/gi)].map(m => Number(m[1])).filter(n => n > 0 && n < 12);
   if (tinyPx.length) add('ui.small-text-review', `Found screen text below 12px (${[...new Set(tinyPx)].sort((a, b) => a - b).join(', ')}px); inspect computed size, information role and target viewing distance.`);
+  if (/border-radius\s*:[^;}]+\b\d+px/i.test(content) && /border-left\s*:\s*[2-9]px/i.test(content)) {
+    add('ui.accent-border-slop', 'Thick border-left on rounded container (Accent/Callout Stripe); causes corner-line geometric distortion and generic AI template look. Use hairline borders with subtle background tints or inner status dots instead.');
+  }
   return { errors: [], warnings: findings.map(f => f.message), findings };
 }
 function lintFile(file) { return lintContent(fs.readFileSync(file, 'utf8')); }

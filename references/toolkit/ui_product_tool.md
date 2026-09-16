@@ -7,41 +7,51 @@
 
 ---
 
-## 🏛️ 顶层架构：道 · 法 · 技（体术合一）· 契
+## 🏛️ 顶层架构：探（情境解构）· 法（分流与旋钮）· 契（设计契约）· 技（体术兵器）· 行（性能与验收）
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ 1. 【道 · 审美原则】美是关系的艺术，判断先于生成，最终目标是恰当           │
+│ 1. 【探 · 情境解构】意图解构与心理探针 + 存量审计 + 视觉母体流派锚定        │
 ├────────────────────────────────────────────────────────────────────────┤
-│ 2. 【法 · 参数分流】模式三选一 + 三旋钮离散阶梯 (1~10) + Content DNA 提炼   │
+│ 2. 【法 · 参数分流】模式三选一 (Expressive/Convention/Existing) + 审美三旋钮 │
 ├────────────────────────────────────────────────────────────────────────┤
-│ 3. 【技 · 体术融合】四大实战构件（规范 + 兵器库 + 禁令合一）：             │
+│ 3. 【契 · 交付守卫】DESIGN.md 标准工程契约（写代码前必先立契）+ 6 轴打分    │
+├────────────────────────────────────────────────────────────────────────┤
+│ 4. 【技 · 体术融合】四大实战构件（规范 + 兵器库 + Anti-Slop 红线合一）：    │
 │    ① 色彩与材质：客体提纯专属色板、和谐搭配、去 AI 廉价色、真折射毛玻璃    │
 │    ② 空间与排版：负字距精密系统、非对称布局、行宽限制、封杀 3 等分卡片     │
 │    ③ 活体与交互：物理弹簧阻尼、Bento 5 大活体原型、Creative Arsenal 兵器库 │
 │    ④ 组件与数据：有机真实数据、Anti-Card Overuse、完整 7 态契约、44px 靶心 │
 ├────────────────────────────────────────────────────────────────────────┤
-│ 4. 【契 · 交付守卫】DESIGN.md 标准工程契约 + React 性能守卫 + 6 轴自省打分  │
+│ 5. 【行 · 工程验收】React/CSS 运行时性能守卫 + 移动端折叠 + 真实相遇复盘    │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 一、道与法：模式分流与参数标定
+## 一、探与法：意图解构、情境探针与参数分流
 
-### 1. 业务模式三选一与生命周期
+### 0. 核心前置：意图解构与情境探针 (Probe & Context)
+> **“用户要的不是一个界面，而是一个具体情境下的优雅解决方案。”**
+
+AI 接收到一句话或粗颗粒度需求后，严禁直接生成代码，必须先在认知层面展开探测：
+
+1. **情境与心理状态探针（Mental State & Environment）**：
+   - **谁在用？** 他的生理与心理状态是什么？（如：冥想用户在身心疲惫、准备入眠时使用，需要极简、微光、无压力、无刺眼高饱和；量化操盘手在高压紧绷中操作，需要极高辨识度与零误触）。
+   - **在什么物理环境下用？**（暗光卧室需要深邃微光的暗调护眼；强光户外需要高反差与 44px+ 易触靶心）。
+2. **上下文存量审计（Context Audit）**：
+   - 检查项目当前是否有既定的 Design Tokens、Tailwind 配置、字体族或组件库；严禁在已有系统中擅自另起炉灶。
+   - 检索用户的私有品味库（`~/Documents/Muse`），调取历史偏好或禁忌。
+3. **视觉风格母体锚定（Archetype Alignment）**：
+   - 强制查阅 [视觉母体库](../archetypes.md)，从 10 大数字产品经典流派中锚定最贴切的风格基因（如：身心疗愈锁定 `ambient_wellness_flow`，极客产品锁定 `tech_flagship_dark`，作家排版锁定 `writer_atelier`）。
+
+### 1. 业务模式三选一
 - **Expressive 表达模式**（官网、品牌 Landing Page、产品 Hero）：提炼一个签名级视觉主角（Signature Element），建立不可替代的第一印象。
 - **Convention 效率模式**（控制台、数据看板、设置、表单）：熟悉与高效就是最高审美，专注层级、密度、间距与键盘无障碍。
 - **Existing 继承模式**（既有项目改版、新增功能模块）：“先考古，后复用”，严密匹配既有 Token 与组件体系。
 
-> **生命周期与协议关联**：
-> - 跨项目或复杂迭代依 [UI 项目上下文](ui_project_context.md) 判定系统边界（`existing` / `new_in_system` / `blank_slate`）；
-> - 依 [UI 迭代协议](ui_iteration_protocol.md) 选择修改策略（`direct_edit` / `replace` / `branch` / `revert`）；
-> - 依 [UI 资产协议](ui_asset_protocol.md) 管理品牌与内容图像；
-> - 全新立项或重构时，依 [UI 审美综合](ui_aesthetic_synthesis.md) 提炼 **Content DNA**、定义 **Distinctive Relation（辨识关系）** 与 **Restraint Rule（克制规则）**，并率先交付 **Critical Slice（关键体验切片）** 验证核心假设。
-
 ### 2. 审美调节三旋钮（工程级离散阶梯）
-根据业务情境标定数值：
+结合情境探针与母体规范，标定 3 个核心离散数值（1-10）：
 - **`DESIGN_VARIANCE` (1-10)**：`1~3` 经典居中/对称网格 ➔ `4~7` 50/50分屏/负边距重叠/多比例混排 ➔ `8~10` 非对称分数网格/巨幅留白（**移动端 `<768px` 强制单列回退**）。
 - **`MOTION_INTENSITY` (1-10)**：`1~3` 静态 CSS 状态 ➔ `4~7` 现代贝塞尔微动效（`<200ms`） ➔ `8~10` 物理弹簧阻尼/常驻活体微交互/全局单点编排。
 - **`VISUAL_DENSITY` (1-10)**：`1~3` Art Gallery 展陈大留白 ➔ `4~7` Daily App 标准应用 ➔ `8~10` Cockpit 紧凑无卡片（1px 细线分隔/等宽数字）。
@@ -113,7 +123,12 @@
 
 ### 🧩 4. 组件规范与真实数据
 
-- **Anti-Card Overuse 军规**：信息密集时**严禁卡片套卡片（No Card-in-Card）**，使用单像素分割线（`border-t` / `divide-y`）或负空间逻辑分组。
+- **Anti-Card Overuse 与组件形态军规**：
+  - **严禁卡片套卡片（No Card-in-Card）**：信息密集时使用单像素分割线（`border-t` / `divide-y`）或负空间逻辑分组；
+  - **封杀圆角侧边彩条与老式 Callout 痕迹（The Accent Border / Callout Stripe Ban）**：
+    - **严禁在具有圆角（`border-radius`）的卡片或浮层上叠加单边粗色线**（如 `border-left: 3px solid ...` 或侧边彩色厚色脊）；
+    - **病理诊断**：圆角与单边直线的几何撕裂（Corner-Line Conflict）会导致左上/左下转角弧度被生硬拉扯变形，呈现被截断的粗糙感，散发极其强烈的“老式 Bootstrap Alert / 廉价 Admin 模板 / 典型 AI 粗暴套路”气味；
+    - **高级正解**：卡片四周统一采用 `1px` 极细微透发丝线（Hairline），仅通过内部内联的 `5px` 呼吸小圆点（Status Dot）、精致微标签胶囊（Pill Badge）、或低饱和极淡微光浸润底色（Subtle Paper Tint）表达语义与重要级。
 - **组件完整 7 态契约**：每一个核心组件交代清楚：`Default` ➔ `Hover` ➔ `Active`（`scale(0.98)` / `-translate-y-[1px]`）➔ `Focus-visible`（高反差外环，严禁 `outline:none`）➔ `Loading`（骨架屏，严禁通用旋转小菊花）➔ `Disabled`（`opacity: 0.45`）➔ `Empty / Error`。
 - **消灭 Jane Doe 虚假数据**：严禁出现 `John Doe`、`Acme Corp`、`99.99%`、`1234567`；采用真实、有机杂乱的数据（如 `47.2%`、`+1 (312) 847-1928`、`$1,248.50`）。
 - **工程与无障碍底线**：
@@ -135,18 +150,19 @@
 
 ## 四、器 · 交付契约与 Pre-emit 自省
 
-> **铁律：写代码前先立契约**。全新设计或重构任务，必须先在项目根目录交付或增量更新自包含且工程级详尽的 `DESIGN.md`：
+> **铁律：写代码前先立契约**。全新设计或重构任务，**必须首先查阅 [视觉母体库](../archetypes.md)（含 10 大经典产品流派及精细 Token）**，依据业务赛道与受众心流锚定最匹配的设计母体（或明确跨界混血方案），再在项目根目录交付或增量更新自包含且工程级详尽的 `DESIGN.md`：
 
 ```markdown
 # [Project Name] · Design System & Execution Contract
 
 ## 1. Context & Baseline Knobs
 - **Subject Matter**: 业务客体与核心情绪
+- **Aesthetic Archetype**: [锚定的母体流派，如 Ambient Wellness Flow / Tech Flagship Dark / ...] (详见 references/archetypes.md)
 - **Mode Balance**: Expressive (X%) / Convention (Y%)
 - **Baseline Knobs**: VARIANCE: [1-10] | MOTION: [1-10] | DENSITY: [1-10]
 
 ## 2. Color System & Material (6:3:1)
-- **Palette**: Canvas (60%) `#...` | Surfaces (30%) `#...` | Accent (10%) `#...` | Text 3-Tier `#...`
+- **Palette**: Canvas (60%) `#...` | Surfaces (30%) `#...` | Accent (10%) `#...` | Text 3-Tier `#...` (优先继承所选 Archetype 的黄金色号)
 - **Material Specs**: Border hairline, Glass refraction, or Diffusion shadow parameters
 
 ## 3. Layout & ASCII Wireframe
@@ -155,7 +171,7 @@
 
 ## 4. Component 7-State Matrix & Archetypes
 - **7 States Table**: Default | Hover | Active | Focus | Loading (Skeleton) | Disabled | Error
-- **Active Bento Archetypes / Creative Arsenal**: (e.g. The Intelligent List + Spotlight Border)
+- **Active Bento Archetypes / Creative Arsenal**: (如 The Intelligent List + Spotlight Border + 所选母体特权微手艺)
 
 ## 5. Motion Physics & Performance Rules
 - **Spring Parameters**: stiffness: 100, damping: 20

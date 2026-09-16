@@ -56,7 +56,7 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
 
 ## 工作流
 
-1. **观察与建立情境。** 完整新作按 [作品契约](references/artifact_contract.md) 整理作品类型、内容、受众、使用情境、主要结果、品牌边界和验收条件；评审已有作品则先描述真实呈现。只有缺失信息会改变核心方向时才澄清。
+1. **意图解构与情境探针。** “用户要的不是一个界面，而是一个情境下的解决方案。”完整新作率先探测受众的生理与心理状态（疲惫/紧绷、暗光/户外）、物理使用情境与模式分流（表达型/效率型/继承型），审计存量资产并依 [作品契约](references/artifact_contract.md) 整理边界。只有缺失信息会改变核心方向时才澄清。
 2. **形成审美假设。** 用 [审美推理方法](references/aesthetic_intelligence.md) 从内容特有的关系提出表达方向：希望谁在什么情境下，通过怎样的感知顺序，理解、行动或感到什么；哪些判断来自证据，哪些仍需人的体验确认。使用案例时继续追问可见选择背后的感知机制、系统支持、人与作品的关系及历史情境，不把风格名称当成原因。
 3. **调用品味记忆。** 按用户指定路径、`MUSE_VAULT_DIR`、默认 `~/Documents/Muse` 的顺序定位个人库；存在时检索当前场景适用的 confirmed 偏好、审美系统或 `author_voice`。个人库不存在就视为空库，不因读取而创建。个人资产可以改变审美假设，但不能覆盖事实、明确要求、可用性与伦理边界。
 4. **按媒介落实。** 只加载本任务需要的参考：
@@ -64,7 +64,7 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
    | 任务 | 参考 |
    |---|---|
    | 参考分析、收藏、品味提取 | [提取流程](references/extraction.md)、[品味记忆](references/taste_memory.md)；品牌／设计师／风格案例再读 [案例式审美训练](references/case_based_training.md)；写入时读 [格式](references/asset_schema.md) |
-   | UI／产品界面 | **默认阅读 [UI／UX 全能实战手册](references/toolkit/ui_product_tool.md)（自包含三旋钮、六大维度、Bento 2.0 活体原型、交互兵器库、Anti-Slop 与性能红线）**；全新立项或需要提炼 Content DNA 时查阅 [UI 审美综合](references/toolkit/ui_aesthetic_synthesis.md)；特定专项按需查阅 [UI 项目上下文](references/toolkit/ui_project_context.md)、[UI 迭代协议](references/toolkit/ui_iteration_protocol.md) 或 [UI 资产协议](references/toolkit/ui_asset_protocol.md) |
+   | UI／产品界面 | **默认阅读 [UI／UX 全能实战手册](references/toolkit/ui_product_tool.md)（自包含三旋钮、六大维度、Bento 2.0 活体原型、交互兵器库、Anti-Slop 与性能红线）**；全新立项或写设计契约前**必查 [视觉母体库](references/archetypes.md) 对齐 10 大经典流派**；需要提炼 Content DNA 时查阅 [UI 审美综合](references/toolkit/ui_aesthetic_synthesis.md)；特定专项按需查阅 [UI 项目上下文](references/toolkit/ui_project_context.md)、[UI 迭代协议](references/toolkit/ui_iteration_protocol.md) 或 [UI 资产协议](references/toolkit/ui_asset_protocol.md) |
    | 文案／叙事 | **默认阅读 [文本内容生成全能实战手册](references/toolkit/text_narrative_tool.md)（含媒介受众探针、四大深层架构、语言文风与 WRITING.md 契约）**；公开发布、深度去 AI 味、24 种微创手术与量化打分读 [文本质量复核](references/toolkit/text_quality_protocol.md)；个人声音读 [作者声音画像](references/personal_assets/author_voice_profile.md) |
    | 幻灯片 / 演示 | **默认阅读 [演示文稿与现场演说全能实战手册](references/toolkit/presentation_tool.md)（含业务场景探针、屏人二重奏账本、Theme Rhythm 呼吸节律、单文件 Web Deck 与 PPT.md 契约）**；按需查阅 [视觉方向](references/toolkit/presentation/visual_direction.md) 或 [相遇与淘汰](references/toolkit/presentation/encounter_and_rejection.md) |
    | 平面／海报／封面／编辑视觉 | [视觉语法](references/visual_grammar.md) |
@@ -72,7 +72,7 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
    | 动效／微交互 | [时间与运动规范](references/toolkit/motion_tool.md) |
    | 同一概念跨媒介 | [转换方法](references/cross_media.md)，再读涉及的媒介 |
 
-5. **完成作品。** 按 [执行架构](references/execution_architecture.md) 优先沿用用户指定工具和项目现有体系，再选择媒介执行器。UI 任务除局部微小直接修改外，全新设计或重构任务**必须先在项目根目录交付或更新自包含的 `DESIGN.md` 契约**；文案与长文创作任务**必须先在项目根目录交付或对齐自包含的 `WRITING.md` 契约（含媒介受众探针、深层架构模型、语言艺术与文风设定及事实账本）**；演示文稿与 PPT 任务**必须先在项目根目录交付或对齐自包含的 `PPT.md` 契约（含业务情境探针、视觉形式推导、明暗呼吸节奏及逐页台前幕后账本）**，锁定设计与台词骨架后，再行落笔生成单文件 HTML Web Deck；图像与视觉任务**必须先在项目根目录交付或对齐集中管理全部图片资产的 `IMAGE.md` 契约（含渠道受众探针、意象隐喻推导、负空间留白与多模型结构化 Prompt 账本）**；精确修改、当前方向精修和替代方向探索分别处理，不把每次反馈都变成重新生成。Muse 保留事实、审美假设、个人品味和验收责任。用户提供参考时先实际读取；临时参考就地使用，明确要求收藏／学习时才写入个人库。
+5. **完成作品。** 按 [执行架构](references/execution_architecture.md) 优先沿用用户指定工具和项目现有体系，再选择媒介执行器。UI 任务除局部微小直接修改外，全新设计或重构任务**必须先在项目根目录交付或更新自包含的 `DESIGN.md` 契约（交付前强制查阅 [视觉母体库](references/archetypes.md) 锚定最契合业务的流派母体与 Token）**；文案与长文创作任务**必须先在项目根目录交付或对齐自包含的 `WRITING.md` 契约（含媒介受众探针、深层架构模型、语言艺术与文风设定及事实账本）**；演示文稿与 PPT 任务**必须先在项目根目录交付或对齐自包含的 `PPT.md` 契约（含业务情境探针、视觉形式推导、明暗呼吸节奏及逐页台前幕后账本）**，锁定设计与台词骨架后，再行落笔生成单文件 HTML Web Deck；图像与视觉任务**必须先在项目根目录交付或对齐集中管理全部图片资产的 `IMAGE.md` 契约（含渠道受众探针、意象隐喻推导、负空间留白与多模型结构化 Prompt 账本）**；精确修改、当前方向精修和替代方向探索分别处理，不把每次反馈都变成重新生成。Muse 保留事实、审美假设、个人品味和验收责任。用户提供参考时先实际读取；临时参考就地使用，明确要求收藏／学习时才写入个人库。
 6. **让作品接受真实相遇。** 先对账事实，再按 [成品验收](references/acceptance_protocol.md) 和 [复盘协议](references/critique.md) 观察最终媒介：视觉任务看真实渲染，交互走主要路径，动效实际运行体验。区分 AI 自评、可观察结果与用户真实反应；未观察的部分标记为未验证。
 7. **从反馈学习。** 反馈先用于修作品；用户授权长期保存时，先记录带原话、对象、发生时间和情境的 `reaction`，再另行判断是否修订 application／system 或提出 candidate。只有用户明确表达长期意图才写 confirmed。
 
