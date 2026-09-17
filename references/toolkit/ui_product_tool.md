@@ -39,11 +39,13 @@ AI 接收到一句话或粗颗粒度需求后，严禁直接生成代码，必�
 1. **情境与心理状态探针（Mental State & Environment）**：
    - **谁在用？** 他的生理与心理状态是什么？（如：冥想用户在身心疲惫、准备入眠时使用，需要极简、微光、无压力、无刺眼高饱和；量化操盘手在高压紧绷中操作，需要极高辨识度与零误触）。
    - **在什么物理环境下用？**（暗光卧室需要深邃微光的暗调护眼；强光户外需要高反差与 44px+ 易触靶心）。
-2. **上下文存量审计（Context Audit）**：
-   - 检查项目当前是否有既定的 Design Tokens、Tailwind 配置、字体族或组件库；严禁在已有系统中擅自另起炉灶。
+2. **上下文存量审计与生命周期（Context Audit & Lifecycle）**：
+   - 检查项目当前是否有既定的 Design Tokens、Tailwind 配置、字体族或组件库；生命周期上下文遵循 [项目上下文](ui_project_context.md) 识别系统现状与指纹。
+   - 迭代模式严格遵循 [UI 迭代协议](ui_iteration_protocol.md)（区分 direct_edit / replace / branch），资产边界遵循 [UI 资产协议](ui_asset_protocol.md)。
    - 检索用户的私有品味库（`~/Documents/Muse`），调取历史偏好或禁忌。
-3. **视觉风格母体锚定（Archetype Alignment）**：
-   - 强制查阅 [视觉母体库](../archetypes.md)，从 10 大数字产品经典流派中锚定最贴切的风格基因（如：身心疗愈锁定 `ambient_wellness_flow`，极客产品锁定 `tech_flagship_dark`，作家排版锁定 `writer_atelier`）。
+3. **视觉风格母体锚定与审美综合（Archetype Alignment & Synthesis）**：
+   - 从业务事实提炼 **Content DNA**，推导 **Distinctive Relation**，设立 **Restraint Rule**，并以 **Critical Slice** 验收核心切片。
+   - 强制查阅 [视觉母体库](../archetypes.md)，从 10 大全端美学母体中锚定最贴切的风格基因（如：极客工坊锁定 `neo_brutalist_engineering`，线框协同系统锁定 `wireframe_architect_grid`，暗夜机构级 DeFi 锁定 `institutional_defi_dark`，科技旗舰锁定 `tech_flagship_dark`，作家案头锁定 `writer_atelier`，复古文具锁定 `playful_stationery`）。端适配遵循母体库中的《跨端推断协议》，严禁机械割裂端形态。
 
 ### 1. 业务模式三选一
 - **Expressive 表达模式**（官网、品牌 Landing Page、产品 Hero）：提炼一个签名级视觉主角（Signature Element），建立不可替代的第一印象。
@@ -123,12 +125,7 @@ AI 接收到一句话或粗颗粒度需求后，严禁直接生成代码，必�
 
 ### 🧩 4. 组件规范与真实数据
 
-- **Anti-Card Overuse 与组件形态军规**：
-  - **严禁卡片套卡片（No Card-in-Card）**：信息密集时使用单像素分割线（`border-t` / `divide-y`）或负空间逻辑分组；
-  - **封杀圆角侧边彩条与老式 Callout 痕迹（The Accent Border / Callout Stripe Ban）**：
-    - **严禁在具有圆角（`border-radius`）的卡片或浮层上叠加单边粗色线**（如 `border-left: 3px solid ...` 或侧边彩色厚色脊）；
-    - **病理诊断**：圆角与单边直线的几何撕裂（Corner-Line Conflict）会导致左上/左下转角弧度被生硬拉扯变形，呈现被截断的粗糙感，散发极其强烈的“老式 Bootstrap Alert / 廉价 Admin 模板 / 典型 AI 粗暴套路”气味；
-    - **高级正解**：卡片四周统一采用 `1px` 极细微透发丝线（Hairline），仅通过内部内联的 `5px` 呼吸小圆点（Status Dot）、精致微标签胶囊（Pill Badge）、或低饱和极淡微光浸润底色（Subtle Paper Tint）表达语义与重要级。
+- **Anti-Card Overuse 军规**：信息密集时**严禁卡片套卡片（No Card-in-Card）**，使用单像素分割线（`border-t` / `divide-y`）或负空间逻辑分组。
 - **组件完整 7 态契约**：每一个核心组件交代清楚：`Default` ➔ `Hover` ➔ `Active`（`scale(0.98)` / `-translate-y-[1px]`）➔ `Focus-visible`（高反差外环，严禁 `outline:none`）➔ `Loading`（骨架屏，严禁通用旋转小菊花）➔ `Disabled`（`opacity: 0.45`）➔ `Empty / Error`。
 - **消灭 Jane Doe 虚假数据**：严禁出现 `John Doe`、`Acme Corp`、`99.99%`、`1234567`；采用真实、有机杂乱的数据（如 `47.2%`、`+1 (312) 847-1928`、`$1,248.50`）。
 - **工程与无障碍底线**：
@@ -150,7 +147,7 @@ AI 接收到一句话或粗颗粒度需求后，严禁直接生成代码，必�
 
 ## 四、器 · 交付契约与 Pre-emit 自省
 
-> **铁律：写代码前先立契约**。全新设计或重构任务，**必须首先查阅 [视觉母体库](../archetypes.md)（含 10 大经典产品流派及精细 Token）**，依据业务赛道与受众心流锚定最匹配的设计母体（或明确跨界混血方案），再在项目根目录交付或增量更新自包含且工程级详尽的 `DESIGN.md`：
+> **铁律：写代码前先立契约**。全新设计或重构任务，**必须首先查阅 [视觉母体库](../archetypes.md)（含 10 大全端美学母体及跨端推断协议）**，依据业务赛道与受众心流锚定最匹配的设计母体（或明确跨界混血方案），再在项目根目录交付或增量更新自包含且工程级详尽的 `DESIGN.md`：
 
 ```markdown
 # [Project Name] · Design System & Execution Contract

@@ -64,7 +64,7 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
    | 任务 | 参考 |
    |---|---|
    | 参考分析、收藏、品味提取 | [提取流程](references/extraction.md)、[品味记忆](references/taste_memory.md)；品牌／设计师／风格案例再读 [案例式审美训练](references/case_based_training.md)；写入时读 [格式](references/asset_schema.md) |
-   | UI／产品界面 | **默认阅读 [UI／UX 全能实战手册](references/toolkit/ui_product_tool.md)（自包含三旋钮、六大维度、Bento 2.0 活体原型、交互兵器库、Anti-Slop 与性能红线）**；全新立项或写设计契约前**必查 [视觉母体库](references/archetypes.md) 对齐 10 大经典流派**；需要提炼 Content DNA 时查阅 [UI 审美综合](references/toolkit/ui_aesthetic_synthesis.md)；特定专项按需查阅 [UI 项目上下文](references/toolkit/ui_project_context.md)、[UI 迭代协议](references/toolkit/ui_iteration_protocol.md) 或 [UI 资产协议](references/toolkit/ui_asset_protocol.md) |
+   | UI／产品界面 | **默认阅读 [UI／UX 全能实战手册](references/toolkit/ui_product_tool.md)（自包含三旋钮、六大维度、Bento 2.0 活体原型、交互兵器库、Anti-Slop 与性能红线）**；全新立项或写设计契约前**必查 [视觉母体库](references/archetypes.md) 对齐 10 大全端美学母体与跨端自适应推断协议**；需要提炼 Content DNA 时查阅 [UI 审美综合](references/toolkit/ui_aesthetic_synthesis.md)；特定专项按需查阅 [UI 项目上下文](references/toolkit/ui_project_context.md)、[UI 迭代协议](references/toolkit/ui_iteration_protocol.md) 或 [UI 资产协议](references/toolkit/ui_asset_protocol.md) |
    | 文案／叙事 | **默认阅读 [文本内容生成全能实战手册](references/toolkit/text_narrative_tool.md)（含媒介受众探针、四大深层架构、语言文风与 WRITING.md 契约）**；公开发布、深度去 AI 味、24 种微创手术与量化打分读 [文本质量复核](references/toolkit/text_quality_protocol.md)；个人声音读 [作者声音画像](references/personal_assets/author_voice_profile.md) |
    | 幻灯片 / 演示 | **默认阅读 [演示文稿与现场演说全能实战手册](references/toolkit/presentation_tool.md)（含业务场景探针、屏人二重奏账本、Theme Rhythm 呼吸节律、单文件 Web Deck 与 PPT.md 契约）**；按需查阅 [视觉方向](references/toolkit/presentation/visual_direction.md) 或 [相遇与淘汰](references/toolkit/presentation/encounter_and_rejection.md) |
    | 平面／海报／封面／编辑视觉 | [视觉语法](references/visual_grammar.md) |

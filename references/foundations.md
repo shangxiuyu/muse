@@ -56,7 +56,7 @@
 
 运动解释变化、反馈、注意力或情绪。把大胆花在一个地方（Spend your boldness in one place），全页聚焦单一编排时刻，杜绝散落的区块淡入与卡片悬停；高频操作优先即时响应；品牌叙事允许停留；静态阅读可以不加装饰动画。
 
-距离、速度、加速度、延迟和重复共同决定感受。120ms 不是通用标准，贝塞尔曲线不等于真实弹簧模拟，推崇具备实体分量感的物理弹簧阻尼与 Bento 活体原型。不要在频繁操作时重播长入场，动效随时可被打断。减弱动效下保留等价信息，内容不能依赖动画才出现。详见 [时间与运动规范](toolkit/motion_tool.md) 与 [W3C 动画说明](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html)。
+距离、速度、加速度、延迟和重复共同决定感受。时长没有通用标准。不要在频繁操作时重播长入场，动效随时可被打断。减弱动效下保留等价信息，内容不能依赖动画才出现。详见 [时间与运动](toolkit/motion_tool.md) 与 [W3C 动画说明](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html)。
 
 ## 一致性与有意变化
 
