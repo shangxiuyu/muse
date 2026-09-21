@@ -1,330 +1,363 @@
 #!/usr/bin/env node
-'use strict';
-const fs = require('node:fs');
-const path = require('node:path');
-const crypto = require('node:crypto');
-const { isDeepStrictEqual } = require('node:util');
-const { required, readVault, privateDir, vaultLocation, args } = require('./vault');
-const CURRENT_SCHEMA_VERSION = 2;
-const MEDIA = ['web', 'text', 'slides', 'image'];
+/**
+ * 品味记忆库（Taste Vault）的存储与检索。
+ *
+ *   node scripts/asset_library.js location
+ *   node scripts/asset_library.js init   --vault <dir>
+ *   node scripts/asset_library.js list   [--vault <dir>] [--source personal|public|all] [--kind K] [--medium M] [--system-type T] [--valence V] [--query "词 词"]
+ *   node scripts/asset_library.js show   [--vault <dir>] [--source ...] --id <id> [--revision N]
+ *   node scripts/asset_library.js put    --vault <dir> --file <bundle.json>
+ *
+ * 边界：脚本校验**结构与引用关系**，不判断真实性、审美判断，也不推测用户喜好。
+ * 它不抓网页、不调模型、不自动把反应升级为偏好。写入前必须先读（show）。
+ *
+ * 位置优先级：--vault > MUSE_VAULT_DIR > ~/Documents/Muse。
+ * 只读查询不存在的库返回空结果，不创建文件。
+ */
+
+import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync, copyFileSync, unlinkSync, statSync } from 'node:fs';
+import { join, dirname, resolve } from 'node:path';
+import { homedir } from 'node:os';
+import { fileURLToPath } from 'node:url';
+
+const SKILL_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const STORE = 'aesthetic_assets.json';
 const KINDS = ['reference', 'reaction', 'system', 'application'];
-const SYSTEM_TYPES = ['aesthetic', 'author_voice'];
-const SOURCES = ['personal', 'public', 'all'];
-const REACTION_VALENCE = ['liked', 'disliked', 'mixed', 'neutral', 'unknown'];
-const REACTION_STRENGTH = ['low', 'medium', 'high', 'unknown'];
-const REASON_STATUS = ['user_stated', 'ai_inferred', 'co_formed', 'unknown'];
-const REACTION_SUBJECTS = ['reference', 'application', 'artifact'];
-const REACTION_TARGETS = ['whole', 'region', 'text', 'image', 'interaction', 'transition', 'sound', 'unknown'];
-const CONTRADICTION_RELATIONS = ['conflicts', 'qualifies', 'contextualizes'];
-const SKILL_ROOT = path.resolve(__dirname, '..');
-function mapping(v, label) {
-  if (!v || typeof v !== 'object' || Array.isArray(v)) throw new Error(`${label} must be an object`);
-}
-function keys(v, allowed, label) {
-  mapping(v, label);
-  for (const k of Object.keys(v)) if (!allowed.includes(k)) throw new Error(`Unknown ${label} field: ${k}`);
-}
-function strings(v, label, nonempty = false) {
-  if (!Array.isArray(v) || nonempty && !v.length) throw new Error(`${label} must be an array${nonempty ? ' with entries' : ''}`);
-  v.forEach(s => required(s, label));
-}
-function choice(v, options, label) {
-  if (!options.includes(v)) throw new Error(`Invalid ${label}: ${v}`);
-}
-function integer(v, label, min = 1) {
-  if (!Number.isSafeInteger(v) || v < min) throw new Error(`Invalid ${label}`);
-}
-function identifier(v) {
-  if (typeof v !== 'string' || !/^[a-z0-9][a-z0-9_-]{0,79}$/.test(v)) throw new Error('id must be 1–80 lowercase letters, digits, underscores or hyphens');
-}
-function stamp(v) {
-  required(v, 'timestamp');
-  if (!/^\d{4}-\d{2}-\d{2}T/.test(v) || !Number.isFinite(Date.parse(v))) throw new Error('Use an ISO timestamp');
-}
-function validateData(kind, d, options = {}) {
-  const strictCurrent = options.strictCurrent === true;
-  const shared = ['title', 'status', 'tags'];
-  let extra;
-  if (kind === 'reference') extra = ['source', 'observations', 'limits'];
-  else if (kind === 'reaction') extra = ['subject', 'target', 'context', 'occurred_at', 'user_quote', 'valence', 'strength', 'felt_effect', 'reason', 'scope', 'contradictions'];
-  else if (kind === 'system') extra = ['system_type', 'media', 'scope', 'intent', 'principles', 'limits'];
-  else extra = ['system_id', 'system_revision', 'artifact', 'context', 'adaptations', 'outcome', 'feedback_source'];
-  keys(d, [...shared, ...extra], kind);
-  required(d.title, 'title'); strings(d.tags, 'tags');
-  choice(d.status, kind === 'system' ? ['draft', 'ready', 'archived'] : ['active', 'archived'], 'status');
-  if (kind === 'reference') {
-    keys(d.source, ['kind', 'locator', 'captured_at', 'coverage'], 'source');
-    choice(d.source.kind, ['website', 'image', 'article', 'mixed'], 'source kind');
-    required(d.source.locator, 'source locator'); stamp(d.source.captured_at);
-    choice(d.source.coverage, ['rendered', 'text-only', 'image-viewed', 'partial', 'unavailable'], 'coverage');
-    if (!Array.isArray(d.observations)) throw new Error('observations must be an array');
-    const seen = new Set();
-    for (const o of d.observations) {
-      keys(o, ['id', 'locator', 'observation'], 'observation'); identifier(o.id);
-      required(o.locator, 'observation locator'); required(o.observation, 'observation');
-      if (seen.has(o.id)) throw new Error('Duplicate observation id');
-      seen.add(o.id);
-    }
-    if (d.source.coverage === 'unavailable' && d.observations.length) throw new Error('Unavailable sources cannot have observations');
-    strings(d.limits, 'limits');
-  } else if (kind === 'reaction') {
-    keys(d.subject, ['kind', 'asset_id', 'asset_revision', 'locator'], 'reaction subject');
-    choice(d.subject.kind, REACTION_SUBJECTS, 'reaction subject kind');
-    if (d.subject.kind === 'artifact') {
-      required(d.subject.locator, 'reaction artifact locator');
-      if (d.subject.asset_id !== undefined || d.subject.asset_revision !== undefined) throw new Error('Artifact reaction subjects cannot use asset links');
-    } else {
-      identifier(d.subject.asset_id); integer(d.subject.asset_revision, 'reaction subject revision');
-      if (d.subject.locator !== undefined) throw new Error('Linked reaction subjects cannot also use locator');
-    }
-    keys(d.target, ['kind', 'locator'], 'reaction target');
-    choice(d.target.kind, REACTION_TARGETS, 'reaction target kind'); required(d.target.locator, 'reaction target locator');
-    keys(d.context, ['medium', 'task', 'audience', 'environment', 'moment'], 'reaction context');
-    choice(d.context.medium, MEDIA, 'reaction medium');
-    for (const k of ['task', 'audience', 'environment', 'moment']) required(d.context[k], 'reaction context ' + k);
-    if (d.occurred_at === undefined) {
-      if (strictCurrent) throw new Error('reaction occurred_at is required for new or revised entries');
-    } else if (d.occurred_at !== 'unknown') stamp(d.occurred_at);
-    required(d.user_quote, 'reaction user quote');
-    choice(d.valence, REACTION_VALENCE, 'reaction valence'); choice(d.strength, REACTION_STRENGTH, 'reaction strength');
-    strings(d.felt_effect, 'reaction felt effect');
-    keys(d.reason, ['status', 'text'], 'reaction reason'); choice(d.reason.status, REASON_STATUS, 'reaction reason status'); required(d.reason.text, 'reaction reason text');
-    required(d.scope, 'reaction scope');
-    if (!Array.isArray(d.contradictions)) throw new Error('reaction contradictions must be an array');
-    for (const contradiction of d.contradictions) {
-      if (typeof contradiction === 'string') {
-        if (strictCurrent) throw new Error('New or revised reaction contradictions must use structured links');
-        required(contradiction, 'legacy reaction contradiction');
-        continue;
-      }
-      keys(contradiction, ['reaction_id', 'reaction_revision', 'relation', 'note'], 'reaction contradiction');
-      identifier(contradiction.reaction_id); integer(contradiction.reaction_revision, 'contradiction reaction revision');
-      choice(contradiction.relation, CONTRADICTION_RELATIONS, 'contradiction relation'); required(contradiction.note, 'contradiction note');
-    }
-  } else if (kind === 'system') {
-    choice(d.system_type || 'aesthetic', SYSTEM_TYPES, 'system type');
-    strings(d.media, 'media', true); d.media.forEach(m => choice(m, MEDIA, 'medium'));
-    if (d.system_type === 'author_voice' && !d.media.includes('text')) throw new Error('Author voice systems must include text medium');
-    required(d.scope, 'scope'); required(d.intent, 'intent'); strings(d.limits, 'limits');
-    if (!Array.isArray(d.principles) || d.status === 'ready' && !d.principles.length) throw new Error('Ready systems require principles');
-    for (const p of d.principles) {
-      keys(p, ['name', 'rule', 'rationale', 'applies_when', 'avoid_when', 'confidence', 'evidence'], 'principle');
-      for (const k of ['name', 'rule', 'rationale', 'applies_when', 'avoid_when']) required(p[k], k);
-      choice(p.confidence, ['supported', 'provisional'], 'confidence');
-      if (!Array.isArray(p.evidence) || !p.evidence.length) throw new Error('Every principle needs evidence');
-      for (const e of p.evidence) {
-        if (e.kind === 'reaction') {
-          keys(e, ['kind', 'reaction_id', 'reaction_revision'], 'reaction evidence');
-          identifier(e.reaction_id); integer(e.reaction_revision, 'reaction revision');
-        } else {
-          keys(e, e.kind === 'reference_observation'
-            ? ['kind', 'reference_id', 'reference_revision', 'observation_id']
-            : ['reference_id', 'reference_revision', 'observation_id'], 'reference evidence');
-          if (e.kind !== undefined) choice(e.kind, ['reference_observation'], 'evidence kind');
-          identifier(e.reference_id); integer(e.reference_revision, 'reference revision'); identifier(e.observation_id);
-        }
-      }
-    }
-  } else {
-    identifier(d.system_id); integer(d.system_revision, 'system revision');
-    for (const k of ['artifact', 'context', 'outcome', 'feedback_source']) required(d[k], k);
-    strings(d.adaptations, 'adaptations');
+const STATUS = {
+  reference: ['active', 'archived'],
+  reaction: ['active', 'archived'],
+  application: ['active', 'archived'],
+  system: ['draft', 'ready', 'archived'],
+};
+const MEDIA = ['web', 'text', 'slides', 'image'];
+
+/* ── 参数解析 ─────────────────────────────────────────────────── */
+function parseArgs(argv) {
+  const opts = { _: [] };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (a.startsWith('--')) opts[a.slice(2)] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true;
+    else opts._.push(a);
   }
+  return opts;
 }
-function snapshot(entry, revision) {
-  return entry.revision === revision ? entry.data : entry.history.find(h => h.revision === revision)?.data;
-}
-function validateLibrary(lib) {
-  keys(lib, ['schema_version', 'updated_at', 'entries'], 'library');
-  if (![1, CURRENT_SCHEMA_VERSION].includes(lib.schema_version) || !Array.isArray(lib.entries)) throw new Error('Unsupported asset library schema');
-  if (lib.updated_at !== null) stamp(lib.updated_at);
-  const byId = new Map();
-  for (const e of lib.entries) {
-    keys(e, ['id', 'kind', 'revision', 'data', 'history', 'updated_at'], 'entry');
-    identifier(e.id); choice(e.kind, KINDS, 'kind'); integer(e.revision, 'revision'); stamp(e.updated_at);
-    if (byId.has(e.id)) throw new Error(`Duplicate entry: ${e.id}`);
-    byId.set(e.id, e);
-    if (!Array.isArray(e.history) || e.history.length !== e.revision - 1) throw new Error('Invalid revision history');
-    e.history.forEach((h, i) => {
-      keys(h, ['revision', 'data', 'updated_at'], 'history');
-      if (h.revision !== i + 1) throw new Error('Nonsequential history');
-      stamp(h.updated_at); validateData(e.kind, h.data);
-    });
-    validateData(e.kind, e.data);
-  }
-  for (const e of lib.entries) for (const d of [e.data, ...e.history.map(h => h.data)]) {
-    if (e.kind === 'system') for (const p of d.principles) for (const link of p.evidence) {
-      if (link.kind === 'reaction') {
-        const reaction = byId.get(link.reaction_id);
-        if (reaction?.kind !== 'reaction' || !snapshot(reaction, link.reaction_revision)) throw new Error(`Broken reaction evidence in ${e.id}`);
-      } else {
-        const ref = byId.get(link.reference_id);
-        const source = ref?.kind === 'reference' && snapshot(ref, link.reference_revision);
-        if (!source || !source.observations.some(o => o.id === link.observation_id)) throw new Error(`Broken evidence in ${e.id}`);
-      }
-    }
-    if (e.kind === 'application') {
-      const sys = byId.get(d.system_id);
-      if (sys?.kind !== 'system' || !snapshot(sys, d.system_revision)) throw new Error(`Broken system link in ${e.id}`);
-    }
-    if (e.kind === 'reaction' && d.subject.kind !== 'artifact') {
-      const subject = byId.get(d.subject.asset_id);
-      if (subject?.kind !== d.subject.kind || !snapshot(subject, d.subject.asset_revision)) throw new Error(`Broken reaction subject in ${e.id}`);
-    }
-    if (e.kind === 'reaction') for (const contradiction of d.contradictions) {
-      if (typeof contradiction === 'string') continue; // Read-only compatibility for transitional 4.3 records.
-      const other = byId.get(contradiction.reaction_id);
-      if (contradiction.reaction_id === e.id || other?.kind !== 'reaction' || !snapshot(other, contradiction.reaction_revision)) {
-        throw new Error(`Broken contradiction link in ${e.id}`);
-      }
-    }
-  }
-  return lib;
-}
-function libraryFile(dir) {
-  const file = path.join(dir, 'aesthetic_assets.json');
-  if (fs.existsSync(file) && !fs.lstatSync(file).isFile()) throw new Error('Asset library must be a regular file, not a symlink');
-  return file;
-}
-function readLibrary(input) {
-  const dir = privateDir(vaultLocation(input));
-  if (!fs.existsSync(dir)) return { schema_version: CURRENT_SCHEMA_VERSION, updated_at: null, entries: [] };
-  readVault(dir);
-  const file = libraryFile(dir);
-  return validateLibrary(fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : { schema_version: CURRENT_SCHEMA_VERSION, updated_at: null, entries: [] });
-}
-function validatePublicLibrary(lib, root = SKILL_ROOT) {
-  validateLibrary(lib);
-  for (const e of lib.entries) {
-    if (e.kind === 'application') throw new Error('Public catalog cannot contain personal applications');
-    if (e.kind === 'reaction') throw new Error('Public catalog cannot contain personal reactions');
-    if (e.kind === 'system' && [e.data, ...e.history.map(h => h.data)].some(d => d.system_type === 'author_voice')) {
-      throw new Error('Public catalog cannot contain personal author voice profiles');
-    }
-    if (e.kind !== 'reference') continue;
-    for (const d of [e.data, ...e.history.map(h => h.data)]) {
-      for (const locator of [d.source.locator, ...d.observations.map(o => o.locator)]) {
-        const relative = locator.split('#')[0];
-        const file = path.resolve(root, relative);
-        if (!relative.startsWith('exemplars/') || path.relative(root, file).startsWith('..') ||
-            !fs.existsSync(file) || !fs.statSync(file).isFile() ||
-            path.relative(fs.realpathSync(root), fs.realpathSync(file)).startsWith('..')) {
-          throw new Error('Public teaching source must resolve inside skill exemplars: ' + locator);
-        }
-      }
-    }
-  }
-  return lib;
-}
-function readPublicLibrary() {
-  return validatePublicLibrary(JSON.parse(fs.readFileSync(path.join(SKILL_ROOT, 'references/public_cases.json'), 'utf8')));
-}
-function selectedLibraries(input, source = 'personal') {
-  choice(source, SOURCES, 'source');
-  if (source === 'public') return [{ source: 'public', library: readPublicLibrary() }];
-  if (source === 'personal') return [{ source: 'personal', library: readLibrary(input) }];
-  return [{ source: 'public', library: readPublicLibrary() }, { source: 'personal', library: readLibrary(input) }];
-}
-function put(input, bundle) {
-  keys(bundle, ['entries'], 'bundle');
-  if (!Array.isArray(bundle.entries) || !bundle.entries.length) throw new Error('Bundle must contain entries');
-  const dir = privateDir(vaultLocation(input));
-  readVault(dir); // Explicit initialization; never write into an unrelated directory.
-  const lock = path.join(dir, '.muse.lock');
-  let fd;
-  try { fd = fs.openSync(lock, 'wx', 0o600); }
-  catch (e) { if (e.code === 'EEXIST') throw new Error('Vault is locked'); throw e; }
-  let temp;
+const argv = parseArgs(process.argv.slice(2));
+const cmd = argv._[0];
+const vaultDir = argv.vault ? resolve(String(argv.vault)) : process.env.MUSE_VAULT_DIR ? resolve(process.env.MUSE_VAULT_DIR) : join(homedir(), 'Documents', 'Muse');
+
+const die = (msg) => {
+  console.error(`✗ ${msg}`);
+  process.exit(1);
+};
+
+/* ── 读写 ─────────────────────────────────────────────────────── */
+function readStore(dir) {
+  const p = join(dir, STORE);
+  if (!existsSync(p)) return null;
   try {
-    const lib = readLibrary(dir); const file = libraryFile(dir);
-    const seen = new Set(); const changed = []; const unchanged = [];
-    const now = new Date().toISOString();
-    for (const item of bundle.entries) {
-      keys(item, ['id', 'kind', 'expected_revision', 'data'], 'input entry');
-      identifier(item.id); choice(item.kind, KINDS, 'kind'); integer(item.expected_revision, 'expected_revision', 0);
-      validateData(item.kind, item.data);
-      if (seen.has(item.id)) throw new Error('Duplicate entry in bundle');
-      seen.add(item.id);
-      const found = lib.entries.find(e => e.id === item.id);
-      if (found && found.kind !== item.kind) throw new Error('Cannot change an asset kind');
-      if (found && item.expected_revision <= found.revision && isDeepStrictEqual(found.data, item.data)) { unchanged.push(item.id); continue; }
-      validateData(item.kind, item.data, { strictCurrent: true });
-      if ((found?.revision || 0) !== item.expected_revision) throw new Error(`Revision conflict: ${item.id}; read current entry before revising`);
-      if (found) {
-        found.history.push({ revision: found.revision, data: found.data, updated_at: found.updated_at });
-        found.data = item.data; found.revision++; found.updated_at = now;
-      } else lib.entries.push({ id: item.id, kind: item.kind, revision: 1, data: item.data, history: [], updated_at: now });
-      changed.push(item.id);
-    }
-    if (!changed.length) return { directory: dir, changed, unchanged };
-    lib.schema_version = CURRENT_SCHEMA_VERSION;
-    validateLibrary(lib);
-    lib.updated_at = now;
-    const serialized = JSON.stringify(lib, null, 2) + '\n';
-    validateLibrary(JSON.parse(serialized));
-    let backup;
-    if (fs.existsSync(file)) {
-      backup = `${file}.${Date.now()}.${crypto.randomUUID()}.bak`;
-      fs.writeFileSync(backup, fs.readFileSync(file), { flag: 'wx', mode: 0o600 });
-    }
-    temp = `${file}.${crypto.randomUUID()}.tmp`;
-    fs.writeFileSync(temp, serialized, { flag: 'wx', mode: 0o600 });
-    if (fs.readFileSync(temp, 'utf8') !== serialized) throw new Error('Write verification failed');
-    fs.renameSync(temp, file);
-    return { directory: dir, changed, unchanged, backup, revisions: changed.map(id => ({ id, revision: lib.entries.find(e => e.id === id).revision })) };
-  } finally {
-    if (temp && fs.existsSync(temp)) fs.unlinkSync(temp);
-    fs.closeSync(fd); fs.unlinkSync(lock);
+    const d = JSON.parse(readFileSync(p, 'utf8'));
+    if (!Array.isArray(d.entries)) throw new Error('entries 不是数组');
+    return d;
+  } catch (e) {
+    die(`个人库损坏，已停止（保留原文件）：${p}\n  ${e.message}`);
   }
 }
-function list(input, options = {}) {
-  if (options.kind) choice(options.kind, KINDS, 'kind');
-  if (options.medium) choice(options.medium, MEDIA, 'medium');
-  if (options.valence) choice(options.valence, REACTION_VALENCE, 'reaction valence');
-  const systemType = options.system_type || options['system-type'];
-  if (systemType) choice(systemType, SYSTEM_TYPES, 'system type');
-  const terms = (options.query || '').toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return selectedLibraries(input, options.source).flatMap(({ source, library }) => library.entries.filter(e => {
-    if (!options.archived && e.data.status === 'archived') return false;
-    if (options.kind && e.kind !== options.kind) return false;
-    if (options.medium && !(e.kind === 'reaction' ? e.data.context.medium === options.medium : e.data.media?.includes(options.medium))) return false;
-    if (options.valence && (e.kind !== 'reaction' || e.data.valence !== options.valence)) return false;
-    if (systemType && (e.kind !== 'system' || (e.data.system_type || 'aesthetic') !== systemType)) return false;
-    if (options.tag && !e.data.tags.includes(options.tag)) return false;
-    const searchable = JSON.stringify(e.data).toLocaleLowerCase();
-    return terms.every(t => searchable.includes(t));
-  }).map(e => ({ id: e.id, kind: e.kind, revision: e.revision, title: e.data.title, status: e.data.status, tags: e.data.tags,
-    ...(e.kind === 'system' ? { system_type: e.data.system_type || 'aesthetic', media: e.data.media, scope: e.data.scope, intent: e.data.intent, limits: e.data.limits } : {}),
-    ...(e.kind === 'reaction' ? { medium: e.data.context.medium, valence: e.data.valence, strength: e.data.strength, target: e.data.target, scope: e.data.scope, reason_status: e.data.reason.status } : {}),
-    ...(options.source ? { source } : {}) })));
+
+function readPublic() {
+  const p = join(SKILL_ROOT, 'references/public_cases.json');
+  if (!existsSync(p)) return { schema_version: 2, entries: [] };
+  return JSON.parse(readFileSync(p, 'utf8'));
 }
-function show(input, id, revision, options = {}) {
-  identifier(id);
-  const matches = selectedLibraries(input, options.source).flatMap(({ source, library }) =>
-    library.entries.filter(e => e.id === id).map(entry => ({ source, entry })));
-  if (!matches.length) throw new Error('Asset not found: ' + id);
-  if (matches.length > 1) throw new Error('Ambiguous asset id: ' + id + '; choose --source public or personal');
-  const { source, entry: e } = matches[0];
-  const provenance = options.source ? { source } : {};
-  if (revision === undefined) return { ...e, ...provenance };
-  integer(revision, 'revision'); const data = snapshot(e, revision);
-  if (!data) throw new Error('Revision not found');
-  return { id: e.id, kind: e.kind, revision, data, ...provenance };
+
+/** 原子写入：先写临时文件，再 rename；旧文件先备份。 */
+function writeStore(dir, data) {
+  mkdirSync(dir, { recursive: true });
+  const p = join(dir, STORE);
+  const tmp = `${p}.tmp-${process.pid}`;
+  const lock = `${p}.lock`;
+  if (existsSync(lock)) die(`存在锁文件，可能有并发写入，已停止（不自动删除）：${lock}`);
+  writeFileSync(lock, String(process.pid));
+  try {
+    if (existsSync(p)) copyFileSync(p, `${p}.bak`);
+    data.updated_at = new Date().toISOString();
+    writeFileSync(tmp, JSON.stringify(data, null, 2) + '\n');
+    renameSync(tmp, p);
+  } finally {
+    if (existsSync(lock)) unlinkSync(lock);
+  }
 }
-function run(argv) {
-  const command = argv[0];
-  const a = args(argv.slice(1), ['archived']);
-  const allowed = { put: ['vault', 'file'], list: ['vault', 'kind', 'system-type', 'medium', 'valence', 'tag', 'query', 'archived', 'source'], show: ['vault', 'id', 'revision', 'source'], location: ['vault'] }[command];
-  if (!allowed) throw new Error('Commands: location, put --file <bundle.json>, list, show --id <id>. See references/asset_schema.md');
-  for (const k of Object.keys(a)) if (!allowed.includes(k)) throw new Error('Unknown flag: --' + k);
-  let result;
-  if (command === 'location') result = { directory: privateDir(vaultLocation(a.vault)) };
-  if (command === 'put') result = put(a.vault, JSON.parse(fs.readFileSync(required(a.file, '--file'), 'utf8')));
-  if (command === 'list') result = { matching: 'literal filters only; Agent must evaluate contextual fit', entries: list(a.vault, a) };
-  if (command === 'show') result = show(a.vault, a.id, a.revision === undefined ? undefined : Number(a.revision), { source: a.source });
-  console.log(JSON.stringify(result, null, 2));
+
+/* ── 校验 ─────────────────────────────────────────────────────── */
+const isStr = (v) => typeof v === 'string' && v.trim() !== '';
+const isArr = (v) => Array.isArray(v);
+
+function validateEntry(entry, store, index, { checkRevision = true } = {}) {
+  const errs = [];
+  const at = `entries[${index}]`;
+  const { id, kind, data, expected_revision } = entry;
+
+  if (!isStr(id) || !/^[a-z0-9_-]{1,80}$/.test(id)) errs.push(`${at}.id 必须是 1–80 位小写字母／数字／连字符／下划线`);
+  if (!KINDS.includes(kind)) errs.push(`${at}.kind 必须是 ${KINDS.join(' / ')}`);
+  if (checkRevision && typeof expected_revision !== 'number') errs.push(`${at}.expected_revision 必填（新建为 0）`);
+  if (!data || typeof data !== 'object') return [...errs, `${at}.data 必填`];
+
+  const known = {
+    reference: ['title', 'tags', 'status', 'source', 'observations', 'limits'],
+    reaction: ['title', 'tags', 'status', 'subject', 'target', 'context', 'occurred_at', 'user_quote', 'valence', 'strength', 'felt_effect', 'reason', 'scope', 'contradictions'],
+    system: ['title', 'tags', 'status', 'system_type', 'media', 'scope', 'intent', 'principles', 'limits'],
+    application: ['title', 'tags', 'status', 'system_id', 'system_revision', 'artifact', 'context', 'adaptations', 'outcome', 'feedback_source'],
+  }[kind] || [];
+  for (const k of Object.keys(data)) {
+    if (!known.includes(k)) errs.push(`${at}.data.${k} 不是 ${kind} 支持的字段（不允许自造状态字段）`);
+  }
+
+  if (!isStr(data.title)) errs.push(`${at}.data.title 非空必填`);
+  if (!isArr(data.tags)) errs.push(`${at}.data.tags 必须是字符串数组`);
+  if (!STATUS[kind]?.includes(data.status)) errs.push(`${at}.data.status 对 ${kind} 只能是 ${STATUS[kind]?.join(' / ')}`);
+
+  const findEntry = (theId) => store.entries.find((e) => e.id === theId);
+
+  if (kind === 'reference') {
+    const s = data.source || {};
+    if (!['website', 'image', 'article', 'mixed'].includes(s.kind)) errs.push(`${at}.data.source.kind 必须是 website/image/article/mixed`);
+    if (!isStr(s.locator)) errs.push(`${at}.data.source.locator 非空必填`);
+    if (!isStr(s.coverage)) errs.push(`${at}.data.source.coverage 必填`);
+    if (!isArr(data.observations)) errs.push(`${at}.data.observations 必须是数组`);
+    else if (s.coverage === 'unavailable' && data.observations.length) errs.push(`${at}：coverage=unavailable 时 observations 必须为空`);
+    else {
+      for (const o of data.observations) if (!isStr(o.id) || !isStr(o.locator) || !isStr(o.observation)) errs.push(`${at}.data.observations 每项需 id / locator / observation`);
+    }
+  }
+
+  if (kind === 'reaction') {
+    const sub = data.subject || {};
+    if (sub.kind === 'reference' || sub.kind === 'application') {
+      const ref = findEntry(sub.asset_id);
+      if (!ref) errs.push(`${at}.data.subject.asset_id 指向不存在的资产 ${sub.asset_id}`);
+      else if (ref.revision !== sub.asset_revision) errs.push(`${at}.data.subject.asset_revision=${sub.asset_revision} 与实际版本 ${ref.revision} 不符`);
+    } else if (sub.kind === 'artifact') {
+      if (!isStr(sub.locator)) errs.push(`${at}.data.subject.locator（artifact）非空必填`);
+    } else errs.push(`${at}.data.subject.kind 必须是 reference / application / artifact`);
+
+    if (!isStr(data.target?.locator)) errs.push(`${at}.data.target.locator 必填（无法定位时写 unknown）`);
+    if (!MEDIA.includes(data.context?.medium)) errs.push(`${at}.data.context.medium 必须是 ${MEDIA.join('/')}`);
+    if (!isStr(data.occurred_at)) errs.push(`${at}.data.occurred_at 必填（无法确定写 unknown）`);
+    if (!isStr(data.user_quote)) errs.push(`${at}.data.user_quote 必填，不能用 AI 总结替换用户原话`);
+    if (!['liked', 'disliked', 'mixed', 'neutral', 'unknown'].includes(data.valence)) errs.push(`${at}.data.valence 取值非法`);
+    if (!['low', 'medium', 'high', 'unknown'].includes(data.strength)) errs.push(`${at}.data.strength 取值非法`);
+    if (!isArr(data.felt_effect)) errs.push(`${at}.data.felt_effect 必须是数组（没有就空数组）`);
+    if (!['user_stated', 'ai_inferred', 'co_formed', 'unknown'].includes(data.reason?.status)) errs.push(`${at}.data.reason.status 取值非法`);
+    if (!isStr(data.scope)) errs.push(`${at}.data.scope 非空必填`);
+    if (!isArr(data.contradictions)) errs.push(`${at}.data.contradictions 必须是数组`);
+    else for (const c of data.contradictions) {
+      if (c.reaction_id === id) errs.push(`${at}：contradictions 不能指向自身`);
+      const other = findEntry(c.reaction_id);
+      if (!other) errs.push(`${at}：contradictions 指向不存在的 reaction ${c.reaction_id}`);
+      else if (other.revision !== c.reaction_revision) errs.push(`${at}：contradictions.reaction_revision 与 ${c.reaction_id} 实际版本不符`);
+    }
+  }
+
+  if (kind === 'system') {
+    if (data.system_type !== undefined && !['aesthetic', 'author_voice'].includes(data.system_type)) errs.push(`${at}.data.system_type 只能是 aesthetic / author_voice`);
+    if (!isArr(data.media) || !data.media.length || data.media.some((m) => !MEDIA.includes(m))) errs.push(`${at}.data.media 必须是非空且取值合法的数组`);
+    if (data.system_type === 'author_voice' && isArr(data.media) && !data.media.includes('text')) errs.push(`${at}：author_voice 的 media 必须包含 text`);
+    if (!isStr(data.scope) || !isStr(data.intent)) errs.push(`${at}.data.scope 与 intent 非空必填`);
+    if (!isArr(data.principles) || !data.principles.length) errs.push(`${at}.data.principles 非空必填`);
+    else for (const p of data.principles) {
+      for (const f of ['name', 'rule', 'rationale', 'applies_when', 'avoid_when']) if (!isStr(p[f])) errs.push(`${at}.data.principles[].${f} 非空必填`);
+      if (!['supported', 'provisional'].includes(p.confidence)) errs.push(`${at}.data.principles[].confidence 必须是 supported / provisional`);
+      if (!isArr(p.evidence) || !p.evidence.length) errs.push(`${at}.data.principles[].evidence 非空必填`);
+      else for (const ev of p.evidence) {
+        if (ev.kind === 'reference_observation') {
+          const r = findEntry(ev.reference_id);
+          if (!r) errs.push(`${at}：evidence 指向不存在的 reference ${ev.reference_id}`);
+          else {
+            if (r.revision !== ev.reference_revision) errs.push(`${at}：evidence.reference_revision 与 ${ev.reference_id} 实际版本不符`);
+            if (!r.data.observations?.some((o) => o.id === ev.observation_id)) errs.push(`${at}：evidence.observation_id=${ev.observation_id} 在 ${ev.reference_id} 中不存在`);
+          }
+        } else if (ev.kind === 'reaction') {
+          const r = findEntry(ev.reaction_id);
+          if (!r) errs.push(`${at}：evidence 指向不存在的 reaction ${ev.reaction_id}`);
+          else if (r.revision !== ev.reaction_revision) errs.push(`${at}：evidence.reaction_revision 与 ${ev.reaction_id} 实际版本不符`);
+        } else errs.push(`${at}：evidence.kind 必须是 reference_observation / reaction`);
+      }
+    }
+    if (data.status === 'ready' && !(isArr(data.principles) && data.principles.length)) errs.push(`${at}：status=ready 必须有原则`);
+  }
+
+  if (kind === 'application') {
+    const sys = findEntry(data.system_id);
+    if (!sys) errs.push(`${at}.data.system_id 指向不存在的 system ${data.system_id}`);
+    else if (sys.revision !== data.system_revision) errs.push(`${at}.data.system_revision 与 ${data.system_id} 实际版本不符`);
+    if (!isStr(data.artifact)) errs.push(`${at}.data.artifact 非空必填`);
+    if (!isStr(data.feedback_source)) errs.push(`${at}.data.feedback_source 必填（无用户反馈时也要写明）`);
+  }
+
+  return errs;
 }
-if (require.main === module) {
-  try { run(process.argv.slice(2)); } catch (e) { console.error(e.message); process.exitCode = 1; }
+
+/* ── 命令 ─────────────────────────────────────────────────────── */
+
+if (!cmd || cmd === 'help') {
+  console.log(readFileSync(fileURLToPath(import.meta.url), 'utf8').split('*/')[0].replace(/^\/\*\*?/, '').trim());
+  process.exit(0);
 }
-module.exports = { validateLibrary, validatePublicLibrary, readLibrary, readPublicLibrary, put, list, show, run };
+
+if (cmd === 'location') {
+  console.log(`Muse 品味库位置：${vaultDir}`);
+  console.log(existsSync(join(vaultDir, STORE)) ? '状态：已存在' : '状态：尚未初始化（只读查询会返回空结果，不会创建）');
+  console.log(`来源：${argv.vault ? '--vault 参数' : process.env.MUSE_VAULT_DIR ? 'MUSE_VAULT_DIR' : '默认位置'}`);
+  process.exit(0);
+}
+
+if (cmd === 'init') {
+  if (!argv.vault) die('init 必须显式给出 --vault <dir>，避免在未授权的位置建库');
+  const existing = readStore(vaultDir);
+  if (existing) {
+    console.log(`库已存在，未改动：${join(vaultDir, STORE)}（${existing.entries.length} 个条目）`);
+    process.exit(0);
+  }
+  mkdirSync(vaultDir, { recursive: true });
+  for (const [f, body] of [
+    ['personal_dna.yaml', "version: '2.0.0'\nlast_updated: null\npreferences: []\nrejected_cases: []\n"],
+    ['personal_taboos.yaml', "version: '2.0.0'\nlast_updated: null\ntaboos: []\n"],
+  ]) {
+    const p = join(vaultDir, f);
+    if (!existsSync(p)) writeFileSync(p, body);
+  }
+  writeStore(vaultDir, { schema_version: 2, updated_at: null, entries: [] });
+  console.log(`✓ 已初始化品味库：${vaultDir}`);
+  process.exit(0);
+}
+
+const source = argv.source || 'personal';
+if (!['personal', 'public', 'all'].includes(source)) die('--source 只能是 personal / public / all');
+
+function loadScoped() {
+  const out = [];
+  if (source === 'personal' || source === 'all') {
+    const s = readStore(vaultDir);
+    if (s) for (const e of s.entries) out.push({ ...e, source: 'personal' });
+  }
+  if (source === 'public' || source === 'all') {
+    for (const e of readPublic().entries) out.push({ ...e, source: 'public' });
+  }
+  return out;
+}
+
+if (cmd === 'list') {
+  let items = loadScoped();
+  if (argv.kind) items = items.filter((e) => e.kind === argv.kind);
+  if (argv.medium) {
+    items = items.filter((e) =>
+      e.kind === 'system' ? e.data.media?.includes(argv.medium) : e.kind === 'reaction' ? e.data.context?.medium === argv.medium : false
+    );
+  }
+  if (argv['system-type']) items = items.filter((e) => e.kind === 'system' && (e.data.system_type || 'aesthetic') === argv['system-type']);
+  if (argv.valence) items = items.filter((e) => e.kind === 'reaction' && e.data.valence === argv.valence);
+  if (argv.query) {
+    const terms = String(argv.query).split(/\s+/).filter(Boolean);
+    items = items.filter((e) => {
+      const hay = [e.id, JSON.stringify(e.data)].join(' ');
+      return terms.every((t) => hay.includes(t));
+    });
+  }
+  if (!argv.archived) items = items.filter((e) => e.data.status !== 'archived');
+
+  if (!items.length) {
+    console.log(`没有匹配的条目（source=${source}）。这是字面筛选的结果，不等于库里没有适用的资产——请减少筛选条件再看。`);
+    process.exit(0);
+  }
+  console.log(`${items.length} 个条目（source=${source}，字面筛选，非语义搜索）：\n`);
+  for (const e of items) {
+    console.log(`  [${e.source}/${e.kind}] ${e.id}@${e.revision}  ${e.data.title}`);
+    console.log(`      status=${e.data.status} tags=${(e.data.tags || []).join(',') || '-'}`);
+  }
+  process.exit(0);
+}
+
+if (cmd === 'show') {
+  if (!isStr(argv.id)) die('show 需要 --id <id>');
+  const items = loadScoped().filter((e) => e.id === argv.id);
+  if (!items.length) die(`找不到 ${argv.id}（source=${source}）`);
+  if (items.length > 1) die(`${argv.id} 在 personal 与 public 中重名，请用 --source 指定`);
+  const e = items[0];
+  const revision = argv.revision ? Number(argv.revision) : e.revision;
+  // 当前版本的数据在 data；更早的版本在 history，历史只增不删
+  const record = revision === e.revision ? e : (e.history || []).find((h) => h.revision === revision);
+  if (!record) die(`${argv.id} 没有 revision ${revision}（可用历史：${[e.revision, ...(e.history || []).map((h) => h.revision)].sort((a, b) => a - b).join(', ')}）`);
+  console.log(JSON.stringify({ id: e.id, kind: e.kind, revision, source: e.source, data: record.data }, null, 2));
+  process.exit(0);
+}
+
+if (cmd === 'put') {
+  if (!argv.file) die('put 需要 --file <bundle.json>');
+  if (source !== 'personal') die('put 只写个人库，不接受 --source');
+  let bundle;
+  try {
+    bundle = JSON.parse(readFileSync(argv.file, 'utf8'));
+  } catch (e) {
+    die(`无法解析 ${argv.file}：${e.message}`);
+  }
+  if (!isArr(bundle.entries)) die('bundle 顶层必须是 {"entries": [...]}');
+
+  const store = readStore(vaultDir) || { schema_version: 2, updated_at: null, entries: [] };
+
+  // 先整体校验，再原子写入：避免「反应存了但对象缺失」
+  const staged = store.entries.map((e) => ({ ...e }));
+  const errs = [];
+  const written = [];
+  const unchanged = [];
+
+  bundle.entries.forEach((incoming, i) => {
+    for (const k of Object.keys(incoming)) if (!['id', 'kind', 'expected_revision', 'data'].includes(k)) errs.push(`entries[${i}].${k} 不是支持的字段`);
+    const cur = staged.find((e) => e.id === incoming.id);
+    const currentRev = cur ? cur.revision : 0;
+
+    // 内容完全相同 → 无变更，静默跳过（即使 expected_revision 是旧值）
+    if (cur && JSON.stringify(cur.data) === JSON.stringify(incoming.data)) {
+      unchanged.push(incoming.id);
+      return;
+    }
+    // 内容不同却用了过期版本 → 阻断，要求先 show 再合并
+    if (incoming.expected_revision !== currentRev) {
+      errs.push(`entries[${i}] (${incoming.id})：expected_revision=${incoming.expected_revision} 与当前版本 ${currentRev} 不符。请先 show 再合并，不要盲目重试`);
+      return;
+    }
+
+    const candidate = {
+      id: incoming.id,
+      kind: incoming.kind,
+      revision: currentRev + 1,
+      data: incoming.data,
+      updated_at: new Date().toISOString(),
+      history: cur ? [...(cur.history || []), { revision: cur.revision, data: cur.data, updated_at: cur.updated_at }] : [],
+    };
+    // 版本检查已在上方完成，这里只做结构与引用校验
+    errs.push(...validateEntry(candidate, { entries: [...staged.filter((e) => e.id !== incoming.id), candidate] }, i, { checkRevision: false }).map((m) => `${incoming.id}: ${m}`));
+    const idx = staged.findIndex((e) => e.id === incoming.id);
+    if (idx >= 0) staged[idx] = candidate;
+    else staged.push(candidate);
+    written.push({ id: incoming.id, revision: candidate.revision });
+  });
+
+  if (errs.length) {
+    console.error('✗ 校验失败，未写入任何内容：');
+    for (const e of errs) console.error(`  · ${e}`);
+    process.exit(1);
+  }
+
+  for (const id of unchanged) console.log(`· ${id} 内容未变，跳过`);
+  if (!written.length) {
+    console.log('没有产生新版本，库未改动。');
+    process.exit(0);
+  }
+
+  writeStore(vaultDir, { schema_version: 2, updated_at: store.updated_at, entries: staged });
+  console.log(`✓ 已写入 ${written.length} 个条目到 ${join(vaultDir, STORE)}（旧文件备份为 .bak）`);
+  for (const w of written) console.log(`  · ${w.id} → revision ${w.revision}`);
+  console.log('\n注意：脚本只校验结构与引用关系，不代表真实性、审美判断或用户授权已经确认。');
+  process.exit(0);
+}
+
+die(`未知命令：${cmd}`);

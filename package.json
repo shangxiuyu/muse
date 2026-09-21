@@ -1,17 +1,15 @@
 {
-  "name": "muse-aesthetic-skill",
-  "version": "5.0.0",
+  "name": "muse",
+  "version": "6.0.0",
+  "description": "跨媒介审美推理与品味记忆 —— 技能资产自审与作品提示性检查",
+  "type": "module",
   "private": true,
-  "description": "Cross-media aesthetic reasoning and personal taste memory",
-  "engines": {
-    "node": ">=20"
-  },
+  "license": "MIT",
+  "engines": { "node": ">=20" },
   "scripts": {
-    "test": "node scripts/eval_skill.js",
-    "test:tools": "node --test tests/*.test.js",
-    "serve:website": "npx -y serve website -p 4200"
-  },
-  "dependencies": {
-    "yaml": "2.9.1"
+    "audit": "node scripts/audit.js",
+    "test": "node scripts/audit.js",
+    "lint:ui": "node scripts/lint_ui.js",
+    "lint:text": "node scripts/lint_text.js"
   }
 }

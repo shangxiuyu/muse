@@ -54,13 +54,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **界面与大纲标题 (UI Headings)** | `Plus Jakarta Sans` | 600 / 700 | `20px ~ 36px` (line-height: 1.2) | 干净利落现代无衬线，字距微紧 `-0.02em` |
-| **正文长文阅读 (Body / Editor)**| `Newsreader` / `Lora` | 400 (Book) | `18px ~ 21px` (line-height: 1.75) | 极度舒适的高级社论衬线体，段间距宽松 |
-| **打字机当前聚焦行 (Focus Line)** | `Newsreader` | 500 / Italic | `20px ~ 22px` (line-height: 1.8) | 高对比度，微琥珀黄底衬高亮 |
-| **伴读批注与微文案 (Margin Note)** | `Plus Jakarta Sans` | 500 | `13px ~ 14px` (line-height: 1.4) | 用于右边距 AI 润色建议、字数统计、便签 |
-| **时间戳与字数元数据 (Mono)** | `JetBrains Mono` | 400 | `12px ~ 13px` | 沉静的打字机统计标签（如 1,420 words） |
+> ⚠️ **中文衬线在 14px 以下会糊**：宋体只留给 15px 以上的长文与标题，13px 及以下的批注、时间戳一律改走 `PingFang SC` 无衬线。
+
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **界面与大纲标题 (UI Headings)** | `Plus Jakarta Sans` | `PingFang SC` | 600 / 700 | `20px ~ 36px` (line-height: 1.2) | 干净利落现代无衬线，字距微紧 `-0.02em`（中文标题不加负字距，改回零） |
+| **正文长文阅读 (Body / Editor)**| `Newsreader` / `Lora` | `Songti SC` / `Noto Serif SC` | 400 (Book) | `18px ~ 21px` (line-height: 1.75) | 极度舒适的高级社论衬线体，段间距宽松；中文衬线走宋体，字号不得低于 15px |
+| **打字机当前聚焦行 (Focus Line)** | `Newsreader` | `Songti SC` / `Noto Serif SC` | 500 / Italic | `20px ~ 22px` (line-height: 1.8) | 高对比度，微琥珀黄底衬高亮（中文不用斜体，靠底色与字重承载聚焦） |
+| **伴读批注与微文案 (Margin Note)** | `Plus Jakarta Sans` | `PingFang SC` | 500 | `13px ~ 14px` (line-height: 1.4) | 用于右边距 AI 润色建议、字数统计、便签；中文衬线在此尺寸会糊，一律无衬线 |
+| **时间戳与字数元数据 (Mono)** | `JetBrains Mono` | `PingFang SC` | 400 | `12px ~ 13px` | 沉静的打字机统计标签（如 1,420 words），等宽只留给拉丁数字 |
 
 ---
 
@@ -112,18 +114,18 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease;
   position: relative;
 ">
   <!-- 卡片头部：序号与标签 -->
   <div style="display: flex; justify-content: space-between; align-items: center;">
-    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); font-weight: 500;">
+    <span style="font-family: 'JetBrains Mono', 'PingFang SC', monospace; font-size: 12px; color: var(--ink-muted); font-weight: 500;">
       CARD 03 · SCENE 1
     </span>
     <span style="
       background: var(--accent-amber-subtle);
       color: var(--accent-amber);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif;
       font-size: 11px;
       font-weight: 600;
       padding: 2px 8px;
@@ -133,7 +135,7 @@
 
   <!-- 卡片标题 -->
   <h4 style="
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: var(--ink-primary);
@@ -145,7 +147,7 @@
 
   <!-- 摘要正文 -->
   <p style="
-    font-family: 'Newsreader', serif;
+    font-family: 'Newsreader', 'Songti SC', 'Noto Serif SC', serif;
     font-size: 15px;
     color: var(--ink-secondary);
     line-height: 1.6;
@@ -165,7 +167,7 @@
     margin-top: 4px;
     display: flex;
     justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'PingFang SC', monospace;
     font-size: 12px;
     color: var(--ink-muted);
   ">
@@ -187,7 +189,7 @@
 ">
   <!-- 上文：非聚焦状态，降低透明度 -->
   <p style="
-    font-family: 'Newsreader', serif;
+    font-family: 'Newsreader', 'Songti SC', 'Noto Serif SC', serif;
     font-size: 20px;
     line-height: 1.75;
     color: var(--ink-obsidian-muted);
@@ -198,20 +200,20 @@
     He placed the worn leather satchel upon the oak table, its brass buckles scratched by years of hurried travels. The ink had long faded on the address label.
   </p>
 
-  <!-- 当前编辑段落：100% 对比度 + 琥珀黄打字光标 -->
+  <!-- 当前编辑段落：100% 对比度 + 琥珀全包围细线（替代曲率冲突的左侧色条）+ 排版符号 ✦ -->
   <p style="
-    font-family: 'Newsreader', serif;
+    font-family: 'Newsreader', 'Songti SC', 'Noto Serif SC', serif;
     font-size: 20px;
     line-height: 1.75;
     color: var(--ink-obsidian-main);
     background: rgba(224, 138, 60, 0.08);
     padding: 12px 16px;
-    border-left: 3px solid var(--accent-amber);
-    border-radius: 0 6px 6px 0;
+    border: 1px solid rgba(224, 138, 60, 0.32);
+    border-radius: 6px;
     margin: 0 0 24px 0;
     position: relative;
   ">
-    There was no return address, only a single wax seal bearing the insignia of the winter archives<span style="
+    <span style="color: var(--accent-amber); font-size: 13px; margin-right: 8px; vertical-align: 1px;">✦</span>There was no return address, only a single wax seal bearing the insignia of the winter archives<span style="
       display: inline-block;
       width: 2px;
       height: 1.2em;
@@ -224,7 +226,7 @@
 
   <!-- 下文：未写区域弱化 -->
   <p style="
-    font-family: 'Newsreader', serif;
+    font-family: 'Newsreader', 'Songti SC', 'Noto Serif SC', serif;
     font-size: 20px;
     line-height: 1.75;
     color: var(--ink-obsidian-muted);
@@ -247,33 +249,32 @@
 ```html
 <div style="position: relative; max-width: 800px; margin: 40px auto;">
   <!-- 主文稿内容 -->
-  <div style="max-width: 540px; font-family: 'Newsreader', serif; font-size: 19px; line-height: 1.7; color: var(--ink-primary);">
+  <div style="max-width: 540px; font-family: 'Newsreader', 'Songti SC', 'Noto Serif SC', serif; font-size: 19px; line-height: 1.7; color: var(--ink-primary);">
     <p>
       The core hypothesis behind our spatial search model is that users rarely remember exact keywords; they remember spatial relationships and temporal anchors.
     </p>
   </div>
 
-  <!-- 伴读批注卡：挂靠在正文右边距 -->
+  <!-- 伴读批注卡：挂靠在正文右边距；琥珀全包围微透细线 + 柔和琥珀色阶 + ✦ 排版符号 -->
   <aside style="
     position: absolute;
     top: 0;
     right: 0;
     width: 220px;
-    background: var(--bg-card);
-    border: var(--line-hairline);
-    border-left: 2.5px solid var(--accent-amber);
+    background: var(--accent-amber-subtle);
+    border: 1px solid rgba(224, 138, 60, 0.32);
     border-radius: var(--radius-card);
     padding: 14px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   ">
     <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
-      <span style="width: 6px; height: 6px; background: var(--accent-amber); border-radius: 50%;"></span>
-      <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 700; color: var(--ink-secondary); text-transform: uppercase;">
+      <span style="color: var(--accent-amber); font-size: 12px; line-height: 1;">✦</span>
+      <span style="font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif; font-size: 11px; font-weight: 700; color: var(--ink-secondary); text-transform: uppercase;">
         AI SUGGESTION
       </span>
     </div>
     <p style="
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'PingFang SC', sans-serif;
       font-size: 13px;
       line-height: 1.45;
       color: var(--ink-primary);

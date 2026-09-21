@@ -1,3 +1,5 @@
+<!-- muse:allow pure-black: 纯黑白瑞士排印以纯黑为骨架色（骨架线框、标题墨色、眉题黑底），这是本母体的形式语言，非死黑背景滥用 -->
+
 # 视觉母体：Wireframe Architect & Cyber-Pastel Grid（线框架构师与赛博网格工坊流）
 
 > **标杆来源**：`Relume` (relume.ai), `Figma`, `Builder.io`  
@@ -49,13 +51,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **主标题 (Display)** | `Inter` / `Neue Montreal` | 800 (Extra Bold) | `52px ~ 68px` (line-height: 1.06) | 极度收紧字距 `-0.035em`，纯黑，大写开头，掷地有声 |
-| **高能眉题 (Eyebrow)** | `Inter` / `JetBrains Mono` | 700 (Bold) | `11px ~ 13px` (letter-spacing: 0.12em) | **全大写**，使用电光洋红（`#FA00FF`），如 `CHOOSE YOUR PATH` |
-| **功能区卡片标题** | `Inter` | 700 | `24px ~ 30px` (line-height: 1.2) | 结构化动词陈述句 |
-| **正文说明 (Body)** | `Inter` | 400 / 500 | `16px ~ 18px` (line-height: 1.6) | 石板灰（`#475569`），保持清晰段落呼吸 |
-| **参数/状态码 (Micro UI)** | `JetBrains Mono` | 600 / 700 | `10px ~ 12px` | 软件参数（`50% ⌄`, `AUTO_LAYOUT`, `MCP: OK`） |
+> ⚠️ **图内中文标注要放大一档**：网格地板与线框卡片上的中文标签照比同位置拉丁标注放大一号，否则在 10px 附近糊成一团不可读。
+
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **主标题 (Display)** | `Inter` / `Neue Montreal` | `Noto Sans SC` | 800 (Extra Bold) | `52px ~ 68px` (line-height: 1.06) | 极度收紧字距 `-0.035em`，纯黑，大写开头，掷地有声（负字距只作用于拉丁，中文标题改回零或正字距） |
+| **高能眉题 (Eyebrow)** | `Inter` / `JetBrains Mono` | `Noto Sans SC` | 700 (Bold) | `11px ~ 13px` (letter-spacing: 0.12em) | **全大写**（对中文无效），使用电光洋红（`#FA00FF`），如 `CHOOSE YOUR PATH`；中文改用加宽字距 + 方括号承载，如「［ 选择你的路径 ］」 |
+| **功能区卡片标题** | `Inter` | `Noto Sans SC` | 700 | `24px ~ 30px` (line-height: 1.2) | 结构化动词陈述句 |
+| **正文说明 (Body)** | `Inter` | `Noto Sans SC` | 400 / 500 | `16px ~ 18px` (line-height: 1.6) | 石板灰（`#475569`），保持清晰段落呼吸 |
+| **参数/状态码 (Micro UI)** | `JetBrains Mono` | `Noto Sans SC` | 600 / 700 | `10px ~ 12px` | 软件参数（`50% ⌄`, `AUTO_LAYOUT`, `MCP: OK`），等宽只留给拉丁与符号 |
 
 ---
 
@@ -123,7 +127,7 @@
       flex: 1;
       border: none;
       outline: none;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-size: 15px;
       font-weight: 500;
       color: var(--ink-primary);
@@ -133,7 +137,7 @@
   <!-- 右侧模式与生成按钮 -->
   <div style="display: flex; align-items: center; gap: 8px;">
     <span style="
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
       font-size: 11px;
       font-weight: 700;
       background: #F1F5F9;
@@ -150,7 +154,7 @@
       border: none;
       padding: 10px 22px;
       border-radius: var(--radius-pill);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
@@ -189,7 +193,7 @@
     color: #FFFFFF;
     padding: 3px 8px;
     border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
     font-size: 11px;
     font-weight: 700;
     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
@@ -207,7 +211,7 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   ">
     <div style="
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
       font-size: 10px;
       font-weight: 700;
       color: var(--electric-magenta);
@@ -233,7 +237,7 @@
   border: 1px solid #E2E8F0;
   border-radius: 8px;
   padding: 8px 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 13px;
 ">
   <!-- 左侧页面层级进度 -->
@@ -244,15 +248,30 @@
     <span>4. Design</span>
   </div>
 
-  <!-- 中间视口设备切换 -->
-  <div style="display: flex; gap: 8px; background: #FFFFFF; border: 1px solid #CBD5E1; padding: 3px 8px; border-radius: 6px;">
-    <span style="cursor: pointer; opacity: 0.5;">📱</span>
-    <span style="cursor: pointer; opacity: 0.5;">💻</span>
-    <span style="cursor: pointer; font-weight: 700;">🖥️</span>
+  <!-- 中间视口设备切换：单色描边矢量图标替代 emoji，激活项走电光洋红 -->
+  <div style="display: flex; gap: 8px; align-items: center; background: #FFFFFF; border: 1px solid #CBD5E1; padding: 3px 8px; border-radius: 6px;">
+    <span style="cursor: pointer; opacity: 0.5; display: inline-flex; color: var(--ink-secondary);" aria-label="移动端视口">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="7" y="2" width="10" height="20" rx="2"></rect>
+        <path d="M11 18h2"></path>
+      </svg>
+    </span>
+    <span style="cursor: pointer; opacity: 0.5; display: inline-flex; color: var(--ink-secondary);" aria-label="笔记本视口">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+        <path d="M2 20h20"></path>
+      </svg>
+    </span>
+    <span style="cursor: pointer; display: inline-flex; color: var(--electric-magenta);" aria-label="桌面视口（当前）">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+        <path d="M8 21h8M12 17v4"></path>
+      </svg>
+    </span>
   </div>
 
   <!-- 右侧发布状态 -->
-  <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #10B981; display: flex; align-items: center; gap: 6px;">
+  <div style="font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; font-size: 11px; font-weight: 700; color: #10B981; display: flex; align-items: center; gap: 6px;">
     <span style="width: 6px; height: 6px; border-radius: 50%; background: #10B981;"></span>
     AUTO-SYNC READY
   </div>

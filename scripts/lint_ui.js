@@ -1,42 +1,135 @@
 #!/usr/bin/env node
-'use strict';
-const fs = require('node:fs');
-const { collect, summarize, print } = require('./scan');
-const EXT = ['.html', '.css', '.scss', '.less', '.jsx', '.tsx', '.js', '.ts', '.vue', '.svelte'];
-function lintContent(source) {
-  const content = source.replace(/<!--[\s\S]*?-->/g, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
-  const findings = [];
-  const add = (rule, message) => findings.push({ rule, message });
-  const interactive = /<(button|input|select|textarea|a)\b|role=["']button["']/i.test(content);
-  const focus = /:focus-visible\s*[{,:)]|focus-visible:(?:ring|outline|border)(?:[-\s"']|$)/i.test(content);
-  if (interactive && !focus) add('ui.focus-review', 'Check visible keyboard focus on real interactive elements; native or imported styles may already provide it.');
-  if (/:focus(?:-visible)?\s*\{[^}]*outline\s*:\s*(?:none|0)/i.test(content)) add('ui.focus-removal', 'Focus outline is removed; verify a visible alternative on the same element.');
-  const motion = /(?:transition|animation)\s*:|\b(?:animate-[\w-]+|transition-(?:all|colors|transform|opacity))\b/i.test(content);
-  const reduced = /prefers-reduced-motion|motion-reduce:|motion-safe:/i.test(content);
-  if (motion && !reduced) add('ui.motion-review', 'Check a complete reduced-motion or static alternative, including imported styles and actual behavior.');
-  if (/\btransition\s*:\s*all\b|transition-all\b/i.test(content)) add('ui.transition-scope', 'Review which properties change; explicit transitions make effects and cost easier to assess.');
-  if (/aria-disabled=["']true|data-loading=["']true/i.test(content)) add('ui.state-behavior', 'Check keyboard activation and status feedback; attributes and pointer-events alone do not implement disabled/loading behavior.');
-  for (const match of content.matchAll(/box-shadow\s*:\s*([^;}]+)/gi)) {
-    const value = match[1];
-    const opacity = value.match(/rgba\(\s*0\s*,\s*0\s*,\s*0\s*,\s*([\d.]+)\s*\)/i);
-    const large = [...value.matchAll(/(-?\d+(?:\.\d+)?)px/g)].some(m => Number(m[1]) >= 40);
-    if (opacity && Number(opacity[1]) >= 0.3 && large) add('ui.shadow-review', 'Large dark shadow: inspect its role and visual weight; this can be intentional.');
+/**
+ * UI 提示性检查：对一个项目的界面文件执行《负向底线》。
+ *
+ *   node scripts/lint_ui.js <文件或目录> [...]
+ *
+ * 这是**提示性**检查：通过不等于作品美、可用或无障碍合规；
+ * 失败也只指出可定位现象，不能替代真实渲染与操作。
+ *
+ * 在文件顶部声明例外（必须带理由，会被原样列出）：
+ *   <!-- muse:allow pure-black: 新粗野画框以 2px 纯黑实线为形式语言 -->
+ */
+
+import { readFileSync, existsSync, statSync } from 'node:fs';
+import { readdir } from 'node:fs/promises';
+import { join, extname, relative } from 'node:path';
+import { lintCode, collectCssVars, RULES, parseDeclarations } from './rules.js';
+
+const TARGETS = ['.html', '.htm', '.css', '.js', '.mjs', '.cjs', '.jsx', '.tsx', '.vue', '.svelte', '.astro'];
+const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '.next', 'coverage', '.muse']);
+
+async function collect(path, out = []) {
+  const st = statSync(path);
+  if (st.isFile()) {
+    if (TARGETS.includes(extname(path))) out.push(path);
+    return out;
   }
-  if (/blur\(\s*(?:[6-9]\d|[1-9]\d{2,})(?:\.\d+)?px\s*\)/i.test(content)) add('ui.blur-review', 'Large blur: inspect legibility, purpose and rendering cost in context.');
-  const tinyPx = [...content.matchAll(/font-size\s*:\s*(\d+(?:\.\d+)?)px\b/gi)].map(m => Number(m[1])).filter(n => n > 0 && n < 12);
-  if (tinyPx.length) add('ui.small-text-review', `Found screen text below 12px (${[...new Set(tinyPx)].sort((a, b) => a - b).join(', ')}px); inspect computed size, information role and target viewing distance.`);
-  if (/border-radius\s*:[^;}]+\b\d+px/i.test(content) && /border-left\s*:\s*[2-9]px/i.test(content)) {
-    add('ui.accent-border-slop', 'Thick border-left on rounded container (Accent/Callout Stripe); causes corner-line geometric distortion and generic AI template look. Use hairline borders with subtle background tints or inner status dots instead.');
+  for (const entry of await readdir(path, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || SKIP_DIRS.has(entry.name)) continue;
+    const full = join(path, entry.name);
+    if (entry.isDirectory()) await collect(full, out);
+    else if (TARGETS.includes(extname(full))) out.push(full);
   }
-  return { errors: [], warnings: findings.map(f => f.message), findings };
+  return out;
 }
-function lintFile(file) { return lintContent(fs.readFileSync(file, 'utf8')); }
-function lintTarget(target) { return summarize(collect(target, EXT), lintFile); }
-if (require.main === module) {
-  try {
-    if (!process.argv[2]) throw new Error('Provide an explicit UI file or directory');
-    const r = lintTarget(process.argv[2]); print(r);
-    if (!r.filesCount) process.exitCode = 2;
-  } catch (e) { console.error(e.message); process.exitCode = 1; }
+
+const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+if (!args.length) {
+  console.error('用法: node scripts/lint_ui.js <文件或目录> [...]');
+  process.exit(2);
 }
-module.exports = { lintContent, lintFile, lintTarget };
+
+let files = [];
+for (const t of args) {
+  if (!existsSync(t)) {
+    console.error(`跳过不存在的路径: ${t}`);
+    continue;
+  }
+  files = files.concat(await collect(t));
+}
+files = [...new Set(files)];
+
+if (!files.length) {
+  console.error(`\n✗ 没有匹配到可检查的文件（支持 ${TARGETS.join(' / ')}）。\n  这不算通过——什么都没检查。\n`);
+  process.exit(2);
+}
+
+const errors = [];
+const warnings = [];
+const infos = [];
+const declaredReport = [];
+const exemptFiles = [];
+
+for (const file of files) {
+  const text = readFileSync(file, 'utf8');
+
+  // 整文件豁免：文件本身就要包含被禁的模式（规则引擎源码、反例示范页等）。
+  // 与逐规则声明一样，必须带理由，并会在报告中列出。
+  const exemption = text.match(/(?:\/\/|\/\*|<!--)\s*muse:ignore-file\s*:\s*([^>*\n]+)/);
+  if (exemption && exemption[1].trim()) {
+    exemptFiles.push({ file, reason: exemption[1].trim() });
+    continue;
+  }
+
+  const declared = parseDeclarations(text);
+  for (const [rule, reason] of declared) declaredReport.push({ file, rule, reason });
+
+  // 单文件（CSS 或 HTML）内，变量定义按整篇收集
+  const findings = lintCode(text, 1, { definedVars: collectCssVars(text) }).map((v) =>
+    declared.has(v.rule) ? { ...v, severity: 'info', detail: `[已声明] ${declared.get(v.rule)} — ${v.detail}` } : v
+  );
+
+  for (const f of findings) {
+    const rec = { file, ...f };
+    if (f.severity === 'error') errors.push(rec);
+    else if (f.severity === 'warning') warnings.push(rec);
+    else infos.push(rec);
+  }
+}
+
+const print = (list, mark) => {
+  let current = null;
+  for (const f of list) {
+    if (f.file !== current) {
+      current = f.file;
+      console.log(`\n  ${relative(process.cwd(), f.file)}`);
+    }
+    console.log(`    ${mark} L${f.line} [${f.rule}] ${f.detail}`);
+  }
+};
+
+console.log(`\nMuse UI 提示性检查 · ${files.length} 个文件`);
+if (errors.length) {
+  console.log(`\n✗ ${errors.length} 项触犯底线`);
+  print(errors, '✗');
+}
+if (warnings.length) {
+  console.log(`\n! ${warnings.length} 项需要确认`);
+  print(warnings, '!');
+}
+if (declaredReport.length) {
+  console.log('\n已声明的例外（偏离被允许，但必须可见）：');
+  for (const d of declaredReport) console.log(`  · ${relative(process.cwd(), d.file)} → ${d.rule}：${d.reason}`);
+}
+if (exemptFiles.length) {
+  console.log('\n整体豁免的文件（未检查，理由如下）：');
+  for (const e of exemptFiles) console.log(`  · ${relative(process.cwd(), e.file)}：${e.reason}`);
+}
+if (infos.length) {
+  const byRule = {};
+  for (const i of infos) byRule[i.rule] = (byRule[i.rule] || 0) + 1;
+  console.log(
+    `\n· ${infos.length} 条提示（不判罚，需人工确认）：${Object.entries(byRule).map(([k, v]) => `${k}×${v}`).join('、')}`
+  );
+  for (const i of infos.slice(0, 5)) console.log(`    ${relative(process.cwd(), i.file)} L${i.line} [${i.rule}] ${i.detail}`);
+  if (infos.length > 5) console.log(`    …另有 ${infos.length - 5} 条`);
+}
+if (!errors.length && !warnings.length) console.log('\n✓ 未发现触犯底线的现象');
+
+console.log(
+  `\n命中规则：${[...new Set([...errors, ...warnings].map((f) => f.rule))].map((r) => `${r}（${RULES[r]}）`).join('；') || '无'}`
+);
+console.log('\n注意：以上是代码级现象，不等于作品通过审美评估。渲染、操作与播放仍需真实相遇。\n');
+
+process.exit(errors.length ? 1 : 0);

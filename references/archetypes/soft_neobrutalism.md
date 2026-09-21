@@ -1,3 +1,5 @@
+<!-- muse:allow emoji-icon: 短信气泡文案里的 ✨☕ 是消息内容本身（呼应 Coffee Club 语义），非 UI 功能图标，故不改为 SVG -->
+
 # 视觉母体：Soft Neo-Brutalism（温和新粗野与美式复古工装流）
 
 > **标杆来源**：`Textla` (textla.com), `Gumroad` (gumroad.com), `PostHog` (posthog.com)  
@@ -51,13 +53,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **大标题 (Display)** | `Plus Jakarta Sans` / `Outfit` | 800 (Extra Bold) | `40px ~ 72px` (line-height: 1.05) | 紧凑、强有力、字距紧缩 `-0.03em` |
-| **高亮关键词 (Accent Word)**| 同 Display 字体 | 800 *Italic* | 同标题尺寸 | 应用鲜亮翡翠绿（`#10B981`），形成视觉落点 |
-| **正文 (Body)** | `Inter` / `Plus Jakarta Sans` | 500 / 600 | `16px ~ 18px` (line-height: 1.5) | 使用深墨绿而非纯黑，保证可读性与温润感 |
-| **数字与统计 (Metrics)** | `Plus Jakarta Sans` | 800 | `32px ~ 48px` | 巨大的醒目统计数字（如 12,005 Subscribers） |
-| **标签与微文案 (Badge/Mono)**| `JetBrains Mono` / `Inter` | 600 / 700 | `12px ~ 14px` | 药丸标签、发送状态、倒计时、短信字数统计 |
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **大标题 (Display)** | `Plus Jakarta Sans` / `Outfit` | `Noto Sans SC` | 800 (Extra Bold) | `40px ~ 72px` (line-height: 1.05) | 紧凑、强有力、字距紧缩 `-0.03em`（负字距只作用于拉丁，中文标题改回零或正字距） |
+| **高亮关键词 (Accent Word)**| 同 Display 字体 | `Noto Sans SC` | 800 *Italic* | 同标题尺寸 | 应用鲜亮翡翠绿（`#10B981`），形成视觉落点；中文不用斜体，改用加粗 + 颜色承载强调 |
+| **正文 (Body)** | `Inter` / `Plus Jakarta Sans` | `Noto Sans SC` | 500 / 600 | `16px ~ 18px` (line-height: 1.5) | 使用深墨绿而非纯黑，保证可读性与温润感 |
+| **数字与统计 (Metrics)** | `Plus Jakarta Sans` | `Noto Sans SC` | 800 | `32px ~ 48px` | 巨大的醒目统计数字（如 12,005 Subscribers）；偏置硬阴影只压在标题与卡片上，中文密集段落不用 |
+| **标签与微文案 (Badge/Mono)**| `JetBrains Mono` / `Inter` | `Noto Sans SC` | 600 / 700 | `12px ~ 14px` | 药丸标签、发送状态、倒计时、短信字数统计（等宽只留给拉丁短标签） |
 
 ---
 
@@ -113,7 +115,7 @@
 ">
   <!-- Logo -->
   <div style="
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
     font-size: 28px;
     font-weight: 800;
     color: var(--ink-primary);
@@ -127,18 +129,18 @@
 
   <!-- 菜单项 -->
   <div style="display: flex; gap: 28px; align-items: center;">
-    <a href="#" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Product</a>
-    <a href="#" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Resources</a>
-    <a href="#" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Pricing</a>
+    <a href="#" style="font-family: 'Inter', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Product</a>
+    <a href="#" style="font-family: 'Inter', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Resources</a>
+    <a href="#" style="font-family: 'Inter', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Pricing</a>
   </div>
 
   <!-- CTA 按钮组 -->
   <div style="display: flex; gap: 16px; align-items: center;">
-    <a href="#" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Log in</a>
+    <a href="#" style="font-family: 'Inter', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink-primary); text-decoration: none;">Log in</a>
     <a href="#" class="btn-tactile-yellow" style="
       background: var(--accent-yellow);
       color: var(--ink-primary);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
       font-weight: 700;
       font-size: 15px;
       padding: 10px 22px;
@@ -146,7 +148,7 @@
       border: var(--border-thick);
       box-shadow: var(--shadow-solid-sm);
       text-decoration: none;
-      transition: all 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
       display: inline-block;
     ">Try for free</a>
   </div>
@@ -157,7 +159,7 @@
 ```html
 <div style="max-width: 640px; margin: 40px 0;">
   <h1 style="
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
     font-size: 64px;
     font-weight: 800;
     line-height: 1.05;
@@ -169,7 +171,7 @@
     rates on every message
   </h1>
   <p style="
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
     font-size: 20px;
     line-height: 1.5;
     color: var(--ink-secondary);
@@ -183,7 +185,7 @@
   <a href="#" style="
     background: var(--accent-yellow);
     color: var(--ink-primary);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
     font-weight: 800;
     font-size: 18px;
     padding: 16px 36px;
@@ -209,25 +211,25 @@
 ">
   <!-- 卡片头部标题 -->
   <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--ink-primary); padding-bottom: 16px; margin-bottom: 24px;">
-    <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 16px; color: var(--ink-primary);">232-432-8892</span>
+    <span style="font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; font-weight: 700; font-size: 16px; color: var(--ink-primary);">232-432-8892</span>
     <span style="display: flex; gap: 6px;">
       <span style="width: 10px; height: 10px; border-radius: 50%; background: #22C55E; border: 1.5px solid var(--ink-primary);"></span>
     </span>
   </div>
 
-  <!-- 指标网格 -->
-  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 28px;">
-    <div>
-      <div style="font-size: 13px; font-weight: 600; color: var(--ink-muted);">Campaigns</div>
-      <div style="font-size: 32px; font-weight: 800; color: var(--ink-primary);">10</div>
-    </div>
-    <div>
-      <div style="font-size: 13px; font-weight: 600; color: var(--ink-muted);">Messages</div>
-      <div style="font-size: 32px; font-weight: 800; color: var(--ink-primary);">2,323</div>
-    </div>
-    <div>
+  <!-- 指标裸排：硬线上下封边、竖线分隔，首项压舱加宽（禁止等宽三等分卡片化） -->
+  <div style="display: flex; align-items: flex-end; border-top: 1.5px solid var(--ink-primary); border-bottom: 1.5px solid var(--ink-primary); margin-bottom: 28px;">
+    <div style="flex: 1.5; padding: 16px 20px 16px 0;">
       <div style="font-size: 13px; font-weight: 600; color: var(--ink-muted);">Subscribers</div>
-      <div style="font-size: 32px; font-weight: 800; color: var(--ink-primary);">12,005</div>
+      <div style="font-size: 46px; font-weight: 800; color: var(--ink-primary); line-height: 1.05; letter-spacing: -0.02em;">12,005</div>
+    </div>
+    <div style="flex: 1; padding: 16px 0 16px 20px; border-left: 1.5px solid var(--ink-primary);">
+      <div style="font-size: 13px; font-weight: 600; color: var(--ink-muted);">Messages</div>
+      <div style="font-size: 28px; font-weight: 800; color: var(--ink-primary); line-height: 1.15;">2,323</div>
+    </div>
+    <div style="flex: 1; padding: 16px 0 16px 20px; border-left: 1.5px solid var(--ink-primary);">
+      <div style="font-size: 13px; font-weight: 600; color: var(--ink-muted);">Campaigns</div>
+      <div style="font-size: 28px; font-weight: 800; color: var(--ink-primary); line-height: 1.15;">10</div>
     </div>
   </div>
 

@@ -16,7 +16,7 @@
 
 ### 1.2 MOTION_INTENSITY（动效烈度 · 1 至 10）
 * **1-3 (静默克制)**：零自动动画，仅保留 CSS `:hover` 与 `:active` 态微反馈；
-* **4-7 (流体物理)**：全量统一 Spring 弹簧过渡 `cubic-bezier(0.16, 1, 0.3, 1)`，加载时使用级联延迟（`animation-delay: calc(var(--i) * 80ms)`）；
+* **4-7 (流体物理)**：全量统一**无振荡、平滑刹车的缓出曲线** `cubic-bezier(0.16, 1, 0.3, 1)`（它**不是弹簧**——贝塞尔无法表达回弹；需要真实弹簧手感时改用物理参数 `type: "spring", stiffness: 100, damping: 20`），加载时使用级联延迟（`animation-delay: calc(var(--i) * 80ms)`）；
 * **8-10 (高级编排)**：滚动触发揭示、连续微物理悬停、Canvas 粒子联动。
 
 ### 1.3 VISUAL_DENSITY（视觉密度 · 1 至 10）
@@ -60,6 +60,10 @@
 ### 3.3 漫反射衰减方程 (Diffuse Shadow Decay)
 * 阴影物理扩散满足 $\text{Blur} \ge 2 \times Y_{\text{offset}}$，深色底 Alpha $\le 0.4$，浅色底 Alpha $\le 0.06$。
 
+### 3.4 明暗两套基底范式 (Light Gallery & Precision Dark)
+* **浅色画廊范式 (Bento 2.0 Light)**：精致浅底（`#F9FAFB` / `#FBFBFA`）+ 纯白面板 + 扩散漫反射轻投影（`box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05)`），标题外置于卡片下方，让排版而非容器承担层级；
+* **深色微暗范式 (Precision Dark)**：微暗半透面板（`rgba(255, 255, 255, 0.035)`）+ 单像素微透细线边框（`1px solid rgba(255, 255, 255, 0.08)`），靠**色阶**分层而非发光分层。
+
 ---
 
 ## 4. 色彩能量守恒与色温公理 (Chromatic Balance)
@@ -69,7 +73,11 @@
 * **30% 结构辅助色 (Surfaces / Borders)**：低饱和中性灰（Saturation $\le 15\%$）；
 * **10% 焦点强调色 (Accent)**：单一高饱和色彩点睛（如琥珀金 `#F59E0B`、翡翠绿 `#10B981`），严禁铺满大底色。
 
-### 4.2 色温全局锚定
+### 4.2 客体检出色板 (Subject Matter Derivation)
+* **严禁凭空盲猜色彩**。色板必须从产品的情境客体中提炼：健康代谢取自植物鼠尾草与晨光，知识工具取自手工纸张与温和墨水，精密工程取自冷钛与冷轧钢；
+* 强调色饱和度严格控制在 $80\%$ 以内，单点用于 Primary 操作与焦点，严禁铺满大底色。
+
+### 4.3 色温全局锚定
 同一项目全局色温必须严格统一（全栈暖灰调或全栈冷岩调），严禁混用忽冷忽暖的色调。
 
 ---
@@ -88,3 +96,19 @@ $$\text{LineHeight}(\text{FontSize}) =
 1.3 \sim 1.4 & \text{当 } 20\text{px} \le \text{FontSize} < 32\text{px (副标题)} \\
 1.5 \sim 1.6 & \text{当 } 13\text{px} \le \text{FontSize} < 20\text{px (正文，max-w-[65ch])} 
 \end{cases}$$
+
+### 5.3 负字距精密系统 (Negative Tracking)
+* **Display 大标题（40–80px）**：字距收紧至 `-0.03em ~ -0.05em`（`-1.5px ~ -3px`），行高紧凑 `1.05 ~ 1.15`；**严禁大标题使用斜体（No Italic Headers）**；
+* **Headline 章节标题（24–32px）**：字距微收 `-0.01em ~ -0.02em`；
+* **Body 正文**：字距归零，行长严格限制 `max-w-[65ch]`，行高 `1.5 ~ 1.65`。
+
+### 5.4 角色化字体配对 (Role-Based Pairing)
+* **现代科技／极客**：`Geist` / `Satoshi` + `JetBrains Mono`；
+* **人文叙事／生活**：`Outfit` / `Cabinet Grotesk` + `Newsreader` 或高质感衬线；
+* **严谨金融／数据**：`Plus Jakarta Sans` + 等宽数字（`font-variant-numeric: tabular-nums`）。
+* 配对原则：**一个角色只由一种字体承担**，不为丰富而引入第三族。
+
+### 5.5 布局反模式清扫 (Anti-Pattern Sweep)
+* **封杀横排 3 等分卡片**：改用 2 列错位 Zig-Zag、7:3 黄金分割网格或裸排数据列表（一票否决项见 [负向底线](ui_floors.md)）；
+* **反默认居中**：优先采用左对齐杂志流或 50/50 动态分屏；
+* **CSS Grid over Flex-Math**：宏观结构使用 CSS Grid；异步容器显式声明 `aspect-ratio`，杜绝 CLS 跳跃。

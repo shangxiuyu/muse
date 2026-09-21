@@ -57,14 +57,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **主标题 (Display H1)** | `Plus Jakarta Sans` | 700 / 800 (Bold) | `48px ~ 64px` (line-height: 1.15) | 居中沉稳排版，紧凑字距 `-0.02em`，纯白高光 |
-| **动态高亮词 (Kinetic)** | `Plus Jakarta Sans` | 800 (Extra Bold) | 同主标题字号 | 填充电光青绿 (`#00F5D4`)，动态轮播切换 |
-| **巨幅 APY 数字 (Metric)** | `Plus Jakarta Sans` / `JetBrains Mono` | 800 (Extra Bold) | `32px ~ 44px` (line-height: 1.1) | 纯白大号收益率数字，紧随小号浅灰 `APY` |
-| **正文说明 (Body)** | `Inter` | 400 (Regular) | `15px ~ 16px` (line-height: 1.6) | 蓝灰色 (`#A0AEC0`)，克制优雅，避免过亮刺眼 |
-| **金融货币与 TVL 胶囊** | `JetBrains Mono` / `Inter` | 600 / 700 | `12px ~ 13px` | 格式化货币代码（如 `$4,598,472 TVL`），字距适度展开 |
-| **胶囊选项卡 (Segment Tab)**| `Plus Jakarta Sans` | 600 (Semi Bold) | `13px ~ 14px` | 居中导航与分类切换胶囊 |
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **主标题 (Display H1)** | `Plus Jakarta Sans` | `Noto Sans SC` | 700 / 800 (Bold) | `48px ~ 64px` (line-height: 1.15) | 居中沉稳排版，紧凑字距 `-0.02em`，纯白高光（负字距只作用于拉丁，中文标题改回零或正字距） |
+| **动态高亮词 (Kinetic)** | `Plus Jakarta Sans` | `Noto Sans SC` | 800 (Extra Bold) | 同主标题字号 | 填充电光青绿 (`#00F5D4`)，动态轮播切换 |
+| **巨幅 APY 数字 (Metric)** | `Plus Jakarta Sans` / `JetBrains Mono` | `Noto Sans SC` | 800 (Extra Bold) | `32px ~ 44px` (line-height: 1.1) | 纯白大号收益率数字，紧随小号浅灰 `APY`；巨幅数字用等宽拉丁，中文标签走小字号无衬线 |
+| **正文说明 (Body)** | `Inter` | `Noto Sans SC` | 400 (Regular) | `15px ~ 16px` (line-height: 1.6) | 蓝灰色 (`#A0AEC0`)，克制优雅，避免过亮刺眼 |
+| **金融货币与 TVL 胶囊** | `JetBrains Mono` / `Inter` | `Noto Sans SC` | 600 / 700 | `12px ~ 13px` | 格式化货币代码（如 `$4,598,472 TVL`），字距适度展开；等宽只留给拉丁数字 |
+| **胶囊选项卡 (Segment Tab)**| `Plus Jakarta Sans` | `Noto Sans SC` | 600 (Semi Bold) | `13px ~ 14px` | 居中导航与分类切换胶囊 |
 
 ---
 
@@ -179,7 +179,7 @@
   border: none;
   border-radius: var(--radius-pill);
   padding: 12px 28px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -202,7 +202,16 @@
   <!-- 头部机构身份 -->
   <div class="vault-header">
     <div class="vault-brand">
-      <div class="brand-avatar">🏦</div>
+      <div class="brand-avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2.5 9.8 12 3.6l9.5 6.2z"></path>
+          <line x1="3" y1="20.4" x2="21" y2="20.4"></line>
+          <line x1="5.4" y1="20.4" x2="5.4" y2="10.4"></line>
+          <line x1="9.8" y1="20.4" x2="9.8" y2="10.4"></line>
+          <line x1="14.2" y1="20.4" x2="14.2" y2="10.4"></line>
+          <line x1="18.6" y1="20.4" x2="18.6" y2="10.4"></line>
+        </svg>
+      </div>
       <div>
         <h4 class="brand-name">Fasanara Investments</h4>
         <p class="brand-type">Institutional Credit</p>
@@ -224,7 +233,11 @@
     <div class="tvl-pill">
       <span class="tvl-amount">$4,598,472</span>
       <span class="tvl-label">TVL</span>
-      <span class="token-dot">💵</span>
+      <svg class="token-dot" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 6.2v11.6"></path>
+        <path d="M15.1 9.1c0-1.4-1.3-2.3-3.1-2.3s-3.1.9-3.1 2.3c0 3.3 6.2 1.8 6.2 5.1 0 1.4-1.3 2.3-3.1 2.3s-3.1-.9-3.1-2.3"></path>
+      </svg>
     </div>
     <div class="vault-arrow-btn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -271,13 +284,13 @@
   font-size: 18px;
 }
 .brand-name {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: var(--ink-primary);
 }
 .brand-type {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 13px;
   color: var(--ink-secondary);
 }
@@ -285,7 +298,7 @@
   margin-bottom: 28px;
 }
 .metric-prefix {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 13px;
   color: var(--ink-muted);
   display: block;
@@ -297,14 +310,14 @@
   gap: 6px;
 }
 .metric-val {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
   font-size: 40px;
   font-weight: 800;
   color: var(--ink-primary);
   letter-spacing: -0.02em;
 }
 .metric-unit {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: var(--ink-muted);
@@ -324,7 +337,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 6px 12px;
   border-radius: var(--radius-pill);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
   font-size: 13px;
   color: var(--ink-secondary);
 }
@@ -369,7 +382,7 @@
   background: transparent;
   border: none;
   color: var(--ink-secondary);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
   font-size: 14px;
   font-weight: 600;
   padding: 8px 20px;
@@ -414,8 +427,8 @@
     body {
       background-color: #060F27;
       color: #FFFFFF;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      min-height: 100dvh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       position: relative;
@@ -425,7 +438,7 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 20; /* 仅需压过天体背景(0)与首屏容器(1)；高位 z-index 留给模态与系统层 */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -435,7 +448,7 @@
       justify-content: space-between;
     }
     .logo {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
       font-weight: 800;
       font-size: 20px;
       letter-spacing: -0.02em;
@@ -476,7 +489,7 @@
       z-index: 1;
     }
     .hero-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
       font-size: 56px;
       font-weight: 800;
       line-height: 1.15;
@@ -495,13 +508,30 @@
       margin: 0 auto 48px auto;
     }
 
-    /* 收益金库卡片三栏网格 */
+    /* 收益金库卡片：7:3 黄金分割，最高收益金库压舱（禁止等宽三等分） */
     .vault-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 7fr 3fr;
       gap: 24px;
       text-align: left;
       margin-bottom: 60px;
+    }
+    /* 首卡压舱：跨两行 + 巨幅 APY，次级金库在右侧纵向堆叠 */
+    .vault-grid > :first-child {
+      grid-row: span 2;
+      padding: 34px 32px !important;
+      display: flex;
+      flex-direction: column;
+    }
+    /* 让 TVL 行贴底，主卡的高度由压舱体量自然填满 */
+    .vault-grid > :first-child > div:nth-child(4) {
+      margin-top: auto;
+    }
+    .vault-grid > :first-child > div:nth-child(3) {
+      font-size: 64px !important;
+    }
+    .vault-grid > :nth-child(n+2) > div:nth-child(3) {
+      font-size: 30px !important;
     }
 
     /* 合作机构 Logo 滚动条 */
@@ -552,23 +582,23 @@
     <div class="vault-grid">
       <!-- Card 1 -->
       <div style="background: rgba(16, 27, 51, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 24px;">
-        <div style="margin-bottom: 20px; font-size: 15px; font-weight: 700;">Fasanara Investments</div>
+        <div style="margin-bottom: 20px; font-size: 15px; font-weight: 700;">Ethena Basis Vault</div>
         <div style="font-size: 12px; color: #64748B; margin-bottom: 4px;">Up to</div>
-        <div style="font-size: 38px; font-weight: 800; margin-bottom: 20px;">22.7% <span style="font-size: 16px; color: #64748B;">APY</span></div>
+        <div style="font-size: 38px; font-weight: 800; margin-bottom: 20px; color: #00F5D4;">43.8% <span style="font-size: 16px; color: #64748B;">APY</span></div>
         <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px;">
-          <span style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-family: monospace;">$4,598,472 TVL</span>
-          <span style="width: 28px; height: 28px; border-radius: 50%; background: #FFF; color: #000; display: flex; align-items: center; justify-content: center; font-size: 12px;">&rarr;</span>
+          <span style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;">$913,373 TVL</span>
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #FFF; color: var(--btn-white-text); display: flex; align-items: center; justify-content: center; font-size: 12px;">&rarr;</span>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div style="background: rgba(16, 27, 51, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 24px;">
-        <div style="margin-bottom: 20px; font-size: 15px; font-weight: 700;">Ethena Basis Vault</div>
+        <div style="margin-bottom: 20px; font-size: 15px; font-weight: 700;">Fasanara Investments</div>
         <div style="font-size: 12px; color: #64748B; margin-bottom: 4px;">Up to</div>
-        <div style="font-size: 38px; font-weight: 800; margin-bottom: 20px; color: #00F5D4;">43.8% <span style="font-size: 16px; color: #64748B;">APY</span></div>
+        <div style="font-size: 38px; font-weight: 800; margin-bottom: 20px;">22.7% <span style="font-size: 16px; color: #64748B;">APY</span></div>
         <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px;">
-          <span style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-family: monospace;">$913,373 TVL</span>
-          <span style="width: 28px; height: 28px; border-radius: 50%; background: #FFF; color: #000; display: flex; align-items: center; justify-content: center; font-size: 12px;">&rarr;</span>
+          <span style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;">$4,598,472 TVL</span>
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #FFF; color: var(--btn-white-text); display: flex; align-items: center; justify-content: center; font-size: 12px;">&rarr;</span>
         </div>
       </div>
 
@@ -578,8 +608,8 @@
         <div style="font-size: 12px; color: #64748B; margin-bottom: 4px;">Up to</div>
         <div style="font-size: 38px; font-weight: 800; margin-bottom: 20px;">7.8% <span style="font-size: 16px; color: #64748B;">APY</span></div>
         <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px;">
-          <span style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-family: monospace;">$298,138 TVL</span>
-          <span style="width: 28px; height: 28px; border-radius: 50%; background: #FFF; color: #000; display: flex; align-items: center; justify-content: center; font-size: 12px;">&rarr;</span>
+          <span style="background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 9999px; font-size: 12px; font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;">$298,138 TVL</span>
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #FFF; color: var(--btn-white-text); display: flex; align-items: center; justify-content: center; font-size: 12px;">&rarr;</span>
         </div>
       </div>
     </div>

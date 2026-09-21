@@ -44,12 +44,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;800&family=Inter:wght@400;500;600&family=Reenie+Beanie&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **大标题 (Display)** | `Bricolage Grotesque` | 700 / 800 | `36px ~ 72px` (line-height: 1.1) | 饱满、有张力、带复古怪诞性格，负字距 `-0.02em` |
-| **正文 (Body)** | `Inter` / `Source Sans 3` | 400 / 500 | `16px ~ 20px` (line-height: 1.6) | 保证大段阅读清晰度，颜色使用深墨绿而非纯黑 |
-| **手绘批注 (Handwriting)** | `Reenie Beanie` | 400 (Italic feel) | `22px ~ 32px` | 配合手绘箭头做边栏批注、旁白、圈注 |
-| **票据/元数据 (Mono)** | `Roboto Mono` | 400 / 700 | `13px ~ 15px` | 用于价格标签、对比表格、时间戳、胶囊徽章 |
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **大标题 (Display)** | `Bricolage Grotesque` | `PingFang SC` / `Noto Sans SC` | 700 / 800 | `36px ~ 72px` (line-height: 1.1) | 饱满、有张力、带复古怪诞性格，负字距 `-0.02em`（中文标题不加负字距，改回零或正字距） |
+| **正文 (Body)** | `Inter` / `Source Sans 3` | `PingFang SC` / `Noto Sans SC` | 400 / 500 | `16px ~ 20px` (line-height: 1.6) | 保证大段阅读清晰度，颜色使用深墨绿而非纯黑 |
+| **手绘批注 (Handwriting)** | `Reenie Beanie` | `PingFang SC` / `Noto Sans SC` | 400 (Italic feel) | `22px ~ 32px` | 配合手绘箭头做边栏批注、旁白、圈注；中文手写体缺位时由圆润无衬线兜底，不用等宽 |
+| **票据/元数据 (Mono)** | `Roboto Mono` | `PingFang SC` / `Noto Sans SC` | 400 / 700 | `13px ~ 15px` | 用于价格标签、对比表格、时间戳、胶囊徽章（等宽只留给拉丁数字与短标签） |
 
 ---
 
@@ -95,15 +95,15 @@
   justify-content: space-between;
   align-items: center;
 ">
-  <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 800; color: var(--ink-primary);">
+  <div style="font-family: 'Bricolage Grotesque', 'PingFang SC', 'Noto Sans SC', sans-serif; font-size: 24px; font-weight: 800; color: var(--ink-primary);">
     SayBriefly<span style="color: var(--stamp-orange);">.</span>
   </div>
   <div style="display: flex; gap: 16px; align-items: center;">
-    <a href="#" style="font-family: 'Roboto Mono', monospace; font-size: 14px; color: var(--ink-primary); text-decoration: none;">Product</a>
+    <a href="#" style="font-family: 'Roboto Mono', 'PingFang SC', 'Noto Sans SC', monospace; font-size: 14px; color: var(--ink-primary); text-decoration: none;">Product</a>
     <a href="#" style="
       background: var(--ink-primary);
       color: var(--highlight-yellow);
-      font-family: 'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', 'PingFang SC', 'Noto Sans SC', monospace;
       font-weight: 700;
       font-size: 14px;
       padding: 8px 18px;
@@ -118,7 +118,7 @@
 ```html
 <div style="position: relative; text-align: center; max-width: 800px; margin: 40px auto;">
   <h1 style="
-    font-family: 'Bricolage Grotesque', sans-serif;
+    font-family: 'Bricolage Grotesque', 'PingFang SC', 'Noto Sans SC', sans-serif;
     font-size: 56px;
     font-weight: 800;
     color: var(--ink-primary);
@@ -134,7 +134,7 @@
     top: 10px;
     right: -40px;
     transform: rotate(6deg);
-    font-family: 'Reenie Beanie', cursive;
+    font-family: 'Reenie Beanie', 'PingFang SC', 'Noto Sans SC', cursive;
     font-size: 28px;
     color: var(--stamp-orange);
     display: flex;
@@ -161,22 +161,22 @@
     <span style="
       background: var(--pill-mint);
       color: var(--ink-primary);
-      font-family: 'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', 'PingFang SC', 'Noto Sans SC', monospace;
       font-size: 12px;
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 20px;
     ">FEATURE</span>
-    <h4 style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 600; color: var(--ink-primary); margin: 8px 0 0 0;">
+    <h4 style="font-family: 'Inter', 'PingFang SC', 'Noto Sans SC', sans-serif; font-size: 20px; font-weight: 600; color: var(--ink-primary); margin: 8px 0 0 0;">
       Slack & Figma Scope Monitoring
     </h4>
   </div>
-  <div style="font-family: 'Roboto Mono', monospace; font-size: 15px; color: var(--ink-muted);">Automatic Detection</div>
+  <div style="font-family: 'Roboto Mono', 'PingFang SC', 'Noto Sans SC', monospace; font-size: 15px; color: var(--ink-muted);">Automatic Detection</div>
   <div>
     <span style="
       background: var(--highlight-yellow);
       color: var(--ink-primary);
-      font-family: 'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', 'PingFang SC', 'Noto Sans SC', monospace;
       font-weight: 700;
       padding: 6px 14px;
       border-radius: 20px;

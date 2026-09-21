@@ -57,14 +57,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **主标题 (Display H1)** | `Space Mono` / `Aeonik Mono` | 400（常规），**全大写 UPPERCASE** | `48px ~ 72px` (line-height: 1.15) | 极具冲击力的等宽工业标题，字间距略微展开 `0.02em` |
-| **区块标题 (Section H2)** | `Space Mono` | 400，**全大写 UPPERCASE** | `28px ~ 40px` (line-height: 1.25) | 架构区块、功能列表大标题 |
-| **卡片标题 (Card H3/H4)** | `Space Mono` | 400，**全大写 UPPERCASE** | `18px ~ 24px` (line-height: 1.3) | 控制台 Tab、功能小卡片标题 |
-| **正文说明 (Body)** | `Inter` | 300 / 400 (Light / Regular) | `15px ~ 16px` (line-height: 1.55) | 叙述正文，字距 `0.01em`，深炭墨色高可读性 |
-| **终端与代码 (Code / Console)**| `JetBrains Mono` / `SFMono` | 400 / 500 | `13px ~ 14px` (line-height: 1.6) | SQL 编辑器、Python 脚本、Shell 指令 |
-| **状态胶囊与元信息 (Badge)** | `Space Mono` | 700 (Bold)，**全大写** | `11px ~ 12px` | 运行状态 `[ RUNNING ]`、区域 `EU-WEST-1` |
+> ⚠️ **等宽中文是最容易翻车的组合**：等宽只用于短标签与技术元素，中文正文必须无衬线（`Noto Sans SC`）；「全大写」对中文无效，该意图改用加宽字距或方括号承载（如「［ 免费试用 7 天 ］」）。
+
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **主标题 (Display H1)** | `Space Mono` / `Aeonik Mono` | `Noto Sans SC` | 400（常规），**全大写 UPPERCASE** | `48px ~ 72px` (line-height: 1.15) | 极具冲击力的等宽工业标题，字间距略微展开 `0.02em`；中文标题改用无衬线 + 加宽字距承载全大写意图 |
+| **区块标题 (Section H2)** | `Space Mono` | `Noto Sans SC` | 400，**全大写 UPPERCASE** | `28px ~ 40px` (line-height: 1.25) | 架构区块、功能列表大标题；中文不用等宽，改无衬线 + 加宽字距 |
+| **卡片标题 (Card H3/H4)** | `Space Mono` | `Noto Sans SC` | 400，**全大写 UPPERCASE** | `18px ~ 24px` (line-height: 1.3) | 控制台 Tab、功能小卡片标题 |
+| **正文说明 (Body)** | `Inter` | `Noto Sans SC` | 300 / 400 (Light / Regular) | `15px ~ 16px` (line-height: 1.55) | 叙述正文，字距 `0.01em`，深炭墨色高可读性 |
+| **终端与代码 (Code / Console)**| `JetBrains Mono` / `SFMono` | `Noto Sans Mono` | 400 / 500 | `13px ~ 14px` (line-height: 1.6) | SQL 编辑器、Python 脚本、Shell 指令（中文注释等短技术串可留等宽） |
+| **状态胶囊与元信息 (Badge)** | `Space Mono` | `Noto Sans Mono` | 700 (Bold)，**全大写** | `11px ~ 12px` | 运行状态 `[ RUNNING ]`、区域 `EU-WEST-1`；中文短标签保留等宽的标尺感，长于 6 字改无衬线 |
 
 ---
 
@@ -156,7 +158,7 @@
   border: var(--border-hard);
   border-radius: var(--radius-sharp);
   padding: 12px 20px;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Space Mono', 'Noto Sans Mono', monospace;
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
@@ -192,7 +194,14 @@
       Which duck species flies furthest in fall migration?
     </div>
     <div class="agent-step">
-      <span class="duck-icon">🦆</span>
+      <!-- 吉祥物：炭墨单线手绘鸭（内联 SVG，随 currentColor 取墨，不引外部依赖） -->
+      <svg class="duck-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--ink-primary); flex: none;">
+        <circle cx="7.8" cy="7" r="3.1"></circle>
+        <path d="M4.9 6.3 1.5 7l3.4 1.7z"></path>
+        <path d="M9.4 9.9c3.9 0 7 2.3 7 5.1 0 2.6-2.9 4.7-6.5 4.7s-6.5-2-6.5-4.4c0-1.6.9-2.9 2.2-3.7z"></path>
+        <path d="M9.4 19.7 8.3 21.5M13.6 19.5l.9 2"></path>
+        <circle cx="7.3" cy="6.4" r=".7" fill="currentColor" stroke="none"></circle>
+      </svg>
       <span class="step-text">Scanning 1.2 billion tracking records by distance...</span>
     </div>
     <div class="code-block">
@@ -232,7 +241,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   border-right: 1px solid var(--ink-primary);
   border-bottom: 2px solid var(--ink-primary);
   padding: 10px 18px;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Space Mono', 'Noto Sans Mono', monospace;
   font-size: 12px;
   font-weight: 700;
   color: var(--ink-primary);
@@ -252,7 +261,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   border: 1px solid #D5CEC5;
   border-radius: 12px;
   padding: 10px 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 14px;
   width: fit-content;
   margin-left: auto;
@@ -262,7 +271,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 13px;
   color: var(--ink-secondary);
   margin-bottom: 12px;
@@ -272,13 +281,13 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   border: 1px solid #D5CEC5;
   border-radius: 4px;
   padding: 12px 16px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'Noto Sans Mono', monospace;
   font-size: 13px;
   line-height: 1.5;
   color: #1A1A1A;
 }
 .code-header {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Space Mono', 'Noto Sans Mono', monospace;
   font-size: 10px;
   color: var(--ink-muted);
   text-transform: uppercase;
@@ -295,7 +304,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Space Mono', 'Noto Sans Mono', monospace;
   font-size: 11px;
 }
 .status-dot-pulse {
@@ -336,7 +345,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   box-shadow: 4px 4px 0px var(--ink-primary);
 }
 .iso-badge {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Space Mono', 'Noto Sans Mono', monospace;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
@@ -344,14 +353,14 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   margin-bottom: 8px;
 }
 .iso-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 14px;
   color: var(--ink-secondary);
   line-height: 1.4;
   margin-bottom: 16px;
 }
 .iso-link {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Space Mono', 'Noto Sans Mono', monospace;
   font-size: 12px;
   font-weight: 700;
   color: var(--ink-primary);
@@ -395,8 +404,8 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
         linear-gradient(90deg, rgba(56, 56, 56, 0.06) 1px, transparent 1px);
       background-size: 24px 24px;
       color: #383838;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      min-height: 100dvh;
       -webkit-font-smoothing: antialiased;
     }
     
@@ -410,7 +419,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
       justify-content: space-between;
     }
     .logo {
-      font-family: 'Space Mono', monospace;
+      font-family: 'Space Mono', 'Noto Sans Mono', monospace;
       font-weight: 700;
       font-size: 18px;
       display: flex;
@@ -421,7 +430,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
       display: flex;
       gap: 24px;
       list-style: none;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Space Mono', 'Noto Sans Mono', monospace;
       font-size: 13px;
     }
     .nav-links a {
@@ -443,7 +452,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
       align-items: center;
     }
     .hero-title {
-      font-family: 'Space Mono', monospace;
+      font-family: 'Space Mono', 'Noto Sans SC', monospace;
       font-size: 48px;
       line-height: 1.15;
       text-transform: uppercase;
@@ -476,7 +485,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
       border: 2px solid #383838;
       border-radius: 2px;
       padding: 12px 24px;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Space Mono', 'Noto Sans Mono', monospace;
       font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
@@ -496,7 +505,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
       border: 2px solid #383838;
       border-radius: 2px;
       padding: 12px 24px;
-      font-family: 'Space Mono', monospace;
+      font-family: 'Space Mono', 'Noto Sans Mono', monospace;
       font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
@@ -523,7 +532,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
       align-items: center;
     }
     .banner-title {
-      font-family: 'Space Mono', monospace;
+      font-family: 'Space Mono', 'Noto Sans SC', monospace;
       font-size: 32px;
       text-transform: uppercase;
     }
@@ -534,7 +543,13 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
   <!-- 顶部导航 -->
   <header>
     <div class="logo">
-      <span>🦆</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--ink-primary); flex: none;">
+        <circle cx="7.8" cy="7" r="3.1"></circle>
+        <path d="M4.9 6.3 1.5 7l3.4 1.7z"></path>
+        <path d="M9.4 9.9c3.9 0 7 2.3 7 5.1 0 2.6-2.9 4.7-6.5 4.7s-6.5-2-6.5-4.4c0-1.6.9-2.9 2.2-3.7z"></path>
+        <path d="M9.4 19.7 8.3 21.5M13.6 19.5l.9 2"></path>
+        <circle cx="7.3" cy="6.4" r=".7" fill="currentColor" stroke="none"></circle>
+      </svg>
       <span>HACKER_FORGE</span>
     </div>
     <ul class="nav-links">
@@ -565,7 +580,7 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
 
     <!-- 终端卡片 -->
     <div style="border: 2px solid #383838; background: #FFFFFF; border-radius: 2px; box-shadow: 6px 6px 0px #383838;">
-      <div style="background: #383838; color: #FFF; padding: 10px 16px; font-family: 'Space Mono', monospace; font-size: 12px; display: flex; gap: 16px;">
+      <div style="background: #383838; color: #FFF; padding: 10px 16px; font-family: 'Space Mono', 'Noto Sans Mono', monospace; font-size: 12px; display: flex; gap: 16px;">
         <span style="color: #97D4FF; font-weight: 700;">ASK (MCP)</span>
         <span style="color: #AAA;">SQL</span>
         <span style="color: #AAA;">PYTHON</span>
@@ -574,11 +589,11 @@ GROUP BY 1 ORDER BY avg_km DESC;</code></pre>
         <div style="background: #ECE6DF; padding: 10px 14px; border-radius: 8px; width: fit-content; margin-left: auto; font-size: 13px; margin-bottom: 16px;">
           How many agent runs succeeded in the last 24h?
         </div>
-        <div style="background: #ECE6DF; border: 1px solid #D5CEC5; padding: 12px; border-radius: 2px; font-family: 'JetBrains Mono', monospace; font-size: 13px;">
+        <div style="background: #ECE6DF; border: 1px solid #D5CEC5; padding: 12px; border-radius: 2px; font-family: 'JetBrains Mono', 'Noto Sans Mono', monospace; font-size: 13px;">
           <code>SELECT COUNT(*) FROM executions WHERE status = 'SUCCEEDED';</code>
         </div>
       </div>
-      <div style="border-top: 2px solid #383838; background: #ECE6DF; padding: 8px 16px; font-family: 'Space Mono', monospace; font-size: 11px; display: flex; align-items: center; gap: 8px;">
+      <div style="border-top: 2px solid #383838; background: #ECE6DF; padding: 8px 16px; font-family: 'Space Mono', 'Noto Sans Mono', monospace; font-size: 11px; display: flex; align-items: center; gap: 8px;">
         <span style="width: 8px; height: 8px; border-radius: 50%; background: #16AA98; display: inline-block;"></span>
         <span>CONNECTED</span>
         <span style="background: #FFDE00; border: 1px solid #383838; padding: 1px 6px; font-weight: 700;">EU-WEST-1</span>

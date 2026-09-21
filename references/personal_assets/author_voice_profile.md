@@ -3,6 +3,8 @@
 作者声音画像属于 [Taste Memory](../taste_memory.md)，不属于 [AI 基础审美推理](../aesthetic_intelligence.md)。
 它将用户认可的优质文章、个人笔记或代表性文风，解构为**可迁移的深层结构骨架与语言艺术系统**，并沉淀为个人资产库中的专属资产（`system_type: author_voice`）。
 
+<!-- muse:allow text-8: 「一键映射闭环」指画像 → 契约 → 成稿的完整回路，是资产调用流程的术语 -->
+
 > **契约化协同原则**：提取出的声音画像必须与 [WRITING.md](../toolkit/text_narrative_tool.md#四-标准交付契约writingmd-规范) 的五大维度**完全同构**。当用户未来调用该声音画像时，AI 能一键将其转化为新创作任务的 `WRITING.md` 契约配置。
 
 ---

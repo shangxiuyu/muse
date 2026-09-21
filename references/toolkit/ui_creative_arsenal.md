@@ -44,9 +44,25 @@
 </div>
 ```
 
+### 1.3 Bento 2.0 五大活体卡片原型 (Living Card Archetypes)
+卡片不是静态容器，而是有生命周期的活体。按任务取用其一，不必全上：
+1. *The Intelligent List*：基于 `layoutId` 的任务自排序列表，模拟 AI 实时重排；
+2. *The Command Input*：多步打字机 Prompts 轮播，带呼吸光标与 Shimmer 流光；
+3. *The Live Status*：呼吸微光指示点 + 带 Overshoot 的微通知浮层；
+4. *The Wide Data Stream*：无缝滚动的指标走马灯（`x: ["0%", "-100%"]`）；
+5. *The Contextual Focus*：文档阅读交替平滑高亮 + Float-in 浮动微工具栏。
+
+> **取用纪律**：一屏内最多一种活体原型，其余卡片保持安静。活体是焦点，不是背景；五种同时上台等于没有活体。
+
+### 1.4 组件完整 7 态契约 (The 7-State Contract)
+每个核心组件必须交代清楚七态，缺一态即为未完成：
+`Default` ➔ `Hover` ➔ `Active`（`scale(0.98)` / `-translate-y-[1px]`）➔ `Focus-visible`（高反差外环，严禁 `outline: none`）➔ `Loading`（骨架屏，严禁通用的旋转小菊花）➔ `Disabled`（`opacity: 0.45`）➔ `Empty / Error`（空状态即行动邀请，错误即自愈指引）。
+
 ---
 
 ## 2. 动效与触感物理规范 (Sensory & Physics)
+
+> **编排纪律（The Single Orchestrated Moment）**：全页只聚焦**一个**编排视觉焦点；常规微动效 `<200ms`，不做无意义的长入场；无条件支持 `@media (prefers-reduced-motion: reduce)` 的静态降级，降级后信息层级必须依然完整。
 
 ### 2.1 Framer Motion 弹簧物理标准配置
 ```javascript
@@ -128,7 +144,39 @@ export const itemVariants = {
 };
 ```
 
-### 2.4 Web Audio 触感微音律合成器 (Tactile Audio Engine)
+### 2.4 字符解码转场 (Text Scramble Decoder)
+* **适用情境**：标题切换、加载完成的第一帧、口令校验成功。**克制使用**：一页最多一次。
+```javascript
+// 精密字符瞬时解码：逐位锁定，其余位随机刷新
+const GLYPHS = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
+export function scrambleTo(el, target, steps = 12) {
+  let frame = 0;
+  const timer = setInterval(() => {
+    const locked = Math.floor((frame / steps) * target.length);
+    el.textContent = target
+      .split("")
+      .map((ch, i) => (i < locked ? ch : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]))
+      .join("");
+    if (++frame > steps) {
+      clearInterval(timer);
+      el.textContent = target;
+    }
+  }, 28);
+  return () => clearInterval(timer);
+}
+```
+
+### 2.5 形变胶囊 (Morphing Pill / Dynamic Island)
+* **适用情境**：状态通知、工具条在紧凑态与展开态之间切换（对应 `ui_innovation.md` 的算子 M2）。
+* **公理支撑**：一个元素在两种形态间用 `layoutId` 平滑形变，而非两个组件互相替换——形态连续，视线才不中断。
+```jsx
+// 同一 layoutId 驱动形态变化；弹簧参数复用 2.1 的 springTransition
+<motion.div layoutId="status-pill" transition={springTransition} className="rounded-full px-4 py-2">
+  {expanded ? <FullStatusBlock /> : <CompactStatusDot />}
+</motion.div>
+```
+
+### 2.6 Web Audio 触感微音律合成器 (Tactile Audio Engine)
 ```javascript
 class TactileAudio {
   constructor() {

@@ -141,7 +141,10 @@
       font-size: 14px;
       outline: none;
     ">
-    <span style="position: absolute; left: 16px; top: 10px; color: var(--ink-muted); font-size: 14px;">🔍</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="position: absolute; left: 16px; top: 11px; color: var(--ink-muted);">
+      <circle cx="11" cy="11" r="7"></circle>
+      <line x1="16" y1="16" x2="21" y2="21"></line>
+    </svg>
   </div>
 
   <!-- 登录与注册 CTA -->
@@ -303,7 +306,9 @@
   border: 1px solid rgba(0,0,0,0.04);
   transform: rotate(-3deg);
 ">
-  <span style="font-size: 16px;">❤️</span>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--action-coral);">
+    <path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1l1.7 1.7L12 21.5l7.1-7.1 1.7-1.7a5 5 0 0 0 0-7.1z"></path>
+  </svg>
   <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink-primary);">
     Alex bought 5 coffees
   </span>

@@ -1,6 +1,6 @@
 # 个人品味记录协议
 
-本协议是 [Taste Memory](taste_memory.md) 中品味信号的写入规则。仓库 vault/ 是空模板，不代表任何用户品味。运行时使用外置目录，依次由 --vault <dir>、MUSE_VAULT_DIR 或默认 ~/Documents/Muse 定位；不自动寻找、读取或复制真实会话。作者声音画像作为 `system_type: author_voice` 存在于同一个人库，但不自动写入本协议管理的 confirmed preference。
+本协议是 [Taste Memory](taste_memory.md) 中品味信号的写入规则。仓库 vault/ 是空模板，不代表任何用户品味。运行时使用外置目录，依次由 --vault <dir>、MUSE_VAULT_DIR 或默认 ~/Documents/Muse 定位；不自动寻找、读取或复制真实会话。作者声音画像作为 `system_type: author_voice` 存在于同一个人库，但不自动写入本协议管理的 confirmed preference。定位与初始化用 `node scripts/asset_library.js location|init`。
 
 ## 读取
 
@@ -20,25 +20,19 @@
 - 重复候选：保持同一来源去重；来自不同情境的反馈也不自动提升为普遍规则。
 - 冲突：scope 相同的不同偏好保留来源并解释，当前用户要求优先；不要静默删除旧规则。
 
-首次明确需要记忆时：
-    node scripts/slow_update.js --type init --vault <private-dir>
+偏好写在个人库根目录的两个纯文本文件里，直接编辑即可，不需要脚本：
 
-记录候选：
-    node scripts/slow_update.js --type rejection --vault <private-dir> --artifact "对象" --because "原因" --principle "可迁移判断" --scope "适用场景" --source "会话或案例标识" --exceptions "例外"
+- `personal_dna.yaml` —— 偏好与候选（`preferences`）。
+- `personal_taboos.yaml` —— 用户表达的边界（`taboos`）。
 
-明确长期偏好：
-    node scripts/slow_update.js --type preference --vault <private-dir> --category typography --key density --value "研究报告保持紧凑" --scope "研究报告" --source "用户明确要求" --confirmed
+每条记录的字段与上面〈记录〉一节一致。首次需要记忆时：
 
-先读取再写；脚本校验数据、备份、加锁并原子替换。写入失败不声称记住。私有目录不随技能发布。
+    node scripts/asset_library.js init --vault <private-dir>
 
-## 会话辅助整理
+它只建立目录骨架（两个 YAML 与空的 `aesthetic_assets.json`），不写入任何偏好。**偏好本身由 Agent 直接编辑 YAML**，格式是人机都易读的轻量结构；这也意味着没有脚本替你校验偏好内容，写错要自己看出来。
 
-    node scripts/muse_sleep.js --log <explicit-jsonl>
+偏好以外的四类资产（reference / reaction / system / application）走[资产库协议](asset_library.md)，由 `asset_library.js put` 校验结构与引用关系。写偏好前先读现有文件，避免覆盖；写入失败不声称记住。私有目录不随技能发布。
 
-只列出候选反馈位置；支持已说明的简单字段和 role/content 文本样例，不声称支持所有宿主。不会自行推断长期原则、不自动写入；没有日志就报告没有数据。Agent 结合上下文确认性质，再按上面的命令记录。来源和引文保持数据身份。
+## 版本
 
-## 老版本迁移
-
-    node scripts/migrate_vault.js <old-vault> --output <new-private-dir>
-
-原目录不动。迁移前解析、备份；旧值保留在 legacy_import，原偏好只作为候选等待语境核对。仅对已知旧版本的 rejected_cases 同行格式错误作明确修复并报告，其他语法错误阻断。未知版本阻断，重复迁移不覆盖目标。不要将作者的旧项目数据自动视为当前用户认可。
+偏好格式为 2.0。旧版库的 `rejected_cases` 若为同行格式错误，由 Agent 读出来后手工整理为 `taboos` 条目并报告改动；其他语法错误就直接停下、保留原文件、问用户，不要用空库覆盖。

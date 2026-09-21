@@ -55,13 +55,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **主标题 (Brand Display)** | `Plus Jakarta Sans` / `Inter` | 800 (Extra Bold) | `52px ~ 72px` (line-height: 1.05) | 极具工业张力与分量感，紧缩字距 `-0.03em` |
-| **电光蓝高亮词 (Accent Word)**| 同 Display 字体 | 800 | 同标题尺寸 | 应用电光赛车蓝（`#0075FF`），形成第一视觉焦点 |
-| **副标题与说明 (Body)** | `Inter` | 400 / 500 | `17px ~ 20px` (line-height: 1.6) | 银白哑光文字（`#94A3B8`），不刺眼、保证高级阅读感 |
-| **控制台/代码/参数 (Mono)** | `JetBrains Mono` | 500 / 700 | `13px ~ 15px` | 拟真窗口代码、状态参数、延迟指标（如 98ms） |
-| **状态药丸与指示标签** | `JetBrains Mono` / `Inter` | 600 | `11px ~ 12px` | 运行状态点、版本号、全球节点标签 |
+> ⚠️ **纯白中文在深底上过曝**：大段中文正文降到哑光灰 `--text-slate`，纯白只留给主标题与高反差按钮。
+
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **主标题 (Brand Display)** | `Plus Jakarta Sans` / `Inter` | `PingFang SC` / `Noto Sans SC` | 800 (Extra Bold) | `52px ~ 72px` (line-height: 1.05) | 极具工业张力与分量感，紧缩字距 `-0.03em`（负字距只作用于拉丁，中文标题改回零或正字距） |
+| **电光蓝高亮词 (Accent Word)**| 同 Display 字体 | `PingFang SC` / `Noto Sans SC` | 800 | 同标题尺寸 | 应用电光赛车蓝（`#0075FF`），形成第一视觉焦点 |
+| **副标题与说明 (Body)** | `Inter` | `PingFang SC` / `Noto Sans SC` | 400 / 500 | `17px ~ 20px` (line-height: 1.6) | 银白哑光文字（`#94A3B8`），不刺眼、保证高级阅读感；大段中文同样降到此哑光灰，不用纯白 |
+| **控制台/代码/参数 (Mono)** | `JetBrains Mono` | `PingFang SC` / `Noto Sans SC` | 500 / 700 | `13px ~ 15px` | 拟真窗口代码、状态参数、延迟指标（如 98ms），等宽只留给拉丁与数字 |
+| **状态药丸与指示标签** | `JetBrains Mono` / `Inter` | `PingFang SC` / `Noto Sans SC` | 600 | `11px ~ 12px` | 运行状态点、版本号、全球节点标签 |
 
 ---
 
@@ -117,7 +119,7 @@
   <!-- 左侧：品牌价值叙事 -->
   <div style="flex: 1; max-width: 560px;">
     <h1 style="
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'PingFang SC', 'Noto Sans SC', sans-serif;
       font-size: 58px;
       font-weight: 800;
       line-height: 1.05;
@@ -128,7 +130,7 @@
       The <span style="color: var(--brand-electric-blue);">active</span> reliability layer for modern tech.
     </h1>
     <p style="
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'PingFang SC', 'Noto Sans SC', sans-serif;
       font-size: 18px;
       line-height: 1.6;
       color: var(--text-slate);
@@ -143,20 +145,20 @@
         <a href="#" class="btn-flagship-primary" style="
           background: var(--text-white);
           color: var(--bg-abyss);
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: 'Plus Jakarta Sans', 'PingFang SC', 'Noto Sans SC', sans-serif;
           font-weight: 700;
           font-size: 15px;
           padding: 14px 28px;
           border-radius: var(--radius-sm);
           text-decoration: none;
           display: inline-block;
-          transition: all 0.2s ease;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
         ">Start for free</a>
 
         <a href="#" style="
           background: rgba(255, 255, 255, 0.05);
           color: var(--text-white);
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: 'Plus Jakarta Sans', 'PingFang SC', 'Noto Sans SC', sans-serif;
           font-weight: 600;
           font-size: 15px;
           padding: 14px 24px;
@@ -176,13 +178,19 @@
         align-items: center;
         gap: 12px;
         width: fit-content;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'JetBrains Mono', 'PingFang SC', 'Noto Sans SC', monospace;
         font-size: 13px;
         color: var(--text-slate);
       ">
         <span style="color: var(--brand-electric-blue);">$</span>
         <span style="color: var(--text-white);">npx checkly init</span>
-        <span style="cursor: pointer; opacity: 0.6; margin-left: 8px;">📋</span>
+        <!-- 复制按钮：单色描边矢量图标，随字色走，跨端渲染一致 -->
+        <span style="cursor: pointer; opacity: 0.6; margin-left: 8px; display: inline-flex; align-items: center;" aria-label="复制命令">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+            <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path>
+          </svg>
+        </span>
       </div>
     </div>
   </div>
@@ -209,27 +217,27 @@
           <span style="width: 11px; height: 11px; border-radius: 50%; background: #FF5F56;"></span>
           <span style="width: 11px; height: 11px; border-radius: 50%; background: #FFBD2E;"></span>
           <span style="width: 11px; height: 11px; border-radius: 50%; background: #27C93F;"></span>
-          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-left: 12px;">
+          <span style="font-family: 'JetBrains Mono', 'PingFang SC', 'Noto Sans SC', monospace; font-size: 12px; color: var(--text-dim); margin-left: 12px;">
             checkout.check.ts
           </span>
         </div>
         <span style="
           background: rgba(32, 223, 102, 0.1);
           color: var(--status-emerald);
-          font-family: 'JetBrains Mono', monospace;
+          font-family: 'JetBrains Mono', 'PingFang SC', 'Noto Sans SC', monospace;
           font-size: 11px;
           font-weight: 700;
           padding: 2px 8px;
           border-radius: 4px;
           border: 1px solid rgba(32, 223, 102, 0.3);
-        ">● 99.99% UPTIME</span>
+        ">● 99.982% UPTIME · 30D</span>
       </div>
 
       <!-- 终端代码内容区 -->
       <pre style="
         padding: 20px 24px;
         margin: 0;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'JetBrains Mono', 'PingFang SC', 'Noto Sans SC', monospace;
         font-size: 13px;
         line-height: 1.7;
         color: #E2E8F0;
@@ -250,7 +258,7 @@
         padding: 10px 20px;
         display: flex;
         justify-content: space-between;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'JetBrains Mono', 'PingFang SC', 'Noto Sans SC', monospace;
         font-size: 12px;
         color: var(--text-slate);
       ">

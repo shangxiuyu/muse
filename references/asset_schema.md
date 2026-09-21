@@ -85,6 +85,6 @@
 
 ## 公共知识目录与来源隔离
 
-[公共知识目录](public_cases.json) 使用同一 library schema：schema_version=2、updated_at、entries；每项含 id、kind、revision、data、history、updated_at。公共教学条目只含 reference 和 `system_type: aesthetic` 的 system；省略 system_type 的旧条目也按 aesthetic 读取。公共目录禁止 `reaction`、`application` 与 `author_voice`，因为它们都需要特定用户所有权或真实使用记录。reference 的 locator 相对技能根目录解析，须指向实际存在的 exemplars 文件；观察还可附段落锚点。当前目录仅有文字教学证据，不能宣称 rendered 或用户验证。目录不收页面骨架、推荐色板、字体套餐或可直接复制的品牌造型；UI 教学文件按任务问题命名，不用品牌或流行风格名作为检索入口。
+[公共知识目录](public_cases.json) 使用同一 library schema：schema_version=2、updated_at、entries；每项含 id、kind、revision、data、history、updated_at。公共教学条目只含 reference 和 `system_type: aesthetic` 的 system；省略 system_type 的旧条目也按 aesthetic 读取。公共目录禁止 `reaction`、`application` 与 `author_voice`，因为它们都需要特定用户所有权或真实使用记录。reference 的 locator 相对技能根目录解析，须指向技能内实际存在的文件，或使用自包含锚点 `references/public_cases.json#<id>[/<observation-id>]`；观察的 locator 也须可解析到该条目内的真实 observation id。自审会校验这一点，指向不存在的文件将报错。当前目录仅有文字教学证据，不能宣称 rendered 或用户验证。目录不收页面骨架、推荐色板、字体套餐或可直接复制的品牌造型；UI 教学文件按任务问题命名，不用品牌或流行风格名作为检索入口。
 
 查询的 `--source public|personal|all` 是读取范围，不是写入字段。返回中的 source 用来区分来源，不属于 entry.data 或 put bundle；保存前不要整段照抄查询结果。未指定 source 维持原 personal 行为。两库的 id、版本和证据各自独立，不能跨库填 reference_id 或 system_id；公共系统的长期应用记录需先把相关证据快照与系统导入个人库，见 [检索与保存说明](asset_library.md)。

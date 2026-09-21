@@ -17,14 +17,14 @@
         ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/ui/task_hierarchy.md",
+          "locator": "references/public_cases.json#public-ui-task-hierarchy-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/ui/task_hierarchy.md#两种处理",
+            "locator": "references/public_cases.json#public-ui-task-hierarchy-reference/comparison",
             "observation": "A 使用统一字号、微小字重差和极淡次要信息；B 加强任务标题、保留可读负责人，并为状态提供文字标记。"
           }
         ],
@@ -95,14 +95,14 @@
         ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/ui/brand_continuity_table.md",
+          "locator": "references/public_cases.json#public-ui-brand-continuity-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/ui/brand_continuity_table.md#两种处理",
+            "locator": "references/public_cases.json#public-ui-brand-continuity-reference/comparison",
             "observation": "A 改为冷白靛蓝并重新分卡；B 保留暖色品牌，通过数值与单位对齐、组间距和标签对比改善账单。"
           }
         ],
@@ -174,14 +174,14 @@
         ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/ui/vivid_brand.md",
+          "locator": "references/public_cases.json#public-ui-vivid-order-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/ui/vivid_brand.md#两种处理",
+            "locator": "references/public_cases.json#public-ui-vivid-order-reference/comparison",
             "observation": "A 为追求高级感改成灰阶细线；B 保留品牌色，通过面积、对比和分组组织活动信息。"
           }
         ],
@@ -252,14 +252,14 @@
         ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/ui/preserve_working_design.md",
+          "locator": "references/public_cases.json#public-ui-scoped-change-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/ui/preserve_working_design.md#两种处理",
+            "locator": "references/public_cases.json#public-ui-scoped-change-reference/comparison",
             "observation": "A 重做非对称布局并添加进场动画；B 只修改提示，检查换行、焦点和相关状态。"
           }
         ],
@@ -321,17 +321,22 @@
       "data": {
         "title": "去机械感不能磨平作者：原创教学对照",
         "status": "active",
-        "tags": ["text", "教学", "声音", "改写"],
+        "tags": [
+          "text",
+          "教学",
+          "声音",
+          "改写"
+        ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/text/preserve_author_voice.md",
+          "locator": "references/public_cases.json#public-text-voice-preservation-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/text/preserve_author_voice.md#两种处理",
+            "locator": "references/public_cases.json#public-text-voice-preservation-reference/comparison",
             "observation": "A 把直接、干笑和承认失误改成统一机构语气；B 只修真正难读之处并保留作者有意义的不整齐。"
           }
         ],
@@ -350,8 +355,15 @@
       "data": {
         "title": "最小编辑与作者声音保护",
         "status": "ready",
-        "tags": ["text", "教学", "声音", "改写"],
-        "media": ["text"],
+        "tags": [
+          "text",
+          "教学",
+          "声音",
+          "改写"
+        ],
+        "media": [
+          "text"
+        ],
         "scope": "用户给出自己的草稿或样本，要求润色、去机械感或保持个人声音。",
         "intent": "提高可读性，同时让作者仍能认出自己的判断姿态和节奏。",
         "principles": [
@@ -386,17 +398,22 @@
       "data": {
         "title": "具体表达不能来自虚构：原创教学对照",
         "status": "active",
-        "tags": ["text", "教学", "品牌文案", "证据"],
+        "tags": [
+          "text",
+          "教学",
+          "品牌文案",
+          "证据"
+        ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/text/evidence_bound_brand_copy.md",
+          "locator": "references/public_cases.json#public-text-evidence-bound-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/text/evidence_bound_brand_copy.md#两种处理",
+            "locator": "references/public_cases.json#public-text-evidence-bound-reference/comparison",
             "observation": "A 为空泛收益补造功能和百分比；B 收窄主张并保留机制与结果的明确证据占位。"
           }
         ],
@@ -415,8 +432,15 @@
       "data": {
         "title": "证据约束的具体表达",
         "status": "ready",
-        "tags": ["text", "教学", "品牌文案", "证据"],
-        "media": ["text"],
+        "tags": [
+          "text",
+          "教学",
+          "品牌文案",
+          "证据"
+        ],
+        "media": [
+          "text"
+        ],
         "scope": "材料只有抽象收益，用户要求将品牌、产品或项目文案写得更具体。",
         "intent": "提高表达负载而不把合理猜测变成事实。",
         "principles": [
@@ -451,17 +475,22 @@
       "data": {
         "title": "同一事实按体裁改变表达：原创教学对照",
         "status": "active",
-        "tags": ["text", "教学", "体裁", "语气"],
+        "tags": [
+          "text",
+          "教学",
+          "体裁",
+          "语气"
+        ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/text/register_changes_expression.md",
+          "locator": "references/public_cases.json#public-text-register-context-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/text/register_changes_expression.md#三种处理",
+            "locator": "references/public_cases.json#public-text-register-context-reference/comparison",
             "observation": "同一组产品事实在产品更新、客服回复和社交动态中改变信息顺序、读者关系和节奏，但不改变事实。"
           }
         ],
@@ -480,8 +509,15 @@
       "data": {
         "title": "体裁决定作者与读者的关系",
         "status": "ready",
-        "tags": ["text", "教学", "体裁", "语气"],
-        "media": ["text"],
+        "tags": [
+          "text",
+          "教学",
+          "体裁",
+          "语气"
+        ],
+        "media": [
+          "text"
+        ],
         "scope": "同一事实需要进入公告、客服、社交、报告或其他不同发布场景。",
         "intent": "让信息顺序、语气和节奏适合载体，同时保持事实一致。",
         "principles": [
@@ -516,17 +552,22 @@
       "data": {
         "title": "结尾不必总结或升华：原创教学对照",
         "status": "active",
-        "tags": ["text", "教学", "结尾", "叙事"],
+        "tags": [
+          "text",
+          "教学",
+          "结尾",
+          "叙事"
+        ],
         "source": {
           "kind": "article",
-          "locator": "exemplars/text/concrete_ending.md",
+          "locator": "references/public_cases.json#public-text-concrete-ending-reference",
           "captured_at": "2026-09-13T00:00:00.000Z",
           "coverage": "text-only"
         },
         "observations": [
           {
             "id": "comparison",
-            "locator": "exemplars/text/concrete_ending.md#两种处理",
+            "locator": "references/public_cases.json#public-text-concrete-ending-reference/comparison",
             "observation": "A 把无依据升华改成更漂亮的金句；B 删除宏大意义并停在材料中的最后一个具体动作。"
           }
         ],
@@ -545,8 +586,15 @@
       "data": {
         "title": "让结尾完成最后一个真实动作",
         "status": "ready",
-        "tags": ["text", "教学", "结尾", "叙事"],
-        "media": ["text"],
+        "tags": [
+          "text",
+          "教学",
+          "结尾",
+          "叙事"
+        ],
+        "media": [
+          "text"
+        ],
         "scope": "叙事、复盘、品牌或文章结尾出现重复总结、假深刻金句或无依据升华。",
         "intent": "让结尾与全文已经建立的内容和情绪相称。",
         "principles": [

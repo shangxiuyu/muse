@@ -3,6 +3,8 @@
 > **标杆来源**：`Boords` (boords.com) & `Switchboard` (withswitchboard.com)  
 > **核心隐喻**：新包豪斯几何积木手绘插画／等轴测智能总机 + 纯黑精密线框 (1.5px) + 黎明柔光弥散马卡龙色块 (粉/蓝/杏/青) + 纯黑或高反差底盘收束。
 
+<!-- muse:allow pure-black: 瑞士黑白排印与精密黑画框是本母体的形式语言——1.5px 纯黑实线、波形墨条、开关旋钮实心点、画框卡标题墨色，改用深岩灰会瓦解画廊装裱级的骨架对比度；底衬一律是纯白/米纸/马卡龙色块，纯黑只作线、墨与点睛元件，从不作页面底盘 -->
+
 ---
 
 ## 🎭 双子形态自由选择器 (Dual-Flavors Selection)
@@ -62,14 +64,16 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **主标题 (形态 A)** | `Plus Jakarta Sans` / `Syne` | 800 (Extra Bold) | `48px ~ 64px` (line-height: 1.05) | 饱满几何大粗体，字距收紧 `-0.03em`，充满艺术张力 |
-| **主标题 (形态 B)** | `Neue Montreal` / `Outfit` | 600 ~ 700 (Bold) | `48px ~ 64px` (line-height: 1.08) | 瑞士现代无衬线体，字距略收紧 `-0.02em`，冷静克制 |
-| **重点强调高亮** | `inherit` | 与标题一致 | 与标题一致 | 采用电光浅蓝（`#2563EB` 或 `#3B82F6`）做单字着色强调（如 `actually work`） |
-| **画框卡片标题** | `Plus Jakarta Sans` / `Outfit` | 700 ~ 800 | `22px ~ 28px` (line-height: 1.2) | 叙事陈述句，直接击中协作与改稿痛点 |
-| **正文说明 (Body)** | `Inter` | 400 / 500 | `16px ~ 18px` (line-height: 1.6) | 炭黑易读，保持充足段落留白 |
-| **技术序号 / 节点标尺** | `JetBrains Mono` | 600 / 700 | `11px ~ 13px` (letter-spacing: 0.05em) | 用于标注镜头序号（SCENE 01）或流程步骤（STEP 01 / LIVE） |
+> ⚠️ **图内中文标注要放大一档**：等轴测图与点阵图上的中文标签比同位置的拉丁标注放大一号，否则在 10px 附近糊成一团不可读。
+
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **主标题 (形态 A)** | `Plus Jakarta Sans` / `Syne` | `Noto Sans SC` | 800 (Extra Bold) | `48px ~ 64px` (line-height: 1.05) | 饱满几何大粗体，字距收紧 `-0.03em`，充满艺术张力（负字距只作用于拉丁，中文标题改回零或正字距） |
+| **主标题 (形态 B)** | `Neue Montreal` / `Outfit` | `Noto Sans SC` | 600 ~ 700 (Bold) | `48px ~ 64px` (line-height: 1.08) | 瑞士现代无衬线体，字距略收紧 `-0.02em`，冷静克制 |
+| **重点强调高亮** | `inherit` | `Noto Sans SC` | 与标题一致 | 与标题一致 | 采用电光浅蓝（`#2563EB` 或 `#3B82F6`）做单字着色强调（如 `actually work`） |
+| **画框卡片标题** | `Plus Jakarta Sans` / `Outfit` | `Noto Sans SC` | 700 ~ 800 | `22px ~ 28px` (line-height: 1.2) | 叙事陈述句，直接击中协作与改稿痛点 |
+| **正文说明 (Body)** | `Inter` | `Noto Sans SC` | 400 / 500 | `16px ~ 18px` (line-height: 1.6) | 炭黑易读，保持充足段落留白 |
+| **技术序号 / 节点标尺** | `JetBrains Mono` | `Noto Sans SC` | 600 / 700 | `11px ~ 13px` (letter-spacing: 0.05em) | 用于标注镜头序号（SCENE 01）或流程步骤（STEP 01 / LIVE）；等宽只留给拉丁短码 |
 
 ---
 
@@ -134,7 +138,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
   <div style="
     width: 64px;
     height: 64px;
-    border: var(--border-black-thick);
+    border: var(--border-black);
     border-radius: var(--radius-frame);
     background: #FFFFFF;
     display: flex;
@@ -148,7 +152,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
   <div style="
     width: 64px;
     height: 90px;
-    border: var(--border-black-thick);
+    border: var(--border-black);
     border-radius: var(--radius-frame);
     background: var(--pastel-peach);
     position: relative;
@@ -161,7 +165,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
   <div style="
     width: 80px;
     height: 90px;
-    border: var(--border-black-thick);
+    border: var(--border-black);
     border-radius: var(--radius-frame);
     background: var(--pastel-blue);
     display: flex;
@@ -178,7 +182,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
   <div style="
     width: 56px;
     height: 90px;
-    border: var(--border-black-thick);
+    border: var(--border-black);
     border-radius: var(--radius-frame);
     background: #FFFFFF;
     display: flex;
@@ -199,8 +203,8 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
 ### 2. 画廊装裱式大画框卡片 (Framed Showcase Split Card)
 ```html
 <div class="framed-card" style="
-  background: var(--bg-canvas);
-  border: var(--border-black-thick);
+  background: var(--bg-canvas-white);
+  border: var(--border-black);
   border-radius: var(--radius-frame);
   display: flex;
   overflow: hidden;
@@ -217,18 +221,18 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
     justify-content: center;
   ">
     <h3 style="
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
       font-size: 32px;
       font-weight: 800;
       line-height: 1.15;
-      color: var(--ink-black);
+      color: var(--ink-primary);
       margin: 0 0 20px 0;
       letter-spacing: -0.02em;
     ">
       Secure online sharing and frame-specific comments. Goodbye lost feedback.
     </h3>
     <p style="
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-size: 17px;
       line-height: 1.6;
       color: var(--ink-secondary);
@@ -242,7 +246,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
   <div style="
     flex: 1;
     background: var(--gradient-card-right);
-    border-left: var(--border-black-thick);
+    border-left: var(--border-black);
     padding: 40px;
     display: flex;
     align-items: center;
@@ -252,7 +256,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
     <!-- 拟真分镜播放器窗口 -->
     <div style="
       background: #FFFFFF;
-      border: var(--border-black-thick);
+      border: var(--border-black);
       border-radius: var(--radius-frame);
       width: 100%;
       max-width: 380px;
@@ -261,7 +265,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
     ">
       <!-- 窗口顶部 -->
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #000; padding-bottom: 12px; margin-bottom: 16px;">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #000;">
+        <span style="font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; font-size: 11px; font-weight: 700; color: #000;">
           SCENE 01 / INT. CAFE
         </span>
         <span style="display: flex; gap: 4px;">
@@ -273,10 +277,18 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
       <!-- 分镜格子网格 -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
         <div style="height: 80px; border: 1.5px solid #000; background: var(--pastel-pink); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 18px;">🎬</span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2.5" y="7.5" width="19" height="12.5" rx="2"></rect>
+            <path d="M2.5 11.6h19"></path>
+            <path d="M7.6 7.5 5.6 3.6M12 7.5l-1.4-3.9M16.4 7.5l-1.3-3.9"></path>
+            <path d="M7.8 15.7h4.6"></path>
+          </svg>
         </div>
         <div style="height: 80px; border: 1.5px solid #000; background: var(--pastel-blue); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 18px;">📐</span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect>
+            <path d="M3.5 9.8h17M3.5 14.2h17M9.2 5.5v13M14.8 5.5v13"></path>
+          </svg>
         </div>
       </div>
 
@@ -296,7 +308,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
         <span style="width: 3px; height: 28px; background: var(--pastel-peach); border: 1px solid #000;"></span>
         <span style="width: 3px; height: 12px; background: #000;"></span>
         <span style="width: 3px; height: 20px; background: #000;"></span>
-        <span style="margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;">
+        <span style="margin-left: auto; font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; font-size: 10px; font-weight: 700;">
           00:14:02
         </span>
       </div>
@@ -344,11 +356,19 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
         font-size: 11px;
         font-weight: 700;
       ">
-        <span>📊 CSV</span>
+        <span style="display: inline-flex; align-items: center; gap: 3px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 20.5h18"></path>
+            <rect x="4.8" y="12.5" width="3.6" height="8"></rect>
+            <rect x="10.2" y="7" width="3.6" height="13.5"></rect>
+            <rect x="15.6" y="14.8" width="3.6" height="5.7"></rect>
+          </svg>
+          CSV
+        </span>
         <span style="font-size: 9px; opacity: 0.7;">DATA</span>
       </div>
       <!-- 积木 2：代码与API盒 -->
@@ -363,7 +383,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
         font-size: 11px;
         font-weight: 700;
       ">
@@ -394,7 +414,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Outfit', 'Noto Sans SC', sans-serif;
         font-weight: 700;
         font-size: 13px;
         letter-spacing: -0.01em;
@@ -402,7 +422,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
       ">
         AI Pipeline
       </div>
-      <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; color: var(--ink-muted); margin-top: 18px;">
+      <span style="font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; font-size: 10px; font-weight: 600; color: var(--ink-muted); margin-top: 18px;">
         TOTAL ORCHESTRATION
       </span>
     </div>
@@ -421,7 +441,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
         <span style="width: 7px; height: 7px; border-radius: 50%; background: #EF4444; border: 1px solid #000;"></span>
         <span style="width: 7px; height: 7px; border-radius: 50%; background: #F59E0B; border: 1px solid #000;"></span>
         <span style="width: 7px; height: 7px; border-radius: 50%; background: #10B981; border: 1px solid #000;"></span>
-        <span style="margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; color: #10B981;">LIVE ENGINE</span>
+        <span style="margin-left: auto; font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; font-size: 9px; font-weight: 700; color: #10B981;">LIVE ENGINE</span>
       </div>
       <div style="padding: 16px;">
         <div style="height: 10px; width: 60%; background: #000; border-radius: 2px; margin-bottom: 8px;"></div>
@@ -442,10 +462,14 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
 ```
 
 ### 4. 点阵工程底纹三阶递进卡片 (Dot Matrix Staging Cards - 形态 B)
+
+> **递进靠错位，不靠等宽并列。** 下方是**单卡模版**，包装层用 `auto-fit` 自适应，复制几张都成立。
+> 复制成三张时不要落成等宽三等分（[负向底线](../toolkit/ui_floors.md) 明确封杀），而让它依次下沉：
+> 第 2 张 `margin-top: 44px`、第 3 张 `margin-top: 88px`，形成向右下的阶梯，才配得上「三阶递进」这个名字。
 ```html
 <div class="staging-cards-row" style="
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
   max-width: 1140px;
   margin: 48px auto;
@@ -461,10 +485,10 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
     position: relative;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
   ">
-    <h4 style="font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; margin: 0 0 8px 0;">
+    <h4 style="font-family: 'Outfit', 'Noto Sans SC', sans-serif; font-size: 24px; font-weight: 700; margin: 0 0 8px 0;">
       The process layer.
     </h4>
-    <p style="font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink-secondary); margin: 0 0 28px 0;">
+    <p style="font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 15px; color: var(--ink-secondary); margin: 0 0 28px 0;">
       AI and people, working together in orchestrated harmony.
     </p>
 
@@ -484,7 +508,7 @@ AI 在制定设计方案或撰写 `DESIGN.md` 时，可根据具体业务场景�
       <!-- 流程节点模拟 -->
       <div style="display: flex; align-items: center; gap: 12px; background: #FFFFFF; padding: 10px 18px; border: 1.5px solid #000; border-radius: 9999px; box-shadow: 0 2px 0 #000;">
         <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--blue-accent);"></span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;">Human Checkpoint</span>
+        <span style="font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; font-size: 11px; font-weight: 700;">Human Checkpoint</span>
         <span style="width: 14px; height: 14px; border: 1.5px solid #000; transform: rotate(45deg); background: var(--pastel-yellow);"></span>
       </div>
     </div>

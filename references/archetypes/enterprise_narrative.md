@@ -30,7 +30,7 @@
 1. **工业理性与温和亲和力的平衡（Precision Meets Warmth）**：底色保持纯净与冷白纸感，文字排版使用严谨方正的工程字体 `IBM Plex Sans`，大写按键充满专业度；同时搭配趣味概念矢量插画消除企服的距离感。
 2. **破框溢出式排版（Escaped UI Overlays）**：**绝对禁止让所有图文死板地装在规矩方盒内**。主概念插画的边缘必须**悬浮并溢出（Offset/Escaped）**真实的微缩数据卡片（如订单明细切片、工时节省气泡、ROI 柱状图），制造 2.5D 层次感。
 3. **低饱和主冷色 + 点睛暖珊瑚橙（Cyan & Coral Accents）**：以低饱和的青瓷冰川蓝（`#8FC8CF`）作为主基调，用极高对比度的暖珊瑚橙（`#F27058`）或苔藓绿（`#53853C`）作为操作与状态反馈。
-4. **自下而上刷漆动效（Highlighter Sweep Motion）**：链接或重要标题悬浮时，底部的色块像荧光笔刷漆一样自下而上展开（`height: 10% -> 100%`），充满现代设计巧思。
+4. **自下而上刷漆动效（Highlighter Sweep Motion）**：链接或重要标题悬浮时，底部的色块像荧光笔刷漆一样自下而上展开（`transform: scaleY(0.12) -> scaleY(1)` + `transform-origin: bottom`，**绝不驱动 `height`**），充满现代设计巧思。
 
 ---
 
@@ -43,12 +43,12 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 ```
 
-| 角色 | 推荐字体 | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
-| :--- | :--- | :--- | :--- | :--- |
-| **大标题 (H1/H2)** | `IBM Plex Sans` | 600 / 700 | `36px ~ 64px` (line-height: 1.15) | 严谨工程感，字偶距自然，采用 `text-wrap: balance` |
-| **正文 (Body)** | `IBM Plex Sans` | 400 | `16px ~ 18px` (line-height: 1.55) | 极致清晰的抗锯齿与易读性，石墨灰颜色 |
-| **大写行动按键 (CTA)** | `IBM Plex Sans` | 600 / 700 | `14px ~ 15px` (letter-spacing: `0.05em`) | 全大写如 `GET A DEMO`，配合圆角矩形 |
-| **数据与指标 (Data)** | `IBM Plex Mono` | 600 | `14px ~ 28px` | 采购订单号、工时统计、金额指标 |
+| 角色 | 推荐字体 | 中文配对 (CJK) | 字重/样式 | 尺寸与行距 | 用途与排印规约 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **大标题 (H1/H2)** | `IBM Plex Sans` | `Noto Sans SC` | 600 / 700 | `36px ~ 64px` (line-height: 1.15) | 严谨工程感，字偶距自然，采用 `text-wrap: balance` |
+| **正文 (Body)** | `IBM Plex Sans` | `Noto Sans SC` | 400 | `16px ~ 18px` (line-height: 1.55) | 极致清晰的抗锯齿与易读性，石墨灰颜色；青瓷水蓝与珊瑚橙在中文小字上对比度衰减更快，标签务必成对给足墨色 |
+| **大写行动按键 (CTA)** | `IBM Plex Sans` | `Noto Sans SC` | 600 / 700 | `14px ~ 15px` (letter-spacing: `0.05em`) | 全大写如 `GET A DEMO`，配合圆角矩形；中文按钮不套用大写，改用加宽字距承载同等的工装力道 |
+| **数据与指标 (Data)** | `IBM Plex Mono` | `Noto Sans SC` | 600 | `14px ~ 28px` | 采购订单号、工时统计、金额指标（等宽只留给拉丁数字，中文标签走无衬线） |
 
 ---
 
@@ -85,10 +85,10 @@
 <div style="position: relative; max-width: 900px; margin: 40px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
   <!-- 左侧：文字描述 -->
   <div>
-    <h3 style="font-family: 'IBM Plex Sans', sans-serif; font-size: 32px; font-weight: 600; color: var(--ink-primary); line-height: 1.2;">
+    <h3 style="font-family: 'IBM Plex Sans', 'Noto Sans SC', sans-serif; font-size: 32px; font-weight: 600; color: var(--ink-primary); line-height: 1.2;">
       Retrievals & Global Storage
     </h3>
-    <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 18px; color: var(--ink-secondary); line-height: 1.6; margin: 16px 0 24px;">
+    <p style="font-family: 'IBM Plex Sans', 'Noto Sans SC', sans-serif; font-size: 18px; color: var(--ink-secondary); line-height: 1.6; margin: 16px 0 24px;">
       Offboard employees and easily recover devices anywhere with tracked return kits and secure wipes.
     </p>
     <a href="#" style="
@@ -96,7 +96,7 @@
       border: 1.5px solid var(--ink-primary);
       padding: 10px 20px;
       border-radius: 6px;
-      font-family: 'IBM Plex Sans', sans-serif;
+      font-family: 'IBM Plex Sans', 'Noto Sans SC', sans-serif;
       font-size: 14px;
       font-weight: 600;
       color: var(--ink-primary);
@@ -108,7 +108,7 @@
   <div style="position: relative;">
     <!-- 主图背景容器 -->
     <div style="background: var(--bg-surface-soft); border-radius: 12px; padding: 24px; border: 1px solid var(--border-subtle);">
-      <div style="aspect-ratio: 4/3; background: #E9ECEF; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--ink-secondary); font-family: 'IBM Plex Sans', sans-serif;">
+      <div style="aspect-ratio: 4/3; background: #E9ECEF; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--ink-secondary); font-family: 'IBM Plex Sans', 'Noto Sans SC', sans-serif;">
         [ 概念矢量插画区域 ]
       </div>
     </div>
@@ -128,8 +128,8 @@
       gap: 16px;
     ">
       <div>
-        <div style="font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; color: var(--ink-secondary);">This month you saved:</div>
-        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 700; color: var(--ink-primary);">34.5h</div>
+        <div style="font-family: 'IBM Plex Sans', 'Noto Sans SC', sans-serif; font-size: 12px; color: var(--ink-secondary);">This month you saved:</div>
+        <div style="font-family: 'IBM Plex Mono', 'Noto Sans SC', monospace; font-size: 24px; font-weight: 700; color: var(--ink-primary);">34.5h</div>
       </div>
       <div style="width: 10px; height: 32px; background: var(--accent-cyan); border-radius: 2px;"></div>
     </div>
@@ -144,7 +144,7 @@
     position: relative;
     text-decoration: none;
     color: var(--ink-primary);
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'IBM Plex Sans', 'Noto Sans SC', sans-serif;
     font-weight: 600;
     font-size: 20px;
     display: inline-block;
@@ -156,13 +156,17 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 12%;
+    height: 100%;
     background-color: var(--accent-coral);
     z-index: -1;
-    transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    /* 刷漆只驱动 transform：scaleY 自底向上展开，避免 height 触发的逐帧 reflow */
+    transform: scaleY(0.12);
+    transform-origin: bottom center;
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .highlighter-link:hover::after {
-    height: 100%;
+    transform: scaleY(1);
   }
 </style>
 
@@ -170,3 +174,90 @@
   Automated Device Lifecycle Management →
 </a>
 ```
+
+---
+
+## 6. 交互与动效参数 (Motion & Micro-interactions)
+
+> **动效律条：工业理性不等于僵死。** 全站只驱动 `transform` 与 `opacity`，任何几何属性（`height` / `width` / `top` / `margin`）一律交给静态布局，动效阶段不许碰。
+
+```css
+/* 1. 破框溢出数据卡：浮起 + 阴影衰减加深（位移而非 top） */
+.escaped-data-card {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.escaped-data-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-escaped-card), 0 18px 44px rgba(19, 20, 20, 0.10);
+}
+
+/* 2. ROI 柱状图生长：scaleY 自底向上，逐列 60ms 错峰 */
+@keyframes roi-bar-grow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+.roi-bar {
+  transform-origin: bottom center;
+  animation: roi-bar-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.roi-bar:nth-child(2) { animation-delay: 60ms; }
+.roi-bar:nth-child(3) { animation-delay: 120ms; }
+.roi-bar:nth-child(4) { animation-delay: 180ms; }
+
+/* 3. 大写 CTA 按钮：箭头前移 4px，按钮本体不动（保持工业件的稳） */
+.btn-cta-uppercase .cta-arrow {
+  display: inline-block;
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-cta-uppercase:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* 4. 大写 CTA 按钮按压：位移归零而非缩放，模拟工装件的硬触底 */
+.btn-cta-uppercase:active {
+  transform: translateY(1px);
+  transition: transform 0.08s ease-out;
+}
+
+/* 5. 数据指标滚动到位后的高亮脉冲（只用 opacity，不闪 layout） */
+@keyframes metric-flash {
+  0%   { opacity: 1; }
+  45%  { opacity: 0.55; }
+  100% { opacity: 1; }
+}
+.metric-fresh {
+  animation: metric-flash 0.9s ease-out 1;
+}
+
+/* 6. 无障碍兜底：尊重系统减弱动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .escaped-data-card,
+  .btn-cta-uppercase .cta-arrow {
+    transition: none;
+  }
+  .roi-bar,
+  .metric-fresh {
+    animation: none;
+  }
+}
+```
+
+| 场景 | 时长 | 缓动 | 驱动属性 |
+| :--- | :--- | :--- | :--- |
+| 刷漆链接 hover | `400ms` | `cubic-bezier(0.22, 1, 0.36, 1)` | `transform: scaleY()` |
+| 破框卡片悬浮 | `280ms` | `cubic-bezier(0.22, 1, 0.36, 1)` | `transform` + `box-shadow` |
+| ROI 柱状图生长 | `600ms` | `cubic-bezier(0.22, 1, 0.36, 1)` | `transform: scaleY()` |
+| CTA 箭头位移 | `180ms` | `cubic-bezier(0.22, 1, 0.36, 1)` | `transform: translateX()` |
+| CTA 按压触底 | `80ms` | `ease-out` | `transform: translateY()` |
+
+---
+
+## 7. 核心反模式红线 (Forbidden Patterns)
+
+* 🚫 **严禁死黑与灰泥潭底盘**：底色必须是冷白纸感（`--bg-canvas: #FFFFFF` / `--bg-surface-soft: #F6F8F9`），正文墨色锁定石墨黑 `--ink-primary: #131414`，严禁用 `#000000` 死黑作底盘或大面积文字。
+* 🚫 **严禁把图文全部塞进规矩方盒**：每一屏至少保留一处破框溢出的真实数据切片（宽 `140px ~ 260px`、内边距 `16px 20px`、圆角 `8px`），并挂上 `--shadow-escaped-card` 三层衰减阴影，丢失破框就等于丢失本母体的 2.5D 叙事。
+* 🚫 **严禁用几何属性驱动动效**：刷漆、柱状生长只许驱动 `transform` 与 `opacity`（如 `scaleY(0.12) → scaleY(1)`），严禁 `transition: height` / `width` / `top`，否则每帧触发 reflow。
+* 🚫 **严禁圆角与阴影走软糯路线**：卡片圆角锁定 `8px ~ 12px`、按钮 `6px`；阴影必须是三层低透明度漫反射（单层不超过 `rgba(19, 20, 20, 0.08)`），严禁混入 `6px 6px 0 #131414` 这类新粗野硬阴影。
+* 🚫 **严禁高饱和彩虹色与第四强调色**：主装饰只允许青瓷蓝 `--accent-cyan`，动手色只允许珊瑚橙 `--accent-coral`，成功态只允许苔藓绿 `--accent-moss`；状态色必须成对出现（色块 + 文本标签），严禁只靠颜色传意。
+* 🚫 **严禁通用假数据与占位符**：所有指标必须落到有机的真实量级（如 `34.5h`、`1,248 台设备`、`98.6% 回收率`），严禁 `99.99%`、`Lorem ipsum`、`Acme Corp` 这类一眼假的填充物。

@@ -15,7 +15,12 @@ Muse 随 skill 提供只读 [公共知识目录](public_cases.json)，目前收�
 
 `--source public` 完全不读取私人目录，开箱可用；`all` 分别读取两库，结果保留 source。默认仍是 personal，兼容现有调用。相同 id 可以存在于不同库；`show --source all` 遇到重名会报错，需指定 public 或 personal。公共与个人库各自校验历史和证据，不自动合并、不静默覆盖。损坏的个人库会使 all 查询失败；仍可单独查 public。
 
-公共 source locator 以技能根目录为基准，如 `exemplars/ui/vivid_brand.md`，升级可搬迁整个技能而不失联。个人资产仍使用稳定绝对路径。公共知识目录随技能更新，条目修改应增加 revision 并保留旧记录，不能覆盖历史。脚本仅开放公共读取，put 只写个人库，不接受 --source。
+公共 source locator 有两种合法形式，`node scripts/audit.js` 会校验它可解析：
+
+1. **技能根目录相对路径**，指向技能内实际存在的文件，升级可搬迁整个技能而不失联。
+2. **自包含锚点** `references/public_cases.json#<entry-id>[/<observation-id>]`，用于教学材料本身就内嵌在该条目 `data` 里的情况——当前全部公共条目都是这一种。公共案例曾指向从未随技能发布的 `exemplars/` 文件，等于宣称了取不到的证据；6.0 起改为自包含，观察文本就在条目内，可被直接核对。
+
+个人资产仍使用稳定绝对路径。公共知识目录随技能更新，条目修改应增加 revision 并保留旧记录，不能覆盖历史。脚本仅开放公共读取，put 只写个人库，不接受 --source。
 
 应用记录当前只能引用同一个人库内的系统。要长期记录对公共系统的应用，先将选中的系统和它所引用的参考快照整理为个人 bundle，在出处说明中记录原公共 id、版本与教学性质；个人新条目从 revision 1 开始，处理已有 id 冲突并按导入后的个人版本重建证据引用，再执行 put。不要仅复制系统、让证据悬空，也不要把导入解释为确认用户偏好。未导入时可直接参考公共系统完成设计，无需为使用而初始化个人库。
 
@@ -26,7 +31,7 @@ Muse 随 skill 提供只读 [公共知识目录](public_cases.json)，目前收�
 默认目录提供跨项目稳定位置；只有需要保存且已有授权时初始化。若已存在却不是合法 Muse 库，保留内容，询问或采用用户已授权的另一个位置；不得清空重建。只读查询不存在的库返回空结果，不创建文件。目录名以实际操作系统为准，用户可换到 Obsidian 或其他私有位置。
 
     node scripts/asset_library.js location
-    node scripts/slow_update.js --type init --vault <private-dir>
+    node scripts/asset_library.js init --vault <private-dir>
 
 ## 个人库中的资产类型与应用记录
 

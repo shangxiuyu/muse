@@ -1,4 +1,0 @@
-interface:
-  display_name: "Muse"
-  short_description: "让 AI 成为审美合作者，创作跨媒介作品并理解你的个人品味"
-  default_prompt: "用 $muse 根据内容与情境提出审美假设，按授权调用我的品味记忆，完成作品并观察真实效果。"
