@@ -92,9 +92,11 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
 | 提示词／规约（系统提示词 / agent 指令 / SOP / 检查表） | 读[文本内容实战手册](references/toolkit/text_narrative_tool.md)第六节〈体裁二：规约型文本〉；契约范例见 [PROMPT.md](PROMPT.md)。**这是给模型执行的规约，不是给人读的散文**：验收不看文字看行为——每条规则都要能构造出「AI 这样做就违规」的反例场景，构造不出的判为空洞；文字层检查用 `node scripts/lint_text.js --genre spec` |
 | 幻灯片／演示 | 先读[演示与演说实战手册](references/toolkit/presentation_tool.md)；视觉方向读[演示视觉方向](references/toolkit/presentation/visual_direction.md)、[相遇与淘汰](references/toolkit/presentation/encounter_and_rejection.md)；表层起点读[演示表层流派](references/toolkit/presentation/archetypes.md)。**演示流派是表层系统**：它给色温、材质与字体气质，**不给版式**，必须与[视觉语法](references/visual_grammar.md)配对，不能单独承担视觉方向 |
 | 平面／海报／封面／编辑视觉 | [视觉语法](references/visual_grammar.md) |
-| 图像／生图 | 先读[图像生成与视觉提示词手册](references/toolkit/image_visual_tool.md)；真实摄影与布光读[摄影](references/toolkit/photography_tool.md)；需要画风起点时按需读[生图风格库](references/image_styles.md)（15 套表达起点，只读选中卡片） |
+| 图像／生图 | 先读[图像工作流](references/toolkit/image_visual_tool.md)，区分新图、编辑、系列与探索；需要具体画风时查[15 套生图风格](references/image_styles.md)，只读选中的风格卡。保存逐张提示词、参考用途和版本，观察实际输出后验收。写实布光再读[摄影](references/toolkit/photography_tool.md) |
 | 动效／微交互 | [时间与运动规范](references/toolkit/motion_tool.md) |
 | 需要视觉方向 / 写设计契约前 | [视觉母体库](references/archetypes.md) 与其中的 [10 个母体](references/archetypes/)。**母体是表层系统，不是完整设计系统**：它给色温、材质、圆角、阴影与字体气质，**不给版式**。必须与 [视觉语法](references/visual_grammar.md)、[跨媒介基础](references/foundations.md) 配对使用——栅格、第一眼主角、区块节奏、三元素以上的排布方式仍按内容推导。母体的代码骨架是手法示范，不是可直接落地的页面方案 |
+
+生图风格库与上述 10 个视觉母体各有媒介职责；图像任务不因“视觉方向”入口而强制套用 UI 母体。用户参考与指定风格优先，库外风格照常处理。
 
 ### 5. 完成作品
 
@@ -105,7 +107,7 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
 - **模式 A：演示文稿 (Deck)** ➔ 先在项目根目录交付或对齐自包含的 `PPT.md` 契约，锁定设计与台词骨架后，生成便携免配的**单文件 HTML Web Deck**。
 - **模式 B：UI / Web 产品与原型** ➔ **强制工程化模块解耦，严禁单文件大混排**。先交付自包含的 `DESIGN.md` 契约；落地代码拆分为 `index.html`（纯净语义骨架）+ `index.css`（设计系统 Tokens 与样式）+ `app.js`（业务状态与交互）或标准组件模块目录。
 - **模式 C：文案与长文创作** ➔ 先在项目根目录交付自包含 `WRITING.md` 契约，**其中「核心判断」一栏必须是一句能被反驳的话**（没有人会反对它，它就是话题），写完再用〈可反驳测试〉〈删题测试〉验收。
-- **模式 D：图像与生图视觉** ➔ 先在项目根目录交付自包含 `IMAGE.md` 契约。
+- **模式 D：图像与生图视觉** ➔ 在项目输出目录维护 `IMAGE.md` 契约索引，关联逐张提示词、参考图、版本与验收结果；一次性单图可合并为一份最小提示词记录，不覆盖 skill 自带范例。局部编辑先明确保留项与变化项；工具调用成功不等于图片验收通过。
 - **模式 E：规约型文本（提示词 / SOP / 检查表）** ➔ 先在项目根目录交付自包含 `PROMPT.md` 契约，逐条写清〈规则 / 具体动作 / 反例场景〉。**这是给模型执行的规约，不是给人读的散文**：验收标准是行为可检验，不是文字质量。规约文件在正文里写一行 `<!-- muse:genre spec -->` 自述体裁，表达层检查器便会换用规约口径（`--genre spec` 可临时覆盖）。**契约与交付物分开**：`PROMPT.md` 是契约，提示词正文要单独成文件交付，不要埋进契约附录。
 
 契约字段与范例：[DESIGN.md 范例](DESIGN.md)、[WRITING.md 范例](WRITING.md)、[PROMPT.md 范例](PROMPT.md)、[IMAGE.md 范例](IMAGE.md)、[组件级参数范例](references/toolkit/example_design_constitution.md)。
@@ -123,6 +125,8 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
 ## 底线与例外
 
 [负向底线](references/toolkit/ui_floors.md)与各母体的反模式清单是**默认值**，不是不可触碰的禁令。它们的作用是挡住无意的 AI 塑料味，而不是禁止有意的形式选择。
+
+规则只在适用媒介内生效。图像按[图像工作流](references/toolkit/image_visual_tool.md)判断：写实的光照与材质检查不扩散到平面、绘画或超现实表达；风格选择本身不需要申请例外。事实、保留约束和交付规格仍必须遵守。
 
 偏离底线的两种正当做法：
 
@@ -160,3 +164,5 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
 | `node scripts/asset_library.js` | 品味库的 location / init / list / show / put；校验结构与引用关系 | 不判断真实性、不推测喜好、不把反应升级为偏好 |
 
 **这些脚本都只是提示性检查。** 通过不等于作品通过审美评估；失败也不自动等于作品不好。工具不可用时仍可给出并落实审美判断，但必须说明未执行的验证。验收责任始终在 Muse，不在脚本。
+
+修改图片流程时另用[图像行为回归场景](references/toolkit/image_behavior_cases.md)检查执行决策；它不是出图任务的必读材料，也不是已经通过的测试报告。
