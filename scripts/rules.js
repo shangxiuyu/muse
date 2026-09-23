@@ -22,10 +22,13 @@ const EMOJI = /[\u{1F000}-\u{1FAFF}]|\u{FE0F}|[\u{1F1E6}-\u{1F1FF}]/u;
 // 允许的单色排版符号（DESIGN.md 明确接受 ✦ 这类排版符号）
 const TYPOGRAPHIC = new Set(['✓', '✕', '✖', '✦', '❖', '→', '➔', '←', '↑', '↓', '·', '•', '—', '×', '÷', '★', '☆', '◆', '◇', '■', '□', '▲', '▼', '▸', '◦']);
 
-const IGNORE_MARKERS = /❌|🚫|严禁|禁止|封杀|拒绝|规避|摒弃|伪数据|假数据|反例|反面|不该|Don't|DON'T|audit:ignore/;
-
 export function isIgnoredLine(line) {
-  return IGNORE_MARKERS.test(line);
+  if (/audit:ignore/i.test(line)) return true;
+  if (/[❌🚫]/.test(line)) return true;
+  if (/^\s*(?:[-*#>\d.]+\s*)?(?:反例|反面|Don'?t)\s*[：:]/i.test(line)) return true;
+  if (/^\s*(?:[-*+]\s*|\d+[.)]\s*|[#>]+\s*)(?:严厉)?(?:封杀|严禁|禁止|拒绝|规避|摒弃)/.test(line)) return true;
+  if (/(?:封杀|严禁|禁止)[“『][^”』]+[”』]/.test(line)) return true;
+  return false;
 }
 
 /**
@@ -273,11 +276,52 @@ export function collectCssVars(text) {
   return defined;
 }
 
+export function extractCssVarUsages(text) {
+  const results = [];
+  const regex = /var\(\s*(--[a-zA-Z0-9-]+)/g;
+  let match;
+  while ((match = regex.exec(text)) !== null) {
+    const varName = match[1];
+    const startIndex = match.index;
+    let depth = 1;
+    let currentIndex = startIndex + match[0].length;
+    let hasComma = false;
+    let fallbackText = '';
+
+    while (currentIndex < text.length && depth > 0) {
+      const ch = text[currentIndex];
+      if (ch === '(') {
+        depth++;
+        if (hasComma) fallbackText += ch;
+      } else if (ch === ')') {
+        depth--;
+        if (depth === 0) break;
+        if (hasComma) fallbackText += ch;
+      } else if (ch === ',' && depth === 1) {
+        hasComma = true;
+      } else if (hasComma) {
+        fallbackText += ch;
+      }
+      currentIndex++;
+    }
+
+    const hasFallback = hasComma && fallbackText.trim().length > 0;
+    results.push({
+      name: varName,
+      hasFallback,
+      fallback: fallbackText.trim(),
+    });
+  }
+  return results;
+}
+
 export function findUndefinedCssVars(text, defined = collectCssVars(text)) {
   const used = new Map();
   text.split('\n').forEach((line, i) => {
-    for (const m of line.matchAll(/var\(\s*(--[a-zA-Z0-9-]+)/g)) {
-      if (!used.has(m[1])) used.set(m[1], i + 1);
+    const usages = extractCssVarUsages(line);
+    for (const u of usages) {
+      if (u.hasFallback) continue;
+      if (!used.has(u.name)) used.set(u.name, i + 1);
     }
   });
 
@@ -366,12 +410,15 @@ export function lintMarkdown(markdown, { checkVars = true } = {}) {
     out.push(...lintCode(block.body, block.startLine, { cssVars: checkVars, definedVars: defined }));
   }
   // 已声明的例外降级为 info，并把理由带进报告，避免「声明即静音」
+  // 不可豁免规则（事实与真实性底线，如 fake-data）禁止降级，保持原有的判罚级别
   return out.map((v) =>
-    declared.has(v.rule)
+    declared.has(v.rule) && !NON_WAIVABLE_RULES.has(v.rule)
       ? { ...v, severity: 'info', declared: declared.get(v.rule), detail: `[已声明] ${declared.get(v.rule)} — ${v.detail}` }
       : v
   );
 }
+
+export const NON_WAIVABLE_RULES = new Set(['fake-data']);
 
 export const RULES = {
   'emoji-icon': 'Emoji 不作 UI 功能图标；单色排版符号（✓ ✦ → 等）不在其列',

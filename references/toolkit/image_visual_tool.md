@@ -1,250 +1,137 @@
-# 图像生成与视觉提示词全能实战手册 (Visual Prompt & Image Generation Toolkit)
+# 图像：构思、执行与验收
 
-用于文章配图、社交媒体视觉、公众号/小红书封面、产品概念渲染、PPT 视觉证据、品牌主视觉（Key Visual）以及 AI 生图 API 提示词（Prompt）工程。
-**核心哲学：美是关系的艺术。** 图像不是孤立的无脑生成或死板直译，而是**文案内容、媒介渠道、受众心智与真实物理质感在时空中达成的“恰当”共振**。
+<!-- muse:genre spec -->
 
-<!-- muse:allow text-8: 「闭环」在本手册是光线术语（主光源闭环 / 光线闭环），指光源、阴影与反射彼此自洽，不是空转的 AI 词汇 -->
+用于新图、局部编辑、系列配图和视觉方向探索。Muse 负责图像为什么存在、怎样表达、哪些不能变以及结果是否合格；执行器负责模型调用和文件生成。任务仅为评估或写提示词时，不自动生图。
 
-摄影、写实人物、产品静物、建筑或风景任务同时读取 [摄影工具](photography_tool.md)；海报、封面、编辑版式、字体与色彩系统读取 [视觉语法](../visual_grammar.md)。
+按需读取：需要画风参考时查[15 套生图风格](../image_styles.md)，只读本次选中的卡片；摄影与写实布光读[摄影工具](photography_tool.md)；海报、封面与编辑排版读[视觉语法](../visual_grammar.md)；项目账本采用 [IMAGE.md 契约范例](../../IMAGE.md)。不要为单张插画加载全部媒介规则。
 
-> **AI 专注指南（图像任务的入口手册）**：本手册是 Muse 图像与生图任务的**入口与工作流骨架**。本系统采用 **“通用底座保下限 + 5 大高频场景拔上限”** 的双层工业级架构。生图前必须先从文案与情境推导真实渠道与受众，并在项目根目录交付统一管理全部图片资产的 `IMAGE.md` 契约后，再行组装调用生图 API。
->
-> **同一件事只定义一次（分流约定）**：**摄影、写实人物、产品静物、建筑与风景**以[摄影工具](photography_tool.md)为准；**海报、封面、编辑版式、字体与色彩系统**以[视觉语法](../visual_grammar.md)为准。本手册只保留生图工作流与 `IMAGE.md` 契约，不重复这两份的正文。
+## 一、构思与媒介判定
 
----
+先利用现有上下文整理最小 brief，不让用户重复填写。只有缺失信息会改变核心方向、保留对象、交付格式或执行授权时才提问；普通风格选择可以说明假设后继续。没有偏好文件不阻断任务，也不创建个人品味库。
 
-## 🏛️ 双层工业级架构：底座保下限 · 场景拔上限
+| 模式 | 先确定 | 执行边界 |
+|---|---|---|
+| 新图 | 用途、内容主张、画幅与输出形式 | 没有探索要求时不默认生成多套候选 |
+| 编辑 | 基准图、允许变化、必须保留、修改区域 | 以基准图编辑，不把局部修改扩张为整体重画 |
+| 系列 | 每张职责、共享识别线索、可变内容 | 先定共享约束，再分配逐张任务 |
+| 探索 | 要比较的概念、候选数量、比较条件 | 区分方向与版本；不把候选当用户已选定方案 |
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│ 【第一层 · 通用审美底座 (保下限)】无论生成任何内容，强制执行 4 步物理与审美审计，彻底消灭 AI 塑料垃圾 │
-│  ① 物理承载与重力接地 ➔ ② 单一物理主光源闭环 ➔ ③ 真实表面微观质感 ➔ ④ 全局 Anti-Slop 拦截网   │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 【第二层 · 5 大高频场景特化 (拔上限)】针对 90% 核心工作流，定制大师级提示词配方与审美模型：            │
-│  1. 深度文章与专栏配图 (Editorial)   ➔ 隐喻转化引擎 + 30%~50% 构图排版负空间预留              │
-│  2. 社交媒体与封面首图 (Social/Hero) ➔ 视觉重心前置 + 2 秒抓住眼球的高张力明暗反差             │
-│  3. 产品静物与工业切片 (Product)     ➔ CleanShot 级柔光箱漫射 + CNC 微倒角与真实物理材质       │
-│  4. 电影叙事与人文纪实 (Cinematic)   ➔ 35mm/50mm 黄金焦段 + Kodak 胶片颗粒 + 未摆拍自然抓拍   │
-│  5. 极简品牌图形与平面 (Flat Vector) ➔ 绝对 2D 纯平面 + 负空间几何 + 严格封杀 3D/样机/渐变杂质 │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 【第三层 · 多模型分流装配】自然语言长句流 (Flux / DALL-E) vs 结构化参数流 (Midjourney / SDXL)          │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 【第四层 · 单项目统一契约】根目录 IMAGE.md 集中管理全部图片资产账本，杜绝碎片化文件                     │
-└────────────────────────────────────────────────────────────────────────────────────────┘
-```
+在项目输出目录维护一份 `IMAGE.md` 作为索引；现有账本只追加相关条目。一次性单图可将最小 brief 与执行记录合在提示词文件，不为形式完整建立空账本或反复确认。契约模板属于 skill 资源，不是当前任务记录，不能覆盖。
 
----
+最小 brief 包含：
 
-## 零、 构思与媒介判定（生图前的意图层）
+- 用途与主张：谁会在哪里看图，要理解、辨认或感受到什么。
+- 内容与来源：主体、动作、必要关系、准确文字和事实；区分 provided / verified / derived / placeholder / unknown。
+- 表达选择：信息结构、表现语言、配色与情绪，分别决定。
+- 约束与规格：参考图及用途、必须保留和允许改变的内容、画幅、裁切、文字安全区、尺寸、格式与透明背景要求。
+- 验收与范围：什么现象算失败；本次张数、候选范围及用户给定的时间或费用上限。
 
-提示词组装之前先定职责、媒介与关系，避免把“生成得好看”当成目的。
+生成物不能充当真实产品效果、人物经历或现场事件的证据；需要证据时沿用真实素材，缺失就说明，不用概念图补造。
 
-### 0.1 职责与媒介判定
+## 二、从内容选择表达
 
-先明确这张图的**职责**：产品证据、说明图、品牌插画、摄影、拼贴、绘画或抽象图形。职责决定它能否被生成物替代，也决定下方哪一层场景配方真正生效。用户要求平面插画时，不自动加入真实皮肤、景深或相机型号。
+把以下维度分开，不把一套预设绑定到所有任务：
 
-### 0.2 构思五问（Conceive）
+| 维度 | 决定什么 | 示例 |
+|---|---|---|
+| 信息结构 | 要呈现的关系 | 场景、对比、流程、时间线、空间、概念隐喻 |
+| 表现语言 | 怎样造型和呈现 | 摄影、绘画、手绘、平面图形、拼贴、三维、混合媒介 |
+| 配色与情绪 | 注意分配与情绪倾向 | 品牌色、单色、高饱和、低对比、冷暖并置 |
 
-1. **主体与动作**：谁／什么在发生什么，哪些细节具有内容意义；
-2. **构图**：视觉重心、主体比例、朝向、裁切、图文空间与最终画幅；按主体—环境关系选择中心、三分、对角、引导线、框景、留白、重复、开放或封闭构图，不为套公式牺牲已成立的关系；
-3. **表现语言**：写实、概括、夸张、拼贴、超现实等，保持造型与材质关系自洽；
-4. **光色与质感**：写实检查光位、光质、色温、接触阴影与材质反射的一致性；插画可用平面色块；纸纹、颗粒、失焦与运动模糊仅在承担叙事职责时使用；
-5. **约束**：真实提供的品牌、必须保留内容、不能出现内容、文字准确性与交付规格。
+这些是可组合的选择，不是穷尽式分类。选择依据来自当前内容；不能因文章涉及技术就自动加蓝色光效，也不能因想要克制就自动使用灰底、晨光、木桌。
 
-用具体关系描述期望，而非堆叠“高级”“8K”。也不要把某个提示词当作跨模型毒词——最终判断来自输出。器材或胶片名仅在相关且准确时使用。
+具体表现语言可从[生图风格库](../image_styles.md)选起点，或直接使用用户参考。风格卡提供笔触、造型、材质与提示词片段；配色、背景、密度和信息结构按任务调整。将所用风格 ID（自定义可记 custom）、保留特征和本次调整记入提示词记录，不把卡片的说明文字直接画进图片。风格库随 Muse 分发，不要求另装 BaoYu，也不代替实际生图工具。
 
-### 0.3 执行与复看（Execute & Review）
+构思时明确主体动作、观看顺序、对象之间的关系、图文位置和必要细节。用“入口与出口并置，连接线显露中间断点”这样的关系描述替代空泛的“高级、有冲击力”。隐喻必须帮助理解；直接流程图已能说明问题时，不必绕成静物隐喻。
 
-- **执行**：调用当前环境可用的生图工具，并遵循其实际参数约定；工具或参考图缺失时明确限制，不虚构能力；
-- **复看**：核对主体、动作、构图与要求，检查文字、解剖／结构、裁切与风格一致性；
-- **证据伦理**：产品证据需要真实来源，概念插画必须如实标注；
-- **迭代节奏**：逐轮优先修最大缺陷，避免每轮同时换主体、光线和风格而丢失判断依据。
+按场景补充判断，不附加固定风格：
 
----
+- 文章配图：每张关联具体段落和解释目的；仅在有信息价值的位置放图，不机械地每节一张。
+- 封面与社交图：在实际缩略尺寸看焦点、标题与裁切；留白由实际文字版位决定，没有统一比例。
+- 产品图：产品形状、标签、接口和品牌识别优先；材质与布光服务展示，不自行添加不存在的产品细节。
+- 人物与叙事：姿态、动作、人物关系和场景信息服务故事；写实不是必选，生成的纪实风画面不冒充真实记录。
+- 图标与品牌图形：检查小尺寸辨识度及实际交付格式；“矢量风格”的位图不是可编辑矢量文件。
 
-## 一、 第一层：通用审美底座（保下限机制）
+写实任务检查结构、支撑、光照与反射是否自洽；多光源本身不是错误。平面插画无需接触阴影或毛孔，超现实构图也不自动因悬浮被否决。颗粒、霓虹、渐变、光斑、复杂背景和大面积纯色均按职责取舍，不设通用负向词库。
 
-无论面对什么未知、随机的生图请求，提示词在组装时必须强制通过以下 **4 道物理与审美防线**，确保输出质量永远在线：
+## 三、参考图与局部编辑
 
-### 1. 物理承载与重力接地（Grounding & Gravity）
-- **封杀悬浮物**：严禁物体在没有逻辑理由的情况下悬浮空中。必须明确物体的承载介质（如 `resting on a raw dark walnut desk`, `placed on a brushed titanium base`）。
-- **接触面阴影**：强制声明接触面环境光遮蔽（AO）阴影，使客体真实“坐”在空间中。
+实际查看参考图，再记录其用途。同一图片可以有多个用途，但需要区分：
 
-### 2. 单一物理主光源与光线闭环（Lighting Logic）
-- **确定光源物理来源**：严禁使用全方向死白光或无源发光。强制确定一个主光源：
-  - *晨曦/落日漫射光*（3200K~4000K 温润暖光）；
-  - *北窗天然漫射天光*（5500K~6500K 中性冷光，最适合科技与静物）；
-  - *45度经典侧光/伦勃朗光*（制造雕塑感与深邃阴影）。
-- **光线逻辑一致**：高光点、受光面、投影方向必须严格几何自洽。
+| 用途 | 要迁移什么 | 不应顺带迁移什么 |
+|---|---|---|
+| 内容／身份 | 人物、产品或品牌的可识别特征 | 未授权改变的身份或产品事实 |
+| 风格 | 造型、笔触、材质与表现方法 | 参考图的文字、Logo、人物身份 |
+| 配色 | 色彩关系及主次比例 | 完整构图和内容 |
+| 构图 | 空间分区、视线与主体比例 | 原图主体和品牌 |
+| 编辑基准／区域 | 原图及指定修改边界 | 区域外未授权的改动 |
 
-### 3. 真实表面微观质感（Tactile Micro-Textures）
-- **打破光滑塑料感**：AI 默认会输出反光油腻的塑料表面。提示词中必须显式声明真实物理缺陷：
-  - 人物皮肤：`natural skin texture, visible micro-pores, authentic imperfect skin tone`；
-  - 纸张印刷：`uncoated heavy raw cotton paper, subtle letterpress indentation, tactile fiber grain`；
-  - 金属材质：`cold matte anodized aluminum, subtle brushed titanium finish, fine CNC toolmarks`；
-  - 玻璃光学：`optical frosted liquid glass, physical light caustics and refractions`。
+引用可用文件路径或宿主能访问的会话图片句柄。能直接读取会话图片时不额外索要本地路径；只有所选执行器确实无法取得输入时才请求重新提供。记录实际输入来源，不能伪造“已保存”或“已传入”。
 
-### 4. 全局通用 Anti-Slop 拦截铁网（全局负向约束）
-所有生成的通用 Negative Prompt 中必须常驻以下违禁词库：
-> `Negative Prompt: plastic skin, oversaturated neon, glowing particles, floating dust specks, magical glitter, fairy dust, 3d glossy render, artificial outer glow, lens flare overuse, messy gradient clutter, deformed anatomy, uncanny valley, watermark, lowres artifact`
+身份保留和局部编辑需要执行器接收原图；不支持时，不能静默把图片转成文字再声称等价编辑。可提议换可用工具或征求降低要求的确认。纯风格／配色参考可以提炼为文字，但应标记“文字提炼，非直接图像输入”。
 
----
+编辑前分开写：
 
-## 二、 第二层：5 大高频场景特化（拔上限机制）
+- **保留项**：例如人物面部与姿态、产品轮廓与包装文字。
+- **变化项**：例如背景颜色和地面投影。
+- **区域**：遮罩、坐标或能明确指向的视觉区域；“左边那个”有多个对象时先澄清。
+- **基准与版本**：来源图、父版本、本次版本与输出位置。
 
-针对日常内容创作与产品研发中最高频的 5 大场景，直接调用专属的大师级配方：
+将保留项同时交给执行器和验收者。模型支持遮罩不等于区域外必然不变；最终仍要前后对照。若要求像素级不变而工具不能保证，应说明限制或使用获准的精确编辑工具，不用更强的提示词冒充保证。
 
----
+## 四、提示词留档与执行器交接
 
-### 🏛️ 场景 1：深度文章与专栏叙事配图（Editorial & Metaphor）
+生成前保存完整的实际提示词；在有文件能力的项目中，建议使用 `prompts/IMG-01-v01.md`。执行参数另列，避免把内部状态和不支持的参数一起送给模型。没有文件能力时，保留可复制的完整交接记录并说明未落盘。
 
-* **核心目标**：辅助深度阅读，将文案核心观点转化为高级隐喻，同时为文字排版预留呼吸空间。
-* **致命误区**：字面直译（讲“增长”画向上的箭头，讲“管理”画握手）。
-* **上限特化方法**：
-  1. **隐喻客体转化**：寻找承载张力的自然/古典静物客体（如用孤立在雪原的灯塔隐喻破局，用微距多米诺骨牌隐喻连锁反应）；
-  2. **负空间排版预留**：显式声明 `30% to 50% clean negative space on the left/top for typography overlay`；
-  3. **克制色彩**：中性灰底色 + 局部单点温润提色。
-* **工业级 Prompt 模板（Flux / DALL-E 3）**：
-  > `An editorial still-life photograph captured on a 50mm lens at f/2.8, [16:9 / 2.35:1] aspect ratio. In the right third of the frame, [具体的隐喻客体，如：an antique brass navigational compass resting beside an open raw paper journal]. Soft natural morning diffused light entering from the side, casting gentle long shadows. The left half of the composition is a tranquil, uncluttered negative space of soft ambient shadow and warm textured surface, reserved for typography. Quiet contemplative mood, muted organic color palette, visible fiber textures, authentic Hasselblad medium format quality, no digital noise, no glowing particles.`
-
----
-
-### ⚡ 场景 2：社交媒体与视觉首图（Hero & Social Hook）
-
-* **核心目标**：在小红书、推文、Banner 等快速下滑的信息流中，2 秒内抓住受众注意力。
-* **致命误区**：平铺直叙、元素散乱、缺乏视觉第一焦点。
-* **上限特化方法**：
-  1. **3:4 / 9:16 垂直画幅**，视觉重心前置（前 1/3 黄金分割位置）；
-  2. **高张力明暗切片（Chiaroscuro）**：单侧强光切入，大面积暗调衬托主体高光；
-  3. **情绪张力与微观细节**：强动词与瞬间定格。
-* **工业级 Prompt 模板（Flux / DALL-E 3）**：
-  > `A striking cinematic editorial photograph, vertical 3:4 aspect ratio. A bold and dynamic close-up of [具有视觉张力的主体与瞬间动作]. Dramatic directional key lighting with deep cinematic shadows, creating high visual contrast and an immediate focal anchor. Rich tactile textures, sharp subject separation from a beautifully muted background. Authentic color grading inspired by contemporary editorial magazines, vivid yet restrained color accents, crisp details, high visual impact, zero clutter.`
-
----
-
-### 📐 场景 3：产品静物与工业切片（Product & Studio Still Life）
-
-* **核心目标**：展现硬件产品、SaaS 概念实体、包装或周边设计的高端触觉质感。
-* **致命误区**：塑料感强、光线乱七八糟像廉价淘宝图。
-* **上限特化方法**：
-  1. **CleanShot 级双柔光箱漫射布光**（消除一切刺眼反光）；
-  2. **微距视角（85mm / 100mm Macro）** + 强调装配微缝隙与 CNC 精密切削倒角；
-  3. **纯净基底与几何展台**（哑光石膏台或深色阳极氧化铝板）。
-* **工业级 Prompt 模板（Flux / Midjourney）**：
-  > `Commercial studio product photography of [精密产品或实体硬件], placed on a minimalist matte concrete pedestal. Captured on an 85mm macro lens at f/5.6. Professional diffused double softbox studio lighting, showcasing razor-sharp 1px edge bevels, authentic brushed titanium finish, and subtle matte surface reflections. Clean, solid neutral background (#0F1117 / #F4F5F7). Precise industrial design aesthetic, tangible tactile materials, crisp commercial clarity, no dust, no fake 3D bloom.`
-
----
-
-### 🎬 场景 4：电影叙事与人文纪实（Cinematic & Documentary）
-
-* **核心目标**：真实感人、具备呼吸感的人物抓拍与生活场景，传达品牌温度与故事。
-* **致命误区**：磨皮过度的 AI 网红脸、僵硬摆拍、眼神空洞。
-* **上限特化方法**：
-  1. **真实人文焦段**：`35mm or 50mm Prime Lens`，自然人眼透视；
-  2. **抓拍瞬间（Candid Moment）**：人物处于真实工作/思考/交谈的非摆拍状态；
-  3. **胶片色彩科学**：`Kodak Portra 400` 或 `Leica M11 真实自然色温`，真实毛孔与细微表情纹理。
-* **工业级 Prompt 模板（Flux / DALL-E 3）**：
-  > `An authentic documentary portrait photograph captured on a 35mm lens at f/2.0. [真实情境中的人物与动作，如：A thoughtful software architect sketching system diagrams on a glass wall in a dimly lit studio]. Candid, unposed moment with genuine focus. Natural ambient window light softly illuminating the face, revealing realistic skin texture with visible micro-pores and fine details. Warm muted Kodak Portra 400 color tones, cinematic depth of field, authentic environmental atmosphere, no artificial smoothing, no plastic look.`
-
----
-
-### 🎨 场景 5：极简品牌图形与平面（Pure Flat Vector & Graphic）
-
-* **核心目标**：App Icon、Logo 标识、现代数字工具流品牌图形（Linear / Raycast / Vercel 风格）。
-* **致命误区**：AI 自作聪明加入 3D 倒角、金属拉丝、复杂渐变和样机（Mockup）阴影。
-* **上限特化方法（GitHub 工业级硬隔离法则）**：
-  1. **绝对 2D 纯平面**：强制 `pure flat 2D vector graphic, solid monochrome fill`；
-  2. **负空间几何构图**：基于包豪斯与瑞士现代主义（Paul Rand / Dieter Rams 风格）；
-  3. **极严负向排斥**：彻底封杀 `no 3D, no bevel, no metallic texture, no photorealistic mockup, no gradient clutter`。
-* **工业级 Prompt 模板（Midjourney / Flux）**：
-  > `A pure flat 2D vector logo icon for [品牌/概念名称] in the clean aesthetic of Linear and Swiss modernist design. Centered on a solid [pure dark #0A0C10 / clean white #FFFFFF] background. An ultra-minimalist, razor-sharp geometric glyph forming an abstract [核心几何符号/字母] through clever negative space and balanced solid shapes. Designed by Paul Rand. Pure flat graphic design, crisp vector silhouette, mathematical symmetry, high contrast. Constraints: strictly 2D flat vector only, no 3D shading, no bevels, no metallic reflections, no realistic textures, no photorealistic mockups, no gradient clutter.`
-
----
-
-## 三、 第三层：多模型语法装配引擎（Model-Agnostic Topologies）
-
-不同生图模型底层理解机制不同，必须在输出时进行语法分流装配。不要把同一套参数塞给所有工具：Midjourney 的参数后缀不适用于 Flux／DALL·E，也不能假定每个模型都支持负向提示。
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│ 1. 自然语言长句流 (Flux 1.1 Pro / DALL-E 3)                            │
-│    语法特征：排斥逗号碎词堆砌，使用连贯、富有文学质感与空间方位的完整英文长句。│
-│    结构：[媒介与焦段] + [主体与动作] + [空间与负空间] + [光源色温] + [微观质感] │
-├────────────────────────────────────────────────────────────────────────┤
-│ 2. 结构化权重流 (Midjourney v6 / SDXL)                                 │
-│    语法特征：核心概念锚词 + 摄影参数 + 大师风格 + 强制系统后缀参数。           │
-│    结构：[Core Subject], [Scene & Space], [Light], [Camera/Film], [Style]     │
-│          --ar [比例] --style raw --v 6.1 --s [100~200] --c [0~10]      │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 四、 第四层：单项目统一交付契约（`IMAGE.md`）
-
-在一个项目中（无论是单篇文章、一套 PPT 还是一个 Web App），**所有的图片资产统筹在同一个根目录的 `IMAGE.md` 契约文件中进行管理**，严禁碎片化建文件。
-
-### `IMAGE.md` 标准工程规范模板：
-
-```markdown
-# IMAGE.md 图像资产与生图 Prompt 契约
-
-## 一、 情境、渠道与受众探针 (Context & Medium)
-- **项目/文案来源**：[关联的 WRITING.md / PPT.md / 文章主题]
-- **核心投放渠道**：[微信公众号 / 小红书 / 16:9 Web Deck / 官网 Hero / 社交推文]
-- **目标受众画像**：[行业专家 / 决策高管 / 大众年轻用户 / 极客群体]
-- **全局视觉基调**：[例如：冷峻极简纪实 / 温暖胶片叙事 / 精密工科实证 / 极简包豪斯 3D]
-- **反 AI 塑料感硬规则 (Restraint Rules)**：
-  - [x] 通用 4 步物理审计：承载接地 + 单一光源 + 表面微质感 + Anti-Slop 拦截；
-  - [x] 构图预留排版负空间（Negative Space），严禁主体与文字打架；
-  - [x] 矢量与图形任务强制执行 Pure 2D Flat 约束，封杀 3D 样机与杂质。
-
----
-
-## 二、 逐张图片资产账本 (Image Asset Ledger)
-
-| ID | 命中特化场景 | 版位与职责 | 对应文案段落与意象 | 构图画幅与留白 | 物理光影与材质 |
-|---|---|---|---|---|---|
-| **IMG-01** | 场景 1: Editorial | 封面首图 / Hero | 第 1 章：初创破局与行业暗流 | `2.35:1` / 左侧 50% 留白 | 晨光穿透薄雾，湿漉柏油路面与冷金属反光 |
-| **IMG-02** | 场景 3: Product | 核心技术切片 | 第 3 章：系统底层拓扑优化 | `16:9` / 居中微距 | 85mm f/5.6，精密服务器光纤阵列冷白漫反射 |
-| **IMG-03** | 场景 5: Flat Vector | 品牌产品标识 | 品牌资产：极简现代工具标 | `1:1` / 居中纯平面 | 纯 2D 矢量，瑞士几何负空间，冷钛黑底色 |
-
----
-
-## 三、 结构化生图 API 提示词清单 (Production Prompts)
-
-### <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg> IMG-01: [封面] 初创破局与行业暗流
-- **职责与场景**：命中场景 1（Editorial），作为公众号头条首图，预留左侧负空间。
-- **视觉意象**：湿漉的清晨城市高空天际线，一束破晓阳光穿透厚重云层照射在一座冷峻的现代钢结构建筑边缘。
-- **Flux / DALL-E 3 Prompt**：
-  > `An editorial wide-angle photograph taken on a 35mm lens, 2.35:1 aspect ratio. In the right half of the frame, the sharp corner of a raw concrete and steel skyscraper extends into the sky. A single sharp ray of early morning sunlight pierces through overcast clouds, illuminating wet metallic surfaces. The left half is a clean atmospheric gradient of deep cold gray and soft warm haze, reserved as negative space for typography. Natural architecture, authentic textures, no digital blur, no floating specks.`
-- **Midjourney v6 Prompt**：
-  > `Minimalist raw concrete skyscraper corner cutting through misty morning sky, clean negative space on left half, wet architectural steel textures, realistic morning sun ray, captured on Leica M11, 35mm f/4, editorial architectural photography --ar 21:9 --style raw --v 6.1 --s 160`
-- **Negative Prompt**：
-  > `plastic texture, oversaturated neon, glowing particles, floating dust, 3d render look, artificial bloom, text, watermark`
-
----
-
-### <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg> IMG-02: [插图] 系统底层拓扑优化
-（依次递推罗列项目中所有图片……）
-```
-
-资产小节标题使用内联单色描边 SVG 图标（`fill="none"` + `stroke="currentColor"` + `stroke-width="1.75"`，随文字色继承），严禁用 emoji 充当资产图标。
-
----
-
-## 五、 交付前终极审美自省（The 6-Axis Audit）
-
-在将提示词提交给生图 API 前，执行终极自省：
-1. **底座合格否**：有无悬浮物？光源是否单一闭环？微观质感有无物理缺陷？
-2. **场景命中否**：是否准确命中了 5 大场景之一并注入了专属特化关键词？
-3. **意象高级否**：是否脱离了文字直译，提供了耐人寻味的客观载体？
-4. **留白有效否**：如需叠加文案，负空间是否干净纯粹？
-5. **去 AI 味彻底否**：是否已坚决拦截浮尘光斑、假脸塑料皮、无脑紫蓝与 3D 样机杂质？
-6. **语法适配否**：是否对 Flux 使用了自然长句，对 Midjourney 使用了参数化后缀？
-
----
-
-## 附：构思层的来路
-
-本手册「零、构思与媒介判定」一节由原独立文件《图像：主题、构图与表现语言》（`visual_prompt_tool.md`）折叠而来，该文件已在 6.0 删除，可从 5.x 备份恢复。
+每张任务保留这些信息，未知值明确记为 unknown：
+
+| 信息 | 内容 |
+|---|---|
+| 标识 | 图片 ID、模式、版本、父版本或所属方向 |
+| 输入 | 最终提示词及其版本、实际参考图输入、每张参考用途、保留／变化／区域约束 |
+| 执行 | 实际工具；能获得时记录提供方、模型、参数、任务 ID 和尝试次数 |
+| 输出 | 目标位置、实际返回文件或资源、真实尺寸与格式 |
+| 状态 | planned / running / generated / accepted / needs_revision / failed / unknown；附依据 |
+
+提示词留档用于追踪和修订，不承诺重新执行会得到相同图片。每次实际改词或换参数都记录新尝试，不能用新提示词解释旧输出。
+
+按[执行架构](../execution_architecture.md)选择用户指定或项目现有工具，并遵守宿主工具约定。调用前检查当前可用接口是否满足参考输入、编辑／遮罩、比例／尺寸、透明背景、输出格式和批量需求。只传实际支持的字段，不维护固定模型版本表，不把某工具的参数后缀粘贴给其他模型；负向提示仅在接口支持且任务需要时使用。
+
+已有专业执行器（例如 baoyu-imagine）可用且适合时直接复用；没有它也可以调用宿主原生生图工具。不自动安装依赖、修改密钥或切换提供方，不假定宿主存在名为 `Skill` 的调用接口。工具不可用时交付已完成的 brief／提示词并说明图片未生成，不用其他产物冒充要求的图片格式。
+
+## 五、系列与批量执行
+
+系列先定义共享约束：角色／产品识别、造型语言、配色角色、文字层级、画幅和允许变化的范围。逐张确定内容与构图，避免用同一提示词只替换标题。需要一致身份时使用获准的共享参考图，不把相同风格名称当作身份一致性的保证。
+
+新方向的不确定性高时，优先做代表性样张，观察后再批量；方向已经确认或用户明确要求直接批量时，不增加无必要的等待。样张包含在本次约定张数内，额外探索或超出预算需另获授权。
+
+批量执行前检查每项的提示词、参考可访问性、输出路径冲突和能力匹配：
+
+- 已保存且彼此独立的任务可使用执行器原生批量接口，或在其并发限制内调用；没有并行能力时顺序执行。
+- 先验证能共用的能力和凭据；单张输入有误时标记该项失败，其他不受影响项可继续。认证或配置普遍失败时停止相关队列。
+- 逐张记录结果，成功图片保留；重试或续跑只针对失败项，不覆盖、重跑成功项。
+- 瞬时失败可在已授权范围内重试，默认至多一次额外尝试；若执行器已有内部重试，计入总策略，不在外层再叠加一轮。不能控制或得知内部尝试时如实记录。
+- 超时但服务端状态未知时先查任务状态或已有输出，不能盲目重提可能已收费的任务。明确不可重试的输入／权限错误不反复提交。
+- 需要额外费用、更多候选、不同提供方或扩大修改范围时暂停并说明选择；不通过切换工具规避限制。
+
+已有文件采用新版本路径或先备份，不以“重新生成”为由清空目录。
+
+## 六、观察、修正与交付
+
+按[成品验收](../acceptance_protocol.md)观察实际输出，并把结论绑定到具体图片版本。API 返回成功只代表生成完成，不代表验收通过。
+
+1. **要求与事实**：主体、数量、准确文字、数据和品牌内容是否符合 brief；概念图是否被当成证据。
+2. **形式与用途**：缩略图看焦点，原尺寸看文字与局部错误，目标版位看裁切与安全区；按所选媒介判断，不强加写实标准。
+3. **保留与一致性**：编辑前后对照保留项和修改区域；系列并排检查身份、风格、比例及叙事连续。
+4. **文件可用性**：实际尺寸、格式、透明通道和打开结果。无法核验的项目记为未验证；棋盘格外观不能证明文件有透明通道。
+
+将未通过项记为 `needs_revision`，给出具体观察和修改目标；在本次范围内优先修影响最大的缺陷，保留已成立的关系。默认最多一次定向修正，仍不符合要求或超出约定范围时说明阻断项并询问下一步，不无限重生成。技术失败重试与视觉修正分别记录。
+
+交付真实图片预览或可访问的结果，简要说明生成数、验收数、失败／待修项及未验证范围。未能看图时状态停在 `generated`，不能填 `accepted`；用户尚无反馈时也不声称“用户满意”。仅获准生成图片时，不擅自发布或覆盖文章正文。
+
+## 维护与来路
+
+本流程吸收了本地 BaoYu 图片 skills 的职责拆分、表达维度分离、逐张提示词留档、参考用途分类和批量失败隔离；规则按 Muse 的作品契约与验收体系重新组织，不复制供应商实现，也不把对方默认风格变成公共审美标准。参考版本：baoyu-imagine 1.58.0、baoyu-cover-image 1.56.2、baoyu-article-illustrator 1.59.0；这是所审阅的本机副本，不代表上游最新版本。
+
+修改本流程时使用[行为回归场景](image_behavior_cases.md)检查真实决策；常规出图不必加载该文件。

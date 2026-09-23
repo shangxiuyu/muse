@@ -15,9 +15,10 @@
 * **📱 移动端强制覆写 (Mobile Override)**：当级别 $\ge 4$ 时，在屏幕宽度 $< 768\text{px}$ 的视口下，**必须强制降级为单列纵向流（`w-full`, `px-4`, `py-8`）**，严禁产生横向滚动溢出。
 
 ### 1.2 MOTION_INTENSITY（动效烈度 · 1 至 10）
-* **1-3 (静默克制)**：零自动动画，仅保留 CSS `:hover` 与 `:active` 态微反馈；
-* **4-7 (流体物理)**：全量统一**无振荡、平滑刹车的缓出曲线** `cubic-bezier(0.16, 1, 0.3, 1)`（它**不是弹簧**——贝塞尔无法表达回弹；需要真实弹簧手感时改用物理参数 `type: "spring", stiffness: 100, damping: 20`），加载时使用级联延迟（`animation-delay: calc(var(--i) * 80ms)`）；
-* **8-10 (高级编排)**：滚动触发揭示、连续微物理悬停、Canvas 粒子联动。
+* **1-3 (静默克制 · 文本与数据密集型)**：零自动动画，仅保留核心按钮与链接的 `:hover` 态与 `:active` 机械按压微反馈（`scale(0.97)`）；
+* **4-6 (弹性物理 · 现代应用与工作台默认推荐)**：确立**实体交互弹簧回弹基线**——按钮、卡片、游标使用带微冲过的弹簧曲线 `--motion-spring: cubic-bezier(0.34, 1.35, 0.64, 1)`（或真实物理 `stiffness: 140, damping: 18`），按压下沉 `translateY(1px) scale(0.96)`，卡片悬停抬升 `-3px` 并扩散柔和阴影，列表加载使用级联延迟（`animation-delay: calc(var(--i) * 50ms)`）；大面积背景与遮罩采用流体刹车曲线 `--motion-fluid: cubic-bezier(0.16, 1, 0.3, 1)`；
+* **7-8 (高级编排与活体 · 旗舰产品与品牌官网)**：在 4-6 基础上开启光标磁力微悬停（$\le 6\text{px}$ 引力）、1px 边缘动态高光微流光（Border Shimmer）、活体呼吸状态灯与 Tab 游标流体拉伸回弹（Sliding Pill）、关键操作附带 M1 触感微音律；
+* **9-10 (电影感沉浸 · 艺术展厅与概念展)**：全屏滚动视差拓扑、维度升降折叠（1D 线性 $\rightleftharpoons$ 2D Bento $\rightleftharpoons$ 3D 星图）无缝升维过渡，Canvas 力导向粒子场联动。
 
 ### 1.3 VISUAL_DENSITY（视觉密度 · 1 至 10）
 * **1-3 (艺术画廊模式)**：巨幅呼吸留白，Section 间距 $\ge 80\text{px}$，极度通透；

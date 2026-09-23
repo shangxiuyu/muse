@@ -3,7 +3,7 @@ name: muse
 description: 为 UI/UX、文章、演示和图像提供跨媒介审美推理、创作、评审与个人品味复用。适用于需要从内容与情境形成审美方向、从参考中提取审美系统、按授权调用用户收藏与偏好，或校准个人作者声音的任务。
 license: MIT
 metadata:
-  version: "6.0.0"
+  version: "6.5.0"
   requirements: "可独立阅读；可选脚本需要 Node.js 20+，无第三方依赖"
 ---
 
@@ -92,7 +92,7 @@ AI 可以学习人类留下的审美经验，观察并组织形式关系，提�
 | 提示词／规约（系统提示词 / agent 指令 / SOP / 检查表） | 读[文本内容实战手册](references/toolkit/text_narrative_tool.md)第六节〈体裁二：规约型文本〉；契约范例见 [PROMPT.md](PROMPT.md)。**这是给模型执行的规约，不是给人读的散文**：验收不看文字看行为——每条规则都要能构造出「AI 这样做就违规」的反例场景，构造不出的判为空洞；文字层检查用 `node scripts/lint_text.js --genre spec` |
 | 幻灯片／演示 | 先读[演示与演说实战手册](references/toolkit/presentation_tool.md)；视觉方向读[演示视觉方向](references/toolkit/presentation/visual_direction.md)、[相遇与淘汰](references/toolkit/presentation/encounter_and_rejection.md)；表层起点读[演示表层流派](references/toolkit/presentation/archetypes.md)。**演示流派是表层系统**：它给色温、材质与字体气质，**不给版式**，必须与[视觉语法](references/visual_grammar.md)配对，不能单独承担视觉方向 |
 | 平面／海报／封面／编辑视觉 | [视觉语法](references/visual_grammar.md) |
-| 图像／生图 | 先读[图像生成与视觉提示词手册](references/toolkit/image_visual_tool.md)；真实摄影与布光读[摄影](references/toolkit/photography_tool.md) |
+| 图像／生图 | 先读[图像生成与视觉提示词手册](references/toolkit/image_visual_tool.md)；真实摄影与布光读[摄影](references/toolkit/photography_tool.md)；需要画风起点时按需读[生图风格库](references/image_styles.md)（15 套表达起点，只读选中卡片） |
 | 动效／微交互 | [时间与运动规范](references/toolkit/motion_tool.md) |
 | 需要视觉方向 / 写设计契约前 | [视觉母体库](references/archetypes.md) 与其中的 [10 个母体](references/archetypes/)。**母体是表层系统，不是完整设计系统**：它给色温、材质、圆角、阴影与字体气质，**不给版式**。必须与 [视觉语法](references/visual_grammar.md)、[跨媒介基础](references/foundations.md) 配对使用——栅格、第一眼主角、区块节奏、三元素以上的排布方式仍按内容推导。母体的代码骨架是手法示范，不是可直接落地的页面方案 |
 

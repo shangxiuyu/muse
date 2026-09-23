@@ -116,6 +116,16 @@ function validateEntry(entry, store, index, { checkRevision = true } = {}) {
   if (!STATUS[kind]?.includes(data.status)) errs.push(`${at}.data.status 对 ${kind} 只能是 ${STATUS[kind]?.join(' / ')}`);
 
   const findEntry = (theId) => store.entries.find((e) => e.id === theId);
+  const findEntryRevision = (theId, rev) => {
+    const e = store.entries.find((item) => item.id === theId);
+    if (!e) return null;
+    if (rev === undefined || e.revision === rev) return e;
+    if (e.history) {
+      const h = e.history.find((item) => item.revision === rev);
+      if (h) return { ...e, revision: h.revision, data: h.data };
+    }
+    return null;
+  };
 
   if (kind === 'reference') {
     const s = data.source || {};
@@ -134,7 +144,10 @@ function validateEntry(entry, store, index, { checkRevision = true } = {}) {
     if (sub.kind === 'reference' || sub.kind === 'application') {
       const ref = findEntry(sub.asset_id);
       if (!ref) errs.push(`${at}.data.subject.asset_id 指向不存在的资产 ${sub.asset_id}`);
-      else if (ref.revision !== sub.asset_revision) errs.push(`${at}.data.subject.asset_revision=${sub.asset_revision} 与实际版本 ${ref.revision} 不符`);
+      else {
+        const rev = findEntryRevision(sub.asset_id, sub.asset_revision);
+        if (!rev) errs.push(`${at}.data.subject.asset_revision=${sub.asset_revision} 与实际版本不符`);
+      }
     } else if (sub.kind === 'artifact') {
       if (!isStr(sub.locator)) errs.push(`${at}.data.subject.locator（artifact）非空必填`);
     } else errs.push(`${at}.data.subject.kind 必须是 reference / application / artifact`);
@@ -153,7 +166,10 @@ function validateEntry(entry, store, index, { checkRevision = true } = {}) {
       if (c.reaction_id === id) errs.push(`${at}：contradictions 不能指向自身`);
       const other = findEntry(c.reaction_id);
       if (!other) errs.push(`${at}：contradictions 指向不存在的 reaction ${c.reaction_id}`);
-      else if (other.revision !== c.reaction_revision) errs.push(`${at}：contradictions.reaction_revision 与 ${c.reaction_id} 实际版本不符`);
+      else {
+        const rev = findEntryRevision(c.reaction_id, c.reaction_revision);
+        if (!rev) errs.push(`${at}：contradictions.reaction_revision 与 ${c.reaction_id} 实际版本不符`);
+      }
     }
   }
 
@@ -172,13 +188,20 @@ function validateEntry(entry, store, index, { checkRevision = true } = {}) {
           const r = findEntry(ev.reference_id);
           if (!r) errs.push(`${at}：evidence 指向不存在的 reference ${ev.reference_id}`);
           else {
-            if (r.revision !== ev.reference_revision) errs.push(`${at}：evidence.reference_revision 与 ${ev.reference_id} 实际版本不符`);
-            if (!r.data.observations?.some((o) => o.id === ev.observation_id)) errs.push(`${at}：evidence.observation_id=${ev.observation_id} 在 ${ev.reference_id} 中不存在`);
+            const rev = findEntryRevision(ev.reference_id, ev.reference_revision);
+            if (!rev) {
+              errs.push(`${at}：evidence.reference_revision 与 ${ev.reference_id} 实际版本不符`);
+            } else if (!rev.data.observations?.some((o) => o.id === ev.observation_id)) {
+              errs.push(`${at}：evidence.observation_id=${ev.observation_id} 在 ${ev.reference_id} 中不存在`);
+            }
           }
         } else if (ev.kind === 'reaction') {
           const r = findEntry(ev.reaction_id);
           if (!r) errs.push(`${at}：evidence 指向不存在的 reaction ${ev.reaction_id}`);
-          else if (r.revision !== ev.reaction_revision) errs.push(`${at}：evidence.reaction_revision 与 ${ev.reaction_id} 实际版本不符`);
+          else {
+            const rev = findEntryRevision(ev.reaction_id, ev.reaction_revision);
+            if (!rev) errs.push(`${at}：evidence.reference_revision 与 ${ev.reaction_id} 实际版本不符`);
+          }
         } else errs.push(`${at}：evidence.kind 必须是 reference_observation / reaction`);
       }
     }
@@ -188,7 +211,11 @@ function validateEntry(entry, store, index, { checkRevision = true } = {}) {
   if (kind === 'application') {
     const sys = findEntry(data.system_id);
     if (!sys) errs.push(`${at}.data.system_id 指向不存在的 system ${data.system_id}`);
-    else if (sys.revision !== data.system_revision) errs.push(`${at}.data.system_revision 与 ${data.system_id} 实际版本不符`);
+    else {
+      if (sys.kind !== 'system') errs.push(`${at}.data.system_id 指向的资产类型为 ${sys.kind}，不是 system`);
+      const rev = findEntryRevision(data.system_id, data.system_revision);
+      if (!rev) errs.push(`${at}.data.system_revision 与 ${data.system_id} 实际版本不符`);
+    }
     if (!isStr(data.artifact)) errs.push(`${at}.data.artifact 非空必填`);
     if (!isStr(data.feedback_source)) errs.push(`${at}.data.feedback_source 必填（无用户反馈时也要写明）`);
   }

@@ -36,8 +36,10 @@ const AS_JSON = args.includes('--json');
 const ONLY_RULES = args.includes('--rules');
 
 async function walk(dir, out = []) {
+  const EXCLUDED_DIRS = new Set(['node_modules', 'output', 'web', 'server', 'deploy', 'tests']);
   for (const entry of await readdir(dir, { withFileTypes: true })) {
-    if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue;
+    if (entry.name.startsWith('.')) continue;
+    if (dir === ROOT && entry.isDirectory() && EXCLUDED_DIRS.has(entry.name)) continue;
     const full = join(dir, entry.name);
     if (entry.isDirectory()) await walk(full, out);
     else out.push(full);
@@ -123,14 +125,26 @@ function checkRouting(mdFiles, contents) {
       referenced.add(join(ROOT, 'references', m[1]));
     }
   }
-  // 被 SKILL.md 调度 = 主入口里以链接或裸文件名提到过。表格与正文步骤都算，
-  // 因为工作流步骤里内联提到的文件，Agent 按主入口执行时同样会加载。
+  // 主入口可以经索引按需调度资源；沿本地链接检查可达性，不要求所有卡片平铺到入口。
   const skill = contents.get(join(ROOT, 'SKILL.md')) || '';
   const routed = new Set();
   for (const m of skill.matchAll(/\]\(([^)\s]+\.md)\)/g)) routed.add(resolve(ROOT, m[1]));
   for (const m of skill.matchAll(/\b([A-Za-z0-9_]+\.md)\b/g)) {
     routed.add(join(ROOT, 'references', m[1]));
     routed.add(join(ROOT, m[1]));
+  }
+  const pending = [...routed];
+  for (let i = 0; i < pending.length; i++) {
+    const file = pending[i];
+    const text = contents.get(file);
+    if (!text) continue;
+    for (const m of text.matchAll(/\]\(([^)\s]+\.md)(?:#[^)\s]*)?\)/g)) {
+      if (/^(?:https?:|#|\/)/.test(m[1])) continue;
+      const target = resolve(dirname(file), m[1]);
+      if (!contents.has(target) || routed.has(target)) continue;
+      routed.add(target);
+      pending.push(target);
+    }
   }
   const ENTRY = new Set(['SKILL.md', 'README.md', 'LICENSE'].map((f) => join(ROOT, f)));
 
@@ -460,4 +474,5 @@ if (AS_JSON) {
   console.log(`\n合计 ${errors.length} error / ${warnings.length} warning\n`);
 }
 
-process.exit(errors.length ? 1 : 0);
+// 让管道输出完成后自然退出，避免大库的 JSON 在写入中途被截断。
+process.exitCode = errors.length ? 1 : 0;

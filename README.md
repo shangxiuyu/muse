@@ -8,7 +8,7 @@
   </p>
   <p align="center">
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License"></a>
-    <a href="SKILL.md"><img src="https://img.shields.io/badge/Version-v6.0.0-emerald.svg?style=flat-square" alt="Version"></a>
+    <a href="SKILL.md"><img src="https://img.shields.io/badge/Version-v6.5.0-emerald.svg?style=flat-square" alt="Version"></a>
     <a href="http://47.93.187.177:3404/"><img src="https://img.shields.io/badge/Live%20Demo-Official%20Site-blueviolet.svg?style=flat-square" alt="Official Website"></a>
     <a href="references/archetypes.md"><img src="https://img.shields.io/badge/Archetypes-10%20Unified%20Styles-purple.svg?style=flat-square" alt="Archetypes"></a>
     <a href="references/cross_media.md"><img src="https://img.shields.io/badge/Coverage-UI%20%7C%20Writing%20%7C%20Deck%20%7C%20Image%20%7C%20Prompt-orange.svg?style=flat-square" alt="Media Coverage"></a>
@@ -171,7 +171,7 @@ Muse 不试图垄断审美，而是通过**公共推理**与**私有品味**的�
 
 ## 🛠️ 纯净零依赖工具链
 
-要求 Node.js 20+，**全原生实现，无任何第三方依赖**，无需 `npm install`：
+要求 Node.js 22+，**检查脚本全原生实现，无任何第三方依赖**，无需 `npm install`：
 
 ```bash
 node scripts/audit.js                    # 技能自审（链接可达/契约/版本/规则自合规/公共证据）
@@ -221,6 +221,7 @@ npm test                                 # 等价于 node scripts/audit.js
 <details>
 <summary><strong>展开查看版本演进记录</strong></summary>
 
+- **v6.5.0**：交互动效公理库重塑与底层校验健全 —— 确立双物理引擎（实体弹簧 `stiffness: 120~180` 与流体刹车）、三层时空韵律（微观实体挤压与 M1 音律、中观状态流变、宏观层级出场）；在 `DESIGN.md` 与 UI 适配器中确立第 6 模块【交互动效与物理法则】标准交付契约；彻底解决 GitHub Issue #1 所涉全部缺陷（带 fallback 的 CSS 变量解析、不可豁免规则降级拦截、正文注释误判防护、品味库版本历史证据引用与系统条目校验）。
 - **v6.0.0**：确立「默认底线 + 显式声明例外」机制；实现零依赖自审工具链（自审 0 error / 0 warning）；10 大视觉母体全量修复并补齐 CJK 中文排版基线；正式确立五大媒介交付契约体系（含规约 PROMPT.md）。
 - **v5.1.0**：UI 全面回归媒介适配器（Adapter）分层架构，去套路化，确立 `DESIGN.md` 标准契约。
 - **v5.0.0**：确立全局哲学最高宪法「美是关系的艺术」，六大元原则统领全媒介，反默认机械居中，推导具名客体调色板。

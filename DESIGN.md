@@ -35,8 +35,7 @@
 ## 2. 设计思维与公理演算 (Design Thinking & The Calculus)
 
 ### 2.1 三大设计控制旋钮 (The 3 Dials Engine)
-- **`DESIGN_VARIANCE` = 6 (精密工业与不对称张力)**：结构严谨，但在 Bento 网格与拟真操作舱中融入不对称视觉张力。
-- **`MOTION_INTENSITY` = 5 (微动效与晶体光泽)**：纯白按钮微上浮（-2px）、拟真光标呼吸跳动、卡片微光边框流转。
+- **`MOTION_INTENSITY` = 7 (高级物理编排 & 晶体生命力)**：确立实体交互弹簧回弹基线（`--motion-spring: cubic-bezier(0.34, 1.35, 0.64, 1)`），纯白按键机械微按压（`scale(0.96)`）与弹性恢复、Bento 卡片悬停物理抬升（`-3px`）并扩散漫反射微光、拟真光标呼吸跳动、Tab 游标流体拉伸回弹（Sliding Pill）与时序级联瀑布入场（Stagger 50ms）。
 - **`VISUAL_DENSITY` = 7 (高密度信息与等宽参数)**：硬件控制台质感，关键指标使用等宽数字，边距严格按照 8px 模度系统。
 
 ### 2.2 色彩体系 (60-30-10 Exact Hex Tokens)

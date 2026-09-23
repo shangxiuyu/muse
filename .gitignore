@@ -8,3 +8,20 @@ coverage/
 .tmp/
 apps/
 vault/
+.env
+.env.*
+
+# Local web demo, workbench, server and testing outputs
+web/
+server/
+server.js
+deploy/
+output/
+tests/
+scripts/gallery-briefs.mjs
+scripts/generate-gallery.mjs
+scripts/preview-gallery.mjs
+scripts/publish-gallery.mjs
+scripts/run_remote.mjs
+scripts/start.mjs
+scripts/verify-live.mjs

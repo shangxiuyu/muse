@@ -13,8 +13,8 @@
 
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { readdir } from 'node:fs/promises';
-import { join, extname, relative } from 'node:path';
-import { lintCode, collectCssVars, RULES, parseDeclarations } from './rules.js';
+import { join, extname, relative, dirname, resolve } from 'node:path';
+import { lintCode, collectCssVars, RULES, parseDeclarations, NON_WAIVABLE_RULES } from './rules.js';
 
 const TARGETS = ['.html', '.htm', '.css', '.js', '.mjs', '.cjs', '.jsx', '.tsx', '.vue', '.svelte', '.astro'];
 const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '.next', 'coverage', '.muse']);
@@ -55,6 +55,38 @@ if (!files.length) {
   process.exit(2);
 }
 
+// 递归解析 @import 引入的 CSS 变量
+function collectVarsWithImports(filePath, text, visited = new Set()) {
+  if (visited.has(filePath)) return new Set();
+  visited.add(filePath);
+  const vars = collectCssVars(text);
+  const dir = dirname(filePath);
+  const importRe = /@import\s+(?:url\()?['"]([^'"]+)['"]\)?/g;
+  let m;
+  while ((m = importRe.exec(text)) !== null) {
+    const importPath = resolve(dir, m[1]);
+    if (existsSync(importPath) && !visited.has(importPath)) {
+      try {
+        const importedText = readFileSync(importPath, 'utf8');
+        const importedVars = collectVarsWithImports(importPath, importedText, visited);
+        for (const v of importedVars) vars.add(v);
+      } catch {}
+    }
+  }
+  return vars;
+}
+
+// 预收集本次扫描文件集合中的所有样式变量，支持跨文件设计系统引用
+const projectCssVars = new Set();
+for (const file of files) {
+  if (['.css', '.html', '.htm'].includes(extname(file))) {
+    try {
+      const t = readFileSync(file, 'utf8');
+      for (const v of collectCssVars(t)) projectCssVars.add(v);
+    } catch {}
+  }
+}
+
 const errors = [];
 const warnings = [];
 const infos = [];
@@ -75,9 +107,14 @@ for (const file of files) {
   const declared = parseDeclarations(text);
   for (const [rule, reason] of declared) declaredReport.push({ file, rule, reason });
 
-  // 单文件（CSS 或 HTML）内，变量定义按整篇收集
-  const findings = lintCode(text, 1, { definedVars: collectCssVars(text) }).map((v) =>
-    declared.has(v.rule) ? { ...v, severity: 'info', detail: `[已声明] ${declared.get(v.rule)} — ${v.detail}` } : v
+  const fileVars = collectVarsWithImports(file, text);
+  const combinedVars = new Set([...projectCssVars, ...fileVars]);
+
+  // 变量定义结合本文件、@import 链与扫描上下文合并
+  const findings = lintCode(text, 1, { definedVars: combinedVars }).map((v) =>
+    declared.has(v.rule) && !NON_WAIVABLE_RULES.has(v.rule)
+      ? { ...v, severity: 'info', detail: `[已声明] ${declared.get(v.rule)} — ${v.detail}` }
+      : v
   );
 
   for (const f of findings) {

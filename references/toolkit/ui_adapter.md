@@ -83,7 +83,13 @@ Muse 的 UI 章是媒介适配器，不是前端代码的机械搬运工。它�
 ## 5. 视图与布局架构 (Views & Layouts)
 - 响应式网格、侧边栏宽度、核心编辑流与移动端单列覆盖（Mobile Override）。
 
-## 6. 负向一票否决清单 (Negative Constraints)
+## 6. 交互动效与物理法则 (Motion & Feedback)
+- **物理弹簧法则**：实体交互采用带阻尼弹簧（`--motion-spring` 或 `stiffness: 140, damping: 18`），微冲过（Overshoot）回弹，禁止死板线性；大面积背景采用流体刹车（`--motion-fluid`）。
+- **三层触感微反馈**：按钮 `:active` 机械微按压（`scale(0.96)`）、光标磁力吸附与 1px 动态高光（Border Shimmer）、关键交互附带 M1 触感微音律。
+- **级联时序入场**：列表与网格采用 Stagger 瀑布流递延（50~80ms 步进），带微缩放弹性涌现。
+- **工程底线与减弱动态**：只动画 `transform` 与 `opacity`，严禁 `transition: all`，严格声明 `@media (prefers-reduced-motion: reduce)` 优雅降级。
+
+## 7. 负向一票否决清单 (Negative Constraints)
 - 严厉封杀圆角单侧粗色条、The Lila Ban 俗套紫蓝发光、死黑 `#000`、Jane Doe 伪数据与引发重排的非法动效。
 ```
 
@@ -96,6 +102,6 @@ Muse 的 UI 章是媒介适配器，不是前端代码的机械搬运工。它�
 | 已删除的前身 | 内容去向 |
 |---|---|
 | UI／UX 场景美学与前端全能实战手册 | 旋钮与公理 ➔ [美学文法](ui_grammar.md)；红线与性能 ➔ [负向底线](ui_floors.md)；活体原型与兵器库 ➔ [高级范式示范](ui_creative_arsenal.md)；创新算子 ➔ [创新算子](ui_innovation.md)；契约字段与认知流程 ➔ 本文件的第 2、3 节 |
-| 图像：主题、构图与表现语言 | 构思与媒介判定 ➔ [图像手册](image_visual_tool.md) 的「零、构思与媒介判定」 |
+| 图像：主题、构图与表现语言 | 构思与媒介判定 ➔ [图像手册](image_visual_tool.md) 的「一、构思与媒介判定」 |
 
 两个文件均可从 5.x 备份恢复。替代 `DESIGN.md` 契约请以本文件第 3 节为准；组件级参数范例见 [典范案例](example_design_constitution.md)。
