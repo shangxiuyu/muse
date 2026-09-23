@@ -1,0 +1,10 @@
+{
+  "originalArtifactSha256": "33fba9b5ada4d191bc6819803b4af4d147185e92c843fb22954f888ba94b10d5",
+  "artifactSha256": "21ad6b10139c7d253ef7672628a8cfa3f8e0130820310dcbc3d3e094a0646e2f",
+  "changes": [
+    "移除已由 css/js 字段提供的本地资源占位引用，保持预览与单文件导出自包含。",
+    "显式保留 hidden 语义，避免组件 display 规则让筛选结果与折叠内容仍然可见。",
+    "合作表单改用本地按钮事件及输入框 Enter 操作，兼容产品隔离预览；修复 name 字段与表单原生属性冲突；完成反馈明确未发送，不承诺真实回复。"
+  ],
+  "reviewer": "Codex / independent QA"
+}

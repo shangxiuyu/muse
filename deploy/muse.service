@@ -1,0 +1,30 @@
+[Unit]
+Description=Muse Studio
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=muse
+Group=muse
+WorkingDirectory=/opt/muse/current
+# Install a compatible Node runtime at this path, or adjust it before enabling.
+ExecStart=/usr/bin/node /opt/muse/current/server/index.mjs
+EnvironmentFile=/etc/muse/muse.env
+Environment=NODE_ENV=production
+Environment=MUSE_DATA_DIR=/var/lib/muse/studio
+Environment=MUSE_VAULT_DIR=/var/lib/muse/vault
+Environment=PLAYWRIGHT_BROWSERS_PATH=/opt/muse/browsers
+StateDirectory=muse
+StateDirectoryMode=0700
+UMask=0077
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+KillSignal=SIGTERM
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

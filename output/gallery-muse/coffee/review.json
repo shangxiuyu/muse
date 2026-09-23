@@ -1,0 +1,8 @@
+{
+  "originalArtifactSha256": "cbbd84db09bf1f8d1bb7fb4385b44e0ebcf52ad465738f869cdd6d3d91f94a20",
+  "artifactSha256": "0f44b14f9aebe3aca616d6c07034f46438d4fd7aef09c01d9fdab716f4103240",
+  "changes": [
+    "删除direction里错误字数计算和废弃修复过程，保留用途、内容结构、事实待填项与未验证边界。"
+  ],
+  "reviewer": "Codex / independent QA"
+}

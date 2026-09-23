@@ -1,0 +1,119 @@
+{
+  "sampleId": "still",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-flash",
+  "generatedAt": "2026-09-21T19:30:47.946Z",
+  "artifactSha256": "fa9d9aff3cc4d90eb8e362bbc7ad69cfce39e6d51ed39dbfbc3cca2851baf55e",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/visual_grammar.md",
+    "references/acceptance_protocol.md",
+    "references/toolkit/image_visual_tool.md",
+    "references/image_styles.md",
+    "references/foundations.md",
+    "references/aesthetic_intelligence.md",
+    "references/archetypes.md",
+    "references/decision_matrix.md",
+    "references/critique.md",
+    "references/execution_architecture.md",
+    "references/toolkit/image_behavior_cases.md",
+    "references/toolkit/photography_tool.md",
+    "references/case_based_training.md",
+    "references/artifact_contract.md",
+    "references/toolkit/ui_floors.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": true,
+    "interaction": false
+  },
+  "message": "已提交完整成品并通过实际渲染检查。\n\n**本次改动（只修陶瓶形体，其他全部保留）**\n\n- **量了旧版的几何**：旧瓶腹路径在瓶口处的左右端点是 x=690 / x=882，但口沿椭圆画在 `cx=786, rx=80` 并悬在瓶身之上 —— 口沿比颈壁宽、且上沿高出一截，于是\"悬空圆环\"成立。根因是**口沿椭圆和瓶颈壁没有任何共享边**。\n- **新形体**：瓶腹与瓶颈由**一条连续壁线闭合**（左壁自瓶口 x=698 下行，右壁自 x=874 下行，中间取瓶腹最宽），颈壁与瓶腹不再分家。\n- **中轴对齐**：瓶腹中轴 ≈ x=785，瓶口 `cx=786`，误差 1px，视觉上完全重合。\n- **口沿不再悬空**：椭圆 `rx=88` 在 y=424 处**恰好切于** x=698 / x=874 两条颈壁外缘 —— 口沿成了瓶身的顶面，并在两侧与颈壁相切；口内是向下的暗色椭圆，口壁厚度可见。\n- **枝条入水位置**：两处暗斑落在口内偏左下（x≈752 / 766），与画面中两枝橄榄叶的实际落点对应，此前是空缺的。\n- **接触影**：瓶底压在原投影（`cy=716` 软阴影）中心，另加一条紧贴瓶底 y=704 的窄接触影，瓶身不再悬浮。\n- **左侧受光面**自瓶腹连续上升至口沿，与落在瓶左的窗光同侧。\n\n**实际观察到的（隔离浏览器截图）**：瓶体呈单一陶罐形，颈壁与口沿相接，无悬空圆环；枝条自口内生出；标题、副题、说明、页脚、窗光条带、桌面色带、落片位置与 1440×900 版式均未变动。\n\n**未验证**：未在手机窄屏观看，未做 200% 文字缩放与色盲模拟，未核对导出体积。",
+  "originalArtifactSha256": "5148b4e1302113deb8228a8c7d2f77985ad3d632dfefbb553d9d9b1d57e691d5",
+  "reviewer": "Muse 6.0 / browser QA revision",
+  "changes": [
+    "只修复当前「一束光的形状」SVG的物体结构问题：花瓶椭圆瓶口明显向右偏离瓶身中轴，瓶颈顶部与瓶口两侧不连续，看起来像悬空圆环。保持原构图、颜色、窗光、植物和版式，将瓶口/瓶颈/瓶身连成可信的陶瓶形体，协调瓶口中心和瓶身中轴；瓶口轮廓与枝条入水位置正确。检查桌面落影不要让瓶子悬浮。方向说明只描述最终设计，不写旧版问题或未执行的验证。交付原横向1440×900完整SVG。"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "samples": [
+    {
+      "id": "reading",
+      "projectId": "c415ab4f-7018-46d7-a7ce-abe4ef1baa58",
+      "version": 1
+    },
+    {
+      "id": "objects",
+      "projectId": "8b1f0347-d981-4cc9-9703-a1cd4ab7985d",
+      "version": 1
+    },
+    {
+      "id": "retreat",
+      "projectId": "d7f8dcf9-81e4-49ea-b588-b85b3c0d75a3",
+      "version": 1
+    },
+    {
+      "id": "festival",
+      "projectId": "6d9c9d30-ccef-42b3-993a-2bcdad813ada",
+      "version": 1
+    },
+    {
+      "id": "slow",
+      "projectId": "219c6635-c49d-4fca-85f7-e1dd8e109492",
+      "version": 1
+    },
+    {
+      "id": "less",
+      "projectId": "c0bcc895-f2af-4642-83e2-d9fcc083f825",
+      "version": 1
+    },
+    {
+      "id": "form",
+      "projectId": "9a23dc47-d65a-4c7b-ad78-af8d3bcc7ba0",
+      "version": 1
+    },
+    {
+      "id": "field",
+      "projectId": "41672552-50e2-4bd0-87d4-752e5fba8f70",
+      "version": 1
+    },
+    {
+      "id": "coffee",
+      "projectId": "43eae591-5b02-4a25-8594-37fa2409bf70",
+      "version": 1
+    },
+    {
+      "id": "letter",
+      "projectId": "98287d4d-fac5-4244-8105-3da6eaafa90a",
+      "version": 1
+    },
+    {
+      "id": "still",
+      "projectId": "cca16241-c2ed-45e2-90d5-3bc9b4540aa0",
+      "version": 1
+    },
+    {
+      "id": "rhythm",
+      "projectId": "597ac248-9170-42f4-b167-514de458405b",
+      "version": 1
+    }
+  ],
+  "downloads": [
+    {
+      "id": "reading",
+      "name": "拾页把时间还给阅读-v1-源文件.zip"
+    },
+    {
+      "id": "less",
+      "name": "少一点但好一点-v1-源文件.zip"
+    },
+    {
+      "id": "coffee",
+      "name": "把日常写成好时光-v1-源文件.zip"
+    },
+    {
+      "id": "still",
+      "name": "一束光的形状-v1-源文件.zip"
+    }
+  ],
+  "errors": [],
+  "dataDir": "/var/folders/7x/6lvv7pd554j193_1z8lkd6rr0000gn/T/muse-gallery-e2e-joRBWM",
+  "mobile": {
+    "width": 390,
+    "scrollWidth": 390
+  }
+}

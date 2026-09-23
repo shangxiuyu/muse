@@ -1,0 +1,41 @@
+{
+  "sampleId": "letter",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-pro",
+  "generatedAt": "2026-09-21T19:25:17.665Z",
+  "artifactSha256": "321d4763c8e3444f45cf8fc99c4b84d36be35a4132faf00b1637ae565e6964bb",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/toolkit/text_quality_protocol.md",
+    "references/acceptance_protocol.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": false,
+    "interaction": false
+  },
+  "message": "已完成提交并通过检查。作品是一套5组中文文案，围绕可被反驳的核心判断展开，未虚构任何真实经营数据。\n\n**内容结构**：短信戳中「读了一半搁下」的痛点 → 长文把这个痛点翻转为活动规则（把「没读完」设为入场）→ 海报提炼成张贴口号 → 社群通知落实流程与退出机制 → 感谢把「没读完」收束为常态。五组文案各自兑现同一个判断，而非只在头尾重复一句口号。\n\n**待填写项**：日期、地点、费用、报名、无障碍渠道均以方括号明确标出，使用前需真实经营者替换；品牌、书店、活动均已标注为概念示例。\n\n**已检查**：六步法复核（段落地图、朗读、去油、主题替换、评分卡自评达标）；未进行真实读者测试与独立复核，待填写项以真实信息替换后方可对外发布。\n\n如果你愿意，我可以继续：把某一句改成更你的口吻、为海报单独写一句能在三秒内抓住人的标题、或把长文压成适合小红书的版本。"
+}

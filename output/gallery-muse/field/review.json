@@ -1,0 +1,8 @@
+{
+  "originalArtifactSha256": "f35cd0f327e8ff73e02aba252bf79df337315686d5705a651d91051595c2c725",
+  "artifactSha256": "c1937fe5622cdeb7cff913e6fd11c22e55b6f80a84e27da62453a9c50c9c9c9f",
+  "changes": [
+    "第5页讲者备注“四周之后”改为“两周之后”，与页标题、正文和试点计划的两周周期一致。"
+  ],
+  "reviewer": "Codex / independent QA"
+}

@@ -1,0 +1,84 @@
+{
+  "environment": {
+    "browser": "Chrome 153.0.8010.50",
+    "sandbox": "allow-scripts",
+    "sizes": [
+      "1440×900",
+      "390×900"
+    ]
+  },
+  "samples": {
+    "reading": {
+      "artifactPath": "/Users/tangyuan/Downloads/muse-main/output/gallery-muse/qa-ui/../reading/reviewed-artifact.json",
+      "sha256": "8ad40b55df254b6493535bafaf37e7bd1c72c53561e4f67e250f148dbcb19910",
+      "widths": {
+        "390": {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "height": 1288,
+          "hiddenVisible": []
+        },
+        "1440": {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "height": 1077,
+          "hiddenVisible": []
+        }
+      }
+    },
+    "objects": {
+      "artifactPath": "/Users/tangyuan/Downloads/muse-main/output/gallery-muse/qa-ui/../objects/reviewed-artifact.json",
+      "sha256": "957890d982fc80737d42e8671a2f55774505e27e526be364fb80d893426ef0a0",
+      "widths": {
+        "390": {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "height": 7453,
+          "hiddenVisible": []
+        },
+        "1440": {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "height": 5350,
+          "hiddenVisible": []
+        }
+      }
+    },
+    "retreat": {
+      "artifactPath": "/Users/tangyuan/Downloads/muse-main/output/gallery-muse/qa-ui/../retreat/reviewed-artifact.json",
+      "sha256": "c05e73e617634b0bc10d3f71d0e9f36c11d7d61006994cece2d911f5293b9dca",
+      "widths": {
+        "390": {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "height": 7756,
+          "hiddenVisible": []
+        },
+        "1440": {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "height": 6594,
+          "hiddenVisible": []
+        }
+      }
+    },
+    "festival": {
+      "artifactPath": "/Users/tangyuan/Downloads/muse-main/output/gallery-muse/qa-ui/../festival/artifact.json",
+      "sha256": "3442c1d953f298b954ec6b31dcdb33481f826632e6375aa3dd2b4586d2e2b0d7",
+      "widths": {
+        "390": {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "height": 6349,
+          "hiddenVisible": []
+        },
+        "1440": {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "height": 3064,
+          "hiddenVisible": []
+        }
+      }
+    }
+  }
+}

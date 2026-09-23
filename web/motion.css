@@ -1,0 +1,253 @@
+/* Muse motion: responses to intent, with no permanent decorative loops. */
+:root {
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-spring: cubic-bezier(0.34, 1.35, 0.64, 1);
+  --motion-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  --motion-quick: 180ms;
+  --motion-normal: 280ms;
+  --motion-flow: 420ms;
+}
+body { overflow-x:clip; }
+button {
+  transition: transform var(--motion-quick) var(--motion-spring), box-shadow var(--motion-quick) var(--motion-ease), opacity var(--motion-quick) ease, background-color var(--motion-quick) ease, border-color var(--motion-quick) ease;
+}
+button:hover:not(:disabled) { filter:none; }
+button:active:not(:disabled) {
+  transform: translateY(1px) scale(0.96);
+  transition-duration: 90ms;
+}
+.icon-button .icon, .text-button .icon, .starter .icon, .new-button .icon, .artifact-message>.icon:last-child, .appearance-toggle .icon {
+  transition: transform var(--motion-normal) var(--motion-spring), opacity var(--motion-quick) ease;
+}
+.composer {
+  position: relative;
+  isolation: isolate;
+  transition: transform var(--motion-normal) var(--motion-spring), box-shadow var(--motion-normal) var(--motion-ease);
+}
+.composer:focus-within {
+  transform: translateY(-2px);
+}
+.composer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 0 12px 36px -6px var(--shadow), 0 0 0 1px var(--accent-line);
+  opacity: 0;
+  transition: opacity var(--motion-normal) ease;
+}
+.composer:focus-within::before { opacity: 1; }
+.send-button {
+  position: relative;
+  transition: transform var(--motion-normal) var(--motion-spring), box-shadow var(--motion-normal) var(--motion-ease), background-color var(--motion-quick) ease;
+}
+.send-button::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.82);
+  pointer-events: none;
+  transition: opacity var(--motion-quick) ease, transform var(--motion-normal) var(--motion-spring);
+}
+.send-button:not(:disabled):hover {
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 4px 16px -2px var(--shadow);
+}
+.send-button:not(:disabled):hover::after {
+  opacity: 0.55;
+  transform: scale(1.02);
+}
+.send-button:not(:disabled):active {
+  transform: scale(0.92);
+  transition-duration: 80ms;
+}
+.send-button[data-action="stop"]::after {
+  opacity: 0.75;
+  border-color: var(--accent) transparent var(--accent) transparent;
+  animation: muse-turn 1.2s linear infinite;
+}
+.text-button[aria-expanded="true"] .icon:last-child {
+  transform: rotate(180deg);
+}
+.media-tabs, .filters, .preview-tabs, .appearance-options {
+  position: relative;
+  isolation: isolate;
+}
+.media-tab, .filter, .preview-tab, .appearance-option {
+  position: relative;
+  z-index: 1;
+  transition: color var(--motion-quick) ease, transform var(--motion-quick) var(--motion-spring);
+}
+.media-tab:active, .filter:active, .preview-tab:active, .appearance-option:active {
+  transform: scale(0.96);
+}
+.motion-selection {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  transform-origin: center center;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 7px;
+  box-shadow: 0 2px 8px -2px var(--shadow);
+}
+.motion-selected, .motion-selected:hover {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+.sample-thumb {
+  isolation: isolate;
+  transition: transform 340ms var(--motion-spring);
+}
+.sample-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.sample-card:hover .sample-thumb::after, .sample-card:focus-visible .sample-thumb::after {
+  opacity: 0.85;
+}
+.sample-card:active .sample-thumb {
+  transform: translateY(-2px) scale(0.985);
+  transition-duration: 100ms;
+}
+.hero-art .paper {
+  transition: transform 480ms var(--motion-spring);
+}
+.sidebar { isolation: isolate; }
+.sidebar.rail-moving { background: transparent; border-right-color: transparent; }
+.rail-surface {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line);
+  transform-origin: left center;
+  pointer-events: none;
+}
+.preview-content { overflow-x: hidden; }
+.generation-paper {
+  position: relative;
+  width: 176px;
+  height: 112px;
+  padding: 22px;
+  margin: 24px 0 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: 0 8px 24px -4px var(--shadow);
+}
+.generation-paper i {
+  display: block;
+  height: 6px;
+  margin: 0 0 12px;
+  border-radius: 3px;
+  background: var(--accent-soft);
+  transform-origin: left;
+  animation: muse-sketch 1.1s var(--motion-spring) infinite alternate;
+}
+.generation-paper i:first-child { width: 64%; height: 10px; background: var(--accent); }
+.generation-paper i:nth-child(2) { width: 100%; animation-delay: 140ms; }
+.generation-paper i:nth-child(3) { width: 80%; animation-delay: 280ms; }
+dialog[open] {
+  animation: muse-surface-in 280ms var(--motion-spring) both;
+}
+dialog[open]::backdrop {
+  animation: muse-backdrop-in 240ms ease both;
+}
+dialog.is-closing {
+  animation: muse-surface-out 160ms ease both;
+}
+dialog.is-closing::backdrop {
+  animation: muse-backdrop-out 160ms ease both;
+}
+#toast {
+  transition: opacity 220ms ease, transform 320ms var(--motion-spring);
+}
+.appearance-toggle:active .icon {
+  transform: rotate(35deg) scale(0.85);
+}
+::view-transition-group(root) { animation: none; }
+::view-transition-old(root) { animation: muse-fade-out 240ms ease both; }
+::view-transition-new(root) { animation: muse-fade-in 300ms ease both; }
+::view-transition { pointer-events: none; }
+@keyframes muse-turn { to { transform: rotate(360deg); } }
+@keyframes muse-sketch {
+  from { opacity: 0.45; transform: scaleX(0.65); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+@keyframes muse-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes muse-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes muse-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes muse-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes muse-surface-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes muse-surface-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(8px) scale(0.98); }
+}
+@media(hover: hover) {
+  .starter {
+    transition: transform var(--motion-quick) var(--motion-spring), background-color var(--motion-quick) ease, border-color var(--motion-quick) ease, box-shadow var(--motion-quick) var(--motion-ease);
+  }
+  .starter:hover {
+    transform: translateY(-2px) scale(1.015);
+    box-shadow: 0 6px 16px -4px var(--shadow);
+  }
+  .starter:active {
+    transform: scale(0.98);
+    transition-duration: 90ms;
+  }
+  .starter:hover .icon, .artifact-message:hover > .icon:last-child {
+    transform: translate(2px, -2px);
+  }
+  .sample-card:hover .sample-thumb {
+    transform: translateY(-8px) rotate(-0.6deg) scale(1.02);
+  }
+  .sample-card:nth-child(even):hover .sample-thumb {
+    transform: translateY(-8px) rotate(0.6deg) scale(1.02);
+  }
+  .sample-card, .collection-card, .memory-note {
+    transition: transform var(--motion-normal) var(--motion-spring), box-shadow var(--motion-normal) var(--motion-ease), border-color var(--motion-normal) ease;
+  }
+  .sample-card:hover, .collection-card:hover, .memory-note:hover {
+    box-shadow: 0 12px 32px -8px var(--shadow);
+  }
+  .hero-art:hover .paper.one { transform: translate(-10px, -6px) rotate(-21deg) scale(1.02); }
+  .hero-art:hover .paper.two { transform: translate(7px, -11px) rotate(17deg) scale(1.02); }
+  .hero-art:hover .paper.three { transform: translate(12px, 6px) rotate(21deg) scale(1.02); }
+  .hero-art:hover .paper.four { transform: translate(-8px, 10px) rotate(-11deg) scale(1.02); }
+  .nav-item:hover .icon { transform: translateY(-1px) scale(1.1); }
+  .nav-item .icon { transition: transform 220ms var(--motion-spring); }
+}
+@media(max-width: 760px) {
+  .sidebar { transition: transform 340ms var(--motion-spring); }
+  .sidebar-scrim, .sidebar-scrim.open {
+    display: block; position: fixed; inset: 0; z-index: 39; background: var(--scrim); opacity: 0; pointer-events: none; transition: opacity 280ms ease;
+  }
+  .sidebar-scrim.open { opacity: 1; pointer-events: auto; }
+}
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  button:hover, button:active, .sample-card:hover .sample-thumb, .sample-card:active .sample-thumb, .starter:hover, .send-button:hover, .nav-item:hover .icon { transform: none !important; }
+  .new-button:hover .icon, .starter:hover .icon, .artifact-message:hover > .icon:last-child, .appearance-toggle:active .icon { transform: none !important; }
+  .hero-art:hover .paper.one { transform: rotate(-14deg); }
+  .hero-art:hover .paper.two { transform: rotate(11deg); }
+  .hero-art:hover .paper.three { transform: rotate(13deg); }
+  .hero-art:hover .paper.four { transform: rotate(-6deg); }
+  dialog[open], dialog.is-closing { animation: none !important; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+}

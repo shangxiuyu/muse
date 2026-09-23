@@ -1,0 +1,95 @@
+{
+  "sampleId": "reading",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-flash",
+  "generatedAt": "2026-09-21T19:19:51.740Z",
+  "artifactSha256": "e5e82cc10c27e992afa698c9fdaf3f365d00508788f6c3c2ec8f39d9c49d6418",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/toolkit/ui_grammar.md",
+    "references/toolkit/ui_interaction_flow.md",
+    "references/toolkit/ui_floors.md",
+    "references/toolkit/ui_innovation.md",
+    "references/acceptance_protocol.md",
+    "references/archetypes.md",
+    "references/archetypes/writer_atelier.md",
+    "references/visual_grammar.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": true,
+    "interaction": false
+  },
+  "message": "The caption now sits on one line, and the whole right rail reads as a considered column: cover → single-line attribution → timer. No overflow, no clipping, no broken wrapping anywhere in the frame.\n\n## 交付说明\n\n**「拾页 · 把时间还给阅读」** 已作为全新原创样板完成设计并交付。\n\n**两轮设计判断（Pass 1 / Pass 2）**\n\n情境是夜间、疲惫、只想安静读半小时的人。因此旋钮定为 `VARIANCE 5 / MOTION 3 / DENSITY 6`：允许书封偏置与不对称主体栏，但阅读中零自动动画。母体取作家案头流，但**反向使用**——它白天是暖纸底 + 白卡，我把关系倒转成「墨蓝骨架上浮一张纸」，于是第 1 秒锚点靠色温差直接成立，不需要任何装饰去抢注意力。\n\nPass 2 的香奈儿剪裁：初稿里我原本要在右栏放一个阅读统计环形图，删掉了。它无数据支撑、是装饰性仪表盘，与「把时间还给阅读」的立意正好相反。现在只保留**本次会话计时**，不做累计、连续天数或平均值。\n\n**有意偏离并声明**：默认浅底范式反转为深墨蓝基底，理由写在 CSS 顶部 `muse:allow` 声明里——夜间长时阅读下大面积发光底板致疲劳，且「纸面浮在墨底上」是母体材质隐喻的倒置。可读性、对比度、触控靶区与事实标注均未豁免。\n\n**内容而非换色**：4 本书是明确的虚构概念示例，正文各自成篇、彼此不同声音；书封是四套不同几何母题（钟面／街网／雨线／叠页）配竖排衬线书名，不是同一张图换色。\n\n**三轮实际修正**（均由截图证伪后改）：书封排印层漏写样式 → 补齐整套封面版式；侧栏书脊中文被截成残字 → 改为两字短标；书封图注换行 → 收为单行。\n\n**未验证边界**：我只观察了桌面渲染截图。计时启停、筛选、选书、札记保存这些交互是源码推演加语法自检，**未在实际操作中观察到运行结果**；移动端 390 宽度的布局、手势路径与 200% 文字缩放均未实测。这些不能算通过验收。"
+}

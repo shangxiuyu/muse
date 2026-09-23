@@ -1,0 +1,10 @@
+{
+  "originalArtifactSha256": "247509bc5b951b93677bbd5ce9a0ef4685390bda61c43ffc3c8e2173b3fd20ba",
+  "artifactSha256": "7c976b6c27c7997f1d232fe844f2d1e1f7c8b0fdd96c4b1bcbae497b09510090",
+  "changes": [
+    "移除已由 css/js 字段提供的本地资源占位引用，保持预览与单文件导出自包含。",
+    "显式保留 hidden 语义，避免组件 display 规则让筛选结果与折叠内容仍然可见。",
+    "订阅演示改用本地按钮事件与 Enter，兼容隔离预览；完成反馈明确不会保存或发送邮件。"
+  ],
+  "reviewer": "Codex / independent QA"
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "objects",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "类别筛选",
+        "pass": true
+      },
+      {
+        "label": "规格展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入购物袋、数量与总价",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "objects",
+    "width": 390,
+    "checks": [
+      {
+        "label": "类别筛选",
+        "pass": true
+      },
+      {
+        "label": "规格展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入购物袋、数量与总价",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  }
+]

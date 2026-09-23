@@ -1,0 +1,22 @@
+/* Artwork keeps its own colors in both Studio themes. Covers show the real artifact. */
+.curated-card .curated-thumb { height:auto; aspect-ratio:8 / 5; border-radius:7px; isolation:isolate; background:#eee9dc; }
+.curated-cover { display:block; width:100%; height:100%; object-fit:cover; pointer-events:none; }
+.curated-label { position:absolute; top:12px; right:12px; padding:5px 8px; border:1px solid #77715b24; background:#f8f6ede8; color:#575b46; font-size:10px; border-radius:3px; letter-spacing:.03em; }
+.curated-open { position:absolute; bottom:15px; right:15px; padding:9px 13px; background:#faf8ee; color:#343d32; border:1px solid #333d3226; border-radius:4px; font-size:11px; opacity:0; transform:translateY(5px); transition:opacity .18s,transform .18s; }
+.curated-card:hover .curated-open,.curated-card:focus-visible .curated-open { opacity:1; transform:translateY(0); }
+.curated-card .sample-detail { display:flex; justify-content:space-between; gap:12px; font-size:10px; color:var(--muted); padding-top:9px; margin-top:11px; border-top:1px solid var(--line); line-height:1.6; }
+.curated-card .sample-desc { margin-bottom:0; }
+.gallery-full .curated-card .sample-meta h3 { font-size:16px; }
+.gallery-full .curated-card .sample-desc { font-size:12px; }
+.gallery-full .curated-card .sample-detail { font-size:11px; }
+.gallery-full .gallery-grid { row-gap:34px; }
+.gallery-heading-note { display:flex; align-items:center; gap:9px; color:var(--muted); font-size:11px; margin-top:20px; }
+.gallery-heading-note i { width:5px; height:5px; background:var(--accent-ink); border-radius:50%; }
+.gallery-filter-count { margin-left:7px; font-size:10px; opacity:.7; font-variant-numeric:tabular-nums; }
+@media(max-width:760px) {
+  .gallery-full .curated-card .sample-meta h3 { font-size:14px; }
+  .curated-label { top:9px; right:9px; font-size:9px; }
+  .gallery-full .gallery-grid { gap:28px; }
+}
+@media(hover:none) { .curated-open { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { .curated-open,.curated-card .sample-thumb { transition:none; } }

@@ -1,0 +1,218 @@
+[
+  {
+    "name": "reading",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "搜索命中与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "阅读状态筛选与选书",
+        "pass": true
+      },
+      {
+        "label": "札记保存并跨书保留",
+        "pass": true
+      },
+      {
+        "label": "超长札记错误与修复",
+        "pass": true
+      },
+      {
+        "label": "开始暂停重置计时",
+        "pass": true
+      },
+      {
+        "label": "侧栏札记导航执行",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "reading",
+    "width": 390,
+    "checks": [
+      {
+        "label": "搜索命中与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "阅读状态筛选与选书",
+        "pass": true
+      },
+      {
+        "label": "札记保存并跨书保留",
+        "pass": true
+      },
+      {
+        "label": "超长札记错误与修复",
+        "pass": true
+      },
+      {
+        "label": "开始暂停重置计时",
+        "pass": true
+      },
+      {
+        "label": "侧栏札记导航执行",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "objects",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "类别筛选",
+        "pass": true
+      },
+      {
+        "label": "规格展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入购物袋、数量与总价",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "objects",
+    "width": 390,
+    "checks": [
+      {
+        "label": "类别筛选",
+        "pass": true
+      },
+      {
+        "label": "规格展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入购物袋、数量与总价",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "retreat",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "房型切换与键盘返回",
+        "pass": true
+      },
+      {
+        "label": "准备信息原位展开",
+        "pass": true
+      },
+      {
+        "label": "空日期错误与示例恢复",
+        "pass": true
+      },
+      {
+        "label": "非法日期阻止生成并恢复",
+        "pass": true
+      },
+      {
+        "label": "复制可用或有可理解的降级反馈",
+        "pass": true
+      },
+      {
+        "label": "清空表单恢复",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "retreat",
+    "width": 390,
+    "checks": [
+      {
+        "label": "房型切换与键盘返回",
+        "pass": true
+      },
+      {
+        "label": "准备信息原位展开",
+        "pass": true
+      },
+      {
+        "label": "空日期错误与示例恢复",
+        "pass": true
+      },
+      {
+        "label": "非法日期阻止生成并恢复",
+        "pass": true
+      },
+      {
+        "label": "复制可用或有可理解的降级反馈",
+        "pass": true
+      },
+      {
+        "label": "清空表单恢复",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "festival",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "日期类别筛选与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "介绍展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入观展单与移除",
+        "pass": true
+      },
+      {
+        "label": "示例冲突提醒与清空",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "festival",
+    "width": 390,
+    "checks": [
+      {
+        "label": "日期类别筛选与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "介绍展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入观展单与移除",
+        "pass": true
+      },
+      {
+        "label": "示例冲突提醒与清空",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  }
+]

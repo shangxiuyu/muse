@@ -197,22 +197,34 @@ npm test                                 # 等价于 node scripts/audit.js
 ├── WRITING.md                        # 文本叙事交付契约标准范例
 ├── PROMPT.md                         # 规约与提示词交付契约标准范例
 ├── IMAGE.md                          # 概念视觉生图交付契约标准范例
-├── scripts/                          # 4 个零依赖检查脚本
+├── server.js                         # 本机服务启动入口
+├── scripts/                          # 检查脚本与全媒介生成/画廊工具
 │   ├── audit.js                      # 技能全资产自审
 │   ├── rules.js                      # 规则引擎（底线 + 例外声明解析）
 │   ├── lint_ui.js / lint_text.js     # 界面与文本提示性检查器
 │   └── asset_library.js              # 品味库（Taste Vault）读写管理
-└── references/                       # 核心知识库与规范资产
-    ├── archetypes.md                 # 10 大母体速查与跨端推断协议
-    ├── archetypes/                   # 10 套母体独立详解与精准代码骨架
-    ├── aesthetic_intelligence.md     # 基础审美推理方法与四种判断
-    ├── foundations.md                # 跨媒介基础（构图 / 排版 / 色彩 / 动效）
-    ├── visual_grammar.md             # 视觉语法与版式秩序
-    ├── artifact_contract.md          # 作品契约与内容账本
-    ├── taste_memory.md               # 品味记忆模型与资产机制
-    ├── personal_assets/              # 专属作者声音画像指南
-    └── toolkit/                      # 全媒介专属工具箱与军规
+├── server/                           # 本机服务端（会话、生成任务与工作空间存储）
+├── web/                              # 官网与创作工作台前端（含 15 套生图风格预览与文案清洗）
+├── references/                       # 核心知识库与规范资产
+│   ├── archetypes.md                 # 10 大母体速查与跨端推断协议
+│   ├── archetypes/                   # 10 套母体独立详解与精准代码骨架
+│   ├── image_styles.md               # 15 套生图表达起点索引与对账
+│   ├── image_styles/                 # 15 种独立生图画风规范卡
+│   ├── text_styles.md                # 8 类独立文案语气与结构流派索引
+│   ├── text_styles/                  # 8 种独立文案流派详尽卡片
+│   ├── aesthetic_intelligence.md     # 基础审美推理方法与四种判断
+│   ├── foundations.md                # 跨媒介基础（构图 / 排版 / 色彩 / 动效）
+│   ├── visual_grammar.md             # 视觉语法与版式秩序
+│   ├── artifact_contract.md          # 作品契约与内容账本
+│   ├── taste_memory.md               # 品味记忆模型与资产机制
+│   ├── personal_assets/              # 专属作者声音画像指南
+│   └── toolkit/                      # 全媒介专属工具箱与军规
+├── tests/                            # 契约与跨媒介全量行为测试
+├── output/                           # 真实生成样本与画廊证据链
+└── deploy/                           # 生产部署模板与说明
 ```
+
+运行与交付细节：[创作工作台说明](web/README.md)、[后端说明](server/README.md)、[部署说明](deploy/README.md)。
 
 ---
 
@@ -221,7 +233,7 @@ npm test                                 # 等价于 node scripts/audit.js
 <details>
 <summary><strong>展开查看版本演进记录</strong></summary>
 
-- **v6.5.0**：交互动效公理库重塑与底层校验健全 —— 确立双物理引擎（实体弹簧 `stiffness: 120~180` 与流体刹车）、三层时空韵律（微观实体挤压与 M1 音律、中观状态流变、宏观层级出场）；在 `DESIGN.md` 与 UI 适配器中确立第 6 模块【交互动效与物理法则】标准交付契约；彻底解决 GitHub Issue #1 所涉全部缺陷（带 fallback 的 CSS 变量解析、不可豁免规则降级拦截、正文注释误判防护、品味库版本历史证据引用与系统条目校验）。
+- **v6.5.0**：全媒介升级与交互动效公理库重塑 —— 全量引入 15 套生图表达起点风格库（`image_styles/`）及 8 类独立文案语气流派库（`text_styles/`）；重构 `IMAGE.md` 工业级交付契约；确立动效双物理引擎（实体弹簧 `stiffness: 120~180` 与流体刹车）、三层时空韵律（微观实体挤压与 M1 音律、中观状态流变、宏观层级出场）；在 `DESIGN.md` 与 UI 适配器中确立第 6 模块【交互动效与物理法则】标准交付契约；彻底解决 GitHub Issue #1 所涉全部缺陷（带 fallback 的 CSS 变量解析、不可豁免规则降级拦截、正文注释误判防护、品味库版本历史证据引用与系统条目校验）。
 - **v6.0.0**：确立「默认底线 + 显式声明例外」机制；实现零依赖自审工具链（自审 0 error / 0 warning）；10 大视觉母体全量修复并补齐 CJK 中文排版基线；正式确立五大媒介交付契约体系（含规约 PROMPT.md）。
 - **v5.1.0**：UI 全面回归媒介适配器（Adapter）分层架构，去套路化，确立 `DESIGN.md` 标准契约。
 - **v5.0.0**：确立全局哲学最高宪法「美是关系的艺术」，六大元原则统领全媒介，反默认机械居中，推导具名客体调色板。

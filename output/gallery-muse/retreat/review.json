@@ -1,0 +1,10 @@
+{
+  "originalArtifactSha256": "b38413ea5f93cac638dbdc8acea3f1ef572414193094dd6419726c5f6e1c6192",
+  "artifactSha256": "c05e73e617634b0bc10d3f71d0e9f36c11d7d61006994cece2d911f5293b9dca",
+  "changes": [
+    "补充 [hidden]{display:none!important}，保证隐藏状态不被 flex/grid 样式覆盖。",
+    "房型景观 SVG 组改用 hidden attribute 切换，修复 .hidden 属性无法更新 SVG 可见状态。",
+    "生成行程意向改为 button/click，并兼容日期输入 Enter，适配产品 allow-scripts sandbox。"
+  ],
+  "reviewer": "Codex / independent QA"
+}

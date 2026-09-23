@@ -1,0 +1,49 @@
+{
+  "sampleId": "coffee",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-pro",
+  "generatedAt": "2026-09-21T19:16:48.776Z",
+  "artifactSha256": "cbbd84db09bf1f8d1bb7fb4385b44e0ebcf52ad465738f869cdd6d3d91f94a20",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/toolkit/text_quality_protocol.md",
+    "references/acceptance_protocol.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": false,
+    "interaction": false
+  },
+  "message": "作品已完成并交付。以下是说明：\n\n## 「把日常，写成好时光」样板\n\n**核心判断**（可被反驳）：一家社区咖啡店最不需要自我介绍，它需要先把店里即将发生的事说给邻居听——信誉靠可验证的具体承诺与留有余裕的口气建立，而不是靠形容词。这个判断贯穿了全部五组文案，而非只在开头声明一次。\n\n**五组文案的分工**（每组承担一个不可替代的动作）：\n\n| 组别 | 职能 |\n|---|---|\n| 01 写在门口 | 只做「引导进门」，不越界 |\n| 02 给邻居的信 | 交代来意与底线，逐段推进 |\n| 03 社交平台帖 | 把具体时间、地址、店休说清楚 |\n| 04 外带杯三句话 | 落到三个真实使用时刻（早晨/午后/替人带） |\n| 05 品牌简介 | 被转载时的第一段，克制收尾 |\n\n**相对旧版的结构性改造**：\n- 删去伪深刻闭环（旧版「日常，等你把它变成日常」）与抽象升华（「希望你来的时候轻松」）；\n- 给邻居的信改为「我们是谁 → 看见什么 → 打算怎么做 → 你不需要做什么 → 怎么找到我们」的推进逻辑；\n- 外带杯从泛文艺改为真实场景短句；\n- 营业信息统一用〔待填写〕占位，不捏造任何地址、日期、时段。\n\n**实际检查与边界**：已对照 24 种反 AI 腔病灶通读，并修正了品牌简介里「七个字」字数计算错误这一处事实硬伤（改为不依赖字数的表述）。核心判断可通过删题测试——删掉品牌简介，仍能从信与杯文中读出同一立场。\n\n**未验证边界**：本文案未经真人阅读与反响测试，也未经真实门头、外卖杯、社交平台等物理媒介场景验证；〔待填写〕占位需门店据实补充后才可外发。品牌、门店与活动均为虚构概念示例，不代表任何真实客户背书。\n\n可继续调整：若你想换文风基调（更克制或更活泼）、调整某组的篇幅，或补齐真实营业信息改成可直接外发版本，告诉我即可。"
+}

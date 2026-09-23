@@ -1,0 +1,55 @@
+{
+  "sampleId": "objects",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-flash",
+  "generatedAt": "2026-09-21T19:28:56.144Z",
+  "artifactSha256": "957890d982fc80737d42e8671a2f55774505e27e526be364fb80d893426ef0a0",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/toolkit/ui_floors.md",
+    "references/acceptance_protocol.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": true,
+    "interaction": false
+  },
+  "message": "The facts row is now clean — `在售 6 件`, `产地 景德镇 / 湖州 / （示例）`, `发货 下单后 3 日内 （示例）`, each with the label left and value right, no mid-word break. Both fixes hold.\n\n**Verified in the actual render:**\n- **Shared container margin** — the eyebrow, title, and the whole opening band's left edge align with the masthead's 「物候 WUHOU」 wordmark; the intro and facts table are no longer flush to the screen edge. `.opening` / `.about` / `.materials` / `.foot` all now use `padding-block`, so horizontal padding is supplied only by `.wrap`.\n- **First-screen composition** — the visible viewport shows the eyebrow, both title lines, 「本辑主打 · 01 / 06」+「灰釉直身杯」, the lede, the three-up facts band, and the complete hero plate (side view + rim top view) with its caption `01 / 06 灰釉直身杯 · 左为杯体侧视，右上为口沿俯视`. The cup reads as a full object, not a bottom corner.\n- **Content preserved** — the 手边详情 band with the description and all four spec rows (容量 200 ml / 口径×高 72×88 mm / 烧成 柴窑 1280℃ / 编号 WH-C01) sits directly below, then the catalog, materials, about, and footer.\n- **SVG detail and interactions untouched** — all inline SVG paths, the filter chips, in-place spec expand, add-to-bag morph, and bag quantity/total logic are unchanged.\n\n**Not verified (screenshot covers desktop first screen only):** 390px actual rendering and 44px touch targets, filter switching, in-place spec expansion, bag +/− and total updates under real clicks, 200% text zoom, and full keyboard path. Those still need human confirmation — I'm not claiming they pass.\n\nThe deliverable keeps `index.html` / `index.css` / `app.js` as separate fields, all Chinese copy, the 物候 WUHOU brand and concept-example disclosures, and the readable script tag data source.",
+  "originalArtifactSha256": "cb6a33a0cd7ba5d715430af4e5033d762f1bb409e3aa24a22367776eb2e7bb2c",
+  "reviewer": "Muse 6.0 / browser QA revision; Codex / independent QA",
+  "changes": [
+    "由Muse修复共享容器边距，并将引言和陶杯主打商品重新组织在首屏，保留完整交互。",
+    "独立浏览器 QA 修复：已加购时 .bag__empty 的 display:flex 覆盖 hidden，补全局 hidden 规则防止空袋提示与商品同时出现。"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "sampleId": "festival",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-flash",
+  "generatedAt": "2026-09-21T19:21:20.307Z",
+  "artifactSha256": "3442c1d953f298b954ec6b31dcdb33481f826632e6375aa3dd2b4586d2e2b0d7",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": false
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/toolkit/ui_grammar.md",
+    "references/toolkit/ui_interaction_flow.md",
+    "references/toolkit/ui_innovation.md",
+    "references/toolkit/ui_floors.md",
+    "references/acceptance_protocol.md",
+    "references/archetypes.md",
+    "references/archetypes/neo_brutalist_engineering.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": true,
+    "interaction": false
+  },
+  "message": "Final state confirmed. The gallery first screen is clean: ticker → topbar with live counter → the 场间 wordmark with vermilion secondary glyph and hard offset shadow → the field-plan drawing with its SCALE 1:200 caption → the three-day ruler ending in a black disclosure bar. No dock, no clipping, no horizontal overflow.\n\n**交付说明**\n\n《场间 FIELD NOTES · 设计艺术周》已作为 Muse 内置样板完成。它不是模板换色，而是由内容长出来的结构：\n\n**概念载体** — 展览现场的物质性。坐标纸网格做底、朱红 #C2321F / 墨黑 #1A1714 / 暖白 #F5F1E9 三色、展签式等宽标签、2px 炭墨硬线。色板来自客体（纸张、铅字、展签），不是凭空选的。\n\n**结构** — 第一眼是左对齐的「场间」两个大字，不是居中 Hero；右上是抽象的展场平面图（内联 SVG，无外部图片）；下方三日条是一条时间刻度尺。进入日程后是三栏坐标布局：左栏是图例（筛选即图例），中栏是展位带（每行一个超大序号 + 场次信息），右栏是检视面板。刻意避开了横排三等分卡片和圆角玻璃盒。\n\n**交互** — 日期/类别双组筛选、介绍与讲者备注原位推挤展开（不用弹窗）、加入/移除观展单、计数三处同步、同日时段重叠的时间冲突提醒、三日总占用时长、空状态带可一键载入的示例、无结果状态、键盘焦点环、reduced-motion 降级。\n\n**必须说清楚的边界**\n- 全部内容为虚构概念示例，顶部、须知与页脚三处标注，不涉及真实活动、场地或主办方资历。\n- 无购票、报名、支付服务；观展单只存在于本次页面，未使用 localStorage。\n- 我实际做过的是：在浏览器中观察三轮渲染截图并修复了两个真实缺陷（桌面误显移动坞遮住三日条；首屏纵向节奏过松）。**未做**：真机触控验证、屏幕阅读器实测、200% 文字缩放逐项复看、展开态与冲突态的截图取证。inspect_artifact 只截桌面首屏。\n\n**一处主动声明的取舍**：三日条是三格等宽，触到了「封杀三等分」的默认红线。我判断它是时间刻度尺而非卡片组（每格场次数与起始时间不同），保留并在 direction 中声明；若内容变成三张并列资讯卡就需要改回非等宽。"
+}

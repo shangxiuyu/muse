@@ -1,0 +1,2587 @@
+{
+  "browser": "153.0.8010.50",
+  "created": "2026-09-21T19:26:59.483Z",
+  "samples": {
+    "reading": {
+      "390": {
+        "width": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 1288,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "在读 · 46%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "在读 · 28%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "想读 · 4%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "已读 · 100%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "rail-foot",
+            "text": "概念示例 · 演示数据仅存于本次会话",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "P",
+            "class": "leaf-kicker",
+            "text": "拾页文库 · 概念示例 · 非真实出版物",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "leaf-status",
+            "text": "在读",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "chapter-no",
+            "text": "第三章",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "读完 46%",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "leaf-foot-sep",
+            "text": "·",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "172 / 372 页",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "note-hint",
+            "text": "仅存于本次会话",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "note-count",
+            "text": "0 字",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "cover-imprint",
+            "text": "拾页文库 · 概念示例",
+            "fontSize": "9.5px"
+          },
+          {
+            "tag": "P",
+            "class": "timer-label",
+            "text": "本次阅读",
+            "fontSize": "11.5px"
+          }
+        ],
+        "overflow": [
+          {
+            "tag": "ASIDE",
+            "class": "rail",
+            "text": "拾页\n          把时间还给阅读\n        \n        \n          \n        \n      \n\n      \n      "
+          },
+          {
+            "tag": "DIV",
+            "class": "rail-top",
+            "text": "拾页\n          把时间还给阅读\n        \n        \n          \n        \n      \n\n      \n      "
+          },
+          {
+            "tag": "DIV",
+            "class": "brand",
+            "text": "拾页\n          把时间还给阅读"
+          },
+          {
+            "tag": "SPAN",
+            "class": "brand-mark",
+            "text": ""
+          },
+          {
+            "tag": "svg",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "DIV",
+            "class": "brand-text",
+            "text": "拾页\n          把时间还给阅读"
+          },
+          {
+            "tag": "SPAN",
+            "class": "brand-name",
+            "text": "拾页"
+          },
+          {
+            "tag": "SPAN",
+            "class": "brand-sub",
+            "text": "把时间还给阅读"
+          },
+          {
+            "tag": "BUTTON",
+            "class": "rail-close",
+            "text": ""
+          },
+          {
+            "tag": "svg",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "NAV",
+            "class": "nav",
+            "text": "正在阅读\n        阅读札记\n        书摘"
+          },
+          {
+            "tag": "BUTTON",
+            "class": "nav-item is-current",
+            "text": "正在阅读"
+          },
+          {
+            "tag": "BUTTON",
+            "class": "nav-item",
+            "text": "阅读札记"
+          },
+          {
+            "tag": "BUTTON",
+            "class": "nav-item",
+            "text": "书摘"
+          },
+          {
+            "tag": "DIV",
+            "class": "shelf",
+            "text": "我的书架\n        4 本\n      \n\n      \n        搜索书架中的书名或作者\n        \n          \n        "
+          },
+          {
+            "tag": "DIV",
+            "class": "shelf-head",
+            "text": "我的书架\n        4 本"
+          },
+          {
+            "tag": "H2",
+            "class": "shelf-title",
+            "text": "我的书架"
+          },
+          {
+            "tag": "SPAN",
+            "class": "shelf-count",
+            "text": "4 本"
+          },
+          {
+            "tag": "DIV",
+            "class": "shelf-tools",
+            "text": "搜索书架中的书名或作者\n        \n          \n          \n          \n            \n          \n  "
+          },
+          {
+            "tag": "LABEL",
+            "class": "sr-only",
+            "text": "搜索书架中的书名或作者"
+          },
+          {
+            "tag": "DIV",
+            "class": "search-field",
+            "text": ""
+          },
+          {
+            "tag": "svg",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "circle",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "INPUT",
+            "class": "",
+            "text": ""
+          },
+          {
+            "tag": "BUTTON",
+            "class": "search-clear",
+            "text": ""
+          },
+          {
+            "tag": "svg",
+            "class": {},
+            "text": ""
+          }
+        ],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "railClose",
+            "text": "",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "正在阅读",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "阅读札记",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "书摘",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "shelfSearch",
+            "text": "",
+            "type": "search",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "searchClear",
+            "text": "",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "在读",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "reading"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "想读",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "wish"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "已读",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "done"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "慢的慢的证词沈砚舟在读 · 46%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "slow-testimony"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "深夜深夜的十六条街苏未晞在读 · 28%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "sixteen-streets"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "雨的雨的编年史顾行野想读 · 4%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "rain-chronicle"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "纸与纸与它的时代林昭白已读 · 100%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "paper-and-its-age"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "railOpen",
+            "text": "",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "noteInput",
+            "text": "",
+            "type": "textarea",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "noteSave",
+            "text": "保存札记",
+            "type": "submit",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "timerToggle",
+            "text": "开始阅读",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "timerReset",
+            "text": "重置",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dockToggle",
+            "text": "本次阅读 · 00:00",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      },
+      "1440": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 1077,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "在读 · 46%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "在读 · 28%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "想读 · 4%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "book-state",
+            "text": "已读 · 100%",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "rail-foot",
+            "text": "概念示例 · 演示数据仅存于本次会话",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "P",
+            "class": "session-flag",
+            "text": "本次会话",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "leaf-kicker",
+            "text": "拾页文库 · 概念示例 · 非真实出版物",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "leaf-status",
+            "text": "在读",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "chapter-no",
+            "text": "第三章",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "读完 46%",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "leaf-foot-sep",
+            "text": "·",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "172 / 372 页",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "note-hint",
+            "text": "仅存于本次会话",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "note-count",
+            "text": "0 字",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "cover-imprint",
+            "text": "拾页文库 · 概念示例",
+            "fontSize": "9.5px"
+          },
+          {
+            "tag": "P",
+            "class": "timer-label",
+            "text": "本次阅读",
+            "fontSize": "11.5px"
+          }
+        ],
+        "overflow": [],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "railClose",
+            "text": "",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "正在阅读",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "阅读札记",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "书摘",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "shelfSearch",
+            "text": "",
+            "type": "search",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "searchClear",
+            "text": "",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "在读",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "reading"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "想读",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "wish"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "已读",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "done"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "慢的慢的证词沈砚舟在读 · 46%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "slow-testimony"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "深夜深夜的十六条街苏未晞在读 · 28%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "sixteen-streets"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "雨的雨的编年史顾行野想读 · 4%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "rain-chronicle"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "纸与纸与它的时代林昭白已读 · 100%",
+            "type": "button",
+            "attrs": [
+              [
+                "data-id",
+                "paper-and-its-age"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "railOpen",
+            "text": "",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "noteInput",
+            "text": "",
+            "type": "textarea",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "noteSave",
+            "text": "保存札记",
+            "type": "submit",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "timerToggle",
+            "text": "开始阅读",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "timerReset",
+            "text": "重置",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dockToggle",
+            "text": "本次阅读 · 00:00",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      }
+    },
+    "objects": {
+      "390": {
+        "width": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 7478,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "wordmark__latin",
+            "text": "WUHOU",
+            "fontSize": "11px"
+          }
+        ],
+        "overflow": [],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "bagBtn",
+            "text": "购物袋\n      0\n      购物袋，0 件",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "陶",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "clay"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "器皿",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "wares"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "织物",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "textile"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "回到全部 6 件",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "bagClose",
+            "text": "收起",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "bagEmptyCta",
+            "text": "去挑一件",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "bagClear",
+            "text": "清空购物袋",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      },
+      "1440": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 5707,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "wordmark__latin",
+            "text": "WUHOU",
+            "fontSize": "11px"
+          }
+        ],
+        "overflow": [],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "bagBtn",
+            "text": "购物袋\n      0\n      购物袋，0 件",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "陶",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "clay"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "器皿",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "wares"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "织物",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "textile"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "规格",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "加入购物袋",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "回到全部 6 件",
+            "type": "button",
+            "attrs": [
+              [
+                "data-filter",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "bagClose",
+            "text": "收起",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "bagEmptyCta",
+            "text": "去挑一件",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "bagClear",
+            "text": "清空购物袋",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      }
+    },
+    "retreat": {
+      "390": {
+        "width": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 7756,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "brand-latin",
+            "text": "QICHI",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "海拔",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "客房",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "接驳",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "tab-meta",
+            "text": "谷侧 · 宽窗",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "tab-meta",
+            "text": "林侧 · 转角窗",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "面积",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "床型",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "朝向",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "最多入住",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "rc-meta",
+            "text": "谷侧宽窗 · 42 m²",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "rc-meta",
+            "text": "林侧转角窗 · 36 m²",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "fb-latin",
+            "text": "QICHI",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "foot-meta",
+            "text": "样板 · 由 Muse 6.0 设计 · 可自由取用与改编",
+            "fontSize": "11.5px"
+          }
+        ],
+        "overflow": [
+          {
+            "tag": "rect",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "circle",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "rect",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "rect",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "rect",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "rect",
+            "class": {},
+            "text": ""
+          },
+          {
+            "tag": "path",
+            "class": {},
+            "text": ""
+          }
+        ],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "tab-yun",
+            "text": "望云谷侧 · 宽窗",
+            "type": "button",
+            "attrs": [
+              [
+                "data-room",
+                "yun"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "tab-song",
+            "text": "听松林侧 · 转角窗",
+            "type": "button",
+            "attrs": [
+              [
+                "data-room",
+                "song"
+              ]
+            ]
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "怎么到\n          \n            山脚有一处会合点，我们把车停在那里，用四驱接驳上山，约 25 分钟。\n            最后一段是单向碎石路，低底盘车辆无法通行，请勿自驾上",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "带什么\n          \n            保暖外套、防滑鞋、个人药品，就这些。房间里没有需要着装规矩的场合。\n            山上白天 10–16℃，夜里可能降到 4℃ 以下，即使",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "信号与电\n          \n            客房内无手机信号，公共平台有一处微弱覆盖。屋内插座齐备，可供笔记本与相机充电。\n            没有 Wi-Fi。若你必须处理工作，我们",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "关于孩子与宠物\n          \n            房屋临崖且泡池无围栏，暂不接待 12 岁以下儿童。\n            宠物可携带，需自备垫具，泡池区域不可进入。",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "取消与改期\n          \n            山上的天气变化快，我们理解临时改变主意。到访前七天可免费改期一次。\n            本页为概念示例，以上政策不代表任何真实业务的承诺。",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "inDate",
+            "text": "",
+            "type": "date",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "outDate",
+            "text": "",
+            "type": "date",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "pickYun",
+            "text": "",
+            "type": "radio",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "pickSong",
+            "text": "",
+            "type": "radio",
+            "attrs": []
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "planNote",
+            "text": "",
+            "type": "textarea",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "生成行程意向",
+            "type": "submit",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "resetBtn",
+            "text": "清空",
+            "type": "reset",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "fillDemo",
+            "text": "用一组示例日期试一下",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "copyBtn",
+            "text": "复制这段意向",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "editBtn",
+            "text": "回到表单修改",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dlgClose",
+            "text": "好，去修改",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      },
+      "1440": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 6594,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "brand-latin",
+            "text": "QICHI",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "海拔",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "客房",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "接驳",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "tab-meta",
+            "text": "谷侧 · 宽窗",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "tab-meta",
+            "text": "林侧 · 转角窗",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "面积",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "床型",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "朝向",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "DT",
+            "class": "",
+            "text": "最多入住",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "rc-meta",
+            "text": "谷侧宽窗 · 42 m²",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "rc-meta",
+            "text": "林侧转角窗 · 36 m²",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "fb-latin",
+            "text": "QICHI",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "foot-meta",
+            "text": "样板 · 由 Muse 6.0 设计 · 可自由取用与改编",
+            "fontSize": "11.5px"
+          }
+        ],
+        "overflow": [],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "tab-yun",
+            "text": "望云谷侧 · 宽窗",
+            "type": "button",
+            "attrs": [
+              [
+                "data-room",
+                "yun"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "tab-song",
+            "text": "听松林侧 · 转角窗",
+            "type": "button",
+            "attrs": [
+              [
+                "data-room",
+                "song"
+              ]
+            ]
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "怎么到\n          \n            山脚有一处会合点，我们把车停在那里，用四驱接驳上山，约 25 分钟。\n            最后一段是单向碎石路，低底盘车辆无法通行，请勿自驾上",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "带什么\n          \n            保暖外套、防滑鞋、个人药品，就这些。房间里没有需要着装规矩的场合。\n            山上白天 10–16℃，夜里可能降到 4℃ 以下，即使",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "信号与电\n          \n            客房内无手机信号，公共平台有一处微弱覆盖。屋内插座齐备，可供笔记本与相机充电。\n            没有 Wi-Fi。若你必须处理工作，我们",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "关于孩子与宠物\n          \n            房屋临崖且泡池无围栏，暂不接待 12 岁以下儿童。\n            宠物可携带，需自备垫具，泡池区域不可进入。",
+            "attrs": []
+          },
+          {
+            "tag": "DETAILS",
+            "id": "",
+            "text": "取消与改期\n          \n            山上的天气变化快，我们理解临时改变主意。到访前七天可免费改期一次。\n            本页为概念示例，以上政策不代表任何真实业务的承诺。",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "inDate",
+            "text": "",
+            "type": "date",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "outDate",
+            "text": "",
+            "type": "date",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "pickYun",
+            "text": "",
+            "type": "radio",
+            "attrs": []
+          },
+          {
+            "tag": "INPUT",
+            "id": "pickSong",
+            "text": "",
+            "type": "radio",
+            "attrs": []
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "planNote",
+            "text": "",
+            "type": "textarea",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "生成行程意向",
+            "type": "submit",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "resetBtn",
+            "text": "清空",
+            "type": "reset",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "fillDemo",
+            "text": "用一组示例日期试一下",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "copyBtn",
+            "text": "复制这段意向",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "editBtn",
+            "text": "回到表单修改",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dlgClose",
+            "text": "好，去修改",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      }
+    },
+    "festival": {
+      "390": {
+        "width": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 6349,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "brand__en",
+            "text": "FIELD NOTES",
+            "fontSize": "10px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "ch ch--no",
+            "text": "序号",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "ch ch--main",
+            "text": "场次 / 类别 / 时段",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "场次",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "总时长",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "展位区",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "票价",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "foot__k",
+            "text": "虚构声明",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "foot__k",
+            "text": "功能边界",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "概念示例 · CONCEPT SAMPLE",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "FIELD NOTES ／ 场间",
+            "fontSize": "11.5px"
+          }
+        ],
+        "overflow": [
+          {
+            "tag": "A",
+            "class": "skip",
+            "text": "跳到日程"
+          }
+        ],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "jumpCart",
+            "text": "观展单 0",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部6",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "10/17 周五2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "1"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "10/18 周六3",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "2"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "10/19 周日1",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "3"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部6",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展览2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "exhab"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "对谈2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "talk"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "工作坊2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "work"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "resetAll",
+            "text": "清除全部筛选与观展单",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s1"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s1"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s2"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s2"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s3"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s3"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s4"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s4"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s5"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s5"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s6"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s6"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "emptyReset",
+            "text": "看全部 6 场",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "loadSample",
+            "text": "载入示例观展单",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "clearCart",
+            "text": "清空观展单",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dockMain",
+            "text": "0\n    场已加入观展单\n    查看 ↓",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      },
+      "1440": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 3064,
+        "smallText": [
+          {
+            "tag": "SPAN",
+            "class": "brand__en",
+            "text": "FIELD NOTES",
+            "fontSize": "10px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "ch ch--no",
+            "text": "序号",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "ch ch--main",
+            "text": "场次 / 类别 / 时段",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "ch ch--act",
+            "text": "操作",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "row__noteK",
+            "text": "讲者备注 · 展前预录",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "场次",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "总时长",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "展位区",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "about__metaK",
+            "text": "票价",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "foot__k",
+            "text": "虚构声明",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "P",
+            "class": "foot__k",
+            "text": "功能边界",
+            "fontSize": "11px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "概念示例 · CONCEPT SAMPLE",
+            "fontSize": "11.5px"
+          },
+          {
+            "tag": "SPAN",
+            "class": "",
+            "text": "FIELD NOTES ／ 场间",
+            "fontSize": "11.5px"
+          }
+        ],
+        "overflow": [
+          {
+            "tag": "A",
+            "class": "skip",
+            "text": "跳到日程"
+          }
+        ],
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "id": "jumpCart",
+            "text": "观展单 0",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部6",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "10/17 周五2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "1"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "10/18 周六3",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "2"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "10/19 周日1",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "day"
+              ],
+              [
+                "data-val",
+                "3"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "全部6",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "all"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展览2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "exhab"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "对谈2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "talk"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "工作坊2",
+            "type": "button",
+            "attrs": [
+              [
+                "data-kind",
+                "cat"
+              ],
+              [
+                "data-val",
+                "work"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "resetAll",
+            "text": "清除全部筛选与观展单",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s1"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s1"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s2"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s2"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s3"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s3"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s4"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s4"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s5"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s5"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "＋ 加入观展单",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "cart"
+              ],
+              [
+                "data-id",
+                "s6"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "展开介绍 ↓",
+            "type": "button",
+            "attrs": [
+              [
+                "data-act",
+                "toggle"
+              ],
+              [
+                "data-id",
+                "s6"
+              ]
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "id": "emptyReset",
+            "text": "看全部 6 场",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "loadSample",
+            "text": "载入示例观展单",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "clearCart",
+            "text": "清空观展单",
+            "type": "button",
+            "attrs": []
+          },
+          {
+            "tag": "BUTTON",
+            "id": "dockMain",
+            "text": "0\n    场已加入观展单\n    查看 ↓",
+            "type": "button",
+            "attrs": []
+          }
+        ],
+        "errors": []
+      }
+    }
+  }
+}

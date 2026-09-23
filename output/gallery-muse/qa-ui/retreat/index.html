@@ -1,0 +1,1228 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>/* ═══════════ 栖迟 QICHI ═══════════
+   基底：暖纸米白 + 常春藤墨绿 + 炭棕 + 砂岩琥珀
+   模度：4/8px 阶梯 · 光源：右上 135° · 色温：全栈暖调
+*/
+
+:root{
+  --paper:#F4EFE6;          /* 60% Canvas */
+  --paper-deep:#EAE1D2;
+  --panel:#FBF7EF;
+  --ink:#173300;            /* 主文字 */
+  --ink-2:#3A4A2C;          /* 次要文字 */
+  --ink-muted:#5E6B4F;      /* 说明文字 */
+  --brown:#3A322A;          /* 炭棕 · 结构 */
+  --line:#D3C9B6;
+  --line-soft:#E2D9C7;
+  --accent:#A9611F;         /* 砂岩琥珀 · 交互可读档 */
+  --accent-warm:#E9B473;    /* 插画暖光 */
+  --shadow-lift:0 18px 36px -18px rgba(23,51,0,.18),0 4px 10px -6px rgba(23,51,0,.08);
+
+  --f-sans:"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-sans);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{margin:0}
+p{margin:0}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+
+/* 纸感颗粒：固定层，低位 z-index，不参与滚动重绘 */
+.grain-layer{
+  position:fixed;inset:0;pointer-events:none;z-index:0;isolation:isolate;opacity:.3;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>");
+}
+main,header.site-head,footer.site-foot{position:relative;z-index:1}
+
+.skip-link{
+  position:fixed;left:8px;top:-200px;z-index:40;
+  background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:0 0 8px 0;
+  font-size:14px;text-decoration:none;transition:top .2s var(--ease);
+}
+.skip-link:focus{top:0}
+
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ── 页头 ── */
+.site-head{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:24px;
+  padding:11px clamp(16px,4vw,64px);
+  background:rgba(244,239,230,.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-soft);
+}
+.brand{display:flex;align-items:baseline;gap:9px;text-decoration:none;flex:none}
+.brand-cn{font-family:var(--f-serif);font-size:22px;letter-spacing:.06em;font-weight:600}
+.brand-latin{font-family:var(--f-mono);font-size:11px;letter-spacing:.24em;color:var(--ink-muted)}
+.site-nav{display:flex;gap:4px;margin-left:auto}
+.site-nav a{
+  text-decoration:none;font-size:14px;color:var(--ink-2);
+  padding:10px 13px;border-radius:6px;transition:background .28s var(--ease),color .28s var(--ease);
+}
+.site-nav a:hover{background:rgba(23,51,0,.06);color:var(--ink)}
+.head-cta{
+  flex:none;text-decoration:none;font-size:14px;font-weight:500;
+  background:var(--ink);color:#F6F1E6;padding:11px 20px;border-radius:4px;
+  transition:transform .3s var(--ease),background .3s var(--ease);
+}
+.head-cta:hover{background:#26460D;transform:translateY(-1px)}
+.head-cta:active{transform:translateY(0)}
+
+/* ── 首屏 ── */
+.hero{padding:0 0 clamp(40px,6vw,72px)}
+.hero-figure{position:relative;overflow:hidden}
+.mountain{width:100%;height:clamp(400px,58vw,620px)}
+
+.hero-copy{
+  position:absolute;left:clamp(20px,7vw,120px);top:13%;max-width:min(560px,80%);
+  animation:rise 1s var(--ease) both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.eyebrow{
+  font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;
+  color:var(--brown);
+  border-left:2px solid var(--accent);padding-left:10px;margin-bottom:20px;
+}
+.hero-copy h1{font-family:var(--f-serif);font-weight:600;line-height:1.06}
+.hero-copy .l1{display:block;font-size:clamp(46px,7.2vw,88px);letter-spacing:.1em}
+.hero-copy .l2{
+  display:block;font-size:clamp(21px,2.6vw,32px);letter-spacing:.16em;
+  color:var(--ink-2);margin-top:12px;
+}
+.hero-lede{
+  margin-top:22px;max-width:26em;font-size:16px;line-height:1.72;color:var(--ink-2);
+}
+.hero-actions{display:flex;align-items:center;gap:12px;margin-top:30px;flex-wrap:wrap}
+
+.btn-primary{
+  font-family:var(--f-sans);font-size:15px;font-weight:500;
+  background:var(--ink);color:#F7F2E8;border:none;cursor:pointer;
+  padding:14px 30px;border-radius:4px;text-decoration:none;display:inline-block;
+  min-height:48px;line-height:20px;
+  box-shadow:var(--shadow-lift);
+  transition:transform .32s var(--ease),background .32s var(--ease),box-shadow .32s var(--ease);
+}
+.btn-primary:hover{background:#26460D;transform:translateY(-2px)}
+.btn-primary:active{transform:translateY(0) scale(.985)}
+.btn-primary[disabled]{background:#B9B3A4;color:#EEEAE1;cursor:not-allowed;box-shadow:none;transform:none}
+
+/* 次级链接：自带纸底衬垫，确保压在任何雾层上仍可读 */
+.link-quiet{
+  font-size:14px;color:var(--ink-2);text-decoration:none;
+  padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;
+  background:rgba(244,239,230,.92);border-radius:4px;
+  border-bottom:1px solid var(--ink-2);
+  transition:color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
+}
+.link-quiet:hover{color:var(--accent);border-color:var(--accent);background:#F7F3EA}
+
+.hero-specs{
+  position:absolute;right:clamp(20px,6vw,110px);bottom:34px;
+  display:flex;gap:clamp(20px,3vw,44px);margin:0;
+  background:rgba(244,239,230,.94);backdrop-filter:blur(10px);
+  border:1px solid var(--line-soft);border-radius:6px;
+  padding:14px 22px;
+  box-shadow:0 12px 30px -18px rgba(23,51,0,.4);
+}
+.hero-specs dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--ink-muted)}
+.hero-specs dd{margin:3px 0 0;font-size:14px;font-weight:500;color:var(--ink)}
+
+/* ── 通用区块 ── */
+.section{padding:clamp(64px,9vw,132px) clamp(20px,7vw,120px)}
+.section-rooms{background:var(--paper-deep)}
+.sec-head{display:flex;gap:clamp(18px,3vw,40px);align-items:flex-start;margin-bottom:clamp(36px,5vw,64px)}
+.sec-index{
+  font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--accent);
+  padding-top:12px;flex:none;
+}
+.sec-head h2{
+  font-family:var(--f-serif);font-weight:600;
+  font-size:clamp(27px,3.9vw,46px);line-height:1.2;letter-spacing:.02em;
+  max-width:22em;
+}
+
+/* ── 故事 7:3 ── */
+.story-grid{display:grid;grid-template-columns:7fr 3fr;gap:clamp(32px,6vw,88px);align-items:start}
+.story-body p{font-size:16.5px;line-height:1.82;color:var(--ink-2);max-width:34em;margin-bottom:22px}
+.story-body strong{color:var(--ink);font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:1px}
+.story-note{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:20px 0;font-size:15px;color:var(--ink-muted);
+  font-family:var(--f-serif);margin-top:32px !important;
+}
+.story-side{border-left:1px solid var(--line);padding-left:clamp(20px,3vw,36px)}
+.story-side h3{font-size:15px;font-weight:600;letter-spacing:.06em;color:var(--ink);margin-bottom:20px}
+.bare-list{list-style:none;margin:0;padding:0}
+.bare-list li{
+  display:flex;gap:10px;font-size:14.5px;color:var(--ink-2);
+  padding:13px 0;border-bottom:1px solid var(--line-soft);line-height:1.5;
+}
+.mk{color:var(--accent);font-family:var(--f-mono);flex:none}
+.side-foot{font-size:13.5px;color:var(--ink-muted);margin-top:22px;line-height:1.6}
+
+/* ── 房型 ── */
+.room-tabs{display:flex;gap:8px;margin-bottom:clamp(28px,4vw,48px);flex-wrap:wrap}
+.room-tab{
+  display:flex;flex-direction:column;gap:3px;align-items:flex-start;
+  background:transparent;border:1px solid var(--line);border-radius:6px;
+  padding:14px 26px;cursor:pointer;min-height:64px;min-width:152px;
+  font-family:var(--f-sans);text-align:left;
+  transition:border-color .32s var(--ease),background .32s var(--ease),transform .32s var(--ease);
+}
+.room-tab:hover{border-color:var(--ink-2);transform:translateY(-2px)}
+.room-tab.is-on{background:var(--ink);border-color:var(--ink)}
+.tab-cn{font-family:var(--f-serif);font-size:19px;font-weight:600;color:var(--ink);transition:color .3s var(--ease)}
+.room-tab.is-on .tab-cn{color:#F7F2E8}
+.tab-meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--ink-muted);transition:color .3s var(--ease)}
+.room-tab.is-on .tab-meta{color:#B7C4A4}
+
+.room-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.room-figure{margin:0;position:sticky;top:88px}
+.room-scene{
+  width:100%;border-radius:6px;background:#EFE7D6;
+  border:1px solid var(--line-soft);box-shadow:var(--shadow-lift);
+}
+#viewYun,#viewSong,#mullion,#mullion2,#mullion2b{transition:opacity .5s var(--ease)}
+.fig-cap{
+  font-family:var(--f-mono);font-size:12.5px;letter-spacing:.06em;
+  color:var(--ink-muted);margin-top:14px;
+}
+
+.room-panel h3{font-family:var(--f-serif);font-size:clamp(26px,2.6vw,34px);letter-spacing:.08em;margin-bottom:8px}
+.room-kicker{font-size:15px;color:var(--accent);margin-bottom:20px;letter-spacing:.02em}
+.room-desc{font-size:16px;line-height:1.78;color:var(--ink-2);max-width:33em;margin-bottom:30px}
+.room-facts{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 0 30px;
+  border-top:1px solid var(--line);
+}
+.room-facts > div{padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.room-facts dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--ink-muted);margin-bottom:4px}
+.room-facts dd{margin:0;font-size:15px;font-weight:500;color:var(--ink)}
+.amen-title{font-size:14px;font-weight:600;letter-spacing:.08em;margin-bottom:14px}
+.amen{list-style:none;margin:0;padding:0}
+.amen li{
+  font-size:15px;color:var(--ink-2);padding:11px 0 11px 22px;position:relative;
+  border-bottom:1px dashed var(--line);line-height:1.5;
+}
+.amen li::before{
+  content:"";position:absolute;left:2px;top:19px;
+  width:7px;height:7px;border:1px solid var(--accent);transform:rotate(45deg);
+}
+.room-note{font-size:13.5px;color:var(--ink-muted);margin-top:26px;line-height:1.6}
+.room-panel{outline-offset:8px}
+.room-panel.fade{animation:fadeSwap .5s var(--ease) both}
+@keyframes fadeSwap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ── 日程 ── */
+.day-lede{font-size:16.5px;line-height:1.78;color:var(--ink-2);max-width:34em;margin:-16px 0 clamp(36px,5vw,60px) 0}
+.day-lede strong{color:var(--ink)}
+.timeline{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.timeline li{
+  display:grid;grid-template-columns:minmax(90px,148px) 1fr;
+  gap:clamp(16px,4vw,56px);padding:clamp(22px,3vw,34px) 0;
+  border-bottom:1px solid var(--line-soft);
+  transition:background .4s var(--ease);
+}
+.timeline li:hover{background:rgba(23,51,0,.028)}
+.tl-time{font-family:var(--f-mono);font-size:14px;letter-spacing:.06em;color:var(--accent);padding-top:3px}
+.tl-body h3{font-family:var(--f-serif);font-size:19px;font-weight:600;letter-spacing:.03em;margin-bottom:8px}
+.tl-body p{font-size:15.5px;line-height:1.72;color:var(--ink-2);max-width:38em}
+
+/* ── 到访准备 ── */
+.section-prepare{background:var(--paper-deep)}
+.prep-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:start}
+.prep-item{border-bottom:1px solid var(--line)}
+.prep-item:first-child{border-top:1px solid var(--line)}
+.prep-item summary{
+  cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;
+  font-size:17px;font-weight:500;color:var(--ink);letter-spacing:.03em;
+  min-height:64px;display:flex;align-items:center;
+}
+.prep-item summary::-webkit-details-marker{display:none}
+.prep-item summary::after{
+  content:"";position:absolute;right:6px;top:50%;
+  width:12px;height:12px;margin-top:-6px;
+  border-right:1.5px solid var(--ink-2);border-bottom:1.5px solid var(--ink-2);
+  transform:rotate(45deg);transition:transform .34s var(--ease);
+}
+.prep-item[open] summary::after{transform:rotate(-135deg)}
+.prep-item summary:hover{color:var(--accent)}
+.prep-body{padding:0 0 24px;max-width:36em;animation:fadeSwap .4s var(--ease) both}
+.prep-body p{font-size:15.5px;line-height:1.78;color:var(--ink-2);margin-bottom:12px}
+.prep-warn{
+  border-left:2px solid var(--accent);padding-left:14px;color:var(--brown) !important;
+  font-size:14.5px !important;
+}
+.prep-side{padding-left:clamp(0px,3vw,36px);border-left:1px solid var(--line)}
+.prep-side h3{font-size:15px;font-weight:600;letter-spacing:.06em;margin-bottom:24px}
+.side-fact{padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.side-fact:first-of-type{border-top:1px solid var(--line-soft)}
+.sf-num{
+  font-family:var(--f-serif);font-size:42px;font-weight:600;color:var(--ink);
+  line-height:1;letter-spacing:.01em;
+}
+.sf-num span{font-family:var(--f-sans);font-size:14px;color:var(--ink-muted);margin-left:6px;letter-spacing:0}
+.sf-lab{font-size:14px;color:var(--ink-2);margin-top:8px}
+
+/* ── 行程意向 ── */
+.plan-lede{font-size:16.5px;line-height:1.78;color:var(--ink-2);max-width:34em;margin:-16px 0 clamp(36px,5vw,56px) 0}
+.plan-lede strong{color:var(--ink)}
+.plan-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+
+.plan-form{
+  background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  padding:clamp(24px,3vw,40px);box-shadow:var(--shadow-lift);
+}
+.field{margin-bottom:24px;border:none;padding:0}
+.field > label,.field > legend{
+  display:block;font-size:14px;font-weight:600;color:var(--ink);
+  margin-bottom:9px;letter-spacing:.04em;
+}
+.field input[type="date"],.field textarea{
+  width:100%;font-family:var(--f-sans);font-size:15px;color:var(--ink);
+  background:#FFFDF8;border:1px solid var(--line);border-radius:4px;
+  padding:13px 14px;min-height:48px;
+  transition:border-color .28s var(--ease),box-shadow .28s var(--ease);
+}
+.field textarea{resize:vertical;line-height:1.6}
+.field input[type="date"]:hover,.field textarea:hover{border-color:var(--ink-2)}
+.field input[type="date"]:focus,.field textarea:focus{
+  outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(169,97,31,.22);
+}
+.field input[aria-invalid="true"]{border-color:#A33A1E;background:#FDF4EF}
+
+.radio-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.radio-card{
+  display:flex;align-items:center;gap:11px;cursor:pointer;
+  border:1px solid var(--line);border-radius:4px;background:#FFFDF8;
+  padding:14px;min-height:64px;
+  transition:border-color .3s var(--ease),background .3s var(--ease),transform .3s var(--ease);
+}
+.radio-card:hover{border-color:var(--ink-2);transform:translateY(-2px)}
+.radio-card input{accent-color:var(--ink);width:17px;height:17px;flex:none;margin:0}
+.radio-card:has(input:checked){border-color:var(--ink);background:#F1EEE3;box-shadow:inset 0 0 0 1px var(--ink)}
+.rc-body{display:flex;flex-direction:column;gap:3px}
+.rc-name{font-family:var(--f-serif);font-size:16px;font-weight:600;letter-spacing:.06em}
+.rc-meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--ink-muted)}
+
+.form-error{
+  display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.55;
+  background:#FBF0E6;border:1px solid #D8A87C;border-left:3px solid #A33A1E;
+  color:#7A2E11;border-radius:4px;padding:13px 15px;margin:0 0 20px;
+  animation:fadeSwap .34s var(--ease) both;
+}
+.form-error strong{font-weight:600}
+.form-error[hidden]{display:none}
+.form-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.btn-ghost{
+  font-family:var(--f-sans);font-size:14.5px;color:var(--ink);
+  background:transparent;border:1px solid var(--line);border-radius:4px;
+  padding:13px 24px;min-height:48px;cursor:pointer;
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(23,51,0,.05)}
+.btn-quiet{
+  font-family:var(--f-sans);font-size:14px;color:var(--accent);
+  background:none;border:none;border-bottom:1px solid var(--accent);
+  padding:10px 2px;min-height:44px;cursor:pointer;
+}
+.btn-quiet:hover{color:var(--ink);border-color:var(--ink)}
+.form-legal{font-size:13px;color:var(--ink-muted);margin-top:18px;line-height:1.6}
+
+.plan-out{
+  background:var(--ink);color:#EDE7D9;border-radius:6px;
+  padding:clamp(24px,3vw,40px);position:sticky;top:88px;
+}
+.plan-out h3{
+  font-family:var(--f-serif);font-size:20px;font-weight:600;letter-spacing:.08em;
+  color:#F4EFE6;margin-bottom:22px;
+}
+.out-empty{border-top:1px solid rgba(244,239,230,.2);padding-top:24px}
+.oe-line{font-family:var(--f-serif);font-size:19px;line-height:1.6;color:#DCD4C2;letter-spacing:.03em}
+.oe-sub{font-size:14px;color:#A8B098;margin:12px 0 20px;line-height:1.6}
+.out-list{margin:0;border-top:1px solid rgba(244,239,230,.22)}
+.out-list > div{
+  display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid rgba(244,239,230,.14);
+}
+.out-list dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:#A0AA92;flex:none}
+.out-list dd{margin:0;font-size:15.5px;color:#F4EFE6;text-align:right;font-weight:500}
+.out-note{
+  font-size:14px;line-height:1.7;color:#C3CBB2;margin-top:20px;
+  border-left:2px solid var(--accent-warm);padding-left:14px;
+}
+.out-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:26px}
+.plan-out .btn-ghost{color:#EDE7D9;border-color:rgba(244,239,230,.32)}
+.plan-out .btn-ghost:hover{border-color:#EDE7D9;background:rgba(244,239,230,.1)}
+.plan-out .btn-quiet{color:var(--accent-warm);border-color:rgba(233,180,115,.55)}
+.plan-out .btn-quiet:hover{color:#F4EFE6;border-color:#F4EFE6}
+.copy-status{font-size:13px;color:#A8B098;margin-top:14px;min-height:18px}
+
+/* ── 页脚 ── */
+.site-foot{
+  padding:clamp(44px,6vw,84px) clamp(20px,7vw,120px) clamp(32px,4vw,56px);
+  border-top:1px solid var(--line);display:grid;
+  grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,56px);align-items:start;
+}
+.fb-cn{font-family:var(--f-serif);font-size:30px;letter-spacing:.14em;font-weight:600}
+.fb-latin{font-family:var(--f-mono);font-size:11px;letter-spacing:.3em;color:var(--ink-muted);margin-top:4px}
+.foot-note{font-size:13.5px;line-height:1.75;color:var(--ink-muted);max-width:52em}
+.foot-note strong{color:var(--ink-2)}
+.foot-meta{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;color:var(--ink-muted);white-space:nowrap}
+
+/* ── 修改提示：底部原位轻条 ── */
+.dlg{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;
+  padding:16px clamp(16px,4vw,40px);
+  display:flex;justify-content:center;
+  animation:rise .42s var(--ease) both;
+}
+.dlg[hidden]{display:none}
+.dlg-panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 -8px 40px -12px rgba(23,51,0,.28);
+  padding:20px 24px;max-width:640px;width:100%;
+  display:flex;gap:20px;align-items:center;flex-wrap:wrap;
+}
+.dlg-panel h3{font-size:16px;font-weight:600;margin-bottom:4px}
+.dlg-panel p{font-size:14px;color:var(--ink-2);line-height:1.6;flex:1 1 260px}
+.dlg-panel .btn-primary{padding:12px 22px;min-height:44px;font-size:14px;flex:none}
+
+/* ── 响应式 ── */
+@media (max-width:1080px){
+  .story-grid,.prep-grid,.plan-grid{grid-template-columns:1fr}
+  .story-side,.prep-side{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:28px}
+  .room-figure{position:static}
+  .plan-out{position:static}
+  .site-foot{grid-template-columns:1fr;gap:24px}
+  .foot-meta{white-space:normal}
+}
+@media (max-width:900px){
+  .room-stage{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .site-nav{display:none}
+  .hero{padding-top:8px}
+  .hero-copy{position:static;padding:0 clamp(20px,7vw,120px);max-width:none;margin-top:28px}
+  .mountain{height:clamp(280px,64vw,380px)}
+  .hero-specs{
+    position:static;margin:24px clamp(20px,7vw,120px) 0;
+    flex-wrap:wrap;gap:18px 28px;
+  }
+}
+@media (max-width:600px){
+  .room-tabs{gap:8px}
+  .room-tab{flex:1 1 auto;min-width:0;padding:14px 18px}
+  .radio-row{grid-template-columns:1fr}
+  .room-facts{grid-template-columns:1fr}
+  .timeline li{grid-template-columns:1fr;gap:8px}
+  .tl-time{padding-top:0}
+  .head-cta{padding:12px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+
+/* Independent QA: honor hidden for flex/grid and SVG states. */
+[hidden]{display:none !important}
+</style></head><body><!-- muse:allow pure-black: 山景插画最远层山脊与屋舍暗窗使用近纯黑墨色 #0B1208，作为整幅插画最深色阶，是本作品图形语言的最深一档；界面文字不使用该色 -->
+<div class="grain-layer" aria-hidden="true"></div>
+
+<a class="skip-link" href="#rooms">跳到房型</a>
+
+<header class="site-head">
+  <a class="brand" href="#top">
+    <span class="brand-cn">栖迟</span>
+    <span class="brand-latin">QICHI</span>
+  </a>
+  <nav class="site-nav" aria-label="页面导航">
+    <a href="#story">旅宿故事</a>
+    <a href="#rooms">两种房型</a>
+    <a href="#day">山间日程</a>
+    <a href="#prepare">到访准备</a>
+  </nav>
+  <a class="head-cta" href="#rooms">探索房间</a>
+</header>
+
+<main id="top">
+
+  <!-- ══════════ 首屏：山景长幅 ══════════ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-figure">
+      <svg class="mountain" viewBox="0 0 1440 620" preserveAspectRatio="xMidYMid slice"
+           role="img" aria-labelledby="mtn-title mtn-desc">
+        <title id="mtn-title">栖迟山景</title>
+        <desc id="mtn-desc">五层山脊自远及近叠起。山腰一栋极简屋舍嵌在第二与第三层山脊之间，两个窗洞：右窗亮着暖光，左窗暗着。层与层之间留出柔和的雾化带。</desc>
+
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#EFE7D7"/>
+            <stop offset="62%" stop-color="#F4EFE6"/>
+            <stop offset="100%" stop-color="#F2ECDF"/>
+          </linearGradient>
+          <linearGradient id="r5" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B8BFA6"/><stop offset="100%" stop-color="#CBCDB6"/>
+          </linearGradient>
+          <linearGradient id="r4" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#8B977A"/><stop offset="100%" stop-color="#A4AC8C"/>
+          </linearGradient>
+          <linearGradient id="r3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5A6C4E"/><stop offset="100%" stop-color="#75835F"/>
+          </linearGradient>
+          <linearGradient id="r2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2F3F29"/><stop offset="100%" stop-color="#45553A"/>
+          </linearGradient>
+          <linearGradient id="r1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#16220F"/><stop offset="100%" stop-color="#2A3620"/>
+          </linearGradient>
+
+          <!-- 雾：两端全透明，中间柔和，避免形成水平硬边 -->
+          <linearGradient id="mistSoft" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F4EFE6" stop-opacity="0"/>
+            <stop offset="42%" stop-color="#F4EFE6" stop-opacity=".5"/>
+            <stop offset="72%" stop-color="#F4EFE6" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#F4EFE6" stop-opacity="0"/>
+          </linearGradient>
+
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F0C08A" stop-opacity=".95"/>
+            <stop offset="60%" stop-color="#D89B5C" stop-opacity=".35"/>
+            <stop offset="100%" stop-color="#D89B5C" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <rect width="1440" height="620" fill="url(#sky)"/>
+        <circle cx="1150" cy="142" r="112" fill="url(#glow)" opacity=".48"/>
+
+        <!-- 5 最远 -->
+        <path fill="url(#r5)" d="M0 292 L120 238 L236 284 L340 218 L452 280 L566 228 L680 288 L800 232 L910 284 L1030 226 L1150 282 L1268 236 L1440 294 L1440 620 L0 620 Z"/>
+        <rect x="0" y="272" width="1440" height="56" fill="url(#mistSoft)" opacity=".55"/>
+        <!-- 4 -->
+        <path fill="url(#r4)" d="M0 352 L110 308 L226 356 L330 286 L444 348 L548 302 L664 358 L778 298 L896 352 L1006 308 L1122 358 L1244 304 L1360 350 L1440 322 L1440 620 L0 620 Z"/>
+        <rect x="0" y="334" width="1440" height="54" fill="url(#mistSoft)" opacity=".5"/>
+        <!-- 3 -->
+        <path fill="url(#r3)" d="M0 412 L96 378 L206 426 L318 364 L430 422 L540 380 L648 430 L760 376 L872 426 L982 382 L1092 430 L1206 378 L1320 424 L1440 386 L1440 620 L0 620 Z"/>
+        <rect x="0" y="396" width="1440" height="48" fill="url(#mistSoft)" opacity=".42"/>
+
+        <!-- 2 屋舍座落层 -->
+        <path fill="url(#r2)" d="M0 462 L104 430 L212 466 L316 424 L424 468 L520 436 L640 472 L744 438 L860 470 L960 440 L1064 474 L1170 436 L1280 466 L1440 432 L1440 620 L0 620 Z"/>
+
+        <!-- ── 屋舍：山腰之中，嵌在第二与第三层山脊之间 ── -->
+        <g class="house" id="house">
+          <circle cx="736" cy="432" r="38" fill="url(#glow)" opacity=".85"/>
+          <path d="M684 382 L772 362 L860 382 L860 458 L684 458 Z" fill="#222C1A"/>
+          <path d="M674 383 L772 358 L870 383 L870 393 L772 369 L674 393 Z" fill="#0B1208"/>
+          <rect x="674" y="452" width="196" height="14" fill="#0B1208" opacity=".92"/>
+          <!-- 窗洞 A：亮 -->
+          <rect id="winA" x="704" y="402" width="50" height="36" rx="1" fill="#E9B473"/>
+          <rect x="704" y="402" width="50" height="36" rx="1" fill="none" stroke="#0B1208" stroke-width="2"/>
+          <line x1="729" y1="402" x2="729" y2="438" stroke="#0B1208" stroke-width="2"/>
+          <!-- 窗洞 B：暗 -->
+          <rect id="winB" x="782" y="402" width="56" height="36" rx="1" fill="#0B1208"/>
+          <rect x="782" y="402" width="56" height="36" rx="1" fill="none" stroke="#0B1208" stroke-width="2"/>
+          <line x1="810" y1="402" x2="810" y2="438" stroke="#313D28" stroke-width="2"/>
+          <rect x="722" y="468" width="112" height="4" fill="#0B1208" opacity=".62"/>
+        </g>
+
+        <!-- 屋舍之后一条极薄的雾 -->
+        <rect x="0" y="452" width="1440" height="34" fill="url(#mistSoft)" opacity=".4"/>
+
+        <!-- 1 最近 -->
+        <path fill="url(#r1)" d="M0 532 L128 504 L246 536 L372 500 L498 538 L600 514 L700 546 L812 512 L930 544 L1046 508 L1160 540 L1284 506 L1400 536 L1440 522 L1440 620 L0 620 Z"/>
+      </svg>
+
+      <!-- 错位文字：压在左侧留白山谷 -->
+      <div class="hero-copy">
+        <p class="eyebrow">概念样板 · 虚构旅宿</p>
+        <h1 id="hero-title">
+          <span class="l1">栖迟</span>
+          <span class="l2">住进山的留白</span>
+        </h1>
+        <p class="hero-lede">周末两天，两个人。这里没有需要打卡的景观，只有一段被允许一直空着的时间。</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#rooms">探索房间</a>
+          <a class="link-quiet" href="#story">先读旅宿故事</a>
+        </div>
+      </div>
+
+      <dl class="hero-specs" aria-label="旅宿概要">
+        <div><dt>海拔</dt><dd>约 1,180 m</dd></div>
+        <div><dt>客房</dt><dd>仅两间</dd></div>
+        <div><dt>接驳</dt><dd>山脚起 25 分钟</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ══════════ 旅宿故事 ══════════ -->
+  <section class="section" id="story" aria-labelledby="story-title">
+    <div class="sec-head">
+      <p class="sec-index">01</p>
+      <h2 id="story-title">我们把房子，<br>盖在了山的停顿里</h2>
+    </div>
+
+    <div class="story-grid">
+      <div class="story-body">
+        <p>选址的时候我们绕了很久。山南的坡地处处都好，开阔、向阳、视线无遮挡——正因如此，它们都让人急着往外看。</p>
+        <p>最后停在北侧一处凹地：两重山脊在这里一前一后错开，房子贴着第二重山腰横过来，两侧山体几乎与屋檐齐平。从大多数角度看过去，它不像被放置在山里，更像山本来就在那里留了一个缺口。</p>
+        <p>于是整栋房子只做一件事——把<strong>窗洞</strong>对准谷底的那片雾。两间客房各有一扇宽窗，窗台齐坐高，坐下时视线刚好被山脊托住。我们不装遮光帘，因为清晨的雾就是这间房真正的陈设。</p>
+        <p class="story-note">关于「留白」：开业至今我们没有添置任何新的室内装饰。每一次想加东西，我们都先问——它是让这里更满，还是更静？</p>
+      </div>
+
+      <aside class="story-side" aria-labelledby="side-title">
+        <h3 id="side-title">我们刻意没做的事</h3>
+        <ul class="bare-list">
+          <li><span class="mk" aria-hidden="true">—</span>不做大堂酒廊与背景音乐</li>
+          <li><span class="mk" aria-hidden="true">—</span>不做电视、不做智能音箱</li>
+          <li><span class="mk" aria-hidden="true">—</span>不做叫醒服务与行程打包</li>
+          <li><span class="mk" aria-hidden="true">—</span>不做二十四小时前台</li>
+        </ul>
+        <p class="side-foot">需要人时，山脚的值守电话随时能打通。</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ══════════ 两种房型 ══════════ -->
+  <section class="section section-rooms" id="rooms" aria-labelledby="rooms-title" tabindex="-1">
+    <div class="sec-head">
+      <p class="sec-index">02</p>
+      <h2 id="rooms-title">两种房型，<br>各自对着一处山</h2>
+    </div>
+
+    <div class="room-tabs" role="tablist" aria-label="选择房型">
+      <button class="room-tab is-on" role="tab" id="tab-yun" aria-selected="true" aria-controls="panel-yun" data-room="yun" type="button">
+        <span class="tab-cn">望云</span><span class="tab-meta">谷侧 · 宽窗</span>
+      </button>
+      <button class="room-tab" role="tab" id="tab-song" aria-selected="false" aria-controls="panel-song" data-room="song" tabindex="-1" type="button">
+        <span class="tab-cn">听松</span><span class="tab-meta">林侧 · 转角窗</span>
+      </button>
+    </div>
+
+    <div class="room-stage">
+      <div class="room-figure">
+        <svg class="room-scene" viewBox="0 0 720 480" preserveAspectRatio="xMidYMid meet"
+             role="img" aria-labelledby="rm-title rm-desc" id="roomScene">
+          <title id="rm-title">望云 · 谷侧宽窗示意</title>
+          <desc id="rm-desc">随所选房型变化的窗洞示意：望云为谷侧宽窗，正对谷底雾带；听松为林侧转角窗，两面开窗外接松林近景。</desc>
+          <rect width="720" height="480" fill="#EFE7D6"/>
+          <rect x="0" y="396" width="720" height="84" fill="#DCCFB8"/>
+
+          <path fill="#F8F4EA" d="M104 72 L560 72 L560 344 L104 344 Z"/>
+
+          <g id="viewYun">
+            <path fill="#9CA68C" d="M104 250 L196 208 L280 252 L372 196 L462 248 L560 206 L560 344 L104 344 Z"/>
+            <rect x="104" y="244" width="456" height="44" fill="#F3EDE0" opacity=".9"/>
+            <path fill="#5C6C52" d="M104 300 L212 274 L316 304 L420 272 L528 302 L560 288 L560 344 L104 344 Z"/>
+            <rect x="104" y="294" width="456" height="34" fill="#F3EDE0" opacity=".66"/>
+            <path fill="#2F3F29" d="M104 330 L244 314 L384 336 L520 312 L560 324 L560 344 L104 344 Z"/>
+          </g>
+
+          <g id="viewSong" hidden>
+            <path fill="#8B9779" d="M104 300 L560 300 L560 344 L104 344 Z"/>
+            <rect x="104" y="250" width="456" height="42" fill="#F3EDE0" opacity=".8"/>
+            <g fill="#36452E">
+              <path d="M168 344 L196 200 L224 344 Z"/>
+              <path d="M262 344 L288 178 L314 344 Z"/>
+              <path d="M356 344 L382 214 L408 344 Z"/>
+              <path d="M446 344 L474 190 L502 344 Z"/>
+            </g>
+            <g fill="#1B2517">
+              <path d="M126 344 L150 236 L174 344 Z"/>
+              <path d="M520 344 L544 226 L568 344 Z"/>
+            </g>
+          </g>
+
+          <path fill="none" stroke="#1B2416" stroke-width="9" d="M104 72 L560 72 L560 344 L104 344 Z"/>
+          <line id="mullion" x1="332" y1="72" x2="332" y2="344" stroke="#1B2416" stroke-width="6"/>
+          <path id="mullion2" d="M560 72 L680 72 L680 344 L560 344" fill="none" stroke="#1B2416" stroke-width="9" opacity="0"/>
+          <line id="mullion2b" x1="620" y1="72" x2="620" y2="344" stroke="#1B2416" stroke-width="6" opacity="0"/>
+
+          <rect x="88" y="344" width="500" height="14" fill="#C9B896"/>
+          <path d="M112 358 L424 358 L410 400 L126 400 Z" fill="#B5713C" opacity=".82"/>
+          <ellipse cx="268" cy="386" rx="86" ry="12" fill="#8F5729" opacity=".25"/>
+          <line x1="618" y1="352" x2="618" y2="452" stroke="#5A4B38" stroke-width="4"/>
+          <path d="M586 352 L650 352 L638 322 L598 322 Z" fill="#E9B473"/>
+          <ellipse cx="618" cy="452" rx="34" ry="6" fill="#5A4B38" opacity=".3"/>
+        </svg>
+        <p class="fig-cap" id="figCap">望云 · 谷侧宽窗，视线正对谷底雾带</p>
+      </div>
+
+      <div class="room-info">
+        <div class="room-panels">
+          <div class="room-panel is-on" id="panel-yun" role="tabpanel" aria-labelledby="tab-yun" tabindex="0">
+            <h3>望云</h3>
+            <p class="room-kicker">谷侧 · 一张让人不想起身的窗台</p>
+            <p class="room-desc">窗洞朝西偏南，正对谷底那条每天清晨自下往上爬的雾带。房间把大部分面积都让给了窗前的平台——如果你整天躺在这里什么也不做，那是这间房的正确用法。</p>
+            <dl class="room-facts">
+              <div><dt>面积</dt><dd>约 42 m²</dd></div>
+              <div><dt>床型</dt><dd>1.8 m 大床 · 双人</dd></div>
+              <div><dt>朝向</dt><dd>西偏南 · 谷侧</dd></div>
+              <div><dt>最多入住</dt><dd>2 位成人</dd></div>
+            </dl>
+            <h4 class="amen-title">房内设施</h4>
+            <ul class="amen">
+              <li>坐高窗台 · 可卧可坐</li>
+              <li>地暖 + 铸铁炉（自添柴）</li>
+              <li>手冲器具与本地烘焙豆</li>
+              <li>山泉泡池（半露天）</li>
+              <li>纸质地图、无信号时段提示卡</li>
+            </ul>
+          </div>
+
+          <div class="room-panel" id="panel-song" role="tabpanel" aria-labelledby="tab-song" tabindex="0" hidden>
+            <h3>听松</h3>
+            <p class="room-kicker">林侧 · 一间只有松声的房间</p>
+            <p class="room-desc">转角窗包住西北两面，正对一片成年马尾松。风起时整面窗都在响，所以这间房不放音响——窗外那层声音已经够用了。</p>
+            <dl class="room-facts">
+              <div><dt>面积</dt><dd>约 36 m²</dd></div>
+              <div><dt>床型</dt><dd>1.5 m 大床 · 双人</dd></div>
+              <div><dt>朝向</dt><dd>西北转角 · 林侧</dd></div>
+              <div><dt>最多入住</dt><dd>2 位成人</dd></div>
+            </dl>
+            <h4 class="amen-title">房内设施</h4>
+            <ul class="amen">
+              <li>两面转角窗 · 松林包围</li>
+              <li>可开合天窗 · 卧床看星</li>
+              <li>地暖 + 羊毛毯</li>
+              <li>山泉泡池（半露天）</li>
+              <li>窗前长桌 · 适合写字</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="room-note">两间房均不设电视与智能音箱。示例为概念描述，不代表可预订状态。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 山间日程 ══════════ -->
+  <section class="section section-day" id="day" aria-labelledby="day-title">
+    <div class="sec-head">
+      <p class="sec-index">03</p>
+      <h2 id="day-title">山间的一天，<br>没有安排表</h2>
+    </div>
+    <p class="day-lede">下面只是这里的<strong>通常样子</strong>，不是流程。你随时可以把它全部跳过去——包括这一页。</p>
+
+    <ol class="timeline">
+      <li>
+        <p class="tl-time">05:40</p>
+        <div class="tl-body">
+          <h3>雾从谷底上来</h3>
+          <p>谷侧房间的宽窗会自动变成一幅画。若你在此时醒来，坐起来就够了，不必出门。</p>
+        </div>
+      </li>
+      <li>
+        <p class="tl-time">08:30</p>
+        <div class="tl-body">
+          <h3>早食送到门口</h3>
+          <p>粥、本地豆腐、一碟腌笋，放在竹篮里。不打铃，不放桌上，什么时候拿由你决定。</p>
+        </div>
+      </li>
+      <li>
+        <p class="tl-time">11:00</p>
+        <div class="tl-body">
+          <h3>沿水声走一段</h3>
+          <p>屋后小径顺溪向下，约四十分钟到一处石滩。这条路没有标识牌，也没有终点。</p>
+        </div>
+      </li>
+      <li>
+        <p class="tl-time">15:00</p>
+        <div class="tl-body">
+          <h3>泡池与发呆</h3>
+          <p>半露天泡池水温常年保持在 39℃ 上下。下午的风穿过林子，水汽会散得很快。</p>
+        </div>
+      </li>
+      <li>
+        <p class="tl-time">19:20</p>
+        <div class="tl-body">
+          <h3>日落后二十分钟</h3>
+          <p>山脊线会先暗下去，天空还亮着。这个色差是这里最好的一段，值得停下手里的东西看它。</p>
+        </div>
+      </li>
+      <li>
+        <p class="tl-time">21:00</p>
+        <div class="tl-body">
+          <h3>屋里只留一盏灯</h3>
+          <p>没有电视，也没有背景音乐。炉火、书、和一个人说话——今晚大概只有这些。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ══════════ 到访准备 ══════════ -->
+  <section class="section section-prepare" id="prepare" aria-labelledby="prep-title">
+    <div class="sec-head">
+      <p class="sec-index">04</p>
+      <h2 id="prep-title">到访前，<br>请先读这几行</h2>
+    </div>
+
+    <div class="prep-grid">
+      <div class="prep-main">
+        <details class="prep-item" open>
+          <summary>怎么到</summary>
+          <div class="prep-body">
+            <p>山脚有一处会合点，我们把车停在那里，用四驱接驳上山，约 25 分钟。</p>
+            <p class="prep-warn">最后一段是单向碎石路，低底盘车辆无法通行，请勿自驾上山。</p>
+          </div>
+        </details>
+        <details class="prep-item">
+          <summary>带什么</summary>
+          <div class="prep-body">
+            <p>保暖外套、防滑鞋、个人药品，就这些。房间里没有需要着装规矩的场合。</p>
+            <p>山上白天 10–16℃，夜里可能降到 4℃ 以下，即使初夏也要带一件厚的。</p>
+          </div>
+        </details>
+        <details class="prep-item">
+          <summary>信号与电</summary>
+          <div class="prep-body">
+            <p>客房内无手机信号，公共平台有一处微弱覆盖。屋内插座齐备，可供笔记本与相机充电。</p>
+            <p>没有 Wi-Fi。若你必须处理工作，我们建议你改期再来。</p>
+          </div>
+        </details>
+        <details class="prep-item">
+          <summary>关于孩子与宠物</summary>
+          <div class="prep-body">
+            <p>房屋临崖且泡池无围栏，暂不接待 12 岁以下儿童。</p>
+            <p>宠物可携带，需自备垫具，泡池区域不可进入。</p>
+          </div>
+        </details>
+        <details class="prep-item">
+          <summary>取消与改期</summary>
+          <div class="prep-body">
+            <p>山上的天气变化快，我们理解临时改变主意。到访前七天可免费改期一次。</p>
+            <p class="prep-warn">本页为概念示例，以上政策不代表任何真实业务的承诺。</p>
+          </div>
+        </details>
+      </div>
+
+      <aside class="prep-side" aria-labelledby="prep-side-title">
+        <h3 id="prep-side-title">三项你会用到的事</h3>
+        <div class="side-fact">
+          <p class="sf-num">25<span>分钟</span></p>
+          <p class="sf-lab">山脚到屋里的接驳车程</p>
+        </div>
+        <div class="side-fact">
+          <p class="sf-num">2<span>位</span></p>
+          <p class="sf-lab">每间房最多接待的客人</p>
+        </div>
+        <div class="side-fact">
+          <p class="sf-num">0<span>个</span></p>
+          <p class="sf-lab">页面上可查到的实时空房</p>
+        </div>
+        <p class="side-foot">页面不显示房态。请直接与我们通信确认。</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ══════════ 行程意向 ══════════ -->
+  <section class="section section-plan" id="plan" aria-labelledby="plan-title">
+    <div class="sec-head">
+      <p class="sec-index">05</p>
+      <h2 id="plan-title">留一个日子，<br>剩下的我们通信</h2>
+    </div>
+    <p class="plan-lede">这里不是预订系统。填完只会生成一段<strong>本地行程意向</strong>，留在你的浏览器里，可以自己复制发给我们。</p>
+
+    <div class="plan-grid">
+      <form class="plan-form" id="planForm" novalidate>
+        <div class="field">
+          <label for="inDate">入住日期</label>
+          <input type="date" id="inDate" name="inDate" required>
+        </div>
+        <div class="field">
+          <label for="outDate">离店日期</label>
+          <input type="date" id="outDate" name="outDate" required>
+        </div>
+
+        <fieldset class="field">
+          <legend>想住哪一间</legend>
+          <div class="radio-row">
+            <label class="radio-card" for="pickYun">
+              <input type="radio" id="pickYun" name="roomPick" value="望云" checked>
+              <span class="rc-body"><span class="rc-name">望云</span><span class="rc-meta">谷侧宽窗 · 42 m²</span></span>
+            </label>
+            <label class="radio-card" for="pickSong">
+              <input type="radio" id="pickSong" name="roomPick" value="听松">
+              <span class="rc-body"><span class="rc-name">听松</span><span class="rc-meta">林侧转角窗 · 36 m²</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="planNote">想提前告诉我们的（可留空）</label>
+          <textarea id="planNote" name="planNote" rows="3" placeholder="例如：素食、晚到、想安静些"></textarea>
+        </div>
+
+        <p class="form-error" id="formError" role="alert" hidden></p>
+
+        <div class="form-actions">
+          <button class="btn-primary" type="button" id="planGenerate">生成行程意向</button>
+          <button class="btn-ghost" type="reset" id="resetBtn">清空</button>
+        </div>
+        <p class="form-legal">不会提交任何数据，也不会锁定房间。这是一个概念示例。</p>
+      </form>
+
+      <aside class="plan-out" id="planOut" aria-labelledby="outTitle">
+        <h3 id="outTitle">你的行程意向</h3>
+        <div id="outEmpty" class="out-empty">
+          <p class="oe-line">山里的空位，还没有被写上一笔。</p>
+          <p class="oe-sub">选好日期与房型后，点左边按钮生成。</p>
+          <button class="btn-quiet" type="button" id="fillDemo">用一组示例日期试一下</button>
+        </div>
+        <div id="outFilled" hidden>
+          <dl class="out-list" id="outList"></dl>
+          <p class="out-note" id="outNote"></p>
+          <div class="out-actions">
+            <button class="btn-ghost" type="button" id="copyBtn">复制这段意向</button>
+            <button class="btn-quiet" type="button" id="editBtn">回到表单修改</button>
+          </div>
+          <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-brand">
+    <p class="fb-cn">栖迟</p>
+    <p class="fb-latin">QICHI</p>
+  </div>
+  <p class="foot-note">栖迟是一处<strong>虚构的山居旅宿</strong>，本页由 Muse 设计为概念样板作品。页面上的故事、房型、日程与政策均为概念描述；未使用真实地址、评价、奖项、房态或客户数据，也不构成任何服务承诺。</p>
+  <p class="foot-meta">样板 · 由 Muse 6.0 设计 · 可自由取用与改编</p>
+</footer>
+
+<div class="dlg" id="editDlg" hidden>
+  <div class="dlg-panel" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <h3 id="dlgTitle">回到表单修改</h3>
+    <p>你的输入仍在上面表单里，直接改动后再生成一次即可。已经生成的意向会随之更新。</p>
+    <button class="btn-primary" type="button" id="dlgClose">好，去修改</button>
+  </div>
+</div>
+<script>/* 栖迟 QICHI —— 交互层
+   1) 房型切换：联动窗洞图形 / 转角竖框 / 设施清单 / 图注（平滑流变，非直接换图）
+   2) 日期约束与校验：离店必须晚于入住，错误出现在表单旁
+   3) 本地行程意向摘要：仅在内存中生成，不上传、不写入 localStorage
+*/
+(function () {
+  'use strict';
+
+  var MS_DAY = 86400000;
+
+  /* ─────────────── 工具 ─────────────── */
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+  function toISO(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function addDays(iso, n) {
+    var p = iso.split('-');
+    var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    d.setDate(d.getDate() + n);
+    return toISO(d);
+  }
+  function todayISO() {
+    var d = new Date();
+    return toISO(new Date(d.getFullYear(), d.getMonth(), d.getDate()));
+  }
+  function pretty(iso) {
+    if (!iso) { return '—'; }
+    var p = iso.split('-');
+    return Number(p[1]) + ' 月 ' + Number(p[2]) + ' 日';
+  }
+  function nights(a, b) {
+    if (!a || !b) { return 0; }
+    return Math.round((new Date(b) - new Date(a)) / MS_DAY);
+  }
+
+  /* ─────────────── 1. 房型切换 ─────────────── */
+  var roomData = {
+    yun: {
+      cap: '望云 · 谷侧宽窗，视线正对谷底雾带',
+      headTitle: '望云 · 谷侧宽窗示意',
+      desc: '随所选房型变化的窗洞示意：望云为谷侧宽窗，正对谷底雾带；听松为林侧转角窗，两面开窗外接松林近景。',
+      corner: false
+    },
+    song: {
+      cap: '听松 · 林侧转角窗，两面被松林包围',
+      headTitle: '听松 · 林侧转角窗示意',
+      desc: '随所选房型变化的窗洞示意：听松为林侧转角窗，西北两面开窗，窗外为松林近景。',
+      corner: true
+    }
+  };
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.room-tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.room-panel'));
+  var viewYun = document.getElementById('viewYun');
+  var viewSong = document.getElementById('viewSong');
+  var figCap = document.getElementById('figCap');
+  var rmTitle = document.getElementById('rm-title');
+  var rmDesc = document.getElementById('rm-desc');
+  var mullion2 = document.getElementById('mullion2');
+  var mullion2b = document.getElementById('mullion2b');
+  var planOut = document.getElementById('planOut');
+
+  function selectRoom(key, focusTab) {
+    var data = roomData[key];
+    if (!data || !viewYun || !viewSong) { return; }
+
+    tabs.forEach(function (tab) {
+      var on = tab.getAttribute('data-room') === key;
+      tab.classList.toggle('is-on', on);
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focusTab) { tab.focus(); }
+    });
+
+    panels.forEach(function (panel) {
+      var on = panel.id === 'panel-' + key;
+      panel.hidden = !on;
+      if (on) {
+        panel.classList.remove('fade');
+        void panel.offsetWidth; /* 触发重排以重播切换动效 */
+        panel.classList.add('fade');
+      }
+    });
+
+    /* 图形联动：窗外景别 + 转角窗竖框 */
+    viewYun.toggleAttribute('hidden', key !== 'yun');
+    viewSong.toggleAttribute('hidden', key !== 'song');
+    if (mullion2) { mullion2.setAttribute('opacity', data.corner ? '1' : '0'); }
+    if (mullion2b) { mullion2b.setAttribute('opacity', data.corner ? '1' : '0'); }
+
+    if (figCap) { figCap.textContent = data.cap; }
+    if (rmTitle) { rmTitle.textContent = data.headTitle; }
+    if (rmDesc) { rmDesc.textContent = data.desc; }
+
+    /* 表单房型同步，减少重复输入 */
+    var pick = document.getElementById(key === 'yun' ? 'pickYun' : 'pickSong');
+    if (pick) { pick.checked = true; }
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      selectRoom(tab.getAttribute('data-room'), false);
+    });
+    tab.addEventListener('keydown', function (e) {
+      var i = tabs.indexOf(tab);
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { next = tabs[(i + 1) % tabs.length]; }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { next = tabs[(i - 1 + tabs.length) % tabs.length]; }
+      if (e.key === 'Home') { next = tabs[0]; }
+      if (e.key === 'End') { next = tabs[tabs.length - 1]; }
+      if (next) {
+        e.preventDefault();
+        selectRoom(next.getAttribute('data-room'), true);
+      }
+    });
+  });
+
+  /* ─────────────── 2. 日期 ─────────────── */
+  var inDate = document.getElementById('inDate');
+  var outDate = document.getElementById('outDate');
+  var form = document.getElementById('planForm');
+  var formError = document.getElementById('formError');
+  var note = document.getElementById('planNote');
+
+  function applyMinDates() {
+    var t = todayISO();
+    inDate.min = t;
+    if (!inDate.value || inDate.value < t) { inDate.value = t; }
+    outDate.min = addDays(inDate.value, 1);
+    if (outDate.value && outDate.value <= inDate.value) {
+      outDate.value = addDays(inDate.value, 1);
+    }
+  }
+
+  function makeStayError() {
+    return '离店日期需要晚于入住日期。现在两个日子相同或颠倒，请把离店改到 '
+      + pretty(addDays(inDate.value, 1)) + ' 或之后。';
+  }
+
+  function showError(msg) {
+    formError.innerHTML = '';
+    var b = document.createElement('strong');
+    b.textContent = '日期还不能成立';
+    var s = document.createElement('span');
+    s.textContent = msg;
+    formError.appendChild(b);
+    formError.appendChild(s);
+    formError.hidden = false;
+    outDate.setAttribute('aria-invalid', 'true');
+  }
+
+  function clearError() {
+    formError.hidden = true;
+    formError.textContent = '';
+    outDate.removeAttribute('aria-invalid');
+  }
+
+  inDate.addEventListener('change', function () {
+    var before = outDate.value;
+    applyMinDates();
+    if (before && before !== outDate.value) {
+      showError('离店日期已自动顺延到 ' + pretty(outDate.value) + '，因为山居至少需要住一晚。');
+      outDate.removeAttribute('aria-invalid');
+    } else {
+      clearError();
+    }
+  });
+
+  outDate.addEventListener('change', function () {
+    if (nights(inDate.value, outDate.value) <= 0) {
+      showError(makeStayError());
+    } else {
+      clearError();
+    }
+  });
+
+  /* ─────────────── 3. 行程意向 ─────────────── */
+  var outEmpty = document.getElementById('outEmpty');
+  var outFilled = document.getElementById('outFilled');
+  var outList = document.getElementById('outList');
+  var outNote = document.getElementById('outNote');
+  var copyStatus = document.getElementById('copyStatus');
+  var copyBtn = document.getElementById('copyBtn');
+
+  function pickedRoom() {
+    var el = form.querySelector('input[name="roomPick"]:checked');
+    return el ? el.value : '望云';
+  }
+
+  function buildRows() {
+    var room = pickedRoom();
+    var n = nights(inDate.value, outDate.value);
+    var rows = [
+      ['入住', pretty(inDate.value) + '（' + inDate.value + '）'],
+      ['离店', pretty(outDate.value) + '（' + outDate.value + '）'],
+      ['停留', n + ' 晚'],
+      ['房型意向', room + (room === '望云' ? ' · 谷侧宽窗' : ' · 林侧转角窗')],
+      ['同行', '2 位成人']
+    ];
+    if (note.value.trim()) {
+      rows.push(['想说的事', note.value.trim()]);
+    }
+    return rows;
+  }
+
+  function renderIntent() {
+    outList.innerHTML = '';
+    buildRows().forEach(function (row) {
+      var wrap = document.createElement('div');
+      var dt = document.createElement('dt');
+      dt.textContent = row[0];
+      var dd = document.createElement('dd');
+      dd.textContent = row[1];
+      wrap.appendChild(dt);
+      wrap.appendChild(dd);
+      outList.appendChild(wrap);
+    });
+
+    var wd = new Date(inDate.value).getDay();
+    var isWeekend = (wd === 5 || wd === 6);
+
+    outNote.textContent = '这是一段留在本页的行程意向，没有提交到任何服务器，也不代表房间已被保留。'
+      + (isWeekend ? '你选的是周末，山里这时通常最安静，也最需要提前通信。' : '工作日上山的人少，屋后的溪声会更清楚。');
+
+    outEmpty.hidden = true;
+    outFilled.hidden = false;
+    copyStatus.textContent = '';
+  }
+
+  document.getElementById('planGenerate').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (!inDate.value) {
+      showError('请先选择入住日期。最早可选的日期是 ' + pretty(todayISO()) + '。');
+      inDate.focus();
+      return;
+    }
+    if (!outDate.value) {
+      showError('请选择离店日期。住一晚的话，建议选 ' + pretty(addDays(inDate.value, 1)) + '。');
+      outDate.focus();
+      return;
+    }
+    if (nights(inDate.value, outDate.value) <= 0) {
+      showError(makeStayError());
+      outDate.focus();
+      return;
+    }
+    clearError();
+    renderIntent();
+    planOut.scrollIntoView({ block: 'nearest' });
+  });
+
+  form.addEventListener('reset', function () {
+    window.setTimeout(function () {
+      outList.innerHTML = '';
+      outFilled.hidden = true;
+      outEmpty.hidden = false;
+      copyStatus.textContent = '';
+      clearError();
+      applyMinDates();
+    }, 0);
+  });
+
+  var fillDemo = document.getElementById('fillDemo');
+  if (fillDemo) {
+    fillDemo.addEventListener('click', function () {
+      var start = addDays(todayISO(), 12);
+      var d = new Date(start);
+      while (d.getDay() !== 5) { d.setDate(d.getDate() + 1); }
+      start = toISO(d);
+      inDate.value = start;
+      outDate.value = addDays(start, 2);
+      applyMinDates();
+      clearError();
+      renderIntent();
+      planOut.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var text = '栖迟 QICHI · 行程意向（概念示例，未提交）\n'
+        + buildRows().map(function (r) { return r[0] + '：' + r[1]; }).join('\n');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          copyStatus.textContent = '已复制。可以直接粘贴到邮件或消息里发给我们。';
+        }, function () {
+          copyStatus.textContent = '浏览器没有允许复制，请手动选中上面的内容。';
+        });
+      } else {
+        copyStatus.textContent = '这个浏览器不支持自动复制，请手动选中上面的内容。';
+      }
+    });
+  }
+
+  /* 修改提示：底部原位轻条，不用遮罩大弹窗 */
+  var editBtn = document.getElementById('editBtn');
+  var editDlg = document.getElementById('editDlg');
+  var dlgClose = document.getElementById('dlgClose');
+  if (editBtn && editDlg) {
+    editBtn.addEventListener('click', function () { editDlg.hidden = false; });
+  }
+  if (dlgClose && editDlg) {
+    dlgClose.addEventListener('click', function () {
+      editDlg.hidden = true;
+      inDate.focus();
+    });
+  }
+
+  /* ─────────────── 初始化 ─────────────── */
+  applyMinDates();
+  selectRoom('yun', false);
+})();
+
+/* Independent QA: Enter submits date inputs without form navigation. */
+document.getElementById("planForm").addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.tagName==="INPUT"){e.preventDefault();document.getElementById("planGenerate").click()}});
+</script></body></html>

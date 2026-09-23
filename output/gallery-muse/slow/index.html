@@ -1,0 +1,1489 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"></head><body><!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>山野之间 · 把日子还给自然</title>
+
+<style>/* ══════════════════════════════════════════════════════════
+   山野之间 · Between the Wild
+   母体：Writer's Atelier（暖燕麦纸底 / 纸白卡片 / 1px 出版栏线 / 宋体长文）
+   有意偏离：强调色由母体琥珀 #E08A3C 改为苔绿 #4A6142（客体为苔与纸），
+             暖琥珀只保留在标本纸的光晕里，不参与 UI 焦点。
+   ══════════════════════════════════════════════════════════ */
+
+:root {
+  --paper:        #EAE6DF;   /* 暖燕麦全屏纸底 */
+  --paper-deep:   #E2DDD4;   /* 次级块底 */
+  --card:         #FCFBF8;   /* 卡片底（避开刺眼死白 #FFF） */
+
+  --ink:          #1F1E1C;   /* 炭墨主字 */
+  --ink-2:        #4A463F;   /* 次级文字 */
+  --ink-3:        #6E6960;   /* 三级线索（已按 AA 对比度校过） */
+
+  --moss:         #4A6142;   /* 唯一的强调色 · 苔绿 */
+  --moss-deep:    #33462E;
+  --moss-tint:    #E7EBE1;
+
+  --line:         1px solid rgba(31, 30, 28, 0.13);
+  --line-soft:    1px solid rgba(31, 30, 28, 0.08);
+  --line-moss:    1px solid rgba(74, 97, 66, 0.34);
+
+  /* 标本纸随时刻变化的六支变量 */
+  --spec-ground:  #E7EADA;
+  --spec-halo:    #F1F3E6;
+  --spec-line:    rgba(74, 97, 66, 0.20);
+  --spec-leaf-a:  #566E4D;
+  --spec-leaf-b:  #3B5942;
+  --spec-leaf-c:  #6B7C50;
+  --spec-ink:     #404B3A;
+
+  --r-card: 8px;
+  --r-tag: 4px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --sans: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", STSong, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+/* 时刻：午 —— 光更直更亮，叶色偏黄 */
+[data-moment="noon"] {
+  --spec-ground: #EDEEE0;
+  --spec-halo:   #F7F8EC;
+  --spec-line:   rgba(74, 97, 66, 0.16);
+  --spec-leaf-a: #6C7D4E;
+  --spec-leaf-b: #54663F;
+  --spec-leaf-c: #88954F;
+  --spec-ink:    #3E4A34;
+}
+/* 时刻：暮 —— 低角暖光，叶色深而冷 */
+[data-moment="dusk"] {
+  --spec-ground: #E4E0D8;
+  --spec-halo:   #EDE9DC;
+  --spec-line:   rgba(60, 74, 60, 0.24);
+  --spec-leaf-a: #3F5340;
+  --spec-leaf-b: #2E4234;
+  --spec-leaf-c: #55613C;
+  --spec-ink:    #333A31;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, p, dl, dd, dt, ol, li, figure, form { margin: 0; padding: 0; }
+ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+::selection { background: #D6DFC0; color: var(--moss-deep); }
+
+.skip {
+  position: absolute;
+  left: 16px; top: 12px;
+  z-index: 40;
+  padding: 10px 16px;
+  background: var(--moss-deep);
+  color: #F3F2EC;
+  font-size: 13px;
+  border-radius: var(--r-tag);
+  transform: translateY(-160%);
+  transition: transform 0.2s var(--ease);
+}
+.skip:focus { transform: translateY(0); }
+
+/* ── 通用排版原子 ───────────────────────────────── */
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.eyebrow--light { color: #B9C6AE; }
+
+.h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.28;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.h2--flow { font-size: 34px; }
+.h2--light { color: #F1F0EA; }
+
+.dot {
+  display: inline-block;
+  width: 3px; height: 3px;
+  margin: 0 10px;
+  vertical-align: 3px;
+  background: var(--ink-3);
+  border-radius: 50%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: var(--r-tag);
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.18s var(--ease), background-color 0.18s var(--ease),
+              border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+.btn--primary { background: var(--moss); color: #F4F5EF; }
+.btn--primary:hover { background: var(--moss-deep); }
+.btn--primary:active { transform: scale(0.98); }
+.btn--primary[disabled] { background: #9DA795; color: #EFEFE9; cursor: not-allowed; transform: none; }
+
+.btn--ghost {
+  background: transparent;
+  border-color: rgba(31, 30, 28, 0.24);
+  color: var(--ink-2);
+}
+.btn--ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--moss);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--moss-deep);
+  transition: gap 0.22s var(--ease), color 0.18s var(--ease);
+}
+.arrow-link:hover { gap: 16px; color: var(--ink); }
+
+/* ── 顶栏 ───────────────────────────────────────── */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(234, 230, 223, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: var(--line);
+}
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 40px;
+}
+.brand { display: flex; flex-direction: column; gap: 2px; }
+.brand__zh {
+  font-family: var(--serif);
+  font-size: 21px;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+}
+.brand__en {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--ink-2);
+  transition: color 0.18s var(--ease);
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%; bottom: 10px;
+  height: 1px;
+  background: var(--moss);
+  transition: right 0.22s var(--ease);
+}
+.nav a:hover { color: var(--ink); }
+.nav a:hover::after { right: 0; }
+.nav__cta { color: var(--moss-deep) !important; font-weight: 600; }
+
+/* ── 01 首屏 ────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 56px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 40px 72px;
+  align-items: start;
+}
+.hero__copy { padding-top: 20px; }
+
+.hero__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 58px;
+  line-height: 1.22;
+  letter-spacing: 0.012em;
+  margin: 26px 0 24px;
+}
+.hero__lede {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink-2);
+  max-width: 32em;
+}
+
+.moment {
+  margin: 36px 0 34px;
+  padding: 20px 0 22px;
+  border-top: var(--line-soft);
+  border-bottom: var(--line-soft);
+}
+.moment__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  margin-bottom: 14px;
+}
+.moment__switch { display: flex; gap: 8px; flex-wrap: wrap; }
+.moment__btn {
+  min-height: 44px;
+  padding: 0 16px;
+  background: transparent;
+  border: 1px solid rgba(31, 30, 28, 0.18);
+  border-radius: var(--r-tag);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.moment__btn:hover { border-color: var(--moss); color: var(--ink); }
+.moment__btn.is-active {
+  background: var(--moss-tint);
+  border-color: var(--moss);
+  color: var(--moss-deep);
+  font-weight: 600;
+}
+.moment__readout {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-3);
+  min-height: 1.7em;
+  transition: opacity 0.24s var(--ease);
+}
+.moment__readout.is-swapping { opacity: 0; }
+
+/* 标本纸 */
+.specimen { position: relative; }
+.specimen__paper {
+  border: var(--line);
+  border-radius: var(--r-card);
+  background: var(--spec-ground);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.04);
+}
+.specimen__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 520 / 660;
+  transition: background-color 0.5s var(--ease);
+}
+.specimen__svg .ground { fill: var(--spec-ground); transition: fill 0.5s var(--ease); }
+.specimen__svg .rules path { fill: none; stroke: var(--spec-line); stroke-width: 1; transition: stroke 0.5s var(--ease); }
+.specimen__svg .halo circle { fill: var(--spec-halo); transition: fill 0.5s var(--ease); }
+
+.specimen__svg .stem { fill: none; stroke: var(--spec-ink); stroke-width: 2.6; stroke-linecap: round; transition: stroke 0.5s var(--ease); }
+.specimen__svg .bud { fill: var(--spec-ink); transition: fill 0.5s var(--ease); }
+.specimen__svg .petiole { fill: none; stroke: var(--spec-ink); stroke-width: 1.9; stroke-linecap: round; transition: stroke 0.5s var(--ease); }
+.specimen__svg .lamina { transition: fill 0.5s var(--ease); }
+.specimen__svg .vein { fill: none; stroke: var(--spec-leaf-c); stroke-width: 1.2; opacity: 0.5; transition: stroke 0.5s var(--ease); }
+
+.specimen__svg .leaf--1 .lamina, .specimen__svg .leaf--5 .lamina, .specimen__svg .leaf--7 .lamina { fill: var(--spec-leaf-a); }
+.specimen__svg .leaf--2 .lamina, .specimen__svg .leaf--6 .lamina { fill: var(--spec-leaf-b); }
+.specimen__svg .leaf--3 .lamina, .specimen__svg .leaf--4 .lamina { fill: var(--spec-leaf-c); }
+
+.specimen__svg .label__rule { fill: none; stroke: var(--spec-ink); stroke-width: 1; opacity: 0.5; transition: stroke 0.5s var(--ease); }
+.specimen__svg .label__latin {
+  font-family: Georgia, "Songti SC", serif;
+  font-style: italic;
+  font-size: 20px;
+  fill: var(--spec-ink);
+  transition: fill 0.5s var(--ease);
+}
+.specimen__svg .label__meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  fill: var(--spec-ink);
+  opacity: 0.85;
+  transition: fill 0.5s var(--ease);
+}
+.specimen__svg .scale path {
+  fill: none;
+  stroke: var(--spec-ink);
+  stroke-width: 1;
+  opacity: 0.55;
+  transition: stroke 0.5s var(--ease);
+}
+.specimen__svg .scale__text {
+  fill: var(--spec-ink);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+  transition: fill 0.5s var(--ease);
+}
+
+.specimen__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: var(--line-soft);
+}
+.specimen__caption-main { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+.specimen__caption-sub { font-size: 12px; color: var(--ink-3); }
+
+/* ── 02 品牌故事 ────────────────────────────────── */
+.story {
+  background: var(--paper-deep);
+  border-top: var(--line);
+  border-bottom: var(--line);
+  padding: 80px 40px 88px;
+}
+.story__eyebrow,
+.story__grid {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.story__grid {
+  display: grid;
+  grid-template-columns: 4fr 7fr;
+  gap: 64px;
+  margin-top: 28px;
+}
+.story__aside .h2 { margin-bottom: 32px; }
+
+.ledger { border-top: var(--line-soft); }
+.ledger__row {
+  display: grid;
+  grid-template-columns: 6.5em 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: var(--line-soft);
+}
+.ledger dt { font-size: 12px; letter-spacing: 0.08em; color: var(--ink-3); }
+.ledger dd { font-size: 14px; color: var(--ink-2); }
+
+.story__body { padding-top: 6px; }
+.story__lead {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 26px;
+  max-width: 30em;
+}
+.story__body p {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.92;
+  color: var(--ink-2);
+  max-width: 34em;
+  margin-bottom: 20px;
+}
+.story__close {
+  margin-top: 30px !important;
+  padding-top: 22px;
+  border-top: var(--line-soft);
+  color: var(--ink) !important;
+}
+
+/* ── 通用区块头 ─────────────────────────────────── */
+.section-head {
+  display: grid;
+  grid-template-columns: 4fr 7fr;
+  gap: 64px;
+  align-items: end;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding-bottom: 22px;
+  border-bottom: var(--line);
+}
+.section-head .eyebrow { margin-bottom: 14px; }
+.section-head__note {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-3);
+  max-width: 30em;
+}
+
+/* ── 03 自然历 ──────────────────────────────────── */
+.almanac {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 40px 88px;
+}
+.almanac__list { max-width: 1200px; margin: 0 auto; border-top: var(--line-soft); }
+
+.entry {
+  display: grid;
+  grid-template-columns: 6.5em 9.5em 1.5fr 1.1fr 5.5em;
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: var(--line-soft);
+  transition: background-color 0.22s var(--ease);
+}
+.entry[hidden] { display: none; }
+.entry:hover { background: rgba(252, 251, 248, 0.6); }
+
+/* 错位缩进：条目越往下越内收，形成"翻页"节奏 */
+.entry:nth-child(2),
+.entry:nth-child(5) { padding-left: 24px; }
+.entry:nth-child(3),
+.entry:nth-child(6) { padding-left: 48px; }
+
+.entry__no { font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: 0.04em; }
+.entry__when { font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.entry__what strong { display: block; font-family: var(--serif); font-size: 19px; font-weight: 400; line-height: 1.4; }
+.entry__what em { font-size: 12px; font-style: normal; color: var(--ink-3); letter-spacing: 0.04em; }
+.entry__where { font-size: 13px; color: var(--ink-2); }
+.entry__flag {
+  justify-self: end;
+  align-self: center;
+  padding: 3px 10px;
+  border: var(--line-moss);
+  border-radius: 999px;
+  background: var(--moss-tint);
+  color: var(--moss-deep);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.entry__flag--muted {
+  background: transparent;
+  border-color: rgba(31, 30, 28, 0.14);
+  color: var(--ink-3);
+  font-weight: 400;
+}
+.entry.is-current .entry__no { color: var(--moss-deep); font-weight: 600; }
+.entry.is-current .entry__what strong { color: var(--moss-deep); }
+
+.filter {
+  max-width: 1200px;
+  margin: 28px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.filter__label { font-size: 13px; color: var(--ink-3); margin-right: 10px; }
+.chip {
+  min-height: 44px;
+  padding: 0 18px;
+  background: transparent;
+  border: 1px solid rgba(31, 30, 28, 0.16);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--ink-2);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.chip:hover { border-color: var(--moss); color: var(--ink); }
+.chip.is-active { background: var(--moss); border-color: var(--moss); color: #F4F5EF; font-weight: 600; }
+
+.almanac__empty {
+  max-width: 1200px;
+  margin: 28px auto 0;
+  padding: 28px 26px;
+  background: var(--card);
+  border: var(--line);
+  border-radius: var(--r-card);
+}
+.almanac__empty[hidden] { display: none; }
+.almanac__empty-title { font-family: var(--serif); font-size: 20px; margin-bottom: 8px; }
+.almanac__empty-text { font-size: 14px; color: var(--ink-2); margin-bottom: 18px; }
+
+/* ── 04 器物档案 ────────────────────────────────── */
+.archive {
+  background: var(--paper-deep);
+  border-top: var(--line);
+  border-bottom: var(--line);
+  padding: 80px 40px 76px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+/* 中间一列下沉，打破等宽三分的呆板 */
+.cards .card:nth-child(2) { margin-top: 40px; }
+
+.card {
+  background: var(--card);
+  border: var(--line);
+  border-radius: var(--r-card);
+  padding: 26px 24px 22px;
+  box-shadow: 0 1px 3px rgba(31, 30, 28, 0.03);
+  transition: border-color 0.22s var(--ease), transform 0.22s var(--ease);
+}
+.card:hover { border-color: rgba(74, 97, 66, 0.4); transform: translateY(-2px); }
+.card.is-open { border-color: var(--moss); }
+
+.card__no {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin-bottom: 14px;
+}
+.card__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+.card__latin { font-size: 12px; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: 16px; }
+.card__note {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--ink-2);
+  padding-bottom: 18px;
+  border-bottom: var(--line-soft);
+}
+
+.card__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  color: var(--moss-deep);
+  font-size: 14px;
+  font-weight: 600;
+}
+.card__toggle:hover { color: var(--ink); }
+.card__toggle-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  flex: 0 0 24px;
+  border: var(--line-moss);
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 1;
+  background: var(--moss-tint);
+  transition: transform 0.24s var(--ease);
+}
+.card.is-open .card__toggle-mark { transform: rotate(45deg); }
+
+.card__detail[hidden] { display: none; }
+.card__detail.is-entering { animation: push-in 0.34s var(--ease) both; }
+@keyframes push-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dossier { margin-top: 14px; padding-top: 14px; border-top: var(--line-soft); }
+.dossier > div {
+  display: grid;
+  grid-template-columns: 4.5em 1fr;
+  gap: 10px;
+  padding: 7px 0;
+}
+.dossier dt { font-size: 12px; color: var(--ink-3); letter-spacing: 0.06em; }
+.dossier dd { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.dossier__hand {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: var(--moss-tint);
+  border: var(--line-moss);
+  border-radius: var(--r-tag);
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--moss-deep);
+}
+
+.archive__foot {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: var(--line-soft);
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--ink-3);
+}
+
+/* ── 05 季候信 ──────────────────────────────────── */
+.letter {
+  background: var(--moss-deep);
+  color: #F1F0EA;
+  padding: 84px 40px 88px;
+}
+.letter__grid {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  gap: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+.letter__copy .eyebrow { margin-bottom: 22px; }
+.letter__lede {
+  margin-top: 24px;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.9;
+  color: #C9D2BF;
+  max-width: 30em;
+}
+
+.signup {
+  padding: 28px 26px 26px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-card);
+}
+.signup__row { margin-bottom: 18px; }
+.signup__row[hidden] { display: none; }
+.signup__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #DCE3D3;
+  margin-bottom: 10px;
+}
+.signup__input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-tag);
+  color: #F7F6F1;
+  font-family: var(--sans);
+  font-size: 15px;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.signup__input::placeholder { color: #9BA893; }
+.signup__input:hover { border-color: rgba(255, 255, 255, 0.4); }
+.signup__input:focus-visible {
+  outline: 2px solid #C6D6B7;
+  outline-offset: 2px;
+  border-color: #C6D6B7;
+  background: rgba(255, 255, 255, 0.11);
+}
+.signup__input[aria-invalid="true"] { border-color: #E0A899; background: rgba(224, 168, 153, 0.1); }
+.signup__hint { margin-top: 10px; font-size: 12.5px; color: #A9B6A0; }
+
+.signup__error {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  background: rgba(224, 168, 153, 0.12);
+  border: 1px solid rgba(224, 168, 153, 0.44);
+  border-radius: var(--r-tag);
+  color: #F3D9D0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.signup__error[hidden] { display: none; }
+.signup__error a { text-decoration: underline; text-underline-offset: 3px; }
+
+.signup .btn--primary { width: 100%; }
+.signup .btn--primary[disabled] { background: rgba(255, 255, 255, 0.16); color: #C3CBB9; }
+
+.signup__done[hidden] { display: none; }
+.signup__done-title { font-family: var(--serif); font-size: 19px; color: #EAF0E2; margin-bottom: 8px; }
+.signup__done-title span { color: #A9C08F; }
+.signup__done-text { font-size: 13.5px; line-height: 1.75; color: #BCC6B2; margin-bottom: 18px; }
+.signup .btn--ghost { border-color: rgba(255, 255, 255, 0.3); color: #E4E9DC; }
+.signup .btn--ghost:hover { border-color: #E4E9DC; color: #FFFFFF; }
+
+/* ── 页脚 ───────────────────────────────────────── */
+.colophon { background: var(--paper); padding: 40px 40px 48px; }
+.colophon__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 26px;
+  border-top: var(--line);
+}
+.colophon__brand { font-family: var(--serif); font-size: 16px; letter-spacing: 0.06em; margin-bottom: 10px; }
+.colophon__desc { font-size: 12.5px; line-height: 1.85; color: var(--ink-3); max-width: 46em; }
+.colophon__meta { font-size: 12px; color: var(--ink-3); line-height: 1.9; letter-spacing: 0.03em; }
+.colophon__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--moss-deep);
+  border-bottom: 1px solid var(--moss);
+}
+
+/* ══ 响应式 ═══════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 44px 32px 56px; }
+  .hero__copy { padding-top: 0; }
+  .hero__title { font-size: 46px; }
+  .specimen { max-width: 520px; }
+
+  .story, .archive, .letter { padding-left: 32px; padding-right: 32px; }
+  .almanac { padding-left: 32px; padding-right: 32px; }
+  .story__grid, .section-head, .letter__grid { grid-template-columns: 1fr; gap: 32px; }
+  .section-head { align-items: start; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .cards .card:nth-child(2) { margin-top: 0; }
+
+  /* 自然历降到两行栅格，flag 归位右上 */
+  .entry {
+    grid-template-columns: 5.5em 8em 1fr auto;
+    grid-template-areas:
+      "no when what flag"
+      ".. .. where ..";
+    row-gap: 6px;
+  }
+  .entry__no { grid-area: no; }
+  .entry__when { grid-area: when; }
+  .entry__what { grid-area: what; }
+  .entry__where { grid-area: where; }
+  .entry__flag { grid-area: flag; align-self: start; }
+}
+
+@media (max-width: 767px) {
+  .masthead__inner { flex-wrap: wrap; gap: 4px 20px; padding: 12px 20px; }
+  .nav { gap: 0; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .nav a { min-height: 44px; font-size: 13.5px; padding-right: 22px; white-space: nowrap; }
+  .nav a::after { bottom: 9px; }
+
+  .hero { padding: 32px 20px 48px; gap: 32px; }
+  .hero__title { font-size: 34px; line-height: 1.3; margin: 20px 0; }
+  .hero__lede { font-size: 16px; }
+  .specimen { max-width: 100%; }
+  .moment { margin: 28px 0 26px; }
+  .moment__btn { flex: 1 1 auto; padding: 0 12px; }
+
+  .story, .archive, .letter { padding: 52px 20px 56px; }
+  .almanac { padding: 52px 20px 56px; }
+  .story__grid, .section-head, .letter__grid { gap: 26px; }
+  .h2 { font-size: 28px; }
+  .h2--flow { font-size: 26px; }
+  .story__lead { font-size: 19px; }
+  .story__body p, .letter__lede { font-size: 16px; }
+  .ledger__row { grid-template-columns: 5.5em 1fr; }
+
+  /* 自然历：单列纵向流，取消错位缩进 */
+  .entry {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "no flag"
+      "when flag"
+      "what flag"
+      "where flag";
+    gap: 4px 14px;
+    padding: 18px 0;
+  }
+  .entry:nth-child(2), .entry:nth-child(3),
+  .entry:nth-child(4), .entry:nth-child(5), .entry:nth-child(6) { padding-left: 0; }
+  .entry__no { grid-area: no; }
+  .entry__when { grid-area: when; }
+  .entry__what { grid-area: what; margin-top: 4px; }
+  .entry__where { grid-area: where; }
+  .entry__flag { grid-area: flag; align-self: start; }
+
+  .filter__label { width: 100%; margin: 0 0 2px; }
+  .chip { flex: 1 1 auto; padding: 0 14px; }
+
+  .cards { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 22px 20px 18px; }
+  .card__title { font-size: 21px; }
+
+  .signup { padding: 24px 20px 22px; }
+
+  .colophon { padding: 32px 20px 40px; }
+  .colophon__grid { grid-template-columns: 1fr; gap: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .card:hover { transform: none; }
+  .arrow-link:hover { gap: 10px; }
+}
+
+@media (min-width: 1440px) {
+  .hero { padding-top: 68px; }
+  .hero__title { font-size: 62px; }
+}
+
+/* Keep filtered and collapsed content hidden when component display rules apply. */
+[hidden] { display: none !important; }
+</style></head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="brand" href="#top">
+      <span class="brand__zh">山野之间</span>
+      <span class="brand__en">Between the Wild</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#story">品牌故事</a>
+      <a href="#almanac">自然历</a>
+      <a href="#archive">器物档案</a>
+      <a class="nav__cta" href="#letter">订阅季候信</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ══ 01 首屏 ══ -->
+  <section class="hero" id="top">
+    <div class="hero__copy">
+      <p class="eyebrow">标本馆 · 第一辑 &nbsp;/&nbsp; Herbarium Vol. 01</p>
+      <h1 class="hero__title">走慢一点，<br>让呼吸回到<br>它本来的深度。</h1>
+      <p class="hero__lede">我们记录野外的植物，也记录它们被带回家之后的样子。一枝新叶、一只粗陶杯、一段不被催促的时间——好好生活，从这些小事开始。</p>
+
+      <div class="moment" role="group" aria-labelledby="moment-label">
+        <p class="moment__label" id="moment-label">此刻的光 · 标本呈现</p>
+        <div class="moment__switch">
+          <button type="button" class="moment__btn is-active" data-moment="dawn" aria-pressed="true">晨 &nbsp;06:40</button>
+          <button type="button" class="moment__btn" data-moment="noon" aria-pressed="false">午 &nbsp;13:15</button>
+          <button type="button" class="moment__btn" data-moment="dusk" aria-pressed="false">暮 &nbsp;18:50</button>
+        </div>
+        <p class="moment__readout" id="moment-readout" aria-live="polite">露水未退，叶脉在斜光里最先醒来。</p>
+      </div>
+
+      <a class="arrow-link" href="#archive">翻阅器物档案 <span aria-hidden="true">↘</span></a>
+    </div>
+
+    <figure class="specimen" aria-labelledby="specimen-caption">
+      <div class="specimen__paper">
+        <svg class="specimen__svg" viewBox="0 0 520 660" role="img"
+             aria-label="橄榄枝叶标本示意图：一枝细枝自下而上生长，七片细长小叶左右交替展开，附学名、产地坐标、采集日期与比例尺">
+          <rect class="ground" x="0" y="0" width="520" height="660"/>
+
+          <g class="rules" aria-hidden="true">
+            <path d="M58 0V660M462 0V660M0 52H520M0 600H520"/>
+          </g>
+          <g class="halo" aria-hidden="true"><circle cx="268" cy="316" r="112"/></g>
+
+          <!-- 整株下移并收至 0.78，避开上方学名标签与下方采集标签 -->
+          <g transform="translate(52 34) scale(0.78)">
+            <path class="stem" d="M300 585C292 512 282 452 276 392C270 332 268 258 268 178"/>
+
+            <g class="foliage">
+              <!-- 1 · 右 -->
+              <g class="leaf leaf--1">
+                <path class="petiole" d="M292 528L318 522"/>
+                <path class="lamina" d="M318 522C368 513 412 492 444 462C452 453 452 440 443 433C425 419 372 431 318 476Z"/>
+                <path class="vein" d="M320 494C362 487 404 470 438 447"/>
+              </g>
+              <!-- 2 · 左 -->
+              <g class="leaf leaf--2">
+                <path class="petiole" d="M283 466L257 458"/>
+                <path class="lamina" d="M257 458C209 448 168 426 138 396C130 387 130 374 139 368C157 356 206 368 257 414Z"/>
+                <path class="vein" d="M255 429C215 421 176 403 144 380"/>
+              </g>
+              <!-- 3 · 右 -->
+              <g class="leaf leaf--3">
+                <path class="petiole" d="M277 404L301 398"/>
+                <path class="lamina" d="M301 398C345 390 383 371 411 344C418 336 418 324 410 318C394 306 349 317 301 358Z"/>
+                <path class="vein" d="M303 373C340 367 376 352 405 331"/>
+              </g>
+              <!-- 4 · 左 -->
+              <g class="leaf leaf--4">
+                <path class="petiole" d="M272 342L248 334"/>
+                <path class="lamina" d="M248 334C208 325 174 307 150 282C143 274 143 263 151 258C167 247 208 258 248 297Z"/>
+                <path class="vein" d="M246 308C213 301 181 286 155 266"/>
+              </g>
+              <!-- 5 · 右 -->
+              <g class="leaf leaf--5">
+                <path class="petiole" d="M270 286L290 280"/>
+                <path class="lamina" d="M290 280C325 273 355 258 377 238C383 231 383 221 376 217C363 207 327 216 290 249Z"/>
+                <path class="vein" d="M292 259C321 254 349 242 372 226"/>
+              </g>
+              <!-- 6 · 左 -->
+              <g class="leaf leaf--6">
+                <path class="petiole" d="M269 236L249 229"/>
+                <path class="lamina" d="M249 229C216 222 189 208 170 189C164 183 164 174 171 170C184 161 216 170 249 202Z"/>
+                <path class="vein" d="M247 209C221 204 195 191 175 175"/>
+              </g>
+              <!-- 7 · 右 -->
+              <g class="leaf leaf--7">
+                <path class="petiole" d="M268 192L284 187"/>
+                <path class="lamina" d="M284 187C310 182 332 171 348 157C353 152 353 145 348 142C338 135 312 142 284 167Z"/>
+                <path class="vein" d="M286 171C307 167 327 158 344 147"/>
+              </g>
+            </g>
+
+            <circle class="bud" cx="267" cy="173" r="3.4"/>
+          </g>
+
+          <!-- 标签区：与植株完全分离 -->
+          <g class="label">
+            <path class="label__rule" d="M62 92h108"/>
+            <text class="label__latin" x="62" y="120">Olea europaea</text>
+            <text class="label__meta" x="62" y="140">NO. 01 · 木犀科 · 常绿小乔木</text>
+
+            <path class="label__rule" d="M62 552h206"/>
+            <text class="label__meta" x="62" y="576">采集地 &nbsp;北纬 31°14′ / 东经 121°29′</text>
+            <text class="label__meta" x="62" y="594">采集日 &nbsp;2024 年 4 月 12 日 · 晨间露重</text>
+          </g>
+
+          <g class="scale" aria-hidden="true">
+            <path d="M296 552h74M304 546v12M328 546v12M352 546v12M370 546v12"/>
+            <text class="scale__text" x="296" y="580">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5cm</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="specimen__caption">
+        <span id="specimen-caption" class="specimen__caption-main">标本 NO. 01 · 橄榄</span>
+        <span id="specimen-caption-sub" class="specimen__caption-sub">纸白卡纸 · 干压定型 · 采集于春末清晨</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ══ 02 品牌故事 ══ -->
+  <section class="story" id="story" aria-labelledby="story-title">
+    <p class="eyebrow story__eyebrow">01 / 我们为什么做这件事</p>
+    <div class="story__grid">
+      <div class="story__aside">
+        <h2 id="story-title" class="h2">自然是<br>最耐心的<br>老师。</h2>
+        <dl class="ledger">
+          <div class="ledger__row">
+            <dt>起始</dt>
+            <dd>2024 年春</dd>
+          </div>
+          <div class="ledger__row">
+            <dt>标本编号</dt>
+            <dd>已归档 6 号</dd>
+          </div>
+          <div class="ledger__row">
+            <dt>材料来源</dt>
+            <dd>近郊小农与手作工坊</dd>
+          </div>
+          <div class="ledger__row">
+            <dt>在售品类</dt>
+            <dd>器物 3 类</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="story__body">
+        <p class="story__lead">我们做的东西很少，少到每一件都能说清它是从哪儿来的。</p>
+        <p>一棵树要在同一片坡地上长很多年，才长出我们喜欢的那些弧度。一只陶杯要烧上十几个小时，冷却的时间比制作还长。这些事情急不来，也不该急。山野之间做的事，只是把它们原本的节奏，原样交到你手里。</p>
+        <p>所以我们的每件器物都带一份采集档案：它在哪儿被发现、什么时候被记下、用什么材料、该怎么照料。不是为了显得讲究，是因为知道来处的东西，用起来会更久一点。</p>
+        <p class="story__close">我们希望你在用完一只杯子、擦净一块桌布之后，心里会空出来那么几分钟——这大概就是「自在呼吸」的意思。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 自然历 ══ -->
+  <section class="almanac" id="almanac" aria-labelledby="almanac-title">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow">02 / 今年的野地记录</p>
+        <h2 id="almanac-title" class="h2 h2--flow">自然历</h2>
+      </div>
+      <p class="section-head__note">每一条都对应一份真实的采集记录。当季条目以苔绿标记。</p>
+    </header>
+
+    <ol class="almanac__list" id="almanac-list">
+      <li class="entry is-current" data-season="spring">
+        <span class="entry__no">NO. 01</span>
+        <span class="entry__when">4 月 12 日 · 春</span>
+        <span class="entry__what">
+          <strong>橄榄新叶</strong>
+          <em>Olea europaea</em>
+        </span>
+        <span class="entry__where">近郊缓坡 · 向阳面</span>
+        <span class="entry__flag">当季</span>
+      </li>
+      <li class="entry" data-season="spring">
+        <span class="entry__no">NO. 02</span>
+        <span class="entry__when">5 月 03 日 · 春</span>
+        <span class="entry__what">
+          <strong>苔藓群落</strong>
+          <em>Bryophyta</em>
+        </span>
+        <span class="entry__where">溪谷北岸 · 背阴处</span>
+        <span class="entry__flag entry__flag--muted">已归档</span>
+      </li>
+      <li class="entry" data-season="summer">
+        <span class="entry__no">NO. 03</span>
+        <span class="entry__when">6 月 21 日 · 夏</span>
+        <span class="entry__what">
+          <strong>芒草抽穗</strong>
+          <em>Miscanthus</em>
+        </span>
+        <span class="entry__where">南面草坡 · 风口</span>
+        <span class="entry__flag entry__flag--muted">已归档</span>
+      </li>
+      <li class="entry" data-season="summer">
+        <span class="entry__no">NO. 04</span>
+        <span class="entry__when">7 月 08 日 · 夏</span>
+        <span class="entry__what">
+          <strong>狗尾草穗</strong>
+          <em>Setaria viridis</em>
+        </span>
+        <span class="entry__where">田埂边 · 午后半阴</span>
+        <span class="entry__flag entry__flag--muted">已归档</span>
+      </li>
+      <li class="entry" data-season="autumn">
+        <span class="entry__no">NO. 05</span>
+        <span class="entry__when">10 月 09 日 · 秋</span>
+        <span class="entry__what">
+          <strong>银杏落叶</strong>
+          <em>Ginkgo biloba</em>
+        </span>
+        <span class="entry__where">老校道东侧 · 石阶旁</span>
+        <span class="entry__flag entry__flag--muted">已归档</span>
+      </li>
+      <li class="entry" data-season="winter">
+        <span class="entry__no">NO. 06</span>
+        <span class="entry__when">12 月 22 日 · 冬</span>
+        <span class="entry__what">
+          <strong>松针落层</strong>
+          <em>Pinus</em>
+        </span>
+        <span class="entry__where">山脊线 · 雪后残枝</span>
+        <span class="entry__flag entry__flag--muted">已归档</span>
+      </li>
+    </ol>
+
+    <div class="filter" role="group" aria-labelledby="filter-label">
+      <p class="filter__label" id="filter-label">按季节查看</p>
+      <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">全部 6</button>
+      <button type="button" class="chip" data-filter="spring" aria-pressed="false">春</button>
+      <button type="button" class="chip" data-filter="summer" aria-pressed="false">夏</button>
+      <button type="button" class="chip" data-filter="autumn" aria-pressed="false">秋</button>
+      <button type="button" class="chip" data-filter="winter" aria-pressed="false">冬</button>
+    </div>
+
+    <div class="almanac__empty" id="almanac-empty" hidden>
+      <p class="almanac__empty-title">这一格还是空的</p>
+      <p class="almanac__empty-text">这个季节的记录还没开始。要不要先看看当季的这条？</p>
+      <button type="button" class="btn btn--ghost" id="empty-reset">回到当季记录</button>
+    </div>
+  </section>
+
+  <!-- ══ 04 器物档案 ══ -->
+  <section class="archive" id="archive" aria-labelledby="archive-title">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow">03 / 带回家的部分</p>
+        <h2 id="archive-title" class="h2 h2--flow">器物档案</h2>
+      </div>
+      <p class="section-head__note">每件器物都附一份采集档案。点开卡片，档案会在原位置展开。</p>
+    </header>
+
+    <div class="cards" id="cards">
+
+      <article class="card" data-key="cup">
+        <p class="card__no">NO. 01 &nbsp;·&nbsp; <span class="card__cat">陶器</span></p>
+        <h3 class="card__title">粗陶直身杯</h3>
+        <p class="card__latin">Stoneware · 无釉内壁</p>
+        <p class="card__note">杯口薄，杯身厚。掌心的温度最后才散掉——正好留出等水凉一点的时间。</p>
+
+        <button type="button" class="card__toggle" aria-expanded="false" aria-controls="detail-cup">
+          <span class="card__toggle-text">展开采集档案</span>
+          <span class="card__toggle-mark" aria-hidden="true">＋</span>
+        </button>
+
+        <div class="card__detail" id="detail-cup" hidden>
+          <dl class="dossier">
+            <div><dt>采集地</dt><dd>近郊缓坡陶坊 · 柴窑第二室</dd></div>
+            <div><dt>采集日</dt><dd>2024 年 4 月 12 日</dd></div>
+            <div><dt>材料</dt><dd>原色粗陶土 · 山灰釉（外壁）</dd></div>
+            <div><dt>规格</dt><dd>口径 78mm · 高 92mm · 约 230ml</dd></div>
+            <div><dt>照料</dt><dd>清水洗净后倒置晾干。避免骤冷骤热。</dd></div>
+          </dl>
+          <p class="dossier__hand">工坊手记：出窑那天下着小雨，这一批的釉色比上一批沉一点。每一只都略有不同。</p>
+        </div>
+      </article>
+
+      <article class="card" data-key="cloth">
+        <p class="card__no">NO. 02 &nbsp;·&nbsp; <span class="card__cat">织物</span></p>
+        <h3 class="card__title">未漂白棉麻桌布</h3>
+        <p class="card__latin">Linen Blend · 本色纤维</p>
+        <p class="card__note">不漂白，不上浆。第一次洗过之后它会开始像自己的样子。</p>
+
+        <button type="button" class="card__toggle" aria-expanded="false" aria-controls="detail-cloth">
+          <span class="card__toggle-text">展开采集档案</span>
+          <span class="card__toggle-mark" aria-hidden="true">＋</span>
+        </button>
+
+        <div class="card__detail" id="detail-cloth" hidden>
+          <dl class="dossier">
+            <div><dt>采集地</dt><dd>山南草木染坊 · 织造间</dd></div>
+            <div><dt>采集日</dt><dd>2024 年 5 月 03 日</dd></div>
+            <div><dt>材料</dt><dd>棉 55% · 亚麻 45%（未染色）</dd></div>
+            <div><dt>规格</dt><dd>1350 × 2000mm · 平织</dd></div>
+            <div><dt>照料</dt><dd>低温轻柔洗涤，平铺晾干。细小褶皱是本色的一部分。</dd></div>
+          </dl>
+          <p class="dossier__hand">工坊手记：这批纱线颜色偏深，织出来会有细细的纵向纹路，我们留着了。</p>
+        </div>
+      </article>
+
+      <article class="card" data-key="tray">
+        <p class="card__no">NO. 03 &nbsp;·&nbsp; <span class="card__cat">木作</span></p>
+        <h3 class="card__title">山毛榉托盘</h3>
+        <p class="card__latin">Beech · 顺纹打磨</p>
+        <p class="card__note">边缘微微上翘，刚好托住清晨的面包，也托住不着急的十分钟。</p>
+
+        <button type="button" class="card__toggle" aria-expanded="false" aria-controls="detail-tray">
+          <span class="card__toggle-text">展开采集档案</span>
+          <span class="card__toggle-mark" aria-hidden="true">＋</span>
+        </button>
+
+        <div class="card__detail" id="detail-tray" hidden>
+          <dl class="dossier">
+            <div><dt>采集地</dt><dd>北坡木作棚 · 明水林场边</dd></div>
+            <div><dt>采集日</dt><dd>2024 年 6 月 21 日</dd></div>
+            <div><dt>材料</dt><dd>山毛榉实木 · 天然木蜡油</dd></div>
+            <div><dt>规格</dt><dd>320 × 200 × 22mm · 单件整料</dd></div>
+            <div><dt>照料</dt><dd>湿布擦净后及时拭干，避免长时间浸水或暴晒。</dd></div>
+          </dl>
+          <p class="dossier__hand">工坊手记：料是去年冬天风倒的树，纹理有点绕，正好做成了这一批。</p>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="archive__foot">以上器物与工坊均为本样板的虚构示例，用于演示信息组织方式，不代表真实商品或供应商。<span class="dot" aria-hidden="true"></span>发货、价格与库存信息请联系品牌方。</p>
+  </section>
+
+  <!-- ══ 05 季候信 ══ -->
+  <section class="letter" id="letter" aria-labelledby="letter-title">
+    <div class="letter__grid">
+      <div class="letter__copy">
+        <p class="eyebrow eyebrow--light">04 / 季候信</p>
+        <h2 id="letter-title" class="h2 h2--light">换季的时候，<br>寄一封短信给你。</h2>
+        <p class="letter__lede">每个季节开始的那一周寄出。这一季野地里发生了什么、新做了哪几件器物、以及一段适合当下读的文字。不推销，不发促销。</p>
+      </div>
+
+      <form class="signup" id="signup" novalidate>
+        <div class="signup__row">
+          <label class="signup__label" for="email">你的邮箱</label>
+          <input class="signup__input" type="email" id="email" name="email" placeholder="name@example.com"
+                 autocomplete="email" aria-describedby="email-hint email-error" required>
+          <p class="signup__hint" id="email-hint">只在换季时寄出，随时可以退订。</p>
+        </div>
+
+        <p class="signup__error" id="email-error" role="alert" hidden></p>
+
+        <button class="btn btn--primary" type="button" id="signup-submit">
+          <span class="btn__label">订阅季候信</span>
+        </button>
+
+        <div class="signup__done" id="signup-done" hidden>
+          <p class="signup__done-title"><span aria-hidden="true">✦</span> 已记下了 <span id="signup-email-echo"></span></p>
+          <p class="signup__done-text">这是本页的订阅演示，未保存邮箱，也不会发送邮件。</p>
+          <button type="button" class="btn btn--ghost" id="signup-reset">换一个邮箱</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <div class="colophon__grid">
+    <div>
+      <p class="colophon__brand">山野之间 · Between the Wild</p>
+      <p class="colophon__desc">自然生活品牌官网概念样板。品牌、器物、工坊与采集记录均为虚构示例，用于演示信息组织与交互方式，不代表真实客户案例、销量、评价或背书。</p>
+    </div>
+    <div>
+      <p class="colophon__meta">样品编号 &nbsp;MUSE-STUDIO / 由上一版概念素材重制</p>
+      <p class="colophon__meta">体裁 &nbsp;品牌官网首页 · 响应式</p>
+      <a class="colophon__top" href="#top">回到顶部 <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>
+
+
+<script>/* 山野之间 · 交互
+   - 时刻切换（晨/午/暮）：驱动标本纸与图注
+   - 自然历季节筛选 + 空状态
+   - 器物档案原位展开（无弹窗、无跳页）
+   - 季候信订阅：校验 / 禁用 / 成功 / 回落
+   所有过渡只驱动 transform、opacity 与颜色，不改动布局属性。 */
+
+(function () {
+  'use strict';
+
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── 01 时刻切换 ─────────────────────────────── */
+
+  var MOMENTS = {
+    dawn: {
+      readout: '露水未退，叶脉在斜光里最先醒来。',
+      caption: '标本 NO. 01 · 橄榄',
+      sub: '纸白卡纸 · 干压定型 · 采集于春末清晨'
+    },
+    noon: {
+      readout: '正午的光把叶面照得薄而透，影子收成短短一截。',
+      caption: '标本 NO. 01 · 橄榄（正午光）',
+      sub: '纸白卡纸 · 压平八周 · 叶绿素尚未褪尽'
+    },
+    dusk: {
+      readout: '太阳压低之后，叶背的灰绿反而更清楚。',
+      caption: '标本 NO. 01 · 橄榄（暮光）',
+      sub: '纸白卡纸 · 干压定型 · 采收于日落前'
+    }
+  };
+
+  var momentBtns = Array.prototype.slice.call(document.querySelectorAll('.moment__btn'));
+  var readout = document.getElementById('moment-readout');
+  var capMain = document.getElementById('specimen-caption');
+  var capSub = document.getElementById('specimen-caption-sub');
+
+  function setMoment(key) {
+    var data = MOMENTS[key];
+    if (!data) { return; }
+
+    root.setAttribute('data-moment', key);
+
+    momentBtns.forEach(function (btn) {
+      var on = btn.getAttribute('data-moment') === key;
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+
+    if (reduce) {
+      readout.textContent = data.readout;
+      capMain.textContent = data.caption;
+      capSub.textContent = data.sub;
+      return;
+    }
+
+    readout.classList.add('is-swapping');
+    window.setTimeout(function () {
+      readout.textContent = data.readout;
+      capMain.textContent = data.caption;
+      capSub.textContent = data.sub;
+      readout.classList.remove('is-swapping');
+    }, 180);
+  }
+
+  momentBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setMoment(btn.getAttribute('data-moment'));
+    });
+  });
+
+  /* ── 02 自然历筛选 ───────────────────────────── */
+
+  var entries = Array.prototype.slice.call(document.querySelectorAll('.entry'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var emptyBox = document.getElementById('almanac-empty');
+  var emptyReset = document.getElementById('empty-reset');
+
+  function applyFilter(season) {
+    var shown = 0;
+
+    entries.forEach(function (entry) {
+      var match = (season === 'all') || (entry.getAttribute('data-season') === season);
+      entry.hidden = !match;
+      if (match) { shown += 1; }
+    });
+
+    chips.forEach(function (chip) {
+      var active = chip.getAttribute('data-filter') === season;
+      chip.classList.toggle('is-active', active);
+      chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    emptyBox.hidden = shown !== 0;
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      applyFilter(chip.getAttribute('data-filter'));
+    });
+  });
+
+  emptyReset.addEventListener('click', function () {
+    applyFilter('all');
+    var anchor = document.querySelector('.entry.is-current .entry__what strong');
+    if (anchor) {
+      anchor.setAttribute('tabindex', '-1');
+      anchor.focus();
+    }
+  });
+
+  /* ── 03 器物档案原位展开 ─────────────────────── */
+
+  Array.prototype.slice.call(document.querySelectorAll('.card__toggle')).forEach(function (btn) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    var card = btn.closest('.card');
+    var label = btn.querySelector('.card__toggle-text');
+    if (!panel || !card) { return; }
+
+    btn.addEventListener('click', function () {
+      var next = btn.getAttribute('aria-expanded') !== 'true';
+
+      btn.setAttribute('aria-expanded', next ? 'true' : 'false');
+      card.classList.toggle('is-open', next);
+      panel.hidden = !next;
+
+      if (label) { label.textContent = next ? '收起采集档案' : '展开采集档案'; }
+
+      if (next && !reduce) {
+        panel.classList.remove('is-entering');
+        void panel.offsetWidth;   /* 强制回流，保证连续展开也能重播动画 */
+        panel.classList.add('is-entering');
+      }
+    });
+  });
+
+  /* ── 04 季候信订阅 ───────────────────────────── */
+
+  var form = document.getElementById('signup');
+  var input = document.getElementById('email');
+  var submit = document.getElementById('signup-submit');
+  var submitLabel = submit.querySelector('.btn__label');
+  var error = document.getElementById('email-error');
+  var done = document.getElementById('signup-done');
+  var doneEcho = document.getElementById('signup-email-echo');
+  var resetBtn = document.getElementById('signup-reset');
+  var row = form.querySelector('.signup__row');
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var ASSUMED = 'name@example.com';
+
+  function clearError() {
+    error.hidden = true;
+    error.textContent = '';
+    input.setAttribute('aria-invalid', 'false');
+  }
+
+  function showError(message) {
+    error.innerHTML = message;
+    error.hidden = false;
+    input.setAttribute('aria-invalid', 'true');
+    input.focus();
+  }
+
+  input.addEventListener('input', function () {
+    if (input.getAttribute('aria-invalid') === 'true') { clearError(); }
+  });
+
+  submit.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    var value = input.value.trim();
+
+    if (value === '') {
+      showError('还没有填邮箱。写下你的常用邮箱，换季时就能收到这封信。');
+      return;
+    }
+
+    if (!EMAIL_RE.test(value)) {
+      showError('这个邮箱看起来少了点什么。请检查是否有「@」和完整的域名，例如 <a href="#" data-fill="' + ASSUMED + '">' + ASSUMED + '</a>。');
+      return;
+    }
+
+    clearError();
+    submit.disabled = true;
+    submitLabel.textContent = '正在记下…';
+
+    /* 本样板没有后端，这里只演示前端状态流转 */
+    window.setTimeout(function () {
+      submit.disabled = false;
+      submitLabel.textContent = '订阅季候信';
+      input.value = '';
+      row.hidden = true;
+      doneEcho.textContent = value;
+      done.hidden = false;
+      resetBtn.focus();
+    }, reduce ? 0 : 520);
+  });
+
+  /* 错误提示中的示例邮箱可一键填入 */
+  error.addEventListener('click', function (event) {
+    var target = event.target;
+    if (target && target.getAttribute && target.getAttribute('data-fill')) {
+      event.preventDefault();
+      input.value = target.getAttribute('data-fill');
+      clearError();
+      input.focus();
+    }
+  });
+
+  resetBtn.addEventListener('click', function () {
+    done.hidden = true;
+    row.hidden = false;
+    input.value = '';
+    clearError();
+    input.focus();
+  });
+
+  /* ── 初始状态 ────────────────────────────────── */
+  root.setAttribute('data-moment', 'dawn');
+  applyFilter('all');
+})();
+
+document.getElementById('email').addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('signup-submit').click(); } });
+</script></body>
+</html>
+</body></html>

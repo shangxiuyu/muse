@@ -1,0 +1,3 @@
+请作为 Muse 6.0 继续修改 selectedVersion。先 get_task_context，读取 references/toolkit/ui_floors.md 和 references/acceptance_protocol.md，按下述浏览器实测反馈做最小必要修改。保留原有完整内容、分离的 html/css/js 和其他交互。必须 submit_artifact 提交完整成品，再 inspect_artifact 检查；不要只交补丁。
+
+浏览器实测发现：.intro 同时有 .wrap 类，但 .intro 的 padding:64px 0 48px 覆盖了 .wrap 的左右20px，使引言和事实表贴在屏幕边缘，手机也如此。请修复共享容器水平边距。另一个质量问题：1200×750首屏陶杯只露出底部一角，作为器物商店的图库封面不能看到主打器物。请调整引言与主打商品为更紧凑而有编辑感的布局（例如短引言+图像并列，或显著压缩引言高度），确保在1200×750首屏能同时看到标题、完整陶杯图形和产品名，保留原SVG细节和下方完整目录。手机390px仍清楚，无水平溢出。请检查并保证 specs、购物袋加减与总价保持可用。不要改品牌或重造全部内容，也不要添无关装饰。direction简明记录最终设计与实际检验，不记录修复过程。

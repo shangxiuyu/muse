@@ -1,0 +1,166 @@
+- link "跳到房型":
+  - /url: "#rooms"
+- banner:
+  - link "栖迟 QICHI":
+    - /url: "#top"
+  - navigation "页面导航":
+    - link "旅宿故事":
+      - /url: "#story"
+    - link "两种房型":
+      - /url: "#rooms"
+    - link "山间日程":
+      - /url: "#day"
+    - link "到访准备":
+      - /url: "#prepare"
+  - link "探索房间":
+    - /url: "#rooms"
+- main:
+  - region "栖迟 住进山的留白":
+    - img "栖迟山景 五层山脊自远及近叠起。山腰一栋极简屋舍嵌在第二与第三层山脊之间，两个窗洞：右窗亮着暖光，左窗暗着。层与层之间留出柔和的雾化带。"
+    - paragraph: 概念样板 · 虚构旅宿
+    - heading "栖迟 住进山的留白" [level=1]
+    - paragraph: 周末两天，两个人。这里没有需要打卡的景观，只有一段被允许一直空着的时间。
+    - link "探索房间":
+      - /url: "#rooms"
+    - link "先读旅宿故事":
+      - /url: "#story"
+    - term: 海拔
+    - definition: 约 1,180 m
+    - term: 客房
+    - definition: 仅两间
+    - term: 接驳
+    - definition: 山脚起 25 分钟
+  - region "我们把房子， 盖在了山的停顿里":
+    - paragraph: "01"
+    - heading "我们把房子， 盖在了山的停顿里" [level=2]
+    - paragraph: 选址的时候我们绕了很久。山南的坡地处处都好，开阔、向阳、视线无遮挡——正因如此，它们都让人急着往外看。
+    - paragraph: 最后停在北侧一处凹地：两重山脊在这里一前一后错开，房子贴着第二重山腰横过来，两侧山体几乎与屋檐齐平。从大多数角度看过去，它不像被放置在山里，更像山本来就在那里留了一个缺口。
+    - paragraph:
+      - text: 于是整栋房子只做一件事——把
+      - strong: 窗洞
+      - text: 对准谷底的那片雾。两间客房各有一扇宽窗，窗台齐坐高，坐下时视线刚好被山脊托住。我们不装遮光帘，因为清晨的雾就是这间房真正的陈设。
+    - paragraph: 关于「留白」：开业至今我们没有添置任何新的室内装饰。每一次想加东西，我们都先问——它是让这里更满，还是更静？
+    - complementary "我们刻意没做的事":
+      - heading "我们刻意没做的事" [level=3]
+      - list:
+        - listitem: 不做大堂酒廊与背景音乐
+        - listitem: 不做电视、不做智能音箱
+        - listitem: 不做叫醒服务与行程打包
+        - listitem: 不做二十四小时前台
+      - paragraph: 需要人时，山脚的值守电话随时能打通。
+  - region "两种房型， 各自对着一处山":
+    - paragraph: "02"
+    - heading "两种房型， 各自对着一处山" [level=2]
+    - tablist "选择房型":
+      - tab "望云 谷侧 · 宽窗" [selected]
+      - tab "听松 林侧 · 转角窗"
+    - img "望云 · 谷侧宽窗示意 随所选房型变化的窗洞示意：望云为谷侧宽窗，正对谷底雾带；听松为林侧转角窗，两面开窗外接松林近景。"
+    - paragraph: 望云 · 谷侧宽窗，视线正对谷底雾带
+    - tabpanel "望云 谷侧 · 宽窗":
+      - heading "望云" [level=3]
+      - paragraph: 谷侧 · 一张让人不想起身的窗台
+      - paragraph: 窗洞朝西偏南，正对谷底那条每天清晨自下往上爬的雾带。房间把大部分面积都让给了窗前的平台——如果你整天躺在这里什么也不做，那是这间房的正确用法。
+      - term: 面积
+      - definition: 约 42 m²
+      - term: 床型
+      - definition: 1.8 m 大床 · 双人
+      - term: 朝向
+      - definition: 西偏南 · 谷侧
+      - term: 最多入住
+      - definition: 2 位成人
+      - heading "房内设施" [level=4]
+      - list:
+        - listitem: 坐高窗台 · 可卧可坐
+        - listitem: 地暖 + 铸铁炉（自添柴）
+        - listitem: 手冲器具与本地烘焙豆
+        - listitem: 山泉泡池（半露天）
+        - listitem: 纸质地图、无信号时段提示卡
+    - paragraph: 两间房均不设电视与智能音箱。示例为概念描述，不代表可预订状态。
+  - region "山间的一天， 没有安排表":
+    - paragraph: "03"
+    - heading "山间的一天， 没有安排表" [level=2]
+    - paragraph:
+      - text: 下面只是这里的
+      - strong: 通常样子
+      - text: ，不是流程。你随时可以把它全部跳过去——包括这一页。
+    - list:
+      - listitem:
+        - paragraph: 05:40
+        - heading "雾从谷底上来" [level=3]
+        - paragraph: 谷侧房间的宽窗会自动变成一幅画。若你在此时醒来，坐起来就够了，不必出门。
+      - listitem:
+        - paragraph: 08:30
+        - heading "早食送到门口" [level=3]
+        - paragraph: 粥、本地豆腐、一碟腌笋，放在竹篮里。不打铃，不放桌上，什么时候拿由你决定。
+      - listitem:
+        - paragraph: 11:00
+        - heading "沿水声走一段" [level=3]
+        - paragraph: 屋后小径顺溪向下，约四十分钟到一处石滩。这条路没有标识牌，也没有终点。
+      - listitem:
+        - paragraph: 15:00
+        - heading "泡池与发呆" [level=3]
+        - paragraph: 半露天泡池水温常年保持在 39℃ 上下。下午的风穿过林子，水汽会散得很快。
+      - listitem:
+        - paragraph: 19:20
+        - heading "日落后二十分钟" [level=3]
+        - paragraph: 山脊线会先暗下去，天空还亮着。这个色差是这里最好的一段，值得停下手里的东西看它。
+      - listitem:
+        - paragraph: 21:00
+        - heading "屋里只留一盏灯" [level=3]
+        - paragraph: 没有电视，也没有背景音乐。炉火、书、和一个人说话——今晚大概只有这些。
+  - region "到访前， 请先读这几行":
+    - paragraph: "04"
+    - heading "到访前， 请先读这几行" [level=2]
+    - group:
+      - text: 怎么到
+      - paragraph: 山脚有一处会合点，我们把车停在那里，用四驱接驳上山，约 25 分钟。
+      - paragraph: 最后一段是单向碎石路，低底盘车辆无法通行，请勿自驾上山。
+    - group: 带什么
+    - group: 信号与电
+    - group: 关于孩子与宠物
+    - group: 取消与改期
+    - complementary "三项你会用到的事":
+      - heading "三项你会用到的事" [level=3]
+      - paragraph: 25分钟
+      - paragraph: 山脚到屋里的接驳车程
+      - paragraph: 2位
+      - paragraph: 每间房最多接待的客人
+      - paragraph: 0个
+      - paragraph: 页面上可查到的实时空房
+      - paragraph: 页面不显示房态。请直接与我们通信确认。
+  - region "留一个日子， 剩下的我们通信":
+    - paragraph: "05"
+    - heading "留一个日子， 剩下的我们通信" [level=2]
+    - paragraph:
+      - text: 这里不是预订系统。填完只会生成一段
+      - strong: 本地行程意向
+      - text: ，留在你的浏览器里，可以自己复制发给我们。
+    - text: 入住日期
+    - textbox "入住日期": 2026-09-22
+    - text: 离店日期
+    - textbox "离店日期"
+    - group "想住哪一间":
+      - text: 想住哪一间
+      - radio "望云 谷侧宽窗 · 42 m²" [checked]
+      - text: 望云 谷侧宽窗 · 42 m²
+      - radio "听松 林侧转角窗 · 36 m²"
+      - text: 听松 林侧转角窗 · 36 m²
+    - text: 想提前告诉我们的（可留空）
+    - textbox "想提前告诉我们的（可留空）":
+      - /placeholder: 例如：素食、晚到、想安静些
+    - button "生成行程意向"
+    - button "清空"
+    - paragraph: 不会提交任何数据，也不会锁定房间。这是一个概念示例。
+    - complementary "你的行程意向":
+      - heading "你的行程意向" [level=3]
+      - paragraph: 山里的空位，还没有被写上一笔。
+      - paragraph: 选好日期与房型后，点左边按钮生成。
+      - button "用一组示例日期试一下"
+- contentinfo:
+  - paragraph: 栖迟
+  - paragraph: QICHI
+  - paragraph:
+    - text: 栖迟是一处
+    - strong: 虚构的山居旅宿
+    - text: ，本页由 Muse 设计为概念样板作品。页面上的故事、房型、日程与政策均为概念描述；未使用真实地址、评价、奖项、房态或客户数据，也不构成任何服务承诺。
+  - paragraph: 样板 · 由 Muse 6.0 设计 · 可自由取用与改编

@@ -1,0 +1,3 @@
+请作为 Muse 6.0 继续修改 selectedVersion。先 get_task_context，读取 references/visual_grammar.md 和 references/acceptance_protocol.md，按下述浏览器实测反馈做最小必要修改。保留原有完整内容、媒介和其他交互。必须 submit_artifact 提交完整成品，再 inspect_artifact 检查；不要只交补丁。
+
+只修复当前「一束光的形状」SVG的物体结构问题：花瓶椭圆瓶口明显向右偏离瓶身中轴，瓶颈顶部与瓶口两侧不连续，看起来像悬空圆环。保持原构图、颜色、窗光、植物和版式，将瓶口/瓶颈/瓶身连成可信的陶瓶形体，协调瓶口中心和瓶身中轴；瓶口轮廓与枝条入水位置正确。检查桌面落影不要让瓶子悬浮。方向说明只描述最终设计，不写旧版问题或未执行的验证。交付原横向1440×900完整SVG。

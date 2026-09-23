@@ -1,0 +1,11 @@
+{
+  "originalArtifactSha256": "e5e82cc10c27e992afa698c9fdaf3f365d00508788f6c3c2ec8f39d9c49d6418",
+  "artifactSha256": "8ad40b55df254b6493535bafaf37e7bd1c72c53561e4f67e250f148dbcb19910",
+  "changes": [
+    "补充 [hidden]{display:none!important}，保证隐藏状态不被 flex/grid 样式覆盖。",
+    "手机计时抽屉清除继承的 top:84px，修复遮挡札记保存按钮；隐藏手机上重复且裁切的装饰书封，阅读区保留完整书名与作者。",
+    "实现正文/札记导航，移除无行为的书摘入口。",
+    "札记保存改为 button/click，兼容产品 allow-scripts 且不含 allow-forms 的预览 sandbox。"
+  ],
+  "reviewer": "Codex / independent QA"
+}

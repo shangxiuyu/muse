@@ -1,0 +1,226 @@
+[
+  {
+    "name": "reading",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "搜索命中与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "阅读状态筛选与选书",
+        "pass": true
+      },
+      {
+        "label": "札记保存并跨书保留",
+        "pass": true
+      },
+      {
+        "label": "超长札记错误与修复",
+        "pass": true
+      },
+      {
+        "label": "开始暂停重置计时",
+        "pass": true
+      },
+      {
+        "label": "侧栏札记导航执行",
+        "pass": false,
+        "error": "Expected values to be strictly equal:\n\nfalse !== true\n"
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "reading",
+    "width": 390,
+    "checks": [
+      {
+        "label": "搜索命中与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "阅读状态筛选与选书",
+        "pass": true
+      },
+      {
+        "label": "札记保存并跨书保留",
+        "pass": false,
+        "error": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#noteSave')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"submit\" id=\"noteSave\" class=\"btn btn-quiet\">保存札记</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"shelf\">…</div> from <aside id=\"rail\" class=\"rail\" aria-label=\"导航与我的书架\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <span class=\"cover-title cover-title-lg\">纸与它的时代</span> from <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"cover-title cover-title-lg\">纸与它的时代</span> from <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n"
+      },
+      {
+        "label": "超长札记错误与修复",
+        "pass": false,
+        "error": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#noteSave')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"submit\" id=\"noteSave\" class=\"btn btn-quiet\">保存札记</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <span class=\"cover-title cover-title-lg\">纸与它的时代</span> from <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"cover-title cover-title-lg\">纸与它的时代</span> from <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <span class=\"cover-title cover-title-lg\">纸与它的时代</span> from <aside id=\"session\" class=\"session\" aria-label=\"书封与本次阅读计时\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n"
+      },
+      {
+        "label": "开始暂停重置计时",
+        "pass": true
+      },
+      {
+        "label": "侧栏札记导航执行",
+        "pass": false,
+        "error": "Expected values to be strictly equal:\n\nfalse !== true\n"
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "objects",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "类别筛选",
+        "pass": true
+      },
+      {
+        "label": "规格展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入购物袋、数量与总价",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "objects",
+    "width": 390,
+    "checks": [
+      {
+        "label": "类别筛选",
+        "pass": true
+      },
+      {
+        "label": "规格展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入购物袋、数量与总价",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "retreat",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "房型切换与键盘返回",
+        "pass": true
+      },
+      {
+        "label": "准备信息原位展开",
+        "pass": false,
+        "error": "Expected values to be strictly equal:\n\nnull !== ''\n"
+      },
+      {
+        "label": "空日期错误与示例恢复",
+        "pass": true
+      },
+      {
+        "label": "非法日期阻止生成并恢复",
+        "pass": false,
+        "error": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#fillDemo')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" id=\"fillDemo\" class=\"btn-quiet\">用一组示例日期试一下</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    9 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n"
+      },
+      {
+        "label": "复制可用或有可理解的降级反馈",
+        "pass": true
+      },
+      {
+        "label": "清空表单恢复",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "retreat",
+    "width": 390,
+    "checks": [
+      {
+        "label": "房型切换与键盘返回",
+        "pass": true
+      },
+      {
+        "label": "准备信息原位展开",
+        "pass": false,
+        "error": "Expected values to be strictly equal:\n\nnull !== ''\n"
+      },
+      {
+        "label": "空日期错误与示例恢复",
+        "pass": true
+      },
+      {
+        "label": "非法日期阻止生成并恢复",
+        "pass": false,
+        "error": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#fillDemo')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" id=\"fillDemo\" class=\"btn-quiet\">用一组示例日期试一下</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    9 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n"
+      },
+      {
+        "label": "复制可用或有可理解的降级反馈",
+        "pass": true
+      },
+      {
+        "label": "清空表单恢复",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "festival",
+    "width": 1440,
+    "checks": [
+      {
+        "label": "日期类别筛选与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "介绍展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入观展单与移除",
+        "pass": true
+      },
+      {
+        "label": "示例冲突提醒与清空",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  },
+  {
+    "name": "festival",
+    "width": 390,
+    "checks": [
+      {
+        "label": "日期类别筛选与空状态恢复",
+        "pass": true
+      },
+      {
+        "label": "介绍展开收起",
+        "pass": true
+      },
+      {
+        "label": "加入观展单与移除",
+        "pass": true
+      },
+      {
+        "label": "示例冲突提醒与清空",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "finalOverflow": false
+  }
+]

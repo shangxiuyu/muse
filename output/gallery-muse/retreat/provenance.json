@@ -1,0 +1,87 @@
+{
+  "sampleId": "retreat",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-flash",
+  "generatedAt": "2026-09-21T19:20:28.047Z",
+  "artifactSha256": "b38413ea5f93cac638dbdc8acea3f1ef572414193094dd6419726c5f6e1c6192",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/toolkit/ui_grammar.md",
+    "references/toolkit/ui_interaction_flow.md",
+    "references/toolkit/ui_innovation.md",
+    "references/toolkit/ui_floors.md",
+    "references/acceptance_protocol.md",
+    "references/archetypes.md",
+    "references/archetypes/playful_stationery.md",
+    "references/visual_grammar.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": true,
+    "interaction": false
+  },
+  "message": "The hero now reads correctly: the house sits embedded in the mountain layers with a lit window and a dark window, the mountain ridges have natural depth, and 「先读旅宿故事」is clearly readable. Composition holds as a landscape with文字压在左侧留白 — this has the content-specific signature the brief asked for.\n\nVerification status, stated honestly:\n\n**Observed** (from the desktop first-screen render): hero composition, house-to-ridge relationship, window pair (lit/dark), mist depth, text hierarchy, primary CTA prominence, secondary link readability, hero facts panel.\n\n**Not verified** — I cannot claim these passed:\n- 1440 与 390 宽度的完整页面渲染与各断点布局\n- 房型切换的实际交互效果（窗洞图形联动、转角竖框、设施清单切换）\n- 表单提交、日期错误态、复制、清空重置的实际行为\n- 200% 文字缩放、键盘 Tab 焦点全路径\n- 首屏以下全部区块的真实渲染\n\nThe artifact passed format check with html/css/js separated, no external network dependencies, no localStorage, and no fabricated addresses, awards, reviews, availability, or client data — all business content is labeled as concept example.\n\n**栖迟 QICHI · 住进山的留白** is delivered as the gallery sample. Core judgment: 山居的价值不是设施清单，而是一段被允许一直空着的时间 — and the form proves it structurally: the widest whitespace on the page is the valley the house leaves empty; the 「我们刻意没做的事」栏 stands as a column equal in weight to the story; the timeline refuses to be a schedule; the form refuses to be a booking.\n\nThings you may want to adjust next:\n- 房型窗洞插画可以换成手绘线稿方向，测试哪种与暖纸底更搭\n- 「我们刻意没做的事」栏可以扩展成真正的对照表（有 / 没有）\n- 首页山景可加一层更远的、几乎融入天空的山脊，进一步拉开纵深"
+}

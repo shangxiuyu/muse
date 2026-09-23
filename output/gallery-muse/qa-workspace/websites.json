@@ -1,0 +1,364 @@
+[
+  {
+    "id": "slow",
+    "width": 1440,
+    "layout": {
+      "scrollWidth": 1440,
+      "width": 1440,
+      "title": "走慢一点，让呼吸回到它本来的深度。",
+      "buttons": [
+        {
+          "text": "晨  06:40",
+          "id": "",
+          "cls": "moment__btn is-active"
+        },
+        {
+          "text": "午  13:15",
+          "id": "",
+          "cls": "moment__btn"
+        },
+        {
+          "text": "暮  18:50",
+          "id": "",
+          "cls": "moment__btn"
+        },
+        {
+          "text": "全部 6",
+          "id": "",
+          "cls": "chip is-active"
+        },
+        {
+          "text": "春",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "夏",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "秋",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "冬",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "回到当季记录",
+          "id": "empty-reset",
+          "cls": "btn btn--ghost"
+        },
+        {
+          "text": "展开采集档案\n          ＋",
+          "id": "",
+          "cls": "card__toggle"
+        },
+        {
+          "text": "展开采集档案\n          ＋",
+          "id": "",
+          "cls": "card__toggle"
+        },
+        {
+          "text": "展开采集档案\n          ＋",
+          "id": "",
+          "cls": "card__toggle"
+        },
+        {
+          "text": "订阅季候信",
+          "id": "signup-submit",
+          "cls": "btn btn--primary"
+        },
+        {
+          "text": "换一个邮箱",
+          "id": "signup-reset",
+          "cls": "btn btn--ghost"
+        }
+      ],
+      "inputs": [
+        {
+          "id": "email",
+          "type": "email"
+        }
+      ]
+    },
+    "checks": {
+      "noonSelected": "true",
+      "noonText": "正午的光把叶面照得薄而透，影子收成短短一截。",
+      "disclosureExpanded": "true",
+      "winterEntries": 1,
+      "winterEmpty": false,
+      "emailInvalid": "true",
+      "emailSuccess": "✦ 已记下了 sample@example.com\n\n这是本页的订阅演示，未保存邮箱，也不会发送邮件。\n\n换一个邮箱",
+      "reset": true
+    },
+    "errors": []
+  },
+  {
+    "id": "slow",
+    "width": 390,
+    "layout": {
+      "scrollWidth": 390,
+      "width": 390,
+      "title": "走慢一点，让呼吸回到它本来的深度。",
+      "buttons": [
+        {
+          "text": "晨  06:40",
+          "id": "",
+          "cls": "moment__btn is-active"
+        },
+        {
+          "text": "午  13:15",
+          "id": "",
+          "cls": "moment__btn"
+        },
+        {
+          "text": "暮  18:50",
+          "id": "",
+          "cls": "moment__btn"
+        },
+        {
+          "text": "全部 6",
+          "id": "",
+          "cls": "chip is-active"
+        },
+        {
+          "text": "春",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "夏",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "秋",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "冬",
+          "id": "",
+          "cls": "chip"
+        },
+        {
+          "text": "回到当季记录",
+          "id": "empty-reset",
+          "cls": "btn btn--ghost"
+        },
+        {
+          "text": "展开采集档案\n          ＋",
+          "id": "",
+          "cls": "card__toggle"
+        },
+        {
+          "text": "展开采集档案\n          ＋",
+          "id": "",
+          "cls": "card__toggle"
+        },
+        {
+          "text": "展开采集档案\n          ＋",
+          "id": "",
+          "cls": "card__toggle"
+        },
+        {
+          "text": "订阅季候信",
+          "id": "signup-submit",
+          "cls": "btn btn--primary"
+        },
+        {
+          "text": "换一个邮箱",
+          "id": "signup-reset",
+          "cls": "btn btn--ghost"
+        }
+      ],
+      "inputs": [
+        {
+          "id": "email",
+          "type": "email"
+        }
+      ]
+    },
+    "checks": {
+      "noonSelected": "true",
+      "noonText": "正午的光把叶面照得薄而透，影子收成短短一截。",
+      "disclosureExpanded": "true",
+      "winterEntries": 1,
+      "winterEmpty": false,
+      "emailInvalid": "true",
+      "emailSuccess": "✦ 已记下了 sample@example.com\n\n这是本页的订阅演示，未保存邮箱，也不会发送邮件。\n\n换一个邮箱",
+      "reset": true
+    },
+    "errors": []
+  },
+  {
+    "id": "form",
+    "width": 1440,
+    "layout": {
+      "scrollWidth": 1440,
+      "width": 1440,
+      "title": "Ideastakeform.",
+      "buttons": [
+        {
+          "text": "全部",
+          "id": "tab-all",
+          "cls": ""
+        },
+        {
+          "text": "品牌",
+          "id": "tab-brand",
+          "cls": ""
+        },
+        {
+          "text": "数字",
+          "id": "tab-digital",
+          "cls": ""
+        },
+        {
+          "text": "编辑",
+          "id": "tab-editorial",
+          "cls": ""
+        },
+        {
+          "text": "01\n            品牌策略与识别\n            ¥ 80k 起",
+          "id": "",
+          "cls": "svc-btn"
+        },
+        {
+          "text": "02\n            网站与数字体验\n            ¥ 120k 起",
+          "id": "",
+          "cls": "svc-btn"
+        },
+        {
+          "text": "03\n            编辑与包装\n            ¥ 45k 起",
+          "id": "",
+          "cls": "svc-btn"
+        },
+        {
+          "text": "整理合作意向",
+          "id": "enquiry-submit",
+          "cls": "btn-primary"
+        }
+      ],
+      "inputs": [
+        {
+          "id": "f-name",
+          "type": "text"
+        },
+        {
+          "id": "f-mail",
+          "type": "email"
+        },
+        {
+          "id": "f-type",
+          "type": "select-one"
+        },
+        {
+          "id": "f-msg",
+          "type": "textarea"
+        }
+      ]
+    },
+    "checks": {
+      "scripts": [
+        {
+          "src": "",
+          "length": 4861
+        }
+      ],
+      "selected": "true",
+      "brandProjects": 2,
+      "serviceExpanded": true,
+      "emptyFormErrors": 4,
+      "formStatus": "已在本页整理合作意向：示例主理人 / sample@example.com。未发送邮件。"
+    },
+    "errors": []
+  },
+  {
+    "id": "form",
+    "width": 390,
+    "layout": {
+      "scrollWidth": 390,
+      "width": 390,
+      "title": "Ideastakeform.",
+      "buttons": [
+        {
+          "text": "全部",
+          "id": "tab-all",
+          "cls": ""
+        },
+        {
+          "text": "品牌",
+          "id": "tab-brand",
+          "cls": ""
+        },
+        {
+          "text": "数字",
+          "id": "tab-digital",
+          "cls": ""
+        },
+        {
+          "text": "编辑",
+          "id": "tab-editorial",
+          "cls": ""
+        },
+        {
+          "text": "01\n            品牌策略与识别\n            ¥ 80k 起",
+          "id": "",
+          "cls": "svc-btn"
+        },
+        {
+          "text": "02\n            网站与数字体验\n            ¥ 120k 起",
+          "id": "",
+          "cls": "svc-btn"
+        },
+        {
+          "text": "03\n            编辑与包装\n            ¥ 45k 起",
+          "id": "",
+          "cls": "svc-btn"
+        },
+        {
+          "text": "整理合作意向",
+          "id": "enquiry-submit",
+          "cls": "btn-primary"
+        }
+      ],
+      "inputs": [
+        {
+          "id": "f-name",
+          "type": "text"
+        },
+        {
+          "id": "f-mail",
+          "type": "email"
+        },
+        {
+          "id": "f-type",
+          "type": "select-one"
+        },
+        {
+          "id": "f-msg",
+          "type": "textarea"
+        }
+      ]
+    },
+    "checks": {
+      "scripts": [
+        {
+          "src": "",
+          "length": 4861
+        }
+      ],
+      "selected": "true",
+      "brandProjects": 2,
+      "serviceExpanded": true,
+      "emptyFormErrors": 4,
+      "formStatus": "已在本页整理合作意向：示例主理人 / sample@example.com。未发送邮件。"
+    },
+    "errors": []
+  }
+]

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物候 WUHOU · 日用之美</title>
+<style>/* ============ 基线 ============ */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --paper:#FBF9F5; --paper-2:#F3EFE7; --card:#FFFFFF;
+  --ink:#2A211B; --ink-2:#5F5348; --ink-3:#8A7E70;
+  --line:rgba(42,33,27,.13); --line-2:rgba(42,33,27,.26);
+  --clay:#C0442A; --clay-soft:#FAEDE8; --clay-dark:#9B331E;
+  --focus:#1F5FA8;
+  --r:8px; --r-tag:4px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;--s12:48px;--s16:64px;--s20:80px;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",-apple-system,sans-serif;
+  font-size:16px;line-height:1.62;
+  background-image:radial-gradient(rgba(42,33,27,.035) 1px,transparent 1px);
+  background-size:22px 22px;
+}
+h1,h2,h3,h4,p,dl,dd,dt,figure{margin:0}
+ul{margin:0;padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.mono{font-family:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* 共享容器：水平边距只由这一处供给，后代不得用 padding 简写清零 */
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--s5)}
+
+:where(a,button,[tabindex]):focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:2px}
+.skip{position:absolute;left:var(--s3);top:-60px;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:var(--r);z-index:60;font-size:14px}
+.skip:focus{top:var(--s3)}
+
+/* ============ 报头 ============ */
+.masthead{position:sticky;top:0;z-index:30;background:rgba(251,249,245,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.masthead__inner{display:flex;align-items:center;gap:var(--s5);min-height:64px}
+.masthead__brand{display:flex;align-items:baseline;gap:var(--s2)}
+.wordmark{font-size:22px;font-weight:700;letter-spacing:.14em}
+.wordmark__latin{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.22em;color:var(--ink-3)}
+.masthead__nav{display:flex;gap:var(--s6);margin-left:auto}
+.masthead__nav a{font-size:14px;text-decoration:none;color:var(--ink-2);padding:6px 2px;border-bottom:1px solid transparent;transition:color .18s var(--ease),border-color .18s var(--ease)}
+.masthead__nav a:hover{color:var(--ink);border-bottom-color:var(--clay)}
+.bagbtn{display:flex;align-items:center;gap:var(--s2);min-height:44px;padding:0 var(--s4);background:var(--ink);color:var(--paper);border:1px solid var(--ink);border-radius:var(--r);cursor:pointer;font-size:14px;font-weight:600;transition:background .18s var(--ease)}
+.bagbtn:hover{background:#3B2F26}
+.bagbtn__count{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12px;background:var(--paper);color:var(--ink);border-radius:var(--r-tag);padding:1px 6px;min-width:22px;text-align:center}
+.bagbtn.has-items .bagbtn__count{background:var(--clay);color:#fff}
+
+/* ============ 开篇带：左报题 / 右图版（1200×750 首屏同框） ============ */
+.opening{
+  /* 长写属性：只压下留白，左右 20px 仍由 .wrap 供给 */
+  padding-block:var(--s8) var(--s12);
+  display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:var(--s8) var(--s10);
+  align-items:start;
+}
+.opening__text{display:flex;flex-direction:column;min-width:0}
+.eyebrow{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
+.opening__title{margin:var(--s4) 0 0;font-size:clamp(30px,3.6vw,48px);font-weight:700;line-height:1.1;letter-spacing:.01em}
+.opening__accent{color:var(--clay)}
+
+.opening__hero{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line)}
+.opening__product{margin-top:var(--s2);font-size:clamp(24px,2.4vw,30px);font-weight:700;line-height:1.2}
+
+.opening__lede{margin-top:var(--s5);font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:16px;line-height:1.72;color:var(--ink-2);max-width:32em}
+
+/* 速览事实：dt / dd 同行两端对齐，窄屏再回落到单列 */
+.opening__facts{
+  margin-top:var(--s5);padding-top:var(--s3);border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+}
+.opening__facts>div{
+  display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);
+  padding:var(--s3) var(--s4);font-size:14px;min-width:0;
+}
+.opening__facts>div+div{border-left:1px solid var(--line)}
+.opening__facts dt{font-size:12px;color:var(--ink-3);white-space:nowrap}
+.opening__facts dd{font-weight:500;line-height:1.45;text-align:right}
+.opening__facts em{font-style:normal;color:var(--ink-3);font-size:12px;white-space:nowrap}
+
+.opening__figure{margin:0;min-width:0}
+
+/* ============ 图版 ============ */
+.plate{position:relative;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.plate::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.7),rgba(255,255,255,0) 58%);pointer-events:none}
+.plate svg{display:block;width:100%;height:auto;position:relative;z-index:1}
+.plate--hero{aspect-ratio:7/5;padding:var(--s6)}
+.feature__cap{margin-top:var(--s3);font-size:13px;color:var(--ink-3);display:flex;gap:var(--s3);flex-wrap:wrap}
+
+/* ============ 手边详情横带 ============ */
+.feature{padding-bottom:var(--s16)}
+.feature__band{
+  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+  gap:var(--s6) var(--s10);align-items:start;
+  border-top:1px solid var(--line);padding-top:var(--s6);
+}
+.feature__col{min-width:0}
+.feature__desc{margin-top:var(--s3);font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:16px;line-height:1.78;color:var(--ink-2);max-width:36em}
+.speclist{min-width:0}
+.speclist__row{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s3) 0;border-bottom:1px solid var(--line);font-size:14px}
+.speclist__row dt{color:var(--ink-3)}
+.speclist__row dd{text-align:right;font-weight:500}
+
+/* ============ 目录 ============ */
+.section__title{font-size:clamp(24px,2.6vw,32px);font-weight:700;line-height:1.22}
+.section__sub{font-size:14px;color:var(--ink-3);margin-top:var(--s2);max-width:44em}
+.catalog{padding-bottom:var(--s20)}
+.catalog__head{display:flex;flex-wrap:wrap;gap:var(--s5);justify-content:space-between;align-items:flex-end;border-top:2px solid var(--ink);padding-top:var(--s6)}
+.filters{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.chip{min-height:44px;padding:0 var(--s5);background:transparent;border:1px solid var(--line-2);border-radius:var(--r-tag);cursor:pointer;font-size:14px;color:var(--ink-2);transition:background .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease)}
+.chip:hover{background:var(--paper-2);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper);font-weight:600}
+.catalog__live{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink-3);margin:var(--s4) 0 var(--s6)}
+.catalog__note{font-size:14px;color:var(--ink-2);border:1px dashed var(--line-2);border-radius:var(--r);padding:var(--s8);text-align:center}
+.linkbtn{background:none;border:0;padding:8px;color:var(--clay-dark);text-decoration:underline;cursor:pointer;font-size:14px}
+
+/* 非等宽网格：尺度分级 */
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s8) var(--s6)}
+.card{grid-column:span 2;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .22s var(--ease),transform .22s var(--ease)}
+.card:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.card[data-w="2"]{grid-column:span 4}
+.card.is-active{border-color:var(--clay)}
+.card__plate{background:var(--paper-2);border-bottom:1px solid var(--line);aspect-ratio:4/3;padding:var(--s5)}
+.card__plate svg{width:70%;height:auto;margin:auto}
+.card[data-w="2"] .card__plate{aspect-ratio:21/9}
+.card__body{padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3);flex:1}
+.card[data-w="2"] .card__body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-areas:"hd hd" "sp mt" "sp ac" "sp ac";gap:var(--s4) var(--s8)}
+.card[data-w="2"] .card__head{grid-area:hd}
+.card[data-w="2"] .card__spec{grid-area:sp}
+.card[data-w="2"] .card__meta{grid-area:mt;margin-top:0}
+.card[data-w="2"] .card__actions{grid-area:ac;align-self:start}
+.card__head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3)}
+.card__name{font-size:19px;font-weight:700;line-height:1.3}
+.card__id{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink-3);white-space:nowrap}
+.card__spec{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:14px;line-height:1.74;color:var(--ink-2)}
+.card__tags{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s3)}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:var(--r-tag);padding:2px 8px;color:var(--ink-2);background:var(--paper)}
+.card__meta{display:flex;flex-direction:column;gap:var(--s2);border-top:1px solid var(--line);padding-top:var(--s3);margin-top:auto}
+.card__metaRow{display:flex;justify-content:space-between;gap:var(--s4);font-size:13px}
+.card__metaRow dt{color:var(--ink-3)}
+.card__metaRow dd{text-align:right}
+.card__actions{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center;border-top:1px solid var(--line);padding-top:var(--s4)}
+.price{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:22px;font-weight:600;color:var(--clay);margin-right:auto;white-space:nowrap}
+.price small{font-size:12px;font-weight:400;color:var(--ink-3);margin-left:6px}
+.btn{min-height:44px;padding:0 var(--s5);border-radius:var(--r);cursor:pointer;font-size:14px;font-weight:600;border:1px solid transparent;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.btn--primary{background:var(--clay);color:#fff;border-color:var(--clay)}
+.btn--primary:hover{background:var(--clay-dark);border-color:var(--clay-dark)}
+.btn--ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn--ghost:hover{background:var(--paper-2)}
+.btn--done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.specbtn{background:transparent;border:1px solid var(--line-2);color:var(--ink-2)}
+.specbtn:hover{background:var(--paper-2)}
+.specbtn[aria-expanded="true"]{border-color:var(--ink);color:var(--ink);background:var(--paper-2)}
+.icon{width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:6px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* 原位展开规格 */
+.specPanel{grid-column:1/-1;border-top:1px dashed var(--line-2);margin-top:var(--s4);padding-top:var(--s4);display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s3) var(--s6)}
+.specPanel[hidden]{display:none}
+.specPanel>div{display:flex;flex-direction:column;gap:2px;font-size:13px}
+.specPanel dt{color:var(--ink-3)}
+.specPanel dd{margin:0;font-weight:500}
+
+/* ============ 材料 ============ */
+.materials{border-top:1px solid var(--line);background:var(--paper-2);padding-block:var(--s16)}
+.mat__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s8);margin-top:var(--s8)}
+.mat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:var(--s6);display:flex;flex-direction:column;gap:var(--s3)}
+.mat__name{font-size:18px;font-weight:700;display:flex;align-items:center;gap:var(--s2)}
+.mat__name::before{content:"✦";color:var(--clay);font-size:13px}
+.mat__body{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:15px;line-height:1.78;color:var(--ink-2)}
+.mat__care{font-size:13px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:var(--s3);margin-top:auto}
+
+/* ============ 关于 / 页脚 ============ */
+.about{padding-block:var(--s16)}
+.about__body{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:17px;line-height:1.78;color:var(--ink-2);max-width:38em;margin-top:var(--s4)}
+.about__note{margin-top:var(--s5);font-size:13px;line-height:1.7;color:var(--ink-3);border:1px solid var(--line);border-radius:var(--r);padding:var(--s4);max-width:60em;background:var(--paper-2)}
+.foot{border-top:1px solid var(--line);padding-block:var(--s8)}
+.foot__inner{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s8);justify-content:space-between;align-items:baseline}
+.foot__brand{font-size:14px;font-weight:600}
+.foot__meta{font-size:12px;color:var(--ink-3)}
+
+/* ============ 购物袋 ============ */
+.bag{position:fixed;inset:0;z-index:50;display:flex;justify-content:flex-end}
+.bag[hidden]{display:none}
+.bag__backdrop{position:absolute;inset:0;background:rgba(42,33,27,.34)}
+.bag__sheet{position:relative;width:min(420px,100%);height:100%;background:var(--paper);border-left:1px solid var(--line-2);display:flex;flex-direction:column;overflow-y:auto;animation:slideIn .34s var(--ease)}
+@keyframes slideIn{from{transform:translateX(16px);opacity:.5}to{transform:translateX(0);opacity:1}}
+.bag__head{display:flex;justify-content:space-between;align-items:center;padding:var(--s5);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:2}
+.bag__title{font-size:19px;font-weight:700}
+.bag__close{min-height:44px;padding:0 var(--s3);background:none;border:1px solid var(--line-2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--ink-2)}
+.bag__close:hover{background:var(--paper-2)}
+.bag__demo{margin:var(--s5) var(--s5) 0;font-size:12px;line-height:1.68;color:var(--clay-dark);background:var(--clay-soft);border:1px solid rgba(192,68,42,.32);border-radius:var(--r);padding:var(--s3) var(--s4)}
+.bag__empty{padding:var(--s10) var(--s5);text-align:center;display:flex;flex-direction:column;gap:var(--s3);align-items:center}
+.bag__emptyTitle{font-size:17px;font-weight:700}
+.bag__emptyBody{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:15px;line-height:1.72;color:var(--ink-2)}
+.bag__list{padding:var(--s4) var(--s5);display:flex;flex-direction:column}
+.bag__item{display:grid;grid-template-columns:64px minmax(0,1fr);gap:var(--s4);padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.bag__thumb{width:64px;height:64px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-tag);overflow:hidden}
+.bag__thumb svg{width:100%;height:100%;display:block}
+.bag__itemName{font-size:15px;font-weight:600;line-height:1.35}
+.bag__itemSku{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink-3)}
+.bag__itemRow{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s2);flex-wrap:wrap}
+.qty{display:flex;align-items:center;border:1px solid var(--line-2);border-radius:var(--r-tag);overflow:hidden}
+.qty button{width:44px;height:44px;background:transparent;border:0;cursor:pointer;font-size:17px;line-height:1;color:var(--ink)}
+.qty button:hover{background:var(--paper-2)}
+.qty span{min-width:34px;text-align:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:14px}
+.bag__lineTotal{margin-left:auto;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:15px;font-weight:600;color:var(--clay)}
+.bag__del{background:none;border:0;padding:10px 0;font-size:13px;color:var(--ink-3);text-decoration:underline;cursor:pointer;min-height:44px}
+.bag__del:hover{color:var(--clay-dark)}
+.bag__foot{margin-top:auto;padding:var(--s5);border-top:1px solid var(--line);position:sticky;bottom:0;background:var(--paper)}
+.bag__totalRow{display:flex;justify-content:space-between;align-items:baseline;font-size:15px}
+.bag__totalRow strong{font-size:26px;color:var(--clay)}
+.bag__footNote{font-size:12px;color:var(--ink-3);margin-top:var(--s2)}
+.bag__clear{margin-top:var(--s4);width:100%}
+
+/* ============ 响应式 ============ */
+@media (max-width:1023px){
+  .opening{grid-template-columns:1fr;padding-block:var(--s6) var(--s10)}
+  .opening__figure{order:2}
+  .plate--hero{aspect-ratio:3/2;padding:var(--s5)}
+  .feature__band{grid-template-columns:1fr;gap:var(--s6)}
+  .mat__grid{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:repeat(4,1fr)}
+  .card,.card[data-w="2"]{grid-column:span 2}
+  .card[data-w="2"] .card__body{display:flex}
+  .card[data-w="2"] .card__plate{aspect-ratio:4/3}
+}
+@media (max-width:767px){
+  .masthead__nav{display:none}
+  .masthead__inner{gap:var(--s3)}
+  .bagbtn{margin-left:auto}
+  .opening__facts{grid-template-columns:1fr;padding-top:var(--s2)}
+  .opening__facts>div{padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+  .opening__facts>div+div{border-left:0}
+  .grid{grid-template-columns:1fr;gap:var(--s6)}
+  .card,.card[data-w="2"]{grid-column:span 1}
+  .mat__grid{grid-template-columns:1fr}
+  .catalog__head{align-items:flex-start;flex-direction:column}
+  .filters{width:100%}
+  .chip{flex:1 1 auto}
+  .bag__sheet{width:100%;border-left:0}
+  .materials,.about{padding-block:var(--s12)}
+  .card__plate svg{width:76%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* Independent QA: empty bag and flex states must respect hidden. */
+[hidden]{display:none !important}
+</style></head>
+<body>
+<a class="skip" href="#catalog">跳到商品目录</a>
+
+<header class="masthead" id="top">
+  <div class="wrap masthead__inner">
+    <div class="masthead__brand">
+      <span class="wordmark">物候</span>
+      <span class="wordmark__latin">WUHOU</span>
+    </div>
+    <nav class="masthead__nav" aria-label="主导航">
+      <a href="#catalog">器物目录</a>
+      <a href="#materials">材料说明</a>
+      <a href="#about">关于物候</a>
+    </nav>
+    <button type="button" class="bagbtn" id="bagBtn" aria-expanded="false" aria-controls="bagPanel">
+      <span class="bagbtn__label">购物袋</span>
+      <span class="bagbtn__count" id="bagCount" aria-hidden="true">0</span>
+      <span class="sr-only" id="bagBtnSr">购物袋，0 件</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="opening wrap" aria-labelledby="featureTitle">
+    <div class="opening__text">
+      <p class="eyebrow">概念示例 · 器物目录 · 第 03 辑　立夏</p>
+      <h1 class="opening__title">
+        器物要经得起手，<br>
+        <span class="opening__accent">而不是经得起截图。</span>
+      </h1>
+
+      <div class="opening__hero">
+        <p class="eyebrow">本辑主打 · <span class="mono">01 / 06</span></p>
+        <h2 class="opening__product" id="featureTitle">灰釉直身杯</h2>
+      </div>
+
+      <p class="opening__lede">午后三点，光斜进来，你能看清一只杯子的釉面在哪一处发哑、杯口的厚薄在唇边怎么变。这一辑选了六件日用品，都在这个时辰里被反复端详过。尺寸写实，材料写清，用途写在旁边——剩下的判断留给你。</p>
+
+      <dl class="opening__facts">
+        <div><dt>在售</dt><dd>6 件</dd></div>
+        <div><dt>产地</dt><dd>景德镇 / 湖州 <em>（示例）</em></dd></div>
+        <div><dt>发货</dt><dd>下单后 3 日内 <em>（示例）</em></dd></div>
+      </dl>
+    </div>
+
+    <figure class="opening__figure">
+      <div class="plate plate--hero" data-art="cuph"></div>
+      <figcaption class="feature__cap"><span class="mono">01 / 06</span> 灰釉直身杯 · 左为杯体侧视，右上为口沿俯视</figcaption>
+    </figure>
+  </section>
+
+  <section class="feature wrap" aria-labelledby="featureTitle">
+    <div class="feature__band">
+      <div class="feature__col">
+        <p class="eyebrow">手边详情</p>
+        <p class="feature__desc">杯身不做收腰，手指从杯底一圈圈推到口沿，摸得到拉坯留下的细密环痕。灰釉在窑里落灰成釉，杯壁有一处偏青、一处偏褐，两只杯子不会一样。厚度 4–5mm，装 200ml 热茶，握在手里不烫掌心。</p>
+      </div>
+      <dl class="speclist">
+        <div class="speclist__row"><dt>容量</dt><dd><span class="mono">200</span> ml</dd></div>
+        <div class="speclist__row"><dt>口径 × 高</dt><dd><span class="mono">72 × 88</span> mm</dd></div>
+        <div class="speclist__row"><dt>烧成</dt><dd>柴窑 <span class="mono">1280</span>℃，还原焰</dd></div>
+        <div class="speclist__row"><dt>编号</dt><dd><span class="mono">WH-C01</span>（概念示例）</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="catalog wrap" id="catalog" aria-labelledby="catalogTitle">
+    <div class="catalog__head">
+      <div class="catalog__headmain">
+        <h2 class="section__title" id="catalogTitle">器物目录</h2>
+        <p class="section__sub">按材料分组。点「规格」在原位展开，不跳页、不弹窗。</p>
+      </div>
+      <div class="filters" role="group" aria-label="按类别筛选">
+        <button type="button" class="chip is-on" data-filter="all" aria-pressed="true">全部</button>
+        <button type="button" class="chip" data-filter="clay" aria-pressed="false">陶</button>
+        <button type="button" class="chip" data-filter="wares" aria-pressed="false">器皿</button>
+        <button type="button" class="chip" data-filter="textile" aria-pressed="false">织物</button>
+      </div>
+    </div>
+    <p class="catalog__live" id="catalogLive" role="status" aria-live="polite">显示全部 6 件</p>
+    <div class="grid" id="grid"></div>
+    <p class="catalog__note" id="gridEmpty" hidden>这一类暂时是空的。<button type="button" class="linkbtn" data-filter="all">回到全部 6 件</button></p>
+  </section>
+
+  <section class="materials" id="materials" aria-labelledby="matTitle">
+    <div class="wrap">
+      <h2 class="section__title" id="matTitle">材料说明</h2>
+      <p class="section__sub">三种材料，三种手感和三种养护方式。都写在下面，不必猜。</p>
+      <div class="mat__grid">
+        <article class="mat">
+          <h3 class="mat__name">灰釉陶土</h3>
+          <p class="mat__body">景德镇本地高岭土掺少量紫金土，可塑性好、胎体偏白。柴窑落灰成釉，釉面有微小的针孔与流痕——那不是瑕疵，是烧成记录。</p>
+          <p class="mat__care">养护：可入洗碗机，但手洗更护釉。忌骤冷骤热。</p>
+        </article>
+        <article class="mat">
+          <h3 class="mat__name">炻器陶土</h3>
+          <p class="mat__body">含铁量较高的粗陶土，烧成后呈暖褐，吸水率低于 1%，不上釉也致密。表面留一层细砂感，指腹划过有轻微阻力。</p>
+          <p class="mat__care">养护：可微波、可入烤箱。长期使用会养出温润的油光。</p>
+        </article>
+        <article class="mat">
+          <h3 class="mat__name">手织棉麻</h3>
+          <p class="mat__body">湖州织造的 55% 亚麻 / 45% 棉，经纬密度偏低，透气、下垂自然。洗后会略微收缩并变软，织物表面留下洗水后的细微起伏。</p>
+          <p class="mat__care">养护：前三次冷水单洗，避免与硬物同洗。自然阴干。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about wrap" id="about" aria-labelledby="aboutTitle">
+    <h2 class="section__title" id="aboutTitle">关于物候</h2>
+    <p class="about__body">物候做小批量日用器物，按节气出辑，一辑六件，卖完等下一窑。不做限量编号营销，不做联名，也不请人写评价——所以这个页面上一条用户评价都没有。</p>
+    <p class="about__note">「物候 WUHOU」为 Muse 样板而设的虚构品牌，文中品牌、商品、产地、价格与配送信息均为概念示例，不代表任何真实商家、真实商品或真实报价。本页购物袋为本地演示，不提供支付或真实下单。</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p class="foot__brand">物候 WUHOU · 概念示例样板</p>
+    <p class="foot__meta">本地购物袋演示 · 不提供支付或真实下单 · 本页不使用网络字体、外部图片或第三方脚本</p>
+  </div>
+</footer>
+
+<div class="bag" id="bagPanel" hidden>
+  <div class="bag__backdrop" id="bagBackdrop" tabindex="-1" aria-hidden="true"></div>
+  <aside class="bag__sheet" role="dialog" aria-label="购物袋" aria-modal="false">
+    <header class="bag__head">
+      <h2 class="bag__title">购物袋 <span class="mono" id="bagHeadCount">(0)</span></h2>
+      <button type="button" class="bag__close" id="bagClose" aria-label="收起购物袋">收起</button>
+    </header>
+
+    <p class="bag__demo">本地演示购物袋：商品与数量只保存在当前页面，关闭或刷新即清空。不发起支付、不下单、不保留任何个人信息。</p>
+
+    <div class="bag__empty" id="bagEmpty">
+      <p class="bag__emptyTitle">袋子还是空的。</p>
+      <p class="bag__emptyBody">从目录里挑一件先放进来——比如那只灰釉直身杯，最适合午后的一杯热茶。</p>
+      <button type="button" class="btn btn--ghost" id="bagEmptyCta">去挑一件</button>
+    </div>
+
+    <ul class="bag__list" id="bagList" aria-label="已选商品"></ul>
+
+    <footer class="bag__foot" id="bagFoot" hidden>
+      <div class="bag__totalRow">
+        <span>合计</span>
+        <strong class="mono" id="bagTotal">¥0</strong>
+      </div>
+      <p class="bag__footNote">共 <span class="mono" id="bagFootCount">0</span> 件 · 运费与税不在演示范围</p>
+      <button type="button" class="btn btn--ghost bag__clear" id="bagClear">清空购物袋</button>
+    </footer>
+  </aside>
+</div>
+
+<script id="productData" type="application/json">
+[
+  {"id":"WH-C01","name":"灰釉直身杯","cat":"clay","catLabel":"陶","art":"cup-ash","price":168,"w":2,
+   "spec":"杯身不做收腰，手指从杯底一圈圈推到口沿，摸得到拉坯留下的细密环痕。灰釉在窑里落灰成釉，杯壁有一处偏青、一处偏褐，两只杯子不会一样。厚度 4–5mm，装 200ml 热茶，握在手里不烫掌心。",
+   "details":[["容量","200 ml"],["口径 × 高","72 × 88 mm"],["烧成","柴窑 1280℃ 还原焰"],["重量","285 g"]],
+   "use":"热茶、清酒、小份汤羹。杯口略外翻，喝汤比收口杯顺手。"},
+
+  {"id":"WH-C02","name":"柴烧小口花器","cat":"clay","catLabel":"陶","art":"vase","price":420,"w":2,
+   "spec":"小口、鼓腹、切削足。腹部的一圈褐红是窑位烧成，不是涂色，所以每只落点不同。器壁厚 6mm，装半瓶水也稳；插枝条时剪口略斜，靠小口自然收束。",
+   "details":[["容量","520 ml"],["口径 × 腹径 × 高","38 × 108 × 168 mm"],["烧成","柴窑 1300℃"],["重量","640 g"]],
+   "use":"一两枝当季枝条、干花、菖蒲。小口能夹住枝干，不必另配剑山。"},
+
+  {"id":"WH-C03","name":"深棕托盘 · 长","cat":"wares","catLabel":"器皿","art":"tray","price":286,"w":2,
+   "spec":"整块榉木削成，四角做小圆角，托盘深度 18mm 正好挡住滚动的杯子。底面刻出一道槽，拿起来时拇指有落点。木蜡油涂装，手感是木头的，不是塑料的。",
+   "details":[["外形","360 × 180 × 24 mm"],["盘深","18 mm"],["材质","榉木 · 木蜡油"],["承重","约 3.5 kg"]],
+   "use":"端茶待客、摆早餐、收纳笔与眼镜。不防水浸泡，擦干即可。"},
+
+  {"id":"WH-C04","name":"棉麻方巾 · 二枚组","cat":"textile","catLabel":"织物","art":"cloth","price":124,"w":2,
+   "spec":"手织 55% 亚麻 / 45% 棉，经纬密度偏低，所以透气、易干，也不容易闷出发霉味。四边做了密拷锁边，洗过之后边缘会微微起皱——那是麻的特性。两条一色，同批织造。",
+   "details":[["尺寸","330 × 330 mm ×2"],["成分","亚麻 55% / 棉 45%"],["克重","约 210 g/m²"],["工艺","密拷锁边"]],
+   "use":"垫茶席、包面包、盖醒发中的面团、擦干刚洗的陶器。"},
+
+  {"id":"WH-C05","name":"炻器浅碗","cat":"wares","catLabel":"器皿","art":"bowl","price":198,"w":1,
+   "spec":"口沿翻出一小段唇边，手指能扣住，端起来稳。含铁陶土烧成的暖褐色，内壁不上釉，摸得到细砂感。碗底留一圈无釉的足，放在桌上不滑。",
+   "details":[["容量","380 ml"],["口径 × 高","142 × 62 mm"],["烧成","1240℃ 氧化焰"],["重量","395 g"]],
+   "use":"一人份米饭、凉拌小菜、坚果与果干。"},
+
+  {"id":"WH-C06","name":"高足灰釉杯","cat":"clay","catLabel":"陶","art":"pedestal","price":236,"w":1,
+   "spec":"在直身杯的基础上加了 30mm 高足，桌面到杯底留出空隙，热饮散热慢一些。足部收窄，握持时重心仍在掌心。足底刮釉一圈，落桌有很轻的一声钝响。",
+   "details":[["容量","160 ml"],["口径 × 全高","62 × 105 mm"],["烧成","柴窑 1280℃ 还原焰"],["重量","310 g"]],
+   "use":"单品饮、浓度较高的茶、小份布丁。高足也让杯子在架上更好认。"}
+]
+</script>
+<script>(function(){
+  "use strict";
+
+  /* ---------- 内联 SVG 器物图形（受光面 / 接触投影 / 纹理 / 结构线） ---------- */
+  var SVGS = {
+    /* 开篇图版：侧视 + 口沿俯视 并置，兑现图注 */
+    "cuph": '<svg viewBox="0 0 340 210" role="img" aria-label="灰釉直身杯：左侧为杯体侧视，右侧为杯口俯视，含拉坯环痕、落灰釉斑与内壁水线">' +
+      '<defs>' +
+        '<linearGradient id="h-g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EDE7DC"/><stop offset=".45" stop-color="#D7D0C2"/><stop offset="1" stop-color="#B5AE9F"/></linearGradient>' +
+        '<linearGradient id="h-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8E8778"/><stop offset="1" stop-color="#655F53"/></linearGradient>' +
+        '<radialGradient id="h-g3" cx=".42" cy=".34" r=".8"><stop offset="0" stop-color="#9A9484"/><stop offset=".7" stop-color="#7E7869"/><stop offset="1" stop-color="#5F594E"/></radialGradient>' +
+        '<clipPath id="h-cut"><path d="M60 34 L70 158 Q103 172 136 158 L146 34 Z"/></clipPath>' +
+      '</defs>' +
+      /* 侧视 */
+      '<ellipse cx="103" cy="170" rx="55" ry="8" fill="rgba(42,33,27,.10)"/>' +
+      '<path d="M60 34 L70 158 Q103 172 136 158 L146 34 Z" fill="url(#h-g1)" stroke="#6B6559" stroke-width="1.5" stroke-linejoin="round"/>' +
+      '<ellipse cx="103" cy="34" rx="43" ry="13" fill="url(#h-g2)" stroke="#6B6559" stroke-width="1.3"/>' +
+      '<g clip-path="url(#h-cut)">' +
+        '<path d="M64 74 Q103 86 142 74" fill="none" stroke="#8C8577" stroke-width="1" opacity=".7"/>' +
+        '<path d="M66 102 Q103 114 140 102" fill="none" stroke="#8C8577" stroke-width="1" opacity=".55"/>' +
+        '<path d="M68 130 Q103 142 138 130" fill="none" stroke="#8C8577" stroke-width="1" opacity=".4"/>' +
+        '<path d="M84 54 q16 -8 30 -1 q7 5 1 11 q-15 7 -31 1 q-7 -5 0 -11 Z" fill="#8FA091" opacity=".45"/>' +
+        '<path d="M116 94 q15 -4 20 5 q4 7 -4 9 q-12 3 -18 -5 q-4 -6 2 -9 Z" fill="#A87F62" opacity=".4"/>' +
+        '<path d="M74 48 L79 152" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" opacity=".42"/>' +
+        '<path d="M70 46 Q103 60 138 46" fill="none" stroke="#655F53" stroke-width="1.3" opacity=".5"/>' +
+      '</g>' +
+      '<ellipse cx="103" cy="34" rx="34" ry="10" fill="none" stroke="#938D7D" stroke-width="1"/>' +
+      /* 俯视口沿 */
+      '<ellipse cx="252" cy="62" rx="50" ry="28" fill="url(#h-g3)" stroke="#655F53" stroke-width="1.3"/>' +
+      '<ellipse cx="252" cy="62" rx="39" ry="20.5" fill="#4B463C" stroke="#7B7466" stroke-width="1"/>' +
+      '<ellipse cx="252" cy="62" rx="32" ry="16" fill="#3C382F" opacity=".85"/>' +
+      '<path d="M220 62 Q252 47 284 62" fill="none" stroke="#A8A192" stroke-width="1.1" opacity=".5"/>' +
+      '<path d="M228 50 Q252 32 276 50" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".3"/>' +
+      '<ellipse cx="252" cy="98" rx="45" ry="9" fill="rgba(42,33,27,.08)"/>' +
+    '</svg>',
+
+    "cup-ash": '<svg viewBox="0 0 240 240" role="img" aria-label="灰釉直身杯的侧视与俯视口沿线描，含拉坯环痕、落灰釉斑与茶渍水线">' +
+      '<defs>' +
+        '<linearGradient id="g-ash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EDE7DC"/><stop offset=".45" stop-color="#D9D2C4"/><stop offset="1" stop-color="#B9B2A4"/></linearGradient>' +
+        '<linearGradient id="g-ashIn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8E8778"/><stop offset="1" stop-color="#6A6458"/></linearGradient>' +
+        '<clipPath id="cut-ash"><path d="M78 78 L86 196 Q120 208 154 196 L162 78 Z"/></clipPath>' +
+      '</defs>' +
+      '<ellipse cx="120" cy="206" rx="62" ry="10" fill="rgba(42,33,27,.10)"/>' +
+      '<path d="M78 78 L86 196 Q120 208 154 196 L162 78 Z" fill="url(#g-ash)" stroke="#6E675B" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '<ellipse cx="120" cy="78" rx="42" ry="12" fill="url(#g-ashIn)" stroke="#6E675B" stroke-width="1.2"/>' +
+      '<g clip-path="url(#cut-ash)">' +
+        '<path d="M81 112 Q120 122 159 112" fill="none" stroke="#8C8577" stroke-width=".9" opacity=".7"/>' +
+        '<path d="M83 138 Q120 148 157 138" fill="none" stroke="#8C8577" stroke-width=".9" opacity=".55"/>' +
+        '<path d="M85 164 Q120 174 155 164" fill="none" stroke="#8C8577" stroke-width=".9" opacity=".4"/>' +
+        '<path d="M100 96 q14 -7 26 -1 q6 4 1 10 q-13 6 -27 1 q-6 -4 0 -10 Z" fill="#8FA091" opacity=".45"/>' +
+        '<path d="M132 128 q13 -3 18 4 q3 6 -4 8 q-10 2 -16 -4 q-3 -5 2 -8 Z" fill="#A87F62" opacity=".4"/>' +
+        '<path d="M92 92 L96 186" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" opacity=".45"/>' +
+        '<path d="M86 90 Q120 102 154 90" fill="none" stroke="#6A6458" stroke-width="1.2" opacity=".5"/>' +
+      '</g>' +
+      '<ellipse cx="120" cy="78" rx="34" ry="9" fill="none" stroke="#9C9484" stroke-width=".9"/>' +
+      '<ellipse cx="120" cy="78" rx="42" ry="12" fill="none" stroke="#9C9484" stroke-width="1"/>' +
+    '</svg>',
+
+    "vase": '<svg viewBox="0 0 240 240" role="img" aria-label="柴烧小口花器线描，小口鼓腹、切削足，含窑位褐红斑与入瓶枝条">' +
+      '<defs>' +
+        '<linearGradient id="g-vase" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C08A66"/><stop offset=".38" stop-color="#A96F4E"/><stop offset="1" stop-color="#7E4E36"/></linearGradient>' +
+        '<clipPath id="cut-vase"><path d="M108 58 L104 76 Q64 104 66 150 Q68 196 104 204 L136 204 Q172 196 174 150 Q176 104 136 76 L132 58 Z"/></clipPath>' +
+      '</defs>' +
+      '<ellipse cx="120" cy="212" rx="52" ry="9" fill="rgba(42,33,27,.10)"/>' +
+      '<path d="M108 58 L104 76 Q64 104 66 150 Q68 196 104 204 L136 204 Q172 196 174 150 Q176 104 136 76 L132 58 Z" fill="url(#g-vase)" stroke="#5E3A28" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '<g clip-path="url(#cut-vase)">' +
+        '<path d="M96 92 Q78 130 88 186" stroke="#F0D9C6" stroke-width="7" stroke-linecap="round" fill="none" opacity=".38"/>' +
+        '<path d="M136 118 q20 8 22 26 q2 20 -12 28 q-14 6 -20 -8 q-6 -22 10 -46 Z" fill="#8E3A1E" opacity=".38"/>' +
+        '<path d="M84 148 q36 12 72 0" fill="none" stroke="#7E4E36" stroke-width=".9" opacity=".5"/>' +
+      '</g>' +
+      '<ellipse cx="120" cy="57" rx="12" ry="5" fill="#5E3A28"/>' +
+      '<ellipse cx="120" cy="56" rx="9" ry="3.6" fill="#3E2618"/>' +
+      '<path d="M104 204 Q120 212 136 204" fill="none" stroke="#5E3A28" stroke-width="1.4"/>' +
+      '<ellipse cx="120" cy="205" rx="16" ry="5" fill="none" stroke="#5E3A28" stroke-width="1.2"/>' +
+      '<path d="M120 52 q-6 -22 4 -34" fill="none" stroke="#6B7A5A" stroke-width="2" stroke-linecap="round"/>' +
+      '<path d="M120 40 q14 -6 22 2" fill="none" stroke="#6B7A5A" stroke-width="1.8" stroke-linecap="round"/>' +
+      '<ellipse cx="144" cy="41" rx="7" ry="4" fill="#7E8F68" transform="rotate(-18 144 41)"/>' +
+      '<ellipse cx="122" cy="24" rx="6" ry="3.6" fill="#8DA075" transform="rotate(14 122 24)"/>' +
+    '</svg>',
+
+    "tray": '<svg viewBox="0 0 240 240" role="img" aria-label="深棕托盘的四分之三视图，含盘沿厚度、内底凹槽、木纹与拇指槽">' +
+      '<defs><linearGradient id="g-tray" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#8A5A3C"/><stop offset="1" stop-color="#5C3722"/></linearGradient></defs>' +
+      '<ellipse cx="124" cy="196" rx="76" ry="13" fill="rgba(42,33,27,.12)"/>' +
+      '<path d="M28 110 L120 74 L212 110 L120 148 Z" fill="url(#g-tray)" stroke="#41271A" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '<path d="M28 110 L120 148 L212 110 L212 124 L120 164 L28 124 Z" fill="#4E2E1E" stroke="#41271A" stroke-width="1.2" stroke-linejoin="round"/>' +
+      '<path d="M46 111 L120 82 L194 111 L120 141 Z" fill="#6B4229" stroke="#4E2E1E" stroke-width="1"/>' +
+      '<path d="M60 111 L120 88 L180 111 L120 135 Z" fill="#7A4C30" stroke="#5C3722" stroke-width="1"/>' +
+      '<path d="M74 110 q46 -18 92 0" fill="none" stroke="#57331F" stroke-width=".9" opacity=".55"/>' +
+      '<path d="M80 116 q40 -14 80 0" fill="none" stroke="#57331F" stroke-width=".8" opacity=".4"/>' +
+      '<path d="M86 120 q34 -10 68 0" fill="none" stroke="#57331F" stroke-width=".7" opacity=".3"/>' +
+      '<path d="M104 146 q16 8 32 0" fill="none" stroke="#2E1A10" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>' +
+      '<ellipse cx="120" cy="98" rx="17" ry="7" fill="rgba(30,18,10,.14)"/>' +
+    '</svg>',
+
+    "cloth": '<svg viewBox="0 0 240 240" role="img" aria-label="两枚手织棉麻方巾交叠，含经纬织纹、密拷锁边与洗后褶皱">' +
+      '<defs><linearGradient id="g-cloth" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2EDE2"/><stop offset="1" stop-color="#DCD4C4"/></linearGradient>' +
+        '<clipPath id="cut-cloth"><path d="M44 150 L136 62 L200 118 L108 200 Z"/></clipPath></defs>' +
+      '<ellipse cx="120" cy="206" rx="72" ry="11" fill="rgba(42,33,27,.09)"/>' +
+      '<path d="M40 176 L132 88 L204 152 L112 208 Z" fill="#E6DFD1" stroke="#BDB3A1" stroke-width="1.3" stroke-linejoin="round"/>' +
+      '<path d="M40 176 L132 88" stroke="#C9C0AE" stroke-width="1.1"/>' +
+      '<path d="M44 150 L136 62 L200 118 L108 200 Z" fill="url(#g-cloth)" stroke="#B3A894" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '<g clip-path="url(#cut-cloth)">' +
+        '<g stroke="#C6BCA8" stroke-width=".9" opacity=".85">' +
+          '<path d="M66 132 L140 66"/><path d="M84 148 L158 82"/><path d="M102 164 L176 98"/><path d="M60 158 L134 92"/>' +
+        '</g>' +
+        '<g stroke="#B8AD98" stroke-width=".8" opacity=".6">' +
+          '<path d="M56 140 L128 188"/><path d="M78 118 L150 166"/><path d="M100 96 L172 144"/><path d="M122 74 L194 122"/>' +
+        '</g>' +
+        '<path d="M96 154 q18 -12 38 -6" fill="none" stroke="#B3A894" stroke-width="1.1" opacity=".7"/>' +
+        '<path d="M76 108 q20 -14 42 -8" fill="none" stroke="#CFC6B2" stroke-width="1" opacity=".8"/>' +
+      '</g>' +
+      '<g stroke="#9E927C" stroke-width="1.6" stroke-dasharray="3 3" opacity=".9" fill="none">' +
+        '<path d="M44 150 L136 62"/><path d="M136 62 L200 118"/><path d="M200 118 L108 200"/><path d="M108 200 L44 150"/>' +
+      '</g>' +
+      '<path d="M136 62 L124 80 L146 78 Z" fill="#F7F3EA" stroke="#B3A894" stroke-width="1.1" stroke-linejoin="round"/>' +
+    '</svg>',
+
+    "bowl": '<svg viewBox="0 0 240 240" role="img" aria-label="炻器浅碗的侧视与俯视，含翻沿唇边、细砂颗粒与无釉足圈">' +
+      '<defs>' +
+        '<linearGradient id="g-bowl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B98A62"/><stop offset=".5" stop-color="#96683F"/><stop offset="1" stop-color="#6E4A2E"/></linearGradient>' +
+        '<clipPath id="cut-bowl"><path d="M44 108 Q46 178 120 184 Q194 178 196 108 Z"/></clipPath>' +
+      '</defs>' +
+      '<ellipse cx="120" cy="192" rx="76" ry="11" fill="rgba(42,33,27,.11)"/>' +
+      '<path d="M44 108 Q46 178 120 184 Q194 178 196 108 Z" fill="url(#g-bowl)" stroke="#4F3520" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '<g clip-path="url(#cut-bowl)">' +
+        '<g fill="#4F3520" opacity=".28">' +
+          '<circle cx="74" cy="140" r="1.2"/><circle cx="94" cy="156" r="1"/><circle cx="118" cy="164" r="1.3"/>' +
+          '<circle cx="142" cy="152" r="1"/><circle cx="164" cy="134" r="1.2"/><circle cx="86" cy="126" r="1"/>' +
+          '<circle cx="152" cy="118" r="1.1"/><circle cx="106" cy="132" r="1.1"/><circle cx="132" cy="176" r="1"/>' +
+        '</g>' +
+        '<path d="M68 122 Q62 156 82 174" fill="none" stroke="#E6C8A8" stroke-width="7" stroke-linecap="round" opacity=".3"/>' +
+      '</g>' +
+      '<path d="M40 106 Q120 132 200 106 Q200 96 196 96 Q120 122 44 96 Q40 96 40 106 Z" fill="#A87850" stroke="#4F3520" stroke-width="1.3" stroke-linejoin="round"/>' +
+      '<path d="M52 100 Q120 122 188 100 Q184 116 120 126 Q56 116 52 100 Z" fill="#6E4A2E" opacity=".78"/>' +
+      '<path d="M96 182 Q120 190 144 182" fill="none" stroke="#4F3520" stroke-width="1.4"/>' +
+      '<path d="M100 175 Q120 182 140 175" fill="none" stroke="#8C6742" stroke-width="1" opacity=".7"/>' +
+    '</svg>',
+
+    "pedestal": '<svg viewBox="0 0 240 240" role="img" aria-label="高足灰釉杯线描，含杯身环痕、收窄高足与刮釉足底">' +
+      '<defs><linearGradient id="g-ped" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EFE9DE"/><stop offset=".5" stop-color="#D6CFC0"/><stop offset="1" stop-color="#AFA797"/></linearGradient>' +
+        '<clipPath id="cut-ped"><path d="M88 74 L94 140 Q120 150 146 140 L152 74 Z"/></clipPath></defs>' +
+      '<ellipse cx="120" cy="210" rx="44" ry="9" fill="rgba(42,33,27,.11)"/>' +
+      '<path d="M88 74 L94 140 Q120 150 146 140 L152 74 Z" fill="url(#g-ped)" stroke="#6B6459" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '<g clip-path="url(#cut-ped)">' +
+        '<path d="M92 100 Q120 108 148 100" fill="none" stroke="#8C8577" stroke-width=".9" opacity=".65"/>' +
+        '<path d="M94 120 Q120 128 146 120" fill="none" stroke="#8C8577" stroke-width=".9" opacity=".45"/>' +
+        '<path d="M104 86 q12 -6 22 0 q5 4 -1 8 q-11 4 -20 0 q-5 -4 -1 -8 Z" fill="#8FA091" opacity=".42"/>' +
+        '<path d="M98 86 L103 132" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity=".5"/>' +
+      '</g>' +
+      '<path d="M100 144 L106 186 Q120 190 134 186 L140 144 Q120 152 100 144 Z" fill="#C9C1B1" stroke="#6B6459" stroke-width="1.3" stroke-linejoin="round"/>' +
+      '<ellipse cx="120" cy="188" rx="16" ry="6" fill="#8C8375" stroke="#5C554A" stroke-width="1.2"/>' +
+      '<ellipse cx="120" cy="187" rx="10" ry="3.4" fill="#A79C8B" stroke="#5C554A" stroke-width=".9"/>' +
+      '<ellipse cx="120" cy="74" rx="32" ry="9" fill="#8E8778" stroke="#6B6459" stroke-width="1.2"/>' +
+      '<path d="M88 74 Q120 84 152 74" fill="none" stroke="#A79F8E" stroke-width="1"/>' +
+    '</svg>'
+  };
+
+  /* ---------- 数据与状态 ---------- */
+  var PRODUCTS = JSON.parse(document.getElementById("productData").textContent);
+  var BY_ID = {};
+  PRODUCTS.forEach(function(p){ BY_ID[p.id] = p; });
+
+  var state = { filter: "all", bag: [], open: null };
+
+  function money(n){ return "¥" + n; }
+  function el(tag, cls, text){
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function plate(cls, art){
+    var d = el("div", cls);
+    d.innerHTML = SVGS[art] || "";
+    return d;
+  }
+  function bagQty(id){
+    var line = state.bag.filter(function(l){ return l.id === id; })[0];
+    return line ? line.qty : 0;
+  }
+  function bagTotalCount(){
+    return state.bag.reduce(function(s, l){ return s + l.qty; }, 0);
+  }
+  function filterLabel(f){
+    return { all: "全部", clay: "陶", wares: "器皿", textile: "织物" }[f] || f;
+  }
+
+  /* 首屏静态图位：把内联 SVG 注入标记为 data-art 的容器 */
+  document.querySelectorAll("[data-art]").forEach(function(node){
+    node.innerHTML = SVGS[node.dataset.art] || "";
+  });
+
+  /* ---------- 目录渲染 ---------- */
+  var grid = document.getElementById("grid");
+  var gridEmpty = document.getElementById("gridEmpty");
+  var live = document.getElementById("catalogLive");
+
+  function setAddLabel(btn, id){
+    if (!btn || btn.dataset.morph === "1") return;
+    btn.classList.toggle("btn--done", bagQty(id) > 0);
+    btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11H6.2Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>加入购物袋';
+  }
+
+  function renderGrid(){
+    var list = PRODUCTS.filter(function(p){
+      return state.filter === "all" || p.cat === state.filter;
+    });
+    grid.innerHTML = "";
+    gridEmpty.hidden = list.length !== 0;
+
+    list.forEach(function(p){
+      var card = el("article", "card");
+      card.dataset.w = String(p.w);
+      card.dataset.id = p.id;
+      if (state.open === p.id) card.classList.add("is-active");
+
+      card.appendChild(plate("plate card__plate", p.art));
+
+      var body = el("div", "card__body");
+
+      var head = el("div", "card__head");
+      head.appendChild(el("h3", "card__name", p.name));
+      head.appendChild(el("span", "card__id", p.id));
+      body.appendChild(head);
+
+      var spec = el("div", "card__spec");
+      spec.appendChild(el("p", null, p.spec));
+      var tags = el("div", "card__tags");
+      tags.appendChild(el("span", "tag", p.catLabel));
+      tags.appendChild(el("span", "tag", p.use.split("。")[0].split("、")[0] + " 适用"));
+      spec.appendChild(tags);
+      body.appendChild(spec);
+
+      var meta = el("dl", "card__meta");
+      [["外形", p.details[1][1]], ["烧成 / 材质", p.details[2][1]]].forEach(function(row){
+        var r = el("div", "card__metaRow");
+        r.appendChild(el("dt", null, row[0]));
+        r.appendChild(el("dd", "mono", row[1]));
+        meta.appendChild(r);
+      });
+      body.appendChild(meta);
+
+      var actions = el("div", "card__actions");
+      var price = el("p", "price");
+      price.appendChild(document.createTextNode(money(p.price)));
+      price.appendChild(el("small", null, "概念价 · 演示"));
+      actions.appendChild(price);
+
+      var specBtn = el("button", "btn specbtn");
+      specBtn.type = "button";
+      specBtn.setAttribute("aria-expanded", state.open === p.id ? "true" : "false");
+      specBtn.setAttribute("aria-controls", "spec-" + p.id);
+      specBtn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>规格';
+      specBtn.addEventListener("click", function(){
+        var willOpen = state.open !== p.id;
+        state.open = willOpen ? p.id : null;
+        renderGrid();
+        if (willOpen){
+          var btn = grid.querySelector('[data-id="' + p.id + '"] .specbtn');
+          if (btn) btn.focus();
+        }
+      });
+      actions.appendChild(specBtn);
+
+      var addBtn = el("button", "btn btn--primary");
+      addBtn.type = "button";
+      setAddLabel(addBtn, p.id);
+      addBtn.addEventListener("click", function(){ addToBag(p.id, addBtn); });
+      actions.appendChild(addBtn);
+
+      body.appendChild(actions);
+
+      var panel = el("dl", "specPanel");
+      panel.id = "spec-" + p.id;
+      if (state.open !== p.id) panel.hidden = true;
+      p.details.concat([["用途", p.use]]).forEach(function(d){
+        var w = el("div");
+        w.appendChild(el("dt", null, d[0]));
+        w.appendChild(el("dd", "mono", d[1]));
+        panel.appendChild(w);
+      });
+      body.appendChild(panel);
+
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+
+    live.textContent = state.filter === "all"
+      ? "显示全部 " + PRODUCTS.length + " 件"
+      : "「" + filterLabel(state.filter) + "」有 " + list.length + " 件 · 全辑共 " + PRODUCTS.length + " 件";
+  }
+
+  /* 微创新 M2：加购按钮原位平滑变形，1.8s 后收回，不弹成功窗 */
+  function morphAdd(btn, id){
+    btn.dataset.morph = "1";
+    btn.classList.add("btn--done");
+    btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>已入袋 · ' + bagQty(id) + " 件";
+    window.setTimeout(function(){
+      delete btn.dataset.morph;
+      btn.classList.remove("btn--done");
+      setAddLabel(btn, id);
+    }, 1800);
+  }
+
+  /* ---------- 筛选 ---------- */
+  document.querySelectorAll(".chip").forEach(function(chip){
+    chip.addEventListener("click", function(){
+      state.filter = chip.dataset.filter;
+      document.querySelectorAll(".chip").forEach(function(c){
+        var on = c === chip;
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+        c.classList.toggle("is-on", on);
+      });
+      renderGrid();
+    });
+  });
+  gridEmpty.querySelector("[data-filter]").addEventListener("click", function(){
+    document.querySelector('.chip[data-filter="all"]').click();
+  });
+
+  /* ---------- 购物袋 ---------- */
+  var bagPanel = document.getElementById("bagPanel");
+  var bagList = document.getElementById("bagList");
+  var bagEmpty = document.getElementById("bagEmpty");
+  var bagFoot = document.getElementById("bagFoot");
+  var bagBtn = document.getElementById("bagBtn");
+  var lastFocus = null;
+
+  function setBagOpen(open){
+    bagPanel.hidden = !open;
+    bagBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open){
+      lastFocus = document.activeElement;
+      document.getElementById("bagClose").focus();
+    } else if (lastFocus && document.contains(lastFocus)){
+      lastFocus.focus();
+    } else {
+      bagBtn.focus();
+    }
+  }
+  bagBtn.addEventListener("click", function(){ setBagOpen(bagPanel.hidden); });
+  document.getElementById("bagClose").addEventListener("click", function(){ setBagOpen(false); });
+  document.getElementById("bagBackdrop").addEventListener("click", function(){ setBagOpen(false); });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && !bagPanel.hidden) setBagOpen(false);
+  });
+  document.getElementById("bagEmptyCta").addEventListener("click", function(){
+    setBagOpen(false);
+    document.getElementById("catalog").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  document.getElementById("bagClear").addEventListener("click", function(){
+    state.bag = [];
+    renderBag();
+    renderGrid();
+  });
+
+  function addToBag(id, btn){
+    var line = state.bag.filter(function(l){ return l.id === id; })[0];
+    if (line) line.qty += 1; else state.bag.push({ id: id, qty: 1 });
+    renderBag();
+    if (btn) morphAdd(btn, id);
+  }
+  function setQty(id, delta){
+    state.bag.forEach(function(l){ if (l.id === id) l.qty += delta; });
+    state.bag = state.bag.filter(function(l){ return l.qty > 0; });
+    renderBag();
+    renderGrid();
+  }
+  function removeLine(id){
+    state.bag = state.bag.filter(function(l){ return l.id !== id; });
+    renderBag();
+    renderGrid();
+  }
+
+  function renderBag(){
+    var count = bagTotalCount();
+    document.getElementById("bagCount").textContent = String(count);
+    document.getElementById("bagBtnSr").textContent = "购物袋，" + count + " 件";
+    document.getElementById("bagHeadCount").textContent = "(" + count + ")";
+    document.getElementById("bagFootCount").textContent = String(count);
+    bagBtn.classList.toggle("has-items", count > 0);
+
+    bagEmpty.hidden = count > 0;
+    bagFoot.hidden = count === 0;
+    bagList.innerHTML = "";
+
+    var total = 0;
+    state.bag.forEach(function(l){
+      var p = BY_ID[l.id];
+      total += p.price * l.qty;
+
+      var li = el("li", "bag__item");
+      li.appendChild(plate("bag__thumb", p.art));
+
+      var info = el("div");
+      info.appendChild(el("p", "bag__itemName", p.name));
+      info.appendChild(el("p", "bag__itemSku", p.id + " · " + money(p.price)));
+
+      var row = el("div", "bag__itemRow");
+      var qty = el("div", "qty");
+      var minus = el("button");
+      minus.type = "button"; minus.textContent = "−";
+      minus.setAttribute("aria-label", "减少「" + p.name + "」数量");
+      minus.addEventListener("click", function(){ setQty(l.id, -1); });
+      var num = el("span", null, String(l.qty));
+      num.setAttribute("aria-label", "「" + p.name + "」数量 " + l.qty);
+      var plus = el("button");
+      plus.type = "button"; plus.textContent = "+";
+      plus.setAttribute("aria-label", "增加「" + p.name + "」数量");
+      plus.addEventListener("click", function(){ setQty(l.id, 1); });
+      qty.appendChild(minus); qty.appendChild(num); qty.appendChild(plus);
+      row.appendChild(qty);
+      row.appendChild(el("span", "bag__lineTotal", money(p.price * l.qty)));
+      info.appendChild(row);
+
+      var del = el("button", "bag__del", "从袋中移除");
+      del.type = "button";
+      del.addEventListener("click", function(){ removeLine(l.id); });
+      info.appendChild(del);
+
+      li.appendChild(info);
+      bagList.appendChild(li);
+    });
+
+    document.getElementById("bagTotal").textContent = money(total);
+  }
+
+  renderGrid();
+  renderBag();
+})();</script></body>
+</html>

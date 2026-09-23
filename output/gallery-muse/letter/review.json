@@ -1,0 +1,10 @@
+{
+  "originalArtifactSha256": "321d4763c8e3444f45cf8fc99c4b84d36be35a4132faf00b1637ae565e6964bb",
+  "artifactSha256": "2fe0d8e68301b914ec63256f1532f28c7aa83fc39a22a98da5b0374c367d82ff",
+  "changes": [
+    "将“每间书店”全称判断及“我们见过太多人”无依据观察改为读者可能遇到的情境。",
+    "活动后感谢在本段明确使用时机，现场故事改为待填项，避免分段复制后冒充活动已发生。",
+    "direction重写为最终概念、五组用途、待填事实和真实验收边界。"
+  ],
+  "reviewer": "Codex / independent QA"
+}

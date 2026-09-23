@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>案头 · Muse 作家案头页面示例</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./writer-atelier.css">
+  <script src="./writer-atelier.js" defer></script>
+</head>
+<body>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="book" viewBox="0 0 24 24"><path d="M4 4h6l2 2 2-2h6v15h-6l-2 2-2-2H4zM12 6v15"/></symbol>
+    <symbol id="focus" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="pen" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7l-4-4L5 15zM4 20h16"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M19 4C7 3 3 9 6 15c6 3 12-1 13-11zM4 20 15 9"/></symbol>
+  </svg>
+  <header class="app-header">
+    <a class="wordmark" href="./writer-atelier.html"><svg><use href="#book"/></svg>案头<span>ATELIER</span></a>
+    <span class="header-motto">为每一个念头，留一页空白。</span>
+    <span class="example-label">Muse 页面示例</span>
+  </header>
+  <main>
+    <div class="desk-heading">
+      <div class="breadcrumb">我的写作 <span>/</span> 日常的切片 <span>/</span> <strong>九月，慢一点</strong></div>
+      <button class="focus-toggle" type="button" aria-pressed="false"><svg><use href="#focus"/></svg><span>专注模式</span><kbd>F</kbd></button>
+    </div>
+    <div class="desk">
+      <aside class="outline-panel" aria-label="手稿大纲">
+        <div class="section-label"><span>手稿目录</span><span class="mono">03</span></div>
+        <h2>日常的切片</h2>
+        <p class="notebook-description">一些值得被留下的，<br>不那么重要的小事。</p>
+        <nav class="manuscripts" aria-label="文章段落">
+          <a class="index-card" href="#morning" data-section="morning"><span class="card-number">01 <span>开篇</span></span><strong>窗边的早晨</strong><span class="card-excerpt">阳光先于我醒来，落在桌角。</span></a>
+          <a class="index-card active" href="#slower" data-section="slower" aria-current="location"><span class="card-number">02 <span>正在读</span></span><strong>把日子，写得慢一些</strong><span class="card-excerpt">不是每一刻，都需要有答案。</span><span class="active-line"></span></a>
+          <a class="index-card" href="#small-things" data-section="small-things"><span class="card-number">03 <span>尾声</span></span><strong>那些微小的回声</strong><span class="card-excerpt">去记录，而不急着定义。</span></a>
+        </nav>
+        <div class="desk-note"><svg><use href="#leaf"/></svg><p>不必一下写完。<br>今天，先留住一句话。</p></div>
+        <div class="outline-footer"><span class="small-rule"></span> 随笔集 · 秋日篇</div>
+      </aside>
+      <article class="paper" aria-label="散文手稿">
+        <div class="paper-meta"><span>散文 / 生活观察</span><span class="draft-label"><i></i>草稿</span></div>
+        <h1>把日子，写得慢一些</h1>
+        <div class="byline"><span class="author-seal">林</span><span>林间</span><span class="byline-divider"></span><span>九月随笔</span><span class="reading-time">约 2 分钟阅读</span></div>
+        <div class="prose">
+          <section id="morning" tabindex="-1" aria-label="窗边的早晨">
+            <p>早晨的光落在窗台上，挪过半本书的距离。杯子里的茶还温着，我把手机翻过来，终于听见了巷子里有人扫地的声音。</p>
+            <p>从前总觉得，一天要装下很多事情才算没有虚度。后来才发现，有些日子最好的部分，恰恰是那些没有被安排的时刻。</p>
+          </section>
+          <section id="slower" class="focused-passage" tabindex="-1" aria-label="把日子写慢一些">
+            <span class="passage-number" aria-hidden="true">02</span>
+            <p>生活并不总是催着我们向前。偶尔，它只是轻轻拉住衣角，想让我们看看，一片叶子是怎样慢慢变黄的。</p>
+            <a class="note-marker" href="#margin-note" aria-label="查看这段文字的页边笔记">1</a>
+          </section>
+          <section id="small-things" tabindex="-1" aria-label="那些微小的回声">
+            <p>所以我开始记下这些小事：走过面包店时闻到的香气，雨停以后有点发亮的石板路，还有一个很久不见的人，说“最近还好吗”时的语气。</p>
+            <p>写下来，并不是为了证明日子来过。只是想在匆忙的时候，还能找到一条慢慢回去的路。</p>
+          </section>
+        </div>
+        <footer class="paper-footer"><span class="end-mark">✳</span><span>未完，待续。</span><span class="page-number">— 02 —</span></footer>
+      </article>
+      <aside class="margin-panel" aria-label="页边笔记">
+        <div class="section-label"><span><svg><use href="#pen"/></svg>页边笔记</span><span class="mono">02</span></div>
+        <p class="margin-intro">把想法留在文字旁边。</p>
+        <section class="margin-note" id="margin-note" tabindex="-1">
+          <div class="note-meta"><span class="note-author">林</span><strong>给自己的提醒</strong><span>01</span></div>
+          <blockquote>“一片叶子是怎样慢慢变黄的”</blockquote>
+          <p>保留这个画面。不用急着讲道理，让读者在这里停一会儿。</p>
+          <a href="#slower" class="note-link">回到这一段<svg><use href="#arrow"/></svg></a>
+        </section>
+        <section class="margin-note second-note">
+          <div class="note-meta"><span class="note-author neutral">林</span><strong>一个小念头</strong><span>02</span></div>
+          <p>下次写写那家面包店。清晨六点亮起来的灯，应该也有自己的故事。</p>
+          <span class="note-tag">留待下篇</span>
+        </section>
+        <p class="margin-caption">好文字，有自己的生长速度。</p>
+      </aside>
+    </div>
+    <footer class="desk-footer"><span>Muse · 作家案头</span><span>棉纸、墨迹，还有一点不着急。</span><span>WRITER’S ATELIER</span></footer>
+  </main>
+</body>
+</html>

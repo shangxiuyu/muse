@@ -1,0 +1,128 @@
+{
+  "theme": "让想法开花",
+  "created": "2026-09-22",
+  "generator": "native imagegen",
+  "format": "original 1536×1024 PNG; white-composited 960×640 JPEG previews via sips",
+  "items": [
+    {
+      "id": "sketch-notes",
+      "name": "手绘知识图",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-5b0eacb6-ef2b-4d2d-971f-3c1d3d50d0d6.png",
+      "prompt": "output/imagegen/image-styles/sketch-notes.md",
+      "original": "output/imagegen/image-styles/sketch-notes.png",
+      "preview": "web/assets/image-styles/sketch-notes.jpg"
+    },
+    {
+      "id": "minimal-line",
+      "name": "极简线稿",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-29d21212-3490-4744-9a54-0f668a2cfaaf.png",
+      "prompt": "output/imagegen/image-styles/minimal-line.md",
+      "original": "output/imagegen/image-styles/minimal-line.png",
+      "preview": "web/assets/image-styles/minimal-line.jpg"
+    },
+    {
+      "id": "flat-vector",
+      "name": "扁平矢量感插画",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-f30c0e0b-17be-497b-a11e-d4881c0ea38b.png",
+      "prompt": "output/imagegen/image-styles/flat-vector.md",
+      "original": "output/imagegen/image-styles/flat-vector.png",
+      "preview": "web/assets/image-styles/flat-vector.jpg"
+    },
+    {
+      "id": "blueprint",
+      "name": "工程蓝图",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-28bf23c4-33af-4dd9-826a-d9c13d95b4f5.png",
+      "prompt": "output/imagegen/image-styles/blueprint.md",
+      "original": "output/imagegen/image-styles/blueprint.png",
+      "preview": "web/assets/image-styles/blueprint.jpg"
+    },
+    {
+      "id": "editorial",
+      "name": "杂志编辑信息图",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-4f8b6f3f-fabc-4712-8f1d-a9e28558b1c5.png",
+      "prompt": "output/imagegen/image-styles/editorial.md",
+      "original": "output/imagegen/image-styles/editorial.png",
+      "preview": "web/assets/image-styles/editorial.jpg"
+    },
+    {
+      "id": "study-notes",
+      "name": "手写学习笔记",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-749ee097-7f6c-47a8-97ea-2980e3b26fa1.png",
+      "prompt": "output/imagegen/image-styles/study-notes.md",
+      "original": "output/imagegen/image-styles/study-notes.png",
+      "preview": "web/assets/image-styles/study-notes.jpg"
+    },
+    {
+      "id": "watercolor",
+      "name": "水彩插画",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-810bfb08-0354-45e0-817b-2c42802508e5.png",
+      "prompt": "output/imagegen/image-styles/watercolor.md",
+      "original": "output/imagegen/image-styles/watercolor.png",
+      "preview": "web/assets/image-styles/watercolor.jpg"
+    },
+    {
+      "id": "screen-print",
+      "name": "丝网版画海报",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-c2df6336-a3b5-4745-8f22-57bf6e7d6672.png",
+      "prompt": "output/imagegen/image-styles/screen-print.md",
+      "original": "output/imagegen/image-styles/screen-print.png",
+      "preview": "web/assets/image-styles/screen-print.jpg"
+    },
+    {
+      "id": "chalkboard",
+      "name": "黑板粉笔",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-0164962d-6a26-42e7-9225-f822cb9939c8.png",
+      "prompt": "output/imagegen/image-styles/chalkboard.md",
+      "original": "output/imagegen/image-styles/chalkboard.png",
+      "preview": "web/assets/image-styles/chalkboard.jpg"
+    },
+    {
+      "id": "ink-brush",
+      "name": "水墨写意",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-866e99ff-07f8-4f55-be51-93d21af79743.png",
+      "prompt": "output/imagegen/image-styles/ink-brush.md",
+      "original": "output/imagegen/image-styles/ink-brush.png",
+      "preview": "web/assets/image-styles/ink-brush.jpg"
+    },
+    {
+      "id": "manga",
+      "name": "叙事漫画",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-ac9c87e1-181b-45ba-9a9e-5f2daa23c8df.png",
+      "prompt": "output/imagegen/image-styles/manga.md",
+      "original": "output/imagegen/image-styles/manga.png",
+      "preview": "web/assets/image-styles/manga.jpg"
+    },
+    {
+      "id": "pixel-art",
+      "name": "复古像素",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-81aca795-0fee-48ad-9fd1-869d47cd95b4.png",
+      "prompt": "output/imagegen/image-styles/pixel-art.md",
+      "original": "output/imagegen/image-styles/pixel-art.png",
+      "preview": "web/assets/image-styles/pixel-art.jpg"
+    },
+    {
+      "id": "paper-cutout",
+      "name": "剪纸拼贴",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-3e333e91-fde5-44b0-8baa-8b85a63d4b49.png",
+      "prompt": "output/imagegen/image-styles/paper-cutout.md",
+      "original": "output/imagegen/image-styles/paper-cutout.png",
+      "preview": "web/assets/image-styles/paper-cutout.jpg"
+    },
+    {
+      "id": "claymation",
+      "name": "黏土微缩",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-b3297c24-70ee-4d76-918c-12617dcf8ab1.png",
+      "prompt": "output/imagegen/image-styles/claymation.md",
+      "original": "output/imagegen/image-styles/claymation.png",
+      "preview": "web/assets/image-styles/claymation.jpg"
+    },
+    {
+      "id": "retro-pop-grid",
+      "name": "复古波普",
+      "source": "/Users/tangyuan/.codex/generated_images/01a0c4e7-436a-72e3-b5fb-99f9afebfaa7/exec-c186a82a-987a-43a5-b572-394c282fb976.png",
+      "prompt": "output/imagegen/image-styles/retro-pop-grid.md",
+      "original": "output/imagegen/image-styles/retro-pop-grid.png",
+      "preview": "web/assets/image-styles/retro-pop-grid.jpg"
+    }
+  ]
+}

@@ -7,9 +7,21 @@
   "license": "MIT",
   "engines": { "node": ">=20" },
   "scripts": {
+    "dev": "node scripts/start.mjs",
+    "start": "node scripts/start.mjs",
+    "preview": "node web/dev-server.mjs",
     "audit": "node scripts/audit.js",
     "test": "node scripts/audit.js",
     "lint:ui": "node scripts/lint_ui.js",
     "lint:text": "node scripts/lint_text.js"
+  },
+  "dependencies": {
+    "@earendil-works/pi-ai": "0.86.1",
+    "@earendil-works/pi-coding-agent": "0.86.1",
+    "playwright": "1.63.0",
+    "proper-lockfile": "4.1.2",
+    "typebox": "1.3.27",
+    "undici": "8.10.2",
+    "yaml": "2.9.0"
   }
 }

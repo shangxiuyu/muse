@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<!-- muse:allow pure-black: 积木波普沿用演示规范中的纯黑描边与偏置硬阴影，仅用于玩具积木的轮廓，不作页面底色。 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muse · 演示风格样张</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { margin:0; background:#dedbd4; color:#1c1917; font-family:"PingFang SC","Noto Sans SC",sans-serif; }
+    .sample { width:1280px; height:720px; position:relative; overflow:hidden; padding:54px 64px; margin:0 0 32px; }
+    .sample:target { outline:none; }
+    .folio { display:flex; align-items:center; justify-content:space-between; font-size:15px; letter-spacing:.12em; }
+    h1,p { margin:0; }
+    h1 { font-size:64px; line-height:1.35; letter-spacing:0; font-weight:600; }
+    footer { position:absolute; left:64px; right:64px; bottom:34px; display:flex; justify-content:space-between; font-size:13px; letter-spacing:.07em; }
+    .navy { background:#fff; color:#0a2540; }
+    .navy .folio { border-top:3px solid #0a2540; padding-top:18px; }
+    .navy h1 { margin:55px 0 44px; font-size:58px; }
+    .navy .evidence { display:grid; grid-template-columns:1.12fr 1fr; gap:50px; }
+    .navy .conclusion { background:#0a2540; color:#fff; padding:30px 36px; border-left:7px solid #0284c7; }
+    .navy .conclusion small { color:#85c9eb; font-size:16px; }
+    .navy .conclusion p { font-size:29px; line-height:1.65; margin-top:12px; }
+    .navy .argument { padding-top:5px; }
+    .navy .argument p { display:flex; gap:23px; padding:19px 0; border-bottom:1px solid #e2e8f0; font-size:22px; }
+    .navy .argument b { font-size:15px; color:#0284c7; padding-top:5px; }
+    .navy footer { color:#64748b; }
+    .linen { background:#f5f2eb; color:#1c1917; }
+    .linen .folio { color:#78716c; font-size:14px; }
+    .linen .rule { position:absolute; top:116px; bottom:95px; left:64px; border-left:1px solid #b6b0a5; }
+    .linen h1 { position:absolute; left:119px; top:206px; font-family:"Songti SC","Noto Serif SC",serif; font-size:88px; line-height:1.48; font-weight:400; }
+    .linen .marginalia { position:absolute; right:84px; bottom:147px; font-size:19px; line-height:1.85; color:#78716c; }
+    .linen .index { position:absolute; right:74px; top:131px; font:italic 116px Georgia,serif; color:#c9c1b4; }
+    .linen footer { padding-top:18px; border-top:1px solid #c9c1b4; color:#78716c; }
+    .tech { background:#07080b; color:#f0f5f7; }
+    .tech .folio { color:#92a3b5; }
+    .tech .live { display:inline-flex; align-items:center; gap:10px; color:#00f0ff; font-size:14px; }
+    .tech .live:before { content:""; width:7px; height:7px; border-radius:50%; background:#00f0ff; }
+    .tech h1 { margin-top:80px; font-size:77px; }
+    .tech .sub { margin-top:18px; color:#92a3b5; font-size:22px; }
+    .tech .product { position:absolute; right:64px; left:330px; bottom:85px; height:250px; border:1px solid #445464; border-radius:12px; background:#111a24; transform:perspective(1200px) rotateY(-9deg) rotateX(6deg); box-shadow:0 12px 60px #0008; }
+    .tech .product-head { display:flex; justify-content:space-between; padding:18px 26px; border-bottom:1px solid #ffffff20; font-size:13px; letter-spacing:.1em; color:#93a7b9; }
+    .tech .product-body { display:flex; align-items:center; justify-content:space-between; padding:40px 38px; }
+    .tech .step small { display:block; font-size:12px; letter-spacing:.13em; color:#7a93ab; margin-bottom:15px; }
+    .tech .step strong { font-size:27px; font-weight:500; }
+    .tech .step:last-child strong { color:#00f0ff; }
+    .tech .arrow { width:75px; border-top:1px solid #456476; position:relative; }
+    .tech .arrow:after { content:""; position:absolute; right:0; top:-4px; width:7px; height:7px; border-top:1px solid #456476; border-right:1px solid #456476; transform:rotate(45deg); }
+    .tech .serial { position:absolute; left:64px; bottom:159px; font:16px ui-monospace,monospace; color:#38bdf8; line-height:1.9; }
+    .tech footer { color:#6f8498; }
+    .work { background:#f8fafc; color:#0f172a; }
+    .work .folio { color:#64748b; border-bottom:1px solid #cbd5e1; padding-bottom:20px; }
+    .work h1 { margin:46px 0 0; font-size:59px; }
+    .work .flow { display:grid; grid-template-columns:1.3fr 1fr 1fr; margin-top:63px; gap:38px; }
+    .work .phase { border-top:3px solid #cbd5e1; padding-top:20px; position:relative; }
+    .work .phase:first-child { border-color:#2563eb; }
+    .work .phase:last-child { border-color:#10b981; }
+    .work .phase:before { content:""; position:absolute; width:11px; height:11px; background:#cbd5e1; border:3px solid #f8fafc; top:-7px; left:0; box-sizing:content-box; }
+    .work .phase:first-child:before { background:#2563eb; }
+    .work .phase:last-child:before { background:#10b981; }
+    .work small { font:15px ui-monospace,monospace; color:#64748b; }
+    .work h2 { font-size:30px; font-weight:500; margin:15px 0; }
+    .work .phase p { font-size:18px; color:#475569; line-height:1.8; }
+    .work .output { margin-top:26px; font-size:14px; color:#2563eb; }
+    .work .phase:last-child .output { color:#087d59; }
+    .work footer { color:#64748b; }
+    .memphis { background:#fef08a; color:#18231d; }
+    .memphis .folio span:first-child { background:#38bdf8; border:3px solid #000; padding:10px 18px; box-shadow:4px 4px 0 #000; transform:rotate(-3deg); color:#18231d; font-weight:600; }
+    .memphis h1 { position:absolute; top:201px; left:65px; font-size:102px; line-height:1.25; font-weight:800; }
+    .memphis .sub { position:absolute; top:494px; left:70px; font-size:23px; }
+    .memphis .block { position:absolute; display:grid; place-items:center; border:3px solid #000; box-shadow:7px 7px 0 #000; font-size:26px; font-weight:600; }
+    .memphis .blue { width:260px; height:136px; background:#38bdf8; right:180px; top:187px; transform:rotate(-8deg); }
+    .memphis .pink { width:193px; height:193px; background:#f472b6; right:87px; top:322px; transform:rotate(9deg); border-radius:50%; }
+    .memphis .green { width:264px; height:110px; background:#4ade80; right:230px; top:471px; transform:rotate(-3deg); }
+    .memphis footer { border-top:2px solid #18231d; padding-top:18px; }
+    @media print { body { background:none; } .sample { margin:0; break-after:page; } }
+  </style>
+</head>
+<body>
+  <article class="sample navy" id="ppt_swiss_navy" aria-label="商务咨询演示样张">
+    <header class="folio"><span>MUSE / STRATEGY NOTE</span><span>创作方式研究 · 01</span></header>
+    <h1>把时间还给创作，<br>从减少重复工作开始。</h1>
+    <div class="evidence"><div class="conclusion"><small>核心主张</small><p>一次明确需求，<br>让后续判断有据可依。</p></div><div class="argument"><p><b>01</b>先对齐目标，再讨论形式</p><p><b>02</b>用可见的作品推进共识</p><p><b>03</b>将有效反馈留给下一次创作</p></div></div>
+    <footer><span>MUSE 原创风格样张 · 内容为示意</span><span>商务咨询 / 01</span></footer>
+  </article>
+  <article class="sample linen" id="ppt_editorial_linen" aria-label="燕麦刊物演示样张">
+    <header class="folio"><span>MUSE JOURNAL · 关于创作</span><span>FORM & FEELING</span></header>
+    <div class="rule"></div><span class="index">01.</span>
+    <h1>留白，是为了<br>让想法被看见。</h1>
+    <p class="marginalia">不急着填满每一页。<br>先留下值得被记住的一句。</p>
+    <footer><span>MUSE 原创风格样张 · 内容为示意</span><span>燕麦刊物 / 01</span></footer>
+  </article>
+  <article class="sample tech" id="ppt_tech_flagship" aria-label="科技发布演示样张">
+    <header class="folio"><span>MUSE / PRODUCT VISION</span><span class="live">产品概念演示</span></header>
+    <h1>让想法，即刻可见。</h1><p class="sub">从一句需求，到一个可以继续打磨的作品。</p>
+    <div class="serial">IDEA<br>↓<br>EXPRESSION</div>
+    <div class="product"><div class="product-head"><span>CREATIVE WORKSPACE</span><span>概念界面</span></div><div class="product-body"><div class="step"><small>01 / UNDERSTAND</small><strong>理解意图</strong></div><i class="arrow"></i><div class="step"><small>02 / CREATE</small><strong>组织表达</strong></div><i class="arrow"></i><div class="step"><small>03 / PREVIEW</small><strong>看见作品</strong></div></div></div>
+    <footer><span>MUSE 原创风格样张 · 内容为示意</span><span>科技发布 / 01</span></footer>
+  </article>
+  <article class="sample work" id="ppt_workstream" aria-label="职场研报演示样张">
+    <header class="folio"><span>MUSE / WORKSTREAM REVIEW</span><span>协作方法 · 过程复盘</span></header>
+    <h1>让每一次交付，<br>都有清楚的来路。</h1>
+    <div class="flow"><div class="phase"><small>01 / DISCOVERY</small><h2>洞察需求</h2><p>明确受众、目标与约束<br>为关键判断建立共同依据</p><div class="output">产出 / 创作简报</div></div><div class="phase"><small>02 / CO-CREATION</small><h2>原型共创</h2><p>将抽象想法变成样张<br>围绕作品交换反馈</p><div class="output">产出 / 可见原型</div></div><div class="phase"><small>03 / DELIVERY</small><h2>交付验证</h2><p>按真实使用场景检查<br>记录可延续的方法</p><div class="output">产出 / 作品与复盘</div></div></div>
+    <footer><span>MUSE 原创风格样张 · 流程为示意</span><span>职场研报 / 01</span></footer>
+  </article>
+  <article class="sample memphis" id="ppt_memphis" aria-label="积木波普演示样张">
+    <header class="folio"><span>LET'S MAKE SOMETHING!</span><span>MUSE · 创意实验室</span></header>
+    <h1>好想法，<br>就要大胆搭。</h1><p class="sub">从一个小点子，搭出新的可能。</p>
+    <div class="block blue">想一想 ↗</div><div class="block pink">试试看！</div><div class="block green">一起搭起来</div>
+    <footer><span>MUSE 原创风格样张 · 内容为示意</span><span>积木波普 / 01</span></footer>
+  </article>
+  <script>
+    const selected = new URLSearchParams(location.search).get('style');
+    if (selected && document.getElementById(selected)?.classList.contains('sample')) {
+      document.querySelectorAll('.sample').forEach(sample => { sample.hidden = sample.id !== selected; sample.style.margin = '0'; });
+    }
+  </script>
+</body>
+</html>

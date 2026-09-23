@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUSE · 赋能 AI 高级审美能力的智能体系统 | 基础审美引擎 + 用户审美引擎</title>
+  <meta name="description" content="MUSE: 把前端UI、PPT、文案内容、图片的审美融为一个 Skill。以基础审美引擎与用户审美引擎双核驱动，恪守“判断先于生成”，实现审美的跨媒介迁移与复用。">
+  
+  <!-- Modern Multi-Archetype Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/site/index.css">
+</head>
+<body data-theme="tech-flagship">
+
+  <!-- Ambient Light Atmosphere Layer -->
+  <div class="ambient-glow fixed-canvas" aria-hidden="true"></div>
+  <div class="grid-overlay fixed-canvas" aria-hidden="true"></div>
+
+  <!-- Global Header -->
+  <header class="site-header" id="header">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="MUSE 官网首页">
+        <svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect x="2" y="2" width="24" height="24" rx="6" stroke="currentColor" stroke-width="2" class="brand-stroke"/>
+          <path d="M7 14L14 7L21 14L14 21L7 14Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" class="brand-accent-stroke"/>
+          <circle cx="14" cy="14" r="2.5" fill="currentColor" class="brand-fill"/>
+        </svg>
+        <span class="brand-text">MUSE<span class="brand-sub">ENGINE</span></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="#philosophy" class="nav-link">核心哲学</a>
+        <a href="#dual-engines" class="nav-link">双引擎</a>
+        <a href="#workbenches" class="nav-link">判断先于生成</a>
+        <a href="#compass" class="nav-link">审美罗盘</a>
+        <a href="#gallery" class="nav-link">实战展廊</a>
+        <a href="#anti-slop" class="nav-link">负向军规</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Compact Archetype Theme Switcher (Full 10 Archetypes) -->
+        <div class="theme-dropdown-wrap" id="theme-dropdown-wrap">
+          <button class="theme-current-btn" id="theme-menu-btn" aria-haspopup="true" aria-expanded="false" title="切换全站美学母体 (共10种)">
+            <span class="current-theme-dot" id="current-theme-dot" style="background:#0075FF"></span>
+            <span class="current-theme-name" id="current-theme-name">Tech Flagship Dark</span>
+            <span class="theme-count-badge">10种母体</span>
+            <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          
+          <div class="theme-dropdown-menu" id="theme-dropdown-menu" role="menu">
+            <div class="menu-header-hint">MUSE 官方规范 · 10 大全端美学母体标准库 (Archetypes)</div>
+            <div class="menu-items-grid">
+              <button class="theme-menu-item active" data-set-theme="tech-flagship" role="menuitem">
+                <span class="dot" style="background:#0075FF"></span>
+                <div class="meta">
+                  <span class="name">01. Tech Flagship Dark</span>
+                  <span class="sub">科技旗舰品牌官网流 · Vercel / Nothing</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="neo-bauhaus" role="menuitem">
+                <span class="dot" style="background:#BAE6FD"></span>
+                <div class="meta">
+                  <span class="name">02. Neo-Bauhaus Pastel</span>
+                  <span class="sub">新包豪斯几何柔雾流 · Boords (01图)</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="writer-atelier" role="menuitem">
+                <span class="dot" style="background:#D97706"></span>
+                <div class="meta">
+                  <span class="name">03. Writer's Atelier</span>
+                  <span class="sub">作家案头卡片工坊流 · Bear / Craft</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="neo-brutalist" role="menuitem">
+                <span class="dot" style="background:#FEE75C"></span>
+                <div class="meta">
+                  <span class="name">04. Neo-Brutalist Engineering</span>
+                  <span class="sub">新粗野工程蓝图流 · MotherDuck (07/08图)</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="institutional-defi" role="menuitem">
+                <span class="dot" style="background:#00F5D4"></span>
+                <div class="meta">
+                  <span class="name">05. Institutional DeFi Dark</span>
+                  <span class="sub">暗夜机构金融光轨流 · Aave / Morpho</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="soft-neobrutalism" role="menuitem">
+                <span class="dot" style="background:#14351A"></span>
+                <div class="meta">
+                  <span class="name">06. Soft Neo-Brutalism</span>
+                  <span class="sub">温和新粗野复古工装 · Gumroad / Textla</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="creator-friendly" role="menuitem">
+                <span class="dot" style="background:#FFDD00"></span>
+                <div class="meta">
+                  <span class="name">07. Creator-Friendly</span>
+                  <span class="sub">创客经济高亲和流 · Buy Me a Coffee</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="playful-stationery" role="menuitem">
+                <span class="dot" style="background:#173300"></span>
+                <div class="meta">
+                  <span class="name">08. Playful Stationery</span>
+                  <span class="sub">趣味文具复古手账流 · PostHog / Pitch</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="enterprise-narrative" role="menuitem">
+                <span class="dot" style="background:#8FC8CF"></span>
+                <div class="meta">
+                  <span class="name">09. Enterprise Narrative</span>
+                  <span class="sub">现代企业叙事工装流 · Stripe / Allwhere</span>
+                </div>
+              </button>
+              <button class="theme-menu-item" data-set-theme="wireframe-architect" role="menuitem">
+                <span class="dot" style="background:#FA00FF"></span>
+                <div class="meta">
+                  <span class="name">10. Wireframe Architect</span>
+                  <span class="sub">线框架构师赛博工坊 · Figma / Relume</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="cli-quick-copy" id="nav-copy-btn" aria-label="一键复制安装 Skill 指令" title="点击一键复制指令：git clone https://github.com/shangxiuyu/muse.git .agents/skills/muse">
+          <svg class="code-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          <span class="btn-text">安装 Skill</span>
+        </button>
+
+        <a href="/studio" class="studio-quick-btn" id="nav-studio-btn" aria-label="进入 Muse 创作工作台" title="进入 Muse 创作工作台 (Studio)">
+          <svg class="studio-nav-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <path d="M3 9h18M9 21V9"></path>
+          </svg>
+          <span class="btn-text">创作工作台</span>
+          <span class="studio-live-badge">Studio</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <div class="hero-intro">
+          <div class="hero-tag-pill">
+            <span class="tag-accent">AGENTIC SKILL · MUSE</span>
+            <span class="tag-separator">·</span>
+            <span class="tag-desc">美是关系的艺术</span>
+          </div>
+          
+          <h1 class="hero-title">
+            让 AI 拥有高级审美能力，<br>
+            <span class="text-electric">全媒介审美智能系统</span>。
+          </h1>
+          
+          <p class="hero-subtitle">
+            把“前端UI、PPT、文案内容、图片”的审美融为一个 Skill。由<strong>基础审美引擎</strong>与<strong>用户审美引擎</strong>双核驱动——不试图定义或垄断美，恪守“判断先于生成”，深度萃取沉淀个人品味资产库，实现审美的跨媒介迁移与复用。
+          </p>
+          
+          <div class="hero-cta-group">
+            <a href="/studio" class="btn-primary btn-studio-hero" id="hero-studio-cta">
+              <span class="cta-sparkle" aria-hidden="true">🎨</span>
+              <span>进入创作工作台</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+            <a href="#philosophy" class="btn-secondary" id="hero-compare-cta">
+              <span>核心哲学与双引擎</span>
+            </a>
+            <a href="#gallery" class="btn-secondary">
+              <span>实战成果</span>
+            </a>
+          </div>
+
+          <div class="hero-terminal-pill" id="hero-copy-pill" role="button" tabindex="0" title="点击一键复制命令" aria-label="一键复制 git clone 命令">
+            <span class="terminal-prefix">$</span>
+            <span class="terminal-cmd">git clone https://github.com/shangxiuyu/muse.git .agents/skills/muse</span>
+            <span class="terminal-copy-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>一键复制</span>
+            </span>
+          </div>
+
+          <div class="hero-archetype-topology-indicator">
+            <span class="topo-label">排版拓扑</span>
+            <span class="topo-mode" id="topo-mode-name">50/50 科技仪表分屏座舱 (Precision Console)</span>
+          </div>
+        </div>
+
+        <!-- The Aesthetic Compass (Interactive 4-Media Workbench in Hero) -->
+        <div class="compass-showcase" id="compass">
+          <!-- Multi-Archetype Signature Morphing Badges & Marginalia (10 Archetypes Full Native Slots) -->
+          <!-- 02. Neo-Bauhaus: 装裱相框与莫兰迪柔光托盘 -->
+          <div class="archetype-slot-bauhaus-tray" aria-hidden="true">
+            <span class="bauhaus-color-chip chip-blue"></span>
+            <span class="bauhaus-color-chip chip-pink"></span>
+            <span class="bauhaus-color-chip chip-lime"></span>
+            <span class="bauhaus-badge">BAUHAUS · BENTO 2.0</span>
+          </div>
+
+          <!-- 03. Writer's Atelier: 案头伴读批注卡 -->
+          <div class="archetype-slot-writer-note" aria-hidden="true">
+            <div class="marginalia-paper">
+              <span class="marginalia-sec">§ 03</span>
+              <p class="marginalia-text">“文字需要呼吸的棉纸。好的排印不仅是阅读，更是一场案头静默沉思。”</p>
+              <span class="marginalia-author">— MUSE Atelier Spec</span>
+            </div>
+          </div>
+
+          <!-- 04. Neo-Brutalist: 工程毫米坐标芯片 -->
+          <div class="archetype-slot-brutal-coords" aria-hidden="true">
+            <span class="coord-tag">GRID // 04-ENG</span>
+            <span class="coord-crosshair">✛ 204.8 : 096.4</span>
+            <span class="coord-badge">OFFSET: 6PX SOLID</span>
+          </div>
+
+          <!-- 05. Institutional DeFi: 天体轨道光环与机构安全凭证 -->
+          <div class="archetype-slot-defi-orbit" aria-hidden="true">
+            <div class="orbit-concentric-rings"></div>
+            <div class="defi-audit-pill">
+              <span class="shield-dot"></span>
+              <span class="audit-name">CERTIK AUDITED</span>
+              <span class="audit-hash">0x4F...E89</span>
+            </div>
+          </div>
+
+          <!-- 06. Soft Neo-Brutalism: 奶麦工装破框气泡 -->
+          <div class="archetype-slot-soft-overlap" aria-hidden="true">
+            <div class="soft-pill-badge">
+              <span class="soft-leaf">🌿</span>
+              <span class="soft-text">100% Cotton Paper · 4px Offset</span>
+            </div>
+          </div>
+
+          <!-- 07. Creator-Friendly: 具象咖啡打赏药丸与星云 -->
+          <div class="archetype-slot-creator-orbit" aria-hidden="true">
+            <div class="creator-coffee-pill">
+              <span class="coffee-icon">☕</span>
+              <span class="coffee-label">Buy Muse a Coffee:</span>
+              <span class="coffee-chips">
+                <span class="chip active">$3</span>
+                <span class="chip">$5</span>
+                <span class="chip">$10</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- 08. Playful Stationery: 胶带撕纸便签 -->
+          <div class="archetype-slot-stationery-tape" aria-hidden="true">
+            <span class="tape-strip"></span>
+            <div class="postit-note">
+              <span class="postit-pin">📌</span>
+              <span class="postit-title">灵感手账</span>
+              <p class="postit-body">别让模版绑架你的直觉！随时贴上便利贴。</p>
+            </div>
+          </div>
+
+          <!-- 09. Enterprise Narrative: 2.5D 破框溢出数据切片 (Escaped UI) -->
+          <div class="archetype-slot-enterprise-escaped" aria-hidden="true">
+            <div class="escaped-data-card">
+              <div class="escaped-header">
+                <span class="escaped-dot"></span>
+                <span class="escaped-title">ESCAPED UI · SYSTEM METRICS</span>
+              </div>
+              <div class="escaped-metric">
+                <span class="metric-val">+340%</span>
+                <span class="metric-label">Aesthetic Velocity</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10. Wireframe Architect: 3D 网格视口与协同光标 -->
+          <div class="archetype-slot-wireframe-canvas" aria-hidden="true">
+            <div class="wireframe-cursor cursor-alex">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FA00FF"><polygon points="0 0 0 24 6 18 12 24 16 20 10 14 18 14 0 0"/></svg>
+              <span class="cursor-tag">Alex (Viewing)</span>
+            </div>
+            <div class="wireframe-viewport-badge">1440 × 900 · 100%</div>
+          </div>
+
+          <div class="compass-card">
+            <div class="compass-header">
+              <div class="compass-title-area">
+                <span class="compass-dot"></span>
+                <span class="compass-heading">跨媒介审美推理罗盘</span>
+                <span class="judgement-pill" style="margin-bottom:0; margin-left:8px; font-size:10px; padding:2px 8px;">判断先于生成</span>
+              </div>
+              <div class="compass-tabs" role="tablist" aria-label="媒介切换">
+                <button class="compass-tab active" role="tab" aria-selected="true" data-media="ui">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                  <span>UI / UX</span>
+                </button>
+                <button class="compass-tab" role="tab" aria-selected="false" data-media="text">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span>深度叙事</span>
+                </button>
+                <button class="compass-tab" role="tab" aria-selected="false" data-media="deck">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span>演说 Deck</span>
+                </button>
+                <button class="compass-tab" role="tab" aria-selected="false" data-media="photo">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                  <span>摄影图像</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="compass-body">
+              <!-- Pane 1: UI / UX -->
+              <div class="media-pane active" id="pane-ui">
+                <div class="pane-meta">
+                  <div class="pane-contract-tag">契约实体：<code>DESIGN.md</code> (模式 B · 物理工程解耦)</div>
+                  <div class="pane-indicator">Bento 2.0 + 60:30:10 阶梯</div>
+                </div>
+                <div class="pane-code-block">
+                  <div class="code-line"><span class="c-kwd">Axiom</span>: 美是关系的艺术 (微观 ↔ 中观 ↔ 宏观 ↔ 终极)</div>
+                  <div class="code-line"><span class="c-dim">// 1. 物理形态解耦：纯净 HTML + 独立 CSS + 业务 JS</span></div>
+                  <div class="code-line"><span class="c-cyan">Invariants</span>.enforce([</div>
+                  <div class="code-line indent"><span class="c-str">"Zero Emoji in Controls"</span>,  <span class="c-dim">// 100% 矢量 SVG</span></div>
+                  <div class="code-line indent"><span class="c-str">"The Lila Ban"</span>,             <span class="c-dim">// 绝杀全黑紫蓝发光渐变</span></div>
+                  <div class="code-line indent"><span class="c-str">"Strict 60:30:10 Balance"</span>,   <span class="c-dim">// 温润底盘，杜绝死黑死白</span></div>
+                  <div class="code-line indent"><span class="c-str">"Mobile Touch &gt;= 48px"</span>      <span class="c-dim">// 底部 40% 黄金操作坞</span></div>
+                  <div class="code-line">]);</div>
+                  <div class="code-line"><span class="c-green">✓ DESIGN.md Locked · 0% Slop Detected</span></div>
+                </div>
+              </div>
+
+              <!-- Pane 2: Text -->
+              <div class="media-pane" id="pane-text">
+                <div class="pane-meta">
+                  <div class="pane-contract-tag">契约实体：<code>WRITING.md</code> (模式 C · 深度去 AI 味)</div>
+                  <div class="pane-indicator">受众心智探针 + 24 种去油手术</div>
+                </div>
+                <div class="pane-code-block">
+                  <div class="code-line"><span class="c-kwd">Framework</span>: 侦探式推理解剖 / 认知顿悟心流架构</div>
+                  <div class="code-line"><span class="c-dim">// 绝杀“在这个快节奏的时代”、“总而言之”等废话</span></div>
+                  <div class="code-line"><span class="c-cyan">VoiceProfile</span>.align({</div>
+                  <div class="code-line indent"><span class="c-str">"tone"</span>: <span class="c-str">"工程师冷峻克制，拒绝廉价感叹号"</span>,</div>
+                  <div class="code-line indent"><span class="c-str">"surgery"</span>: <span class="c-str">"切除被动语态、粉碎虚假排比"</span>,</div>
+                  <div class="code-line indent"><span class="c-str">"evidence"</span>: <span class="c-str">"每 300 字必须提供不可替代的真实证据"</span></div>
+                  <div class="code-line">});</div>
+                  <div class="code-line"><span class="c-green">✓ WRITING.md Locked · 100% Human Voice</span></div>
+                </div>
+              </div>
+
+              <!-- Pane 3: Deck -->
+              <div class="media-pane" id="pane-deck">
+                <div class="pane-meta">
+                  <div class="pane-contract-tag">契约实体：<code>PPT.md</code> (模式 A · 屏人二重奏)</div>
+                  <div class="pane-indicator">Theme Rhythm + 免配单文件 Web Deck</div>
+                </div>
+                <div class="pane-code-block">
+                  <div class="code-line"><span class="c-kwd">Paradigm</span>: 区分 Speaker-led (舞台提纲) 与 Reader-led (离线精读)</div>
+                  <div class="code-line"><span class="c-dim">// 拒绝机械模板与死气沉沉的白底黑字</span></div>
+                  <div class="code-line"><span class="c-cyan">DeckEngine</span>.compile({</div>
+                  <div class="code-line indent"><span class="c-str">"layout"</span>: <span class="c-str">"单文件独立 index.html 交付 (无构建依赖)"</span>,</div>
+                  <div class="code-line indent"><span class="c-str">"rhythm"</span>: <span class="c-str">"每 3 页引入一次高冲击呼吸页 (Breath Slide)"</span>,</div>
+                  <div class="code-line indent"><span class="c-str">"stage_focus"</span>: <span class="c-str">"远距离高清晰度与新粗野高饱色块"</span></div>
+                  <div class="code-line">});</div>
+                  <div class="code-line"><span class="c-green">✓ PPT.md Locked · Portable Deck Ready</span></div>
+                </div>
+              </div>
+
+              <!-- Pane 4: Photo -->
+              <div class="media-pane" id="pane-photo">
+                <div class="pane-meta">
+                  <div class="pane-contract-tag">契约实体：<code>IMAGE.md</code> (模式 D · 真实物理光学)</div>
+                  <div class="pane-indicator">曝光三角 + 9 种光位 + 材质肌理</div>
+                </div>
+                <div class="pane-code-block">
+                  <div class="code-line"><span class="c-kwd">Optics</span>: 真实摄影光位与反塑料感 (Anti-Plasticity)</div>
+                  <div class="code-line"><span class="c-dim">// 绝杀“8k, octane render, masterpiece”等无效死词</span></div>
+                  <div class="code-line"><span class="c-cyan">VisualPrompt</span>.synthesize({</div>
+                  <div class="code-line indent"><span class="c-str">"lighting"</span>: <span class="c-str">"侧逆光 45 度暖金切光，带有自然空气次表面散射"</span>,</div>
+                  <div class="code-line indent"><span class="c-str">"sensor"</span>: <span class="c-str">"35mm 胶片质感，真实景深虚化与微观微尘噪点"</span>,</div>
+                  <div class="code-line indent"><span class="c-str">"texture"</span>: <span class="c-str">"物理羊皮纸纤维、拉丝阳极氧化铝触感"</span></div>
+                  <div class="code-line">});</div>
+                  <div class="code-line"><span class="c-green">✓ IMAGE.md Locked · Hyper-Realism Ensured</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="compass-footer">
+              <span class="footer-chip">全媒介契约自包含</span>
+              <span class="footer-chip">拒绝风格套话</span>
+              <span class="footer-chip highlight-chip">0% AI Slop</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Archetypes & Metrics Dynamic Marquee Strip (首屏下方美学母体与契约指标双向跑马灯) -->
+    <section class="archetypes-marquee-section" aria-label="MUSE 10 大美学母体与全端设计公理跑马灯">
+      <div class="marquee-meta-bar">
+        <div class="marquee-meta-inner">
+          <div class="meta-tag-live">
+            <span class="live-pulse-dot"></span>
+            <span class="live-text">10 ARCHETYPES LIVE TICKER · 实时母体演化轨</span>
+          </div>
+          <div class="meta-hint">
+            <span class="hint-icon">✦</span>
+            <span>悬停暂停浏览 · 点击任意母体卡片即时全站推导演绎</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marquee Row 1: 10 大美学母体风格卡片 (向左匀速滚动) -->
+      <div class="marquee-viewport marquee-viewport-upper" role="region" aria-label="10大美学母体跑马灯">
+        <div class="marquee-track track-to-left">
+          <!-- Group 1 -->
+          <div class="marquee-group">
+            <button class="marquee-item-card" data-set-theme="tech-flagship" title="点击切换至 01. Tech Flagship Dark">
+              <span class="item-badge-num">01</span>
+              <span class="item-dot" style="--dot-color: #0075FF"></span>
+              <div class="item-info">
+                <strong class="item-name">Tech Flagship Dark</strong>
+                <span class="item-desc">科技旗舰 · 50/50 仪表座舱 · 脉冲激光</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="neo-bauhaus" title="点击切换至 02. Neo-Bauhaus Pastel">
+              <span class="item-badge-num">02</span>
+              <span class="item-dot" style="--dot-color: #BAE6FD"></span>
+              <div class="item-info">
+                <strong class="item-name">Neo-Bauhaus Pastel</strong>
+                <span class="item-desc">新包豪斯 · 几何画廊装裱 · 黎明柔雾</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="writer-atelier" title="点击切换至 03. Writer's Atelier">
+              <span class="item-badge-num">03</span>
+              <span class="item-dot" style="--dot-color: #D97706"></span>
+              <div class="item-info">
+                <strong class="item-name">Writer's Atelier</strong>
+                <span class="item-desc">作家案头 · 65ch 居中长文 · 伴读旁注</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="neo-brutalist" title="点击切换至 04. Neo-Brutalist Engineering">
+              <span class="item-badge-num">04</span>
+              <span class="item-dot" style="--dot-color: #FEE75C"></span>
+              <div class="item-info">
+                <strong class="item-name">Neo-Brutalist Eng.</strong>
+                <span class="item-desc">新粗野工程 · 纯直角毫米坐标 · 机械下陷</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="institutional-defi" title="点击切换至 05. Institutional DeFi Dark">
+              <span class="item-badge-num">05</span>
+              <span class="item-dot" style="--dot-color: #00F5D4"></span>
+              <div class="item-info">
+                <strong class="item-name">Institutional DeFi</strong>
+                <span class="item-desc">机构金融 · 暗夜天体轨道 · 机构审计</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="soft-neobrutalism" title="点击切换至 06. Soft Neo-Brutalism">
+              <span class="item-badge-num">06</span>
+              <span class="item-dot" style="--dot-color: #14351A"></span>
+              <div class="item-info">
+                <strong class="item-name">Soft Neo-Brutalism</strong>
+                <span class="item-desc">温和新粗野 · 奶麦工装纸感 · 软萌偏置</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="creator-friendly" title="点击切换至 07. Creator-Friendly">
+              <span class="item-badge-num">07</span>
+              <span class="item-dot" style="--dot-color: #FFDD00"></span>
+              <div class="item-info">
+                <strong class="item-name">Creator-Friendly</strong>
+                <span class="item-desc">创客经济 · 具象打赏咖啡 · 32px 浮岛</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="playful-stationery" title="点击切换至 08. Playful Stationery">
+              <span class="item-badge-num">08</span>
+              <span class="item-dot" style="--dot-color: #173300"></span>
+              <div class="item-info">
+                <strong class="item-name">Playful Stationery</strong>
+                <span class="item-desc">趣味手账 · 倾斜便利贴 · 胶带印章</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="enterprise-narrative" title="点击切换至 09. Enterprise Narrative">
+              <span class="item-badge-num">09</span>
+              <span class="item-dot" style="--dot-color: #8FC8CF"></span>
+              <div class="item-info">
+                <strong class="item-name">Enterprise Narrative</strong>
+                <span class="item-desc">企业叙事 · 破框溢出数据 · 工业冷灰</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="wireframe-architect" title="点击切换至 10. Wireframe Architect">
+              <span class="item-badge-num">10</span>
+              <span class="item-dot" style="--dot-color: #FA00FF"></span>
+              <div class="item-info">
+                <strong class="item-name">Wireframe Architect</strong>
+                <span class="item-desc">线框架构师 · 3D 网格视口 · 洋红雷达</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+          </div>
+
+          <!-- Group 2 (Duplicate for Seamless Infinite Loop) -->
+          <div class="marquee-group" aria-hidden="true">
+            <button class="marquee-item-card" data-set-theme="tech-flagship" tabindex="-1">
+              <span class="item-badge-num">01</span>
+              <span class="item-dot" style="--dot-color: #0075FF"></span>
+              <div class="item-info">
+                <strong class="item-name">Tech Flagship Dark</strong>
+                <span class="item-desc">科技旗舰 · 50/50 仪表座舱 · 脉冲激光</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="neo-bauhaus" tabindex="-1">
+              <span class="item-badge-num">02</span>
+              <span class="item-dot" style="--dot-color: #BAE6FD"></span>
+              <div class="item-info">
+                <strong class="item-name">Neo-Bauhaus Pastel</strong>
+                <span class="item-desc">新包豪斯 · 几何画廊装裱 · 黎明柔雾</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="writer-atelier" tabindex="-1">
+              <span class="item-badge-num">03</span>
+              <span class="item-dot" style="--dot-color: #D97706"></span>
+              <div class="item-info">
+                <strong class="item-name">Writer's Atelier</strong>
+                <span class="item-desc">作家案头 · 65ch 居中长文 · 伴读旁注</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="neo-brutalist" tabindex="-1">
+              <span class="item-badge-num">04</span>
+              <span class="item-dot" style="--dot-color: #FEE75C"></span>
+              <div class="item-info">
+                <strong class="item-name">Neo-Brutalist Eng.</strong>
+                <span class="item-desc">新粗野工程 · 纯直角毫米坐标 · 机械下陷</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="institutional-defi" tabindex="-1">
+              <span class="item-badge-num">05</span>
+              <span class="item-dot" style="--dot-color: #00F5D4"></span>
+              <div class="item-info">
+                <strong class="item-name">Institutional DeFi</strong>
+                <span class="item-desc">机构金融 · 暗夜天体轨道 · 机构审计</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="soft-neobrutalism" tabindex="-1">
+              <span class="item-badge-num">06</span>
+              <span class="item-dot" style="--dot-color: #14351A"></span>
+              <div class="item-info">
+                <strong class="item-name">Soft Neo-Brutalism</strong>
+                <span class="item-desc">温和新粗野 · 奶麦工装纸感 · 软萌偏置</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="creator-friendly" tabindex="-1">
+              <span class="item-badge-num">07</span>
+              <span class="item-dot" style="--dot-color: #FFDD00"></span>
+              <div class="item-info">
+                <strong class="item-name">Creator-Friendly</strong>
+                <span class="item-desc">创客经济 · 具象打赏咖啡 · 32px 浮岛</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="playful-stationery" tabindex="-1">
+              <span class="item-badge-num">08</span>
+              <span class="item-dot" style="--dot-color: #173300"></span>
+              <div class="item-info">
+                <strong class="item-name">Playful Stationery</strong>
+                <span class="item-desc">趣味手账 · 倾斜便利贴 · 胶带印章</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="enterprise-narrative" tabindex="-1">
+              <span class="item-badge-num">09</span>
+              <span class="item-dot" style="--dot-color: #8FC8CF"></span>
+              <div class="item-info">
+                <strong class="item-name">Enterprise Narrative</strong>
+                <span class="item-desc">企业叙事 · 破框溢出数据 · 工业冷灰</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+            <button class="marquee-item-card" data-set-theme="wireframe-architect" tabindex="-1">
+              <span class="item-badge-num">10</span>
+              <span class="item-dot" style="--dot-color: #FA00FF"></span>
+              <div class="item-info">
+                <strong class="item-name">Wireframe Architect</strong>
+                <span class="item-desc">线框架构师 · 3D 网格视口 · 洋红雷达</span>
+              </div>
+              <span class="item-action-tag">推导 ↗</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marquee Row 2: 黄金设计指标与美学契约 (向右反向匀速流动) -->
+      <div class="marquee-viewport marquee-viewport-lower" role="region" aria-label="美学契约与设计指标跑马灯">
+        <div class="marquee-track track-to-right">
+          <!-- Group 1 -->
+          <div class="marquee-group">
+            <span class="marquee-pill-metric"><i class="metric-icon">🛡️</i> 0% AI Slop 负向军规</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">⚡</i> Local-First 私有品味记忆库</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">📐</i> Strict 60:30:10 色彩阶梯</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">🚫</i> The Lila Ban 绝杀全黑紫蓝渐变</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">📱</i> Mobile Touch &ge; 48px 触控区</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">⚙️</i> 物理三解耦 (HTML / CSS / JS)</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">💎</i> 100% 矢量 SVG · 严禁控件 Emoji</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">🖋️</i> 24 种深度叙事去油手术</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">📷</i> 真实物理光学 · 反塑料曝光三角</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">🎙️</i> 屏人二重奏 · 免依赖单文件 Web Deck</span>
+          </div>
+
+          <!-- Group 2 (Duplicate for Seamless Infinite Loop) -->
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-pill-metric"><i class="metric-icon">🛡️</i> 0% AI Slop 负向军规</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">⚡</i> Local-First 私有品味记忆库</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">📐</i> Strict 60:30:10 色彩阶梯</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">🚫</i> The Lila Ban 绝杀全黑紫蓝渐变</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">📱</i> Mobile Touch &ge; 48px 触控区</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">⚙️</i> 物理三解耦 (HTML / CSS / JS)</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">💎</i> 100% 矢量 SVG · 严禁控件 Emoji</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">🖋️</i> 24 种深度叙事去油手术</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">📷</i> 真实物理光学 · 反塑料曝光三角</span>
+            <span class="marquee-pill-metric"><i class="metric-icon">🎙️</i> 屏人二重奏 · 免依赖单文件 Web Deck</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Core Philosophy Manifesto -->
+    <section class="philosophy-section" id="philosophy">
+      <div class="section-container">
+        <div class="philosophy-card">
+          <div class="philosophy-header">
+            <div class="philosophy-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 8v8"></path>
+                <path d="M8 12h8"></path>
+              </svg>
+              <span>CORE PHILOSOPHY · 核心哲学定位</span>
+            </div>
+          </div>
+
+          <div class="philosophy-quote-wrap">
+            <blockquote class="philosophy-quote">
+              “Muse 不试图定义、计算或垄断美。<br>
+              核心哲学：<strong>美是关系的艺术。</strong><br>
+              美发生在作品、感知者与具体情境的相遇中：
+              <span class="philosophy-highlight">形式让某种内在秩序突然可见，同时保留超出预期和解释的生命力。</span>”
+            </blockquote>
+          </div>
+
+          <div class="philosophy-pillars-grid">
+            <div class="philosophy-pillar-card">
+              <span class="pillar-tag">PILLAR 01 · 谦逊与去垄断</span>
+              <h3 class="pillar-title">不试图定义与计算美</h3>
+              <p class="pillar-desc">
+                美不是机械固化的参数公式，拒绝死板的 AI 模板套路。Muse 以敬畏之心看待创作，绝不试图垄断或框死人类的感知灵性。
+              </p>
+            </div>
+
+            <div class="philosophy-pillar-card">
+              <span class="pillar-tag">PILLAR 02 · 关系的动态相遇</span>
+              <h3 class="pillar-title">形式与内在秩序的显现</h3>
+              <p class="pillar-desc">
+                形式、色彩、字距与留白在具体情境中达成平衡。通过精准的形式语言，让隐匿于混沌中的某种内在秩序突然清晰可见。
+              </p>
+            </div>
+
+            <div class="philosophy-pillar-card">
+              <span class="pillar-tag">PILLAR 03 · 留存超预期的生命力</span>
+              <h3 class="pillar-title">判断先于生成的方法论</h3>
+              <p class="pillar-desc">
+                在落笔或编码之前，先经过深度审美推导与契约构思。既有严苛的秩序公理约束，又时刻保留超出机械解释的鲜活生命力。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: The Dual-Engine Core -->
+    <section class="dual-engines-section" id="dual-engines">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-badge">DUAL-ENGINE ARCHITECTURE</div>
+          <h2 class="section-title">双核心引擎驱动：基础审美引擎 + 用户审美引擎</h2>
+          <p class="section-subtitle">
+            Muse 不是一个单一的 Prompt 技巧库，而是由“基础审美引擎”确立秩序公理，由“用户审美引擎”深度沉淀个人品味的自进化双核系统。
+          </p>
+        </div>
+
+        <div class="engines-grid">
+          <!-- Engine 1: Fundamental Aesthetic Engine -->
+          <div class="engine-card">
+            <div class="engine-header">
+              <div class="engine-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+              </div>
+              <div>
+                <span class="engine-label">ENGINE 01</span>
+                <h3 class="engine-title">基础审美引擎 (Fundamental Aesthetic Engine)</h3>
+              </div>
+            </div>
+            
+            <p class="engine-desc">
+              不试图垄断美，而是为智能体确立深层的内在秩序。从具体对象特有的内容 DNA 出发，运用<strong>五大公理演算</strong>（适切、秩序、张力、共鸣、完成度），推导空间代数、色彩梯级与排印韵律，全量执行 20 项负向一票否决军规，彻底终结 AI 塑料感。
+            </p>
+
+            <div class="engine-sub-box">
+              <h4 class="sub-title">10 大全端美学母体 (Archetypes) 标准库</h4>
+              <p class="sub-text">为 SaaS、DeFi、工坊、作家案头、工程后台等场景提供完整设计系统与物理契约：</p>
+              <div class="archetypes-pill-cloud">
+                <span class="arch-pill">Tech Flagship Dark</span>
+                <span class="arch-pill">Neo-Bauhaus Pastel</span>
+                <span class="arch-pill">Neo-Brutalist Engineering</span>
+                <span class="arch-pill">Writer's Atelier</span>
+                <span class="arch-pill">Institutional DeFi</span>
+                <span class="arch-pill">Creator-Friendly</span>
+                <span class="arch-pill">Playful Stationery</span>
+                <span class="arch-pill">Wireframe Architect</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engine 2: Personal Taste Engine -->
+          <div class="engine-card">
+            <div class="engine-header">
+              <div class="engine-icon-wrap icon-amber">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <div>
+                <span class="engine-label label-amber">ENGINE 02</span>
+                <h3 class="engine-title">用户审美引擎 (Personal Taste Engine)</h3>
+              </div>
+            </div>
+
+            <p class="engine-desc">
+              Muse 会不断积累用户的审美偏好。你可以给它一个网站、一份 PPT 版式、一篇好文章还是一张摄影作品，Muse 能穿透表面，深度提取其中的形式关系、配色情绪、叙事节奏与视觉张力，内化沉淀为你专属的个人品味资产库，实现审美的跨媒介迁移与复用。
+            </p>
+
+            <!-- 跨媒介提取与迁移流转图组件 -->
+            <div class="cross-transfer-flow">
+              <div class="flow-step-row">
+                <span class="flow-step-label">多元输入</span>
+                <div class="flow-step-content">
+                  <span class="flow-chip">优秀网站</span>
+                  <span class="flow-chip">PPT 版式</span>
+                  <span class="flow-chip">典范好文</span>
+                  <span class="flow-chip">摄影作品</span>
+                </div>
+              </div>
+              <div class="flow-divider"></div>
+              <div class="flow-step-row">
+                <span class="flow-step-label">深度萃取</span>
+                <div class="flow-step-content">
+                  <span class="flow-chip active-accent">形式关系</span>
+                  <span class="flow-chip active-accent">配色情绪</span>
+                  <span class="flow-chip active-accent">叙事节奏</span>
+                  <span class="flow-chip active-accent">视觉张力</span>
+                </div>
+              </div>
+              <div class="flow-divider"></div>
+              <div class="flow-step-row">
+                <span class="flow-step-label">迁移复用</span>
+                <div class="flow-step-content">
+                  <span class="flow-chip">摄影光影 ➔ UI 界面</span>
+                  <span class="flow-chip">好文节奏 ➔ PPT 大幕</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="engine-sub-box">
+              <h4 class="sub-title">Local-First 专属品味资产库 (The 7-Step Evolution)</h4>
+              <div class="loop-steps">
+                <span class="loop-step">收藏</span>
+                <span class="loop-arrow">→</span>
+                <span class="loop-step">拆解</span>
+                <span class="loop-arrow">→</span>
+                <span class="loop-step">推断</span>
+                <span class="loop-arrow">→</span>
+                <span class="loop-step">确认</span>
+                <span class="loop-arrow">→</span>
+                <span class="loop-step">调用</span>
+                <span class="loop-arrow">→</span>
+                <span class="loop-step">相遇</span>
+                <span class="loop-arrow">→</span>
+                <span class="loop-step">复盘</span>
+              </div>
+              <ul class="vault-features">
+                <li>• 本地资产私有保护（默认存放在 <code>~/Documents/Muse</code>），零云端泄露；</li>
+                <li>• 沉淀专属声音画像 (<code>author_voice_profile</code>) 与形式直觉，拒绝千篇一律。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The 4 Media Workbenches (判断先于生成) -->
+    <section class="workbenches-section" id="workbenches">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-badge">JUDGEMENT PRECEDES GENERATION · 核心工作流</div>
+          <h2 class="section-title">全媒介工坊：判断先于生成</h2>
+          <p class="section-subtitle">
+            AI 在设计与创作的时候，绝不直接盲目抽卡，而是提前深度构思好审美契约文档——通过 <code>design.md</code>、<code>PPT.md</code>、<code>writing.md</code>、<code>image.md</code> 确立形式关系与内在秩序，以判断引领生成。
+          </p>
+        </div>
+
+        <div class="bento-workbenches">
+          <!-- WB 1: UI / UX -->
+          <div class="workbench-item wb-large">
+            <div class="wb-meta">
+              <span class="wb-num">01</span>
+              <span class="wb-tag">前端 UI / Web 产品与原型</span>
+            </div>
+            <div class="judgement-pill">⚡ 判断先于生成 · 提前构思 DESIGN.md</div>
+            <h3 class="wb-title">工业级物理解耦与 Bento 2.0 活体防线</h3>
+            <p class="wb-desc">
+              在写代码前先完成 <code>design.md</code> 审美文档构思。强制物理拆分为 <code>index.html</code>、<code>index.css</code>、<code>app.js</code>，全量执行 20 条负向一票否决军规，触控区 $\ge 48\text{px}$，杜绝死黑死白与控件 Emoji。
+            </p>
+            <div class="wb-pill-row">
+              <span class="pill">DESIGN.md 契约</span>
+              <span class="pill">60:30:10 黄金律</span>
+              <span class="pill">0 Emoji 矢量图标</span>
+            </div>
+          </div>
+
+          <!-- WB 2: Text -->
+          <div class="workbench-item">
+            <div class="wb-meta">
+              <span class="wb-num">02</span>
+              <span class="wb-tag">文本与深度叙事</span>
+            </div>
+            <div class="judgement-pill">⚡ 判断先于生成 · 提前构思 WRITING.md</div>
+            <h3 class="wb-title">24 种去油微创手术</h3>
+            <p class="wb-desc">
+              在动笔前构思 <code>writing.md</code> 叙事画像，粉碎“在这个快节奏时代”等套话。以受众心智探针驱动，采用推理或顿悟心流架构，赋予文章真实人类作者的声音与思想。
+            </p>
+            <div class="wb-pill-row">
+              <span class="pill">WRITING.md</span>
+              <span class="pill">去 AI 腔调</span>
+            </div>
+          </div>
+
+          <!-- WB 3: Deck -->
+          <div class="workbench-item">
+            <div class="wb-meta">
+              <span class="wb-num">03</span>
+              <span class="wb-tag">演示文稿与现场演说</span>
+            </div>
+            <div class="judgement-pill">⚡ 判断先于生成 · 提前构思 PPT.md</div>
+            <h3 class="wb-title">屏人二重奏与呼吸节律</h3>
+            <p class="wb-desc">
+              在制作幻灯片前构思 <code>PPT.md</code> 节律契约，将演示定义为时间中连续的感知相遇。输出单文件免配置 Web Deck，每 3 页引入一次节奏转换，兼具舞台高冲击与离线易读性。
+            </p>
+            <div class="wb-pill-row">
+              <span class="pill">PPT.md 契约</span>
+              <span class="pill">单文件 HTML Deck</span>
+            </div>
+          </div>
+
+          <!-- WB 4: Photography -->
+          <div class="workbench-item wb-large">
+            <div class="wb-meta">
+              <span class="wb-num">04</span>
+              <span class="wb-tag">真实物理摄影与图像</span>
+            </div>
+            <div class="judgement-pill">⚡ 判断先于生成 · 提前构思 IMAGE.md</div>
+            <h3 class="wb-title">反塑料感物理布光与意象转化</h3>
+            <p class="wb-desc">
+              在生图前构思 <code>image.md</code> 光学参数，彻底废弃“8k, octane render”等无脑渲染死词。从曝光三角、16 种经典构图、9 大真实光位与微观噪点切入，生成兼备物理温润感与艺术张力的视觉。
+            </p>
+            <div class="wb-pill-row">
+              <span class="pill">IMAGE.md 契约</span>
+              <span class="pill">真实物理光学</span>
+              <span class="pill">反塑料感提示词</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Showcase of Real Muse Creations (11 Real Works) -->
+    <section class="gallery-section" id="gallery">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-badge badge-cyan">MUSE PORTFOLIO EXHIBITION</div>
+          <h2 class="section-title">Muse 自主生成实战成果全景展</h2>
+          <p class="section-subtitle">
+            以下作品全部由 Muse 按照严格的审美假设与工程契约自主生成。点击卡片可唤起高保真灯箱与 Content DNA 深度对账记录。
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="gallery-filters" role="group" aria-label="作品分类筛选">
+          <button class="filter-btn active" data-filter="all">全媒介作品 (9)</button>
+          <button class="filter-btn" data-filter="web">Web & 软件原型 (3)</button>
+          <button class="filter-btn" data-filter="mobile">移动端触控全端 (2)</button>
+          <button class="filter-btn" data-filter="deck">演说与商业复盘 (4)</button>
+        </div>
+
+        <!-- Portfolio Cards Grid -->
+        <div class="works-grid" id="works-container">
+
+          <!-- 01: Kai Atelier Bauhaus -->
+          <article class="work-card" data-category="web" data-img="/site/01.png" data-title="KAI ATELIER // BAUHAUS V3 · 几何理性策展工坊" data-archetype="Neo-Bauhaus Pastel" data-dna="1.5px 纯黑相框线 + 黎明柔雾弥散 (Dawn/Glacier/Mint/Sunset) + 99.8% 留白率 + 原子几何灵感盒">
+            <div class="work-img-box">
+              <img src="/site/01.png" alt="Kai Atelier Bauhaus 策展工坊界面" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Neo-Bauhaus Pastel</span>
+                <span class="badge-type">策展与出版物</span>
+              </div>
+              <h3 class="work-title">KAI ATELIER // BAUHAUS V3 几何理性工坊</h3>
+              <p class="work-desc">Form Follows Emotion。探讨人机认知工程与 Local-First 本地优先系统，采用新包豪斯网格与柔雾弥散。</p>
+            </div>
+          </article>
+
+          <!-- 02: Weave 织念 -->
+          <article class="work-card" data-category="web" data-img="/site/02.png" data-title="Weave 织念 · 个人知识拓扑与认知图谱实验室" data-archetype="Tech Dark Knowledge" data-dna="深空拓扑底盘 + 思绪共鸣仪引力场 + 双向思维图谱伴生 + 盲点批判反思 + 460字自适应专注流">
+            <div class="work-img-box">
+              <img src="/site/02.png" alt="Weave 织念知识网络界面" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Tech Dark Knowledge</span>
+                <span class="badge-type">认知应用</span>
+              </div>
+              <h3 class="work-title">Weave 织念 · 知识网中的涌现性与局部连通度</h3>
+              <p class="work-desc">探索复杂知识网络拓扑，右侧挂载动态思绪共鸣仪与语义引力涌现反馈舱，彻底摆脱传统笔记的单调感。</p>
+            </div>
+          </article>
+
+          <!-- 03: Repair Intake -->
+          <article class="work-card" data-category="web" data-img="/site/03.png" data-title="Repair Intake · 实用主义票据与维修预约台" data-archetype="Utilitarian Ticket Stream" data-dna="墨绿侧栏导流 + 纯黑物理锯齿撕票边缘 + 羊皮暖纸摘要卡片 + 显式状态步骤梯形">
+            <div class="work-img-box">
+              <img src="/site/03.png" alt="Repair Intake 界面" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Utilitarian Modern</span>
+                <span class="badge-type">复杂业务表单</span>
+              </div>
+              <h3 class="work-title">Repair Intake · 把问题说清楚，再决定下一步</h3>
+              <p class="work-desc">工装风锯齿票据边缘与暖米色卡片，将繁琐的家电维修报障梳理为极度严密且具物理安全感的信息流。</p>
+            </div>
+          </article>
+
+          <!-- 05: Wilderness Notes (Mobile) -->
+          <article class="work-card" data-category="mobile" data-img="/site/05.png" data-title="荒野探险手记 · 四姑娘山金黄史诗与日光推移" data-archetype="Mobile Touch Fluid" data-dna="48px+ 安全拇指操作坞 + 4,680m 海拔信息仪表盘 + 18:42 摄影光影推移 (Daylight Tracker) + 沉浸式暗色底盘">
+            <div class="work-img-box portrait-box">
+              <img src="/site/05.png" alt="荒野探险手记 移动端界面" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Mobile Touch Fluid</span>
+                <span class="badge-type">移动端人文画册</span>
+              </div>
+              <h3 class="work-title">荒野探险手记 · 四姑娘山长坪沟穿毕棚沟</h3>
+              <p class="work-desc">完美符合 Muse 跨端自适应协议，底部 40% 黄金触控区常驻纪行操作坞，集成摄影日照金山光影推移滑轴。</p>
+            </div>
+          </article>
+
+          <!-- 06: Metabolic Health (Mobile) -->
+          <article class="work-card" data-category="mobile" data-img="/site/06.png" data-title="身体感知与代谢追踪 · 进食窗口与稳态感知" data-archetype="Mobile Touch Fluid" data-dna="1,040 kcal 净代谢环形进度 + 身体感知时间轴日序自适应 + 拍所食浮空凸起主 CTA + 舒缓有机暗绿色阶">
+            <div class="work-img-box portrait-box">
+              <img src="/site/06.png" alt="代谢健康感知 移动端界面" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Mobile Touch Fluid</span>
+                <span class="badge-type">移动端健康追踪</span>
+              </div>
+              <h3 class="work-title">身体感知时间轴 · 稳态代谢活跃度仪表</h3>
+              <p class="work-desc">进食窗口、蛋白质/慢碳/优质脂三大营养素流速监控，以防眩目有机暗调与时间轴序列重构健康追踪体验。</p>
+            </div>
+          </article>
+
+          <!-- 07: Audience Reaction 10/10 (Deck) -->
+          <article class="work-card" data-category="deck" data-img="/site/07.png" data-title="Audience Reaction 10/10 · 好评率全场第一演说页" data-archetype="Neo-Brutalist Deck" data-dna="亮黄波点背景 + 倾斜高对比标语栏 + 3px 纯黑物理外轮廓 + 乐高式大字号引言排版">
+            <div class="work-img-box">
+              <img src="/site/07.png" alt="Audience Reaction 幻灯片" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Neo-Brutalist Playful</span>
+                <span class="badge-type">演说 Web Deck</span>
+              </div>
+              <h3 class="work-title">Audience Reaction 10/10 现场好评看板</h3>
+              <p class="work-desc">“这是我听过最不犯困的一次架构分享，所有的色块就像在白板上玩乐高一样生动！”——击碎枯燥演示的典范。</p>
+            </div>
+          </article>
+
+          <!-- 08: Three Core Superpowers (Deck) -->
+          <article class="work-card" data-category="deck" data-img="/site/08.png" data-title="Three Core Superpowers · 三大核心超能力" data-archetype="Neo-Brutalist Deck" data-dna="高饱和三色块 (天空蓝/亮粉/薄荷绿) + 3px 实心黑线 + 5px 偏移实体立体阴影 + 极强舞台远视距亲和力">
+            <div class="work-img-box">
+              <img src="/site/08.png" alt="Three Core Superpowers 幻灯片" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Neo-Brutalist Playful</span>
+                <span class="badge-type">演说 Web Deck</span>
+              </div>
+              <h3 class="work-title">三大超能力：超高饱和度 · 实心硬描边 · 高亲和力</h3>
+              <p class="work-desc">采用 3px 纯黑硬轮廓与 5px 实体物理偏移阴影，让原本严肃的技术架构汇报化身为一场引人入胜的视觉游戏。</p>
+            </div>
+          </article>
+
+          <!-- 09: Q3 Quarterly Business Review (Deck) -->
+          <article class="work-card" data-category="deck" data-img="/site/09.png" data-title="Q3 季度工作总结与业务复盘 · 汇报人：苏和" data-archetype="Executive Swiss Deck" data-dna="瑞士排印克制美学 + 124.5% 超额达成指标 + 动态对比度进度条 + 严谨数据资产沉淀看板 (38套)">
+            <div class="work-img-box">
+              <img src="/site/09.png" alt="Q3 季度业务复盘 幻灯片" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Executive Swiss Deck</span>
+                <span class="badge-type">商业汇报 Deck</span>
+              </div>
+              <h3 class="work-title">推进核心业务线自动化重构 · 效能与质量双突破</h3>
+              <p class="work-desc">汇报人：苏和 · 产品架构部。清晰展示跨部门协作阻断降低 78%、沉淀 38 套标准资产，展现无懈可击的高管级汇报质感。</p>
+            </div>
+          </article>
+
+          <!-- 10: Before vs After (Deck) -->
+          <article class="work-card" data-category="deck" data-img="/site/10.png" data-title="业务关键突破 · BEFORE vs AFTER 流程重组前后对比" data-archetype="Executive Swiss Deck" data-dna="双栏高反差对比 (Past Pain Points vs Present Breakthrough) + 绿色圆角高光框 + ROI 显著标签 + 精确痛点量化">
+            <div class="work-img-box">
+              <img src="/site/10.png" alt="Before vs After 业务对比 幻灯片" loading="lazy">
+              <div class="work-overlay">
+                <span class="inspect-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>点开审查设计规格</span>
+                </span>
+              </div>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="badge-archetype">Executive Swiss Deck</span>
+                <span class="badge-type">商业汇报 Deck</span>
+              </div>
+              <h3 class="work-title">从“被动修补”到“系统驱动”：流程重组突破</h3>
+              <p class="work-desc">直击格式口径不一、资产无法复用痛点；呈现异步看板自流转使会议缩短 65%、自动化标准交付实现 0 破版。</p>
+            </div>
+          </article>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Anti-Slop Negative Invariants (The 20 Hard Red Lines) -->
+    <section class="anti-slop-section" id="anti-slop">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-badge badge-warning">NEGATIVE INVARIANTS</div>
+          <h2 class="section-title">20 项负向一票否决全量军规</h2>
+          <p class="section-subtitle">
+            所有由 Muse 生产的物料必须无条件恪守的核心底线。只要触犯任意一条，即视为审美与工程严重失控。
+          </p>
+        </div>
+
+        <div class="slop-rules-grid">
+          <div class="slop-card">
+            <div class="slop-header">
+              <span class="slop-badge">一、形式与反 AI 偏见红线</span>
+            </div>
+            <ul class="slop-list">
+              <li><span class="ban-x">✕</span> <strong>绝对封杀 Emoji 充当 UI 功能图标</strong>：必须使用统一单色描边矢量 SVG</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀死黑 #000000 与死白 #FFFFFF</strong>：改用温润午夜深黑与羊皮暖白</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀紫蓝发光霓虹大渐变 (The Lila Ban)</strong>：拒绝廉价科幻皮</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀圆角容器贴直边色条</strong>：杜绝几何曲率冲突</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀非模度任意尺寸</strong>：间距必须为 4px / 8px 模度阶梯</li>
+            </ul>
+          </div>
+
+          <div class="slop-card">
+            <div class="slop-header">
+              <span class="slop-badge">二、布局与排版反模式红线</span>
+            </div>
+            <ul class="slop-list">
+              <li><span class="ban-x">✕</span> <strong>绝对封杀高密度卡片套卡片</strong>：以 1px 细线或纯负空间逻辑分层</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀横排 3 等分呆板卡片</strong>：强制使用错位 Zig-Zag 或 Bento 2.0</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀千篇一律默认居中大标题</strong>：优先左对齐杂志流与 50/50 分屏</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀大标题斜体与控制台衬线体</strong>：负字距精密工业排印</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀全屏无节制横拉长文本</strong>：正文严格限制 50–75ch 行宽</li>
+            </ul>
+          </div>
+
+          <div class="slop-card">
+            <div class="slop-header">
+              <span class="slop-badge">三、工程交付物与无障碍红线</span>
+            </div>
+            <ul class="slop-list">
+              <li><span class="ban-x">✕</span> <strong>绝对封杀 UI 产品的单文件大混排</strong>：严格解耦 html、css、js</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀同视窗并列多个 Primary 按键</strong>：唯一核心转化锚点</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀缺失显式 label 的表单输入框</strong>：必须保障屏幕阅读器</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀移动端 &lt; 44px 触控靶心与 h-screen</strong>：全屏用 100dvh</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀无 7 态契约的裸奔组件</strong>：交代完整生命周期状态</li>
+            </ul>
+          </div>
+
+          <div class="slop-card">
+            <div class="slop-header">
+              <span class="slop-badge">四、真实数据与性能热路径红线</span>
+            </div>
+            <ul class="slop-list">
+              <li><span class="ban-x">✕</span> <strong>绝对封杀可预测假数据 (The "Jane Doe" Ban)</strong>：使用真实有机业务数据</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀引发 Reflow 的几何动画</strong>：只允许驱动 transform 与 opacity</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀滚动容器挂载 Grain 纹理</strong>：必须挂载在 fixed 顶层</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀破坏键盘焦点环</strong>：必须保障高反差 Focus-visible 提示</li>
+              <li><span class="ban-x">✕</span> <strong>绝对封杀同一页面冷暖灰混用</strong>：严格统一色温阶梯与饱和度</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Quick Start Workflow -->
+    <section class="get-started-section" id="get-started">
+      <div class="section-container">
+        <div class="start-box">
+          <div class="start-content">
+            <span class="start-pill">QUICK INTEGRATION</span>
+            <h2 class="start-title">三步唤醒智能体的审美智能</h2>
+            <div class="workflow-steps-row">
+              <div class="w-step">
+                <span class="w-num">01</span>
+                <h3 class="w-title">一键安装 Skill</h3>
+                <p class="w-desc">在项目根目录执行 <code>git clone https://github.com/shangxiuyu/muse.git .agents/skills/muse</code> 即刻载入。</p>
+              </div>
+              <div class="w-step">
+                <span class="w-num">02</span>
+                <h3 class="w-title">立项锁定契约</h3>
+                <p class="w-desc">按媒介交付自包含的 <code>DESIGN.md</code>、<code>WRITING.md</code> 或 <code>PPT.md</code>。</p>
+              </div>
+              <div class="w-step">
+                <span class="w-num">03</span>
+                <h3 class="w-title">真实相遇与进化</h3>
+                <p class="w-desc">记录你的原话反馈，沉淀至本地 Local Vault 持续进阶品味。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="start-action-row">
+            <button class="btn-primary" id="bottom-copy-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>复制安装命令</span>
+            </button>
+            <a href="DESIGN.md" target="_blank" class="btn-secondary">
+              <span>阅读官方 DESIGN.md 契约</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close-btn" id="lightbox-close" aria-label="关闭灯箱 (ESC)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="lightbox-content">
+        <div class="lightbox-image-pane">
+          <img src="" alt="" id="lightbox-img">
+        </div>
+        <div class="lightbox-spec-pane">
+          <div class="spec-header">
+            <div class="spec-badges">
+              <span class="badge-archetype" id="modal-archetype">Neo-Bauhaus</span>
+              <span class="badge-type" id="modal-type">Web 原型</span>
+            </div>
+            <h3 class="modal-title" id="modal-title">作品标题</h3>
+          </div>
+
+          <div class="spec-body">
+            <div class="spec-group">
+              <h4 class="spec-label">Content DNA & 设计对账</h4>
+              <p class="spec-text" id="modal-dna">设计基因解析...</p>
+            </div>
+
+            <div class="spec-group">
+              <h4 class="spec-label">Muse 审美防线验证</h4>
+              <ul class="spec-check-list">
+                <li><span class="spec-ok">✓</span> <strong>0 Emoji 侵入</strong>：全站矢量 SVG 图标对齐</li>
+                <li><span class="spec-ok">✓</span> <strong>60:30:10 黄金色彩</strong>：严格遵循色阶对比与温润底盘</li>
+                <li><span class="spec-ok">✓</span> <strong>空间精密代数</strong>：严格落实 8px 模度阶梯</li>
+                <li><span class="spec-ok">✓</span> <strong>物理架构解耦</strong>：纯净结构与独立样式分离</li>
+              </ul>
+            </div>
+
+            <div class="spec-group">
+              <h4 class="spec-label">本地真实真机渲染</h4>
+              <div class="spec-file-info" id="modal-file-info">Asset: 01.png · 本地真机渲染作品</div>
+            </div>
+          </div>
+
+          <div class="spec-actions">
+            <button class="btn-primary-small" id="lightbox-zoom-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span>自适应 / 100% 原始缩放切换</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Pill -->
+  <div class="toast-notification" id="toast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-text">已复制命令到剪贴板！</span>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col-main">
+        <div class="footer-brand">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <rect x="2" y="2" width="24" height="24" rx="6" stroke="currentColor" stroke-width="2" class="brand-stroke"/>
+            <path d="M7 14L14 7L21 14L14 21L7 14Z" stroke="currentColor" stroke-width="1.8" class="brand-accent-stroke"/>
+            <circle cx="14" cy="14" r="2.5" fill="currentColor" class="brand-fill"/>
+          </svg>
+          <span class="footer-brand-title">MUSE AESTHETIC ENGINE</span>
+        </div>
+        <p class="footer-tagline">
+          以审美智能连接人机意图。美是关系的艺术，判断先于生成，赋能专属品味资产跨媒介迁移与复用。
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">四媒介规范</h4>
+        <ul class="footer-links">
+          <li><span>UI/UX 产品手册 (DESIGN.md)</span></li>
+          <li><span>深度写作与叙事 (WRITING.md)</span></li>
+          <li><span>商业与演说 Deck (PPT.md)</span></li>
+          <li><span>真实物理摄影 (IMAGE.md)</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">系统与契约</h4>
+        <ul class="footer-links">
+          <li><a href="DESIGN.md">DESIGN.md 契约</a></li>
+          <li><a href="#anti-slop">20 项负向一票否决军规</a></li>
+          <li><a href="#gallery">实战作品展廊</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <span>© 2026 MUSE Aesthetic Engine · Built with Muse Skill Architecture</span>
+        <span class="footer-badge">Multi-Archetype Dynamic Engine · 0 Emoji Strict</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Interactive Engine -->
+  <script src="/site/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+{
+  "capturedAt": "2026-09-21T19:33:42.443Z",
+  "method": "Real rendered Muse UI / first slide / SVG; text uses body-derived gallery cover",
+  "records": [
+    {
+      "id": "reading",
+      "type": "ui",
+      "source": "output/gallery-muse/reading/reviewed-artifact.json",
+      "artifactSha256": "8ad40b55df254b6493535bafaf37e7bd1c72c53561e4f67e250f148dbcb19910",
+      "cover": "web/assets/gallery/reading.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "df39cc69a2c7ee6dd3b4a3ca75de0b756393da87f25a3a2280aa842be733a370"
+    },
+    {
+      "id": "objects",
+      "type": "ui",
+      "source": "output/gallery-muse/objects/reviewed-artifact.json",
+      "artifactSha256": "957890d982fc80737d42e8671a2f55774505e27e526be364fb80d893426ef0a0",
+      "cover": "web/assets/gallery/objects.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "8d854fae9d540bd7545b62358fbb85d3e3651bb81f9eb4b84ba4964c34874525"
+    },
+    {
+      "id": "retreat",
+      "type": "ui",
+      "source": "output/gallery-muse/retreat/reviewed-artifact.json",
+      "artifactSha256": "c05e73e617634b0bc10d3f71d0e9f36c11d7d61006994cece2d911f5293b9dca",
+      "cover": "web/assets/gallery/retreat.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "4b5270ddb1753b66f7352c21a4e2ae8b788fdb040bf560360efbbb7ac4993f0b"
+    },
+    {
+      "id": "festival",
+      "type": "ui",
+      "source": "output/gallery-muse/festival/artifact.json",
+      "artifactSha256": "3442c1d953f298b954ec6b31dcdb33481f826632e6375aa3dd2b4586d2e2b0d7",
+      "cover": "web/assets/gallery/festival.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "4e135595487d73eefe0157e70d49ab21227e409b9dcd9c530fefcdd4af71b755"
+    },
+    {
+      "id": "slow",
+      "type": "ui",
+      "source": "output/gallery-muse/slow/reviewed-artifact.json",
+      "artifactSha256": "7c976b6c27c7997f1d232fe844f2d1e1f7c8b0fdd96c4b1bcbae497b09510090",
+      "cover": "web/assets/gallery/slow.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "d4020e07d7857b0f6f35ffec3af8c4df4a3f3016677f34a047d813ca8994d99a"
+    },
+    {
+      "id": "less",
+      "type": "ppt",
+      "source": "output/gallery-muse/less/reviewed-artifact.json",
+      "artifactSha256": "31505dd2ea3c4840a7447fa765a4934c54915c8ef14a224443e1f57fd7408f83",
+      "cover": "web/assets/gallery/less.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "15f9f9c2b54b863bbaaebcadd6c3a657963c8e450947135bbf54c47b8c2feb6e"
+    },
+    {
+      "id": "form",
+      "type": "ui",
+      "source": "output/gallery-muse/form/reviewed-artifact.json",
+      "artifactSha256": "21ad6b10139c7d253ef7672628a8cfa3f8e0130820310dcbc3d3e094a0646e2f",
+      "cover": "web/assets/gallery/form.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "8b39a4622482f0188305c38f4ff5f81aec6e4bedb599433204d56ceb03d178ce"
+    },
+    {
+      "id": "field",
+      "type": "ppt",
+      "source": "output/gallery-muse/field/reviewed-artifact.json",
+      "artifactSha256": "c1937fe5622cdeb7cff913e6fd11c22e55b6f80a84e27da62453a9c50c9c9c9f",
+      "cover": "web/assets/gallery/field.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "26da51e36b44ad51c4ca64a4fa9eca951f96fea6a0283c99a95443ea0f0b6803"
+    },
+    {
+      "id": "coffee",
+      "type": "text",
+      "source": "output/gallery-muse/coffee/reviewed-artifact.json",
+      "artifactSha256": "0f44b14f9aebe3aca616d6c07034f46438d4fd7aef09c01d9fdab716f4103240",
+      "cover": "web/assets/gallery/coffee.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "34419313ec95fb8225645d3195ea02b900358925486444647ca168e33538c799"
+    },
+    {
+      "id": "letter",
+      "type": "text",
+      "source": "output/gallery-muse/letter/reviewed-artifact.json",
+      "artifactSha256": "2fe0d8e68301b914ec63256f1532f28c7aa83fc39a22a98da5b0374c367d82ff",
+      "cover": "web/assets/gallery/letter.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "51405506bef7d83b44826fba3712bf2274e72fc4be91c64bd22bf6bc1f5b875e"
+    },
+    {
+      "id": "still",
+      "type": "image",
+      "source": "output/gallery-muse/still/reviewed-artifact.json",
+      "artifactSha256": "fa9d9aff3cc4d90eb8e362bbc7ad69cfce39e6d51ed39dbfbc3cca2851baf55e",
+      "cover": "web/assets/gallery/still.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "734355184a8adcfa6b9e859de00507f00b6c4c2daa67cd206aee76e713e03f7f"
+    },
+    {
+      "id": "rhythm",
+      "type": "image",
+      "source": "output/gallery-muse/rhythm/reviewed-artifact.json",
+      "artifactSha256": "fa7d9cb1e39c88d5708096b004b69fc2281ef12ee1ac3e7f22c1229c9ceee61d",
+      "cover": "web/assets/gallery/rhythm.png",
+      "viewport": {
+        "width": 1200,
+        "height": 750
+      },
+      "coverSha256": "b6377ada66de36cc34d6e68ed78e0ab0040f6db1a1110a612d0f7f8f5cef67e8"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "sampleId": "form",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-flash",
+  "generatedAt": "2026-09-21T19:25:17.058Z",
+  "artifactSha256": "33fba9b5ada4d191bc6819803b4af4d147185e92c843fb22954f888ba94b10d5",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/toolkit/ui_grammar.md",
+    "references/toolkit/ui_interaction_flow.md",
+    "references/toolkit/ui_innovation.md",
+    "references/toolkit/ui_floors.md",
+    "references/acceptance_protocol.md",
+    "references/archetypes.md",
+    "references/archetypes/wireframe_architect_grid.md",
+    "references/visual_grammar.md",
+    "references/toolkit/ui_project_context.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": true,
+    "interaction": false
+  },
+  "message": "The final version is stable and consistent with prior captures — no regressions in the visible region. The design is complete.\n\n**交付完成：FORM · 给想法以形状**\n\n**概念与判断。** FORM 是一个接单量刻意克制的独立工作室，所以页面本身也不该喧闹：单一钴蓝作强调、骨白作底、严格 7:5 分栏，把「先问为什么」这句主张放进结构里，而不是只放在某一段文案里——项目区的证据、服务表的报价与周期、联系表单，逐层兑现「先理解再动手」。\n\n**结构上真做了重组（不是改标题）：**\n- 首屏左对齐巨型标题 + 右侧三段事实（成立年份／方向／产能），替掉居中 Hero；缩览时第一眼就落在 \"Ideas take form.\"\n- 项目区从四张等高卡改为 7:5 非对称双列 + 01–04 编号索引，左宽卡跨两行\n- 筛选从四个等宽按钮改为标准 `tablist`，支持 ← → Home End，附空状态与数量播报；空状态是行动邀请而非\"暂无数据\"\n- 服务从一行三词改成 01/02/03 编辑式报价表，点开看交付物与周期\n- 新增完整联系表单：label 绑定、逐字段错误提示、焦点回位、重置态，让样板在其虚构业务下真正可用\n\n**两个创新算子。** M4 跨区语义联动——悬停或聚焦某个项目，服务表对应行亮起，鼠标和键盘都触发。D4 原位推挤展开替代弹窗，视线不离开当前行。\n\n**取舍。** 删掉旧版的鲑鱼橙／鼠尾草绿／墨绿四色调色板（互相抢戏，违反单一强调色与全局色温统一），改为钴蓝 / 骨白 / 洋红 ≤10 的三层关系；删掉装饰渐变与发光，锋芒只留给标题与网格。有意使用近黑墨色 `#0B0F1A` 与洋红强调——属该母体的形式语言，已在文件内以 `muse:allow` 声明。\n\n**验收范围（不夸大）。** 在 1200×750 缩览下实际观察了首屏与项目区起始渲染：标题层级、7:5 分栏边线、tab 选中态与强调色面积符合预期；JS 已逐行核对语法及所有 `getElementById` / `dataset` / 事件绑定目标。\n\n**未验证**（本环境截图固定于页面顶部）：项目卡下半部、服务原位展开、表单错误与重置态、390 窄屏均未在本次观察中出现，不能声称已通过；未做真机触屏 44px 靶心测量、未做屏幕阅读器朗读、未做 200% 文字缩放。所有品牌、项目、报价与联系地址均为概念示例，已在页脚明示。"
+}

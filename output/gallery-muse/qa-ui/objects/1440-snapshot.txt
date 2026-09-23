@@ -1,0 +1,150 @@
+- link "跳到商品目录":
+  - /url: "#catalog"
+- banner:
+  - text: 物候 WUHOU
+  - navigation "主导航":
+    - link "器物目录":
+      - /url: "#catalog"
+    - link "材料说明":
+      - /url: "#materials"
+    - link "关于物候":
+      - /url: "#about"
+  - button "购物袋 购物袋，0 件"
+- main:
+  - paragraph: 概念示例 · 器物目录 · 第 03 辑 立夏
+  - heading "器物要经得起手， 而不是经得起截图。" [level=1]
+  - paragraph: 午后三点，光斜进来，你能看清一只杯子的釉面在哪一处发哑、杯口的厚薄在唇边怎么变。这一辑选了六件日用品，都在这个时辰里被反复端详过。尺寸写实，材料写清，用途写在旁边——剩下的判断留给你。
+  - term: 在售
+  - definition: 6 件
+  - term: 产地
+  - definition:
+    - text: 景德镇 / 湖州
+    - emphasis: （示例）
+  - term: 发货
+  - definition:
+    - text: 下单后 3 日内
+    - emphasis: （示例）
+  - region "灰釉直身杯":
+    - figure "01 / 06 灰釉直身杯 · 左为杯体侧视，右上为口沿俯视":
+      - img "灰釉直身杯：左侧为杯体侧视，右侧为杯口俯视，含拉坯环痕、落灰釉斑与内壁水线"
+      - text: 01 / 06 灰釉直身杯 · 左为杯体侧视，右上为口沿俯视
+    - paragraph: 本辑主打
+    - heading "灰釉直身杯" [level=2]
+    - paragraph: 杯身不做收腰，手指从杯底一圈圈推到口沿，摸得到拉坯留下的细密环痕。灰釉在窑里落灰成釉，杯壁有一处偏青、一处偏褐，两只杯子不会一样。厚度 4–5mm，装 200ml 热茶，握在手里不烫掌心。
+    - term: 容量
+    - definition: 200 ml
+    - term: 口径 × 高
+    - definition: 72 × 88 mm
+    - term: 烧成
+    - definition: 柴窑 1280℃，还原焰
+    - term: 编号
+    - definition: WH-C01（概念示例）
+  - region "器物目录":
+    - heading "器物目录" [level=2]
+    - paragraph: 按材料分组。点「规格」在原位展开，不跳页、不弹窗。
+    - group "按类别筛选":
+      - button "全部" [pressed]
+      - button "陶"
+      - button "器皿"
+      - button "织物"
+    - status: 显示全部 6 件
+    - article:
+      - img "灰釉直身杯的侧视与俯视口沿线描，含拉坯环痕、落灰釉斑与茶渍水线"
+      - heading "灰釉直身杯" [level=3]
+      - text: WH-C01
+      - paragraph: 杯身不做收腰，手指从杯底一圈圈推到口沿，摸得到拉坯留下的细密环痕。灰釉在窑里落灰成釉，杯壁有一处偏青、一处偏褐，两只杯子不会一样。厚度 4–5mm，装 200ml 热茶，握在手里不烫掌心。
+      - text: 陶 热茶 适用
+      - term: 外形
+      - definition: 72 × 88 mm
+      - term: 烧成 / 材质
+      - definition: 柴窑 1280℃ 还原焰
+      - paragraph: ¥168概念价 · 演示
+      - button "规格"
+      - button "加入购物袋"
+    - article:
+      - img "柴烧小口花器线描，小口鼓腹、切削足，含窑位褐红斑与入瓶枝条"
+      - heading "柴烧小口花器" [level=3]
+      - text: WH-C02
+      - paragraph: 小口、鼓腹、切削足。腹部的一圈褐红是窑位烧成，不是涂色，所以每只落点不同。器壁厚 6mm，装半瓶水也稳；插枝条时剪口略斜，靠小口自然收束。
+      - text: 陶 一两枝当季枝条 适用
+      - term: 外形
+      - definition: 38 × 108 × 168 mm
+      - term: 烧成 / 材质
+      - definition: 柴窑 1300℃
+      - paragraph: ¥420概念价 · 演示
+      - button "规格"
+      - button "加入购物袋"
+    - article:
+      - img "深棕托盘的四分之三视图，含盘沿厚度、内底凹槽、木纹与拇指槽"
+      - heading "深棕托盘 · 长" [level=3]
+      - text: WH-C03
+      - paragraph: 整块榉木削成，四角做小圆角，托盘深度 18mm 正好挡住滚动的杯子。底面刻出一道槽，拿起来时拇指有落点。木蜡油涂装，手感是木头的，不是塑料的。
+      - text: 器皿 端茶待客 适用
+      - term: 外形
+      - definition: 18 mm
+      - term: 烧成 / 材质
+      - definition: 榉木 · 木蜡油
+      - paragraph: ¥286概念价 · 演示
+      - button "规格"
+      - button "加入购物袋"
+    - article:
+      - img "两枚手织棉麻方巾交叠，含经纬织纹、密拷锁边与洗后褶皱"
+      - heading "棉麻方巾 · 二枚组" [level=3]
+      - text: WH-C04
+      - paragraph: 手织 55% 亚麻 / 45% 棉，经纬密度偏低，所以透气、易干，也不容易闷出发霉味。四边做了密拷锁边，洗过之后边缘会微微起皱——那是麻的特性。两条一色，同批织造。
+      - text: 织物 垫茶席 适用
+      - term: 外形
+      - definition: 亚麻 55% / 棉 45%
+      - term: 烧成 / 材质
+      - definition: 约 210 g/m²
+      - paragraph: ¥124概念价 · 演示
+      - button "规格"
+      - button "加入购物袋"
+    - article:
+      - img "炻器浅碗的侧视与俯视，含翻沿唇边、细砂颗粒与无釉足圈"
+      - heading "炻器浅碗" [level=3]
+      - text: WH-C05
+      - paragraph: 口沿翻出一小段唇边，手指能扣住，端起来稳。含铁陶土烧成的暖褐色，内壁不上釉，摸得到细砂感。碗底留一圈无釉的足，放在桌上不滑。
+      - text: 器皿 一人份米饭 适用
+      - term: 外形
+      - definition: 142 × 62 mm
+      - term: 烧成 / 材质
+      - definition: 1240℃ 氧化焰
+      - paragraph: ¥198概念价 · 演示
+      - button "规格"
+      - button "加入购物袋"
+    - article:
+      - img "高足灰釉杯线描，含杯身环痕、收窄高足与刮釉足底"
+      - heading "高足灰釉杯" [level=3]
+      - text: WH-C06
+      - paragraph: 在直身杯的基础上加了 30mm 高足，桌面到杯底留出空隙，热饮散热慢一些。足部收窄，握持时重心仍在掌心。足底刮釉一圈，落桌有很轻的一声钝响。
+      - text: 陶 单品饮 适用
+      - term: 外形
+      - definition: 62 × 105 mm
+      - term: 烧成 / 材质
+      - definition: 柴窑 1280℃ 还原焰
+      - paragraph: ¥236概念价 · 演示
+      - button "规格"
+      - button "加入购物袋"
+  - region "材料说明":
+    - heading "材料说明" [level=2]
+    - paragraph: 三种材料，三种手感和三种养护方式。都写在下面，不必猜。
+    - article:
+      - heading "✦ 灰釉陶土" [level=3]
+      - paragraph: 景德镇本地高岭土掺少量紫金土，可塑性好、胎体偏白。柴窑落灰成釉，釉面有微小的针孔与流痕——那不是瑕疵，是烧成记录。
+      - paragraph: 养护：可入洗碗机，但手洗更护釉。忌骤冷骤热。
+    - article:
+      - heading "✦ 炻器陶土" [level=3]
+      - paragraph: 含铁量较高的粗陶土，烧成后呈暖褐，吸水率低于 1%，不上釉也致密。表面留一层细砂感，指腹划过有轻微阻力。
+      - paragraph: 养护：可微波、可入烤箱。长期使用会养出温润的油光。
+    - article:
+      - heading "✦ 手织棉麻" [level=3]
+      - paragraph: 湖州织造的 55% 亚麻 / 45% 棉，经纬密度偏低，透气、下垂自然。洗后会略微收缩并变软，织物表面留下洗水后的细微起伏。
+      - paragraph: 养护：前三次冷水单洗，避免与硬物同洗。自然阴干。
+  - region "关于物候":
+    - heading "关于物候" [level=2]
+    - paragraph: 物候做小批量日用器物，按节气出辑，一辑六件，卖完等下一窑。不做限量编号营销，不做联名，也不请人写评价——所以这个页面上一条用户评价都没有。
+    - paragraph: 「物候 WUHOU」为 Muse 样板而设的虚构品牌，文中品牌、商品、产地、价格与配送信息均为概念示例，不代表任何真实商家、真实商品或真实报价。本页购物袋为本地演示，不提供支付或真实下单。
+- contentinfo:
+  - paragraph: 物候 WUHOU · 概念示例样板
+  - paragraph: 本地购物袋演示 · 不提供支付或真实下单 · 本页不使用网络字体、外部图片或第三方脚本

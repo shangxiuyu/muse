@@ -1,0 +1,766 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'"></head><body><!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FORM · 给想法以形状</title>
+
+<style>/* =========================================================
+   FORM · 设计宪法（简版）
+   Dials: VARIANCE 6 / MOTION 4 / DENSITY 5
+   色能分配 60-30-10 —— 骨白 60% ／ 结构灰蓝 30% ／ 钴蓝·洋红 10%
+   单一光源：全页阴影向量统一为 135° 柔光
+   模度：全部尺寸走 4px 阶梯（字距例外见下）
+   ========================================================= */
+
+:root{
+  --bone:      #F7F5F0;
+  --bone-dip:  #EFEBE3;
+  --ink:       #0B0F1A;
+  --ink-2:     #2A3550;
+  --muted:     #565E72;
+  --line:      rgba(11,15,26,.16);
+  --line-hard: rgba(11,15,26,.42);
+
+  --cobalt:    #1B3AC4;
+  --cobalt-dp: #16309E;
+  --magenta:   #B00070;
+  --cobalt-tint: rgba(27,58,196,.07);
+  --magenta-tint: rgba(176,0,112,.07);
+
+  --paper:     #FBFAF7;
+  --mist:      #DDE3E6;
+
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px;
+  --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px;
+
+  --ease: cubic-bezier(.16,1,.3,1);
+  --light: 0 16px 32px -12px rgba(11,15,26,.10);
+
+  --f-sans:'Helvetica Neue',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;
+  --f-mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,'Noto Sans Mono',monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bone);color:var(--ink);
+  font-family:var(--f-sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+}
+h1,h2,h3,h4,p,ul,dl,figure{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit}
+::selection{background:var(--cobalt);color:var(--bone)}
+
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:2px}
+.site-foot :focus-visible,.plate :focus-visible{outline-color:#fff}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0}
+.skip{position:absolute;left:var(--sp-4);top:-80px;z-index:20;background:var(--ink);color:var(--bone);
+  padding:var(--sp-3) var(--sp-5);font-size:14px;text-decoration:none;transition:top .2s var(--ease)}
+.skip:focus{top:var(--sp-4)}
+
+/* ============ 头部 ============ */
+.site-head{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:var(--sp-8);
+  padding:var(--sp-5) clamp(20px,4vw,56px);
+  border-bottom:1px solid var(--line-hard);
+  position:sticky;top:0;z-index:10;
+  background:rgba(247,245,240,.94);backdrop-filter:blur(12px);
+}
+.wordmark{font-size:28px;font-weight:700;letter-spacing:-.045em;text-decoration:none}
+.reg{font-size:.5em;vertical-align:super;font-weight:400}
+.site-nav{display:flex;gap:var(--sp-6);justify-self:center}
+.site-nav a{font-size:14px;text-decoration:none;padding:var(--sp-2) 0;border-bottom:1px solid transparent;
+  transition:border-color .18s var(--ease)}
+.site-nav a:hover{border-bottom-color:var(--ink)}
+.head-cta{
+  font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;
+  background:var(--cobalt);color:var(--bone);
+  padding:var(--sp-3) var(--sp-5);min-height:44px;display:inline-flex;align-items:center;
+  transition:background .18s var(--ease),transform .18s var(--ease)}
+.head-cta:hover{background:var(--cobalt-dp);transform:translateY(-1px)}
+.head-cta:active{transform:translateY(0) scale(.985)}
+
+/* ============ 首屏 ============ */
+.hero{padding:clamp(32px,5vw,72px) clamp(20px,4vw,56px) clamp(40px,5vw,64px);
+  border-bottom:1px solid var(--line-hard)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;font-weight:700;
+  letter-spacing:.06em;color:var(--magenta);margin-bottom:var(--sp-10)}
+.hero-grid{display:grid;grid-template-columns:7fr 5fr;gap:var(--sp-10);align-items:end}
+.hero h1{
+  font-size:clamp(64px,12.2vw,176px);line-height:.84;font-weight:600;
+  letter-spacing:-.05em;margin:0;
+}
+.hero-side{padding-bottom:var(--sp-3)}
+.hero-lead{font-size:18px;line-height:1.55;max-width:34ch;color:var(--ink-2);
+  border-top:1px solid var(--line-hard);padding-top:var(--sp-5)}
+.hero-facts{margin-top:var(--sp-8);display:grid;gap:var(--sp-3)}
+.hero-facts>div{display:grid;grid-template-columns:9ch 1fr;gap:var(--sp-4);
+  border-top:1px solid var(--line);padding-top:var(--sp-3)}
+.hero-facts dt{font-size:13px;color:var(--muted)}
+.hero-facts dd{font-size:14px;font-weight:600}
+
+/* ============ 区块栏 ============ */
+.section-bar{
+  display:flex;justify-content:space-between;align-items:center;gap:var(--sp-6);
+  padding:var(--sp-4) clamp(20px,4vw,56px);
+  border-bottom:1px solid var(--line-hard);
+}
+.section-bar h2{font-size:13px;font-weight:600;letter-spacing:.1em;font-family:var(--f-mono)}
+.section-bar--plain{background:var(--bone-dip)}
+.svc-hint{font-size:14px;color:var(--muted)}
+
+/* ============ 筛选 tablist ============ */
+.tabs{display:flex;gap:var(--sp-1);flex-wrap:wrap}
+.tabs button{
+  border:1px solid transparent;background:none;cursor:pointer;
+  padding:var(--sp-2) var(--sp-4);min-height:44px;min-width:44px;
+  font-size:14px;font-weight:600;
+  transition:background .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease);
+}
+.tabs button:hover{background:var(--cobalt-tint)}
+.tabs button[aria-selected="true"]{background:var(--cobalt);color:var(--bone);border-color:var(--cobalt)}
+.tabs button[aria-selected="true"]::before{content:"";display:inline-block;
+  width:6px;height:6px;background:#FF4FB0;margin-right:var(--sp-2);vertical-align:middle}
+.tabs button:active{transform:scale(.97)}
+
+/* ============ 项目网格：7:5 非对称 ============ */
+/* 桌面端两行等高。左卡跨两行，其面板 flex:1 后必然等于右列两张叠卡总高，底边对齐。 */
+.grid{
+  display:grid;grid-template-columns:7fr 5fr;
+  padding:var(--sp-10) clamp(20px,4vw,56px) var(--sp-16);
+  gap:var(--sp-10) var(--sp-8);
+}
+.card{display:flex;flex-direction:column;transition:transform .32s var(--ease)}
+.card--wide{grid-row:span 2}
+.card:focus-visible{outline-offset:6px}
+
+.plate{
+  position:relative;overflow:hidden;flex:1 1 auto;min-height:220px;
+  border:1px solid var(--line-hard);
+  transition:box-shadow .32s var(--ease);
+  box-shadow:0 0 0 rgba(11,15,26,0);
+}
+.card:hover .plate,.card:focus-visible .plate{box-shadow:var(--light)}
+.card:hover{transform:translateY(-4px)}
+
+.idx{position:absolute;top:var(--sp-5);left:var(--sp-5);
+  font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.14em;z-index:2}
+.idx--light{color:var(--bone)}
+
+.art-word{font-size:clamp(30px,3.4vw,58px);line-height:.96;font-weight:600;
+  letter-spacing:-.04em;position:absolute;left:var(--sp-5);bottom:var(--sp-8);z-index:2}
+.card--wide .art-word{font-size:clamp(38px,4.4vw,76px)}
+.art-word--dark{color:var(--ink)}
+.art-word--light{color:var(--bone)}
+.art-note{position:absolute;left:var(--sp-5);bottom:var(--sp-5);
+  font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;z-index:2}
+.art-note--light{color:rgba(247,245,240,.82)}
+
+/* 四张项目面：同一钴蓝色系内的明度阶梯，不再是四色混战 */
+.plate--cobalt{background:var(--cobalt);color:var(--bone)}
+.plate--cobalt .art-note{color:rgba(247,245,240,.8)}
+.ring{position:absolute;right:-56px;bottom:-72px;width:min(56%,220px);aspect-ratio:1;
+  border:36px solid var(--mist);border-radius:50%;opacity:.92}
+.plate--paper{background:var(--paper)}
+.sheet{position:absolute;inset:12% 11% 10%;background:var(--bone-dip);
+  border:1px solid var(--line-hard);padding:var(--sp-6);
+  transform:rotate(-4deg);transform-origin:left bottom;
+  box-shadow:8px 10px 0 rgba(11,15,26,.07)}
+.sheet-lead{font-size:clamp(22px,2.2vw,32px);line-height:1.06;font-weight:600;letter-spacing:-.03em}
+.sheet-rule{display:block;height:1px;background:var(--line-hard);margin:var(--sp-5) 0 var(--sp-4)}
+.sheet-note{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.plate--mist{background:var(--mist)}
+.plate--mist .art-word{top:50%;bottom:auto;transform:translateY(-50%);
+  font-size:clamp(30px,3.2vw,54px);color:var(--ink)}
+.arc{position:absolute;right:9%;bottom:0;width:min(48%,170px);aspect-ratio:1/1;
+  border:1px solid var(--ink);border-bottom:0;border-radius:200px 200px 0 0}
+.plate--ink{background:var(--ink);color:var(--bone)}
+
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:var(--sp-4);
+  margin-top:var(--sp-4);border-top:1px solid var(--line-hard);padding-top:var(--sp-3)}
+.cap h3{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.cap-meta{font-size:13px;color:var(--muted);text-align:right}
+.cap-line{font-size:14px;line-height:1.6;color:var(--ink-2);margin-top:var(--sp-2);max-width:42ch}
+
+/* 空状态：行动邀请而非冰冷报错 */
+.empty{
+  margin:0 clamp(20px,4vw,56px) var(--sp-16);
+  border:1px solid var(--line-hard);background:var(--paper);
+  padding:var(--sp-10) var(--sp-8);font-size:16px;line-height:1.7;color:var(--ink-2);
+  display:grid;gap:var(--sp-2);justify-items:start;
+}
+.empty-mark{font-size:20px;color:var(--magenta);line-height:1}
+.empty strong{font-size:20px;color:var(--ink);letter-spacing:-.01em}
+.empty a{color:var(--cobalt);font-weight:600;text-underline-offset:3px}
+#empty[hidden],.svc-body[hidden]{display:none}
+
+/* ============ 服务表 ============ */
+.svc-list{border-top:1px solid var(--line)}
+.svc{border-bottom:1px solid var(--line);transition:background .24s var(--ease)}
+.svc-btn{
+  width:100%;display:grid;grid-template-columns:64px 1fr auto 32px;
+  align-items:center;gap:var(--sp-5);text-align:left;
+  background:none;border:0;cursor:pointer;
+  padding:var(--sp-6) clamp(20px,4vw,56px);min-height:44px;
+  transition:background .2s var(--ease);
+}
+.svc-btn:hover{background:var(--cobalt-tint)}
+.svc-no{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--magenta)}
+.svc-name{font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.025em}
+.svc-range{font-family:var(--f-mono);font-size:14px;color:var(--muted);white-space:nowrap}
+.svc-sign{position:relative;width:16px;height:16px;justify-self:end}
+.svc-sign::before,.svc-sign::after{
+  content:"";position:absolute;background:var(--ink);transition:transform .26s var(--ease)}
+.svc-sign::before{left:0;top:7px;width:16px;height:2px}
+.svc-sign::after{left:7px;top:0;width:2px;height:16px}
+.svc-btn[aria-expanded="true"] .svc-sign::after{transform:scaleY(0)}
+.svc-btn[aria-expanded="true"]{background:var(--cobalt-tint)}
+
+.svc-body{overflow:hidden}
+.svc-cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-8);
+  padding:0 clamp(20px,4vw,56px) var(--sp-10)}
+.svc-cols h4{font-size:12px;font-family:var(--f-mono);font-weight:700;letter-spacing:.1em;
+  color:var(--cobalt);margin-bottom:var(--sp-3)}
+.svc-cols li{font-size:15px;line-height:1.65;color:var(--ink-2);
+  padding-left:var(--sp-5);position:relative;margin-bottom:var(--sp-2)}
+.svc-cols li::before{content:"";position:absolute;left:0;top:.72em;
+  width:10px;height:1px;background:var(--line-hard)}
+
+/* M4 跨区联动：悬停项目时对应服务行亮起 */
+.svc.is-linked{background:var(--magenta-tint)}
+.svc.is-linked .svc-no{color:var(--cobalt)}
+
+/* ============ 工作室 ============ */
+.studio{display:grid;grid-template-columns:2fr 8fr;gap:var(--sp-8);
+  padding:clamp(48px,7vw,96px) clamp(20px,4vw,56px);
+  border-top:1px solid var(--line-hard);border-bottom:1px solid var(--line-hard)}
+.studio-no{font-family:var(--f-mono);font-size:13px;font-weight:700;letter-spacing:.08em;
+  color:var(--muted);padding-top:var(--sp-2)}
+.studio-body h2{font-size:clamp(28px,3.4vw,46px);line-height:1.18;font-weight:600;
+  letter-spacing:-.03em;margin-bottom:var(--sp-6);max-width:22ch}
+.studio-body p{font-size:16px;line-height:1.75;color:var(--ink-2);max-width:62ch;margin-bottom:var(--sp-4)}
+.studio-body p:last-child{color:var(--muted);font-size:15px}
+
+/* ============ 联系 ============ */
+.contact{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,80px);
+  padding:clamp(48px,7vw,96px) clamp(20px,4vw,56px)}
+.ct-intro h2{font-size:clamp(32px,4.4vw,56px);line-height:1.04;font-weight:600;
+  letter-spacing:-.045em;margin-bottom:var(--sp-6)}
+.ct-intro p{font-size:16px;line-height:1.75;color:var(--ink-2);max-width:40ch}
+.ct-mail{margin-top:var(--sp-6);font-family:var(--f-mono);font-size:15px;font-weight:600;
+  color:var(--cobalt);border-top:1px solid var(--line-hard);padding-top:var(--sp-4);
+  overflow-wrap:anywhere}
+
+.ct-form{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6)}
+.field{display:flex;flex-direction:column;gap:var(--sp-2)}
+.field--full,.ct-actions,.form-status{grid-column:1/-1}
+.field label{font-size:14px;font-weight:600}
+.field input,.field select,.field textarea{
+  font-family:inherit;font-size:16px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line-hard);border-radius:0;
+  padding:var(--sp-3) var(--sp-4);min-height:44px;
+  transition:border-color .18s var(--ease),box-shadow .18s var(--ease)}
+.field textarea{resize:vertical;line-height:1.6;min-height:112px}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:var(--ink-2)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--cobalt);box-shadow:0 0 0 3px var(--cobalt-tint)}
+.hint{font-size:13px;line-height:1.5;color:var(--muted);display:none}
+.field[data-state="error"] .hint{display:block;color:var(--magenta);font-weight:600}
+.field[data-state="error"] input,
+.field[data-state="error"] select,
+.field[data-state="error"] textarea{border-color:var(--magenta);box-shadow:0 0 0 3px var(--magenta-tint)}
+
+.ct-actions{display:flex;align-items:center;gap:var(--sp-5);flex-wrap:wrap;margin-top:var(--sp-2)}
+.btn-primary{
+  font-size:15px;font-weight:700;
+  background:var(--cobalt);color:var(--bone);border:1px solid var(--cobalt);
+  padding:var(--sp-4) var(--sp-8);min-height:48px;cursor:pointer;
+  transition:background .18s var(--ease),transform .18s var(--ease)}
+.btn-primary:hover{background:var(--cobalt-dp)}
+.btn-primary:active{transform:scale(.98)}
+.ct-note{font-size:13px;color:var(--muted);max-width:30ch}
+.form-status{font-size:15px;font-weight:600;color:var(--cobalt);min-height:1.6em;line-height:1.6}
+.form-status[data-tone="error"]{color:var(--magenta)}
+
+/* ============ 页脚 ============ */
+.site-foot{background:var(--ink);color:var(--bone);
+  padding:clamp(40px,5vw,72px) clamp(20px,4vw,56px) var(--sp-8)}
+.foot-mark{font-size:clamp(40px,7vw,96px);font-weight:600;letter-spacing:-.05em;line-height:.9}
+.foot-cols{display:flex;flex-wrap:wrap;gap:var(--sp-8);justify-content:space-between;
+  margin-top:var(--sp-8);border-top:1px solid rgba(247,245,240,.24);padding-top:var(--sp-5)}
+.foot-cols p{font-size:15px;color:rgba(247,245,240,.88);overflow-wrap:anywhere}
+.foot-fine{margin-top:var(--sp-10);font-size:13px;line-height:1.6;
+  color:rgba(247,245,240,.72);max-width:72ch}
+
+/* ============ 减少动效 ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+  .card:hover{transform:none}
+}
+
+/* ============ 1080 以下：单列纵向流 ============ */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;gap:var(--sp-8);align-items:start}
+  .hero-lead{max-width:48ch}
+  .hero-facts{grid-template-columns:repeat(3,1fr);gap:var(--sp-5)}
+  .hero-facts>div{grid-template-columns:1fr;gap:var(--sp-1)}
+  .grid{grid-template-columns:1fr;gap:var(--sp-10)}
+  .card--wide{grid-row:auto}
+  .plate{aspect-ratio:4/3;flex:0 0 auto;min-height:0}
+  .studio{grid-template-columns:1fr;gap:var(--sp-5)}
+  .contact{grid-template-columns:1fr}
+  .svc-cols{grid-template-columns:1fr;gap:var(--sp-6)}
+}
+
+@media (max-width:760px){
+  .site-head{grid-template-columns:auto auto;gap:var(--sp-4);padding:var(--sp-4) var(--sp-5)}
+  .site-nav{grid-column:1/-1;justify-self:start;gap:var(--sp-5);
+    order:3;border-top:1px solid var(--line);padding-top:var(--sp-2);width:100%}
+  .site-nav a{padding:var(--sp-3) 0;font-size:14px}
+  .head-cta{justify-self:end;padding:var(--sp-3) var(--sp-4);font-size:13px}
+  .wordmark{font-size:24px}
+
+  .hero{padding:var(--sp-8) var(--sp-5) var(--sp-10)}
+  .eyebrow{font-size:12px;letter-spacing:.04em;margin-bottom:var(--sp-6);
+    display:flex;flex-direction:column;gap:var(--sp-1);line-height:1.5}
+  .hero-lead{font-size:17px}
+  .hero-facts{grid-template-columns:1fr;gap:0}
+  .hero-facts>div{grid-template-columns:10ch 1fr;padding:var(--sp-3) 0}
+
+  .section-bar{flex-direction:column;align-items:stretch;gap:var(--sp-3);
+    padding:var(--sp-4) var(--sp-5)}
+  .tabs{width:100%}
+  .tabs button{flex:1 1 auto;padding:var(--sp-2) var(--sp-3)}
+
+  .grid{padding:var(--sp-8) var(--sp-5) var(--sp-12);gap:var(--sp-8)}
+  .cap{flex-direction:column;gap:var(--sp-1)}
+  .cap-meta{text-align:left}
+  .empty{margin:0 var(--sp-5) var(--sp-12);padding:var(--sp-8) var(--sp-5)}
+  .sheet{transform:rotate(-2deg)}
+  .plate--mist .art-word{font-size:clamp(28px,7vw,44px)}
+
+  .svc-btn{grid-template-columns:40px 1fr 24px;gap:var(--sp-3);
+    padding:var(--sp-5) var(--sp-5);row-gap:var(--sp-1)}
+  .svc-range{grid-column:2/3;font-size:13px}
+  .svc-sign{grid-column:3/4;grid-row:1/3}
+  .svc-body .svc-cols{padding:0 var(--sp-5) var(--sp-8)}
+
+  .studio{padding:var(--sp-12) var(--sp-5)}
+  .contact{padding:var(--sp-12) var(--sp-5) var(--sp-16)}
+  .ct-form{grid-template-columns:1fr;gap:var(--sp-5)}
+  .ct-actions{flex-direction:column;align-items:stretch;gap:var(--sp-4)}
+  .btn-primary{width:100%;padding:var(--sp-4)}
+  .ct-note{max-width:none}
+  .site-foot{padding:var(--sp-12) var(--sp-5) var(--sp-6)}
+}
+
+@media (max-width:420px){
+  .hero h1{font-size:clamp(46px,16vw,68px)}
+  .tabs button{font-size:13px}
+  .cap h3{font-size:16px}
+  .cap-line{font-size:14px}
+}
+
+/* Keep filtered and collapsed content hidden when component display rules apply. */
+[hidden] { display: none !important; }
+</style></head>
+<body>
+<!-- muse:allow pure-black: 瑞士排印以墨黑 #0B0F1A 为骨架正文色，洋红为单一强调色，这是本设计的形式语言 -->
+<a class="skip" href="#work">跳到精选项目</a>
+
+<header class="site-head">
+  <a class="wordmark" href="#top" aria-label="FORM 首页">FORM<span class="reg">®</span></a>
+  <nav class="site-nav" aria-label="主导航">
+    <a href="#work">精选项目</a>
+    <a href="#services">服务与报价</a>
+    <a href="#studio">关于工作室</a>
+  </nav>
+  <a class="head-cta" href="#contact">发起合作 <span aria-hidden="true">↗</span></a>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow">INDEPENDENT DESIGN PRACTICE ｜ 独立设计工作室</p>
+    <div class="hero-grid">
+      <h1 id="hero-title">Ideas<br>take<br>form.</h1>
+      <div class="hero-side">
+        <p class="hero-lead">好的想法，值得一个准确的形状。我们为有自己主张的品牌，建立能被记住、也能落地的表达。</p>
+        <dl class="hero-facts">
+          <div><dt>成立于</dt><dd>2018</dd></div>
+          <div><dt>在做的方向</dt><dd>品牌 · 数字 · 编辑</dd></div>
+          <div><dt>合作方式</dt><dd>全年 6 个项目</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="section-bar">
+      <h2 id="work-title">SELECTED WORK ／ 精选项目</h2>
+      <div class="tabs" role="tablist" aria-label="按类型筛选项目">
+        <button role="tab" id="tab-all"       aria-controls="grid" aria-selected="true"  tabindex="0" data-cat="all">全部</button>
+        <button role="tab" id="tab-brand"     aria-controls="grid" aria-selected="false" tabindex="-1" data-cat="brand">品牌</button>
+        <button role="tab" id="tab-digital"   aria-controls="grid" aria-selected="false" tabindex="-1" data-cat="digital">数字</button>
+        <button role="tab" id="tab-editorial" aria-controls="grid" aria-selected="false" tabindex="-1" data-cat="editorial">编辑</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid">
+      <article class="card card--wide" data-cat="brand" tabindex="0" aria-labelledby="p1">
+        <div class="plate plate--cobalt">
+          <span class="idx">01</span>
+          <p class="art-word">Objects<br>for&nbsp;life.</p>
+          <p class="art-note">日用 ／ EVERYDAY OBJECTS</p>
+          <span class="ring" aria-hidden="true"></span>
+        </div>
+        <div class="cap">
+          <h3 id="p1">日用 · 器物品牌</h3>
+          <p class="cap-meta">品牌策略 ／ 视觉识别</p>
+        </div>
+        <p class="cap-line">把“每天都用得上”翻译成一套克制的字标与器物摄影规范，让货架上的沉默也能被认出。</p>
+      </article>
+
+      <article class="card" data-cat="editorial" tabindex="0" aria-labelledby="p2">
+        <div class="plate plate--paper">
+          <span class="idx">02</span>
+          <div class="sheet">
+            <p class="sheet-lead">Between<br>the lines.</p>
+            <span class="sheet-rule"></span>
+            <p class="sheet-note">行间 ／ A JOURNAL OF SMALL THINGS</p>
+          </div>
+        </div>
+        <div class="cap">
+          <h3 id="p2">行间 · 独立刊物</h3>
+          <p class="cap-meta">艺术指导 ／ 编辑设计</p>
+        </div>
+        <p class="cap-line">为一本谈小事的杂志建立栏宽、字阶与图片节奏。</p>
+      </article>
+
+      <article class="card" data-cat="digital" tabindex="0" aria-labelledby="p3">
+        <div class="plate plate--mist">
+          <span class="idx">03</span>
+          <p class="art-word art-word--dark">A slower<br>kind of<br>living.</p>
+          <span class="arc" aria-hidden="true"></span>
+        </div>
+        <div class="cap">
+          <h3 id="p3">慢集 · 生活方式平台</h3>
+          <p class="cap-meta">网站设计 ／ 数字体验</p>
+        </div>
+        <p class="cap-line">让内容先说话，界面退到后面的一条阅读动线。</p>
+      </article>
+
+      <article class="card" data-cat="brand" tabindex="0" aria-labelledby="p4">
+        <div class="plate plate--ink">
+          <span class="idx idx--light">04</span>
+          <p class="art-word art-word--light">Good<br>after<br>noon.</p>
+          <p class="art-note art-note--light">午后 ／ COFFEE &amp; CONVERSATION</p>
+        </div>
+        <div class="cap">
+          <h3 id="p4">午后 · 社区咖啡</h3>
+          <p class="cap-meta">品牌命名 ／ 包装设计</p>
+        </div>
+        <p class="cap-line">三行字撑起一个店名，也撑起一整面杯身。</p>
+      </article>
+    </div>
+
+    <p class="empty" id="empty" hidden>
+      <span class="empty-mark" aria-hidden="true">✦</span>
+      <strong>这个分类暂时空着。</strong>
+      我们每次只同时做少数几件事——先看看<a href="#work">全部项目</a>，或者把你手上的问题写给我们。
+    </p>
+
+    <p class="sr-only" id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services" aria-labelledby="svc-title">
+    <div class="section-bar section-bar--plain">
+      <h2 id="svc-title">SERVICES ／ 服务与报价</h2>
+      <p class="svc-hint">点开任意一项，看它具体包含什么、大概要多久。</p>
+    </div>
+
+    <ul class="svc-list">
+      <li class="svc" data-svc="brand">
+        <h3>
+          <button class="svc-btn" type="button" aria-expanded="false" aria-controls="svc-1">
+            <span class="svc-no">01</span>
+            <span class="svc-name">品牌策略与识别</span>
+            <span class="svc-range">¥ 80k 起</span>
+            <span class="svc-sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="svc-body" id="svc-1" hidden>
+          <div class="svc-cols">
+            <div><h4>你会拿到</h4><ul>
+              <li>定位与语言梳理（一页纸）</li>
+              <li>字标与标志系统，含锁定与留白规范</li>
+              <li>色彩、字体与图片调性手册</li>
+              <li>落地物料：名片、包装、门店基础版</li>
+            </ul></div>
+            <div><h4>周期与配合</h4><ul>
+              <li>8–10 周，三次正式汇报</li>
+              <li>需要主理人出席两次决策会</li>
+              <li>适合：准备开新品牌或重构旧识别的团队</li>
+            </ul></div>
+          </div>
+        </div>
+      </li>
+
+      <li class="svc" data-svc="digital">
+        <h3>
+          <button class="svc-btn" type="button" aria-expanded="false" aria-controls="svc-2">
+            <span class="svc-no">02</span>
+            <span class="svc-name">网站与数字体验</span>
+            <span class="svc-range">¥ 120k 起</span>
+            <span class="svc-sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="svc-body" id="svc-2" hidden>
+          <div class="svc-cols">
+            <div><h4>你会拿到</h4><ul>
+              <li>信息结构与页面清单</li>
+              <li>桌面与移动端全页设计稿</li>
+              <li>可交付前端的组件与样式说明</li>
+              <li>上线后 30 天的观察与微调</li>
+            </ul></div>
+            <div><h4>周期与配合</h4><ul>
+              <li>10–14 周，含一轮可用性走查</li>
+              <li>需要一位能拍板的内容负责人</li>
+              <li>适合：品牌已成型、需要认真对待官网的团队</li>
+            </ul></div>
+          </div>
+        </div>
+      </li>
+
+      <li class="svc" data-svc="editorial">
+        <h3>
+          <button class="svc-btn" type="button" aria-expanded="false" aria-controls="svc-3">
+            <span class="svc-no">03</span>
+            <span class="svc-name">编辑与包装</span>
+            <span class="svc-range">¥ 45k 起</span>
+            <span class="svc-sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="svc-body" id="svc-3" hidden>
+          <div class="svc-cols">
+            <div><h4>你会拿到</h4><ul>
+              <li>刊物或手册的整体版式规则</li>
+              <li>封面方案三选一，附内页样张</li>
+              <li>印刷文件与印厂对接</li>
+              <li>包装结构打样与材质建议</li>
+            </ul></div>
+            <div><h4>周期与配合</h4><ul>
+              <li>4–8 周，视页数与工艺而定</li>
+              <li>需要编辑或产品团队提供终稿文字</li>
+              <li>适合：要做年刊、作品集或产品线包装的团队</li>
+            </ul></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ STUDIO ============ -->
+  <section class="studio" id="studio" aria-labelledby="st-title">
+    <p class="studio-no">02 ／ THE STUDIO</p>
+    <div class="studio-body">
+      <h2 id="st-title">先问为什么，<br>再决定长什么样。</h2>
+      <p>FORM 是一个独立设计工作室。我们和主理人一起理清品牌真正想说的话，再把它变成识别、网站和纸上的作品。每个项目都从认真听完一个故事开始——不是为了把它修饰得更好看，而是为了让它在三年后依然说得通。</p>
+      <p>我们同时只接少数几个项目，因为足够的时间里才有足够具体的判断。</p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact" aria-labelledby="ct-title">
+    <div class="ct-intro">
+      <h2 id="ct-title">Let’s make it matter.</h2>
+      <p>合作通常从一封短邮件开始：介绍一下你的品牌，说说眼前卡在哪一步，如果手边有一件你喜欢的作品，也一并带来。</p>
+      <p class="ct-mail">hello@form-studio.example</p>
+    </div>
+
+    <form class="ct-form" id="enquiry" novalidate>
+      <div class="field">
+        <label for="f-name">怎么称呼你</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+        <p class="hint" id="e-name">请填一个称呼，方便我们知道在跟谁说话。</p>
+      </div>
+      <div class="field">
+        <label for="f-mail">邮箱</label>
+        <input id="f-mail" name="mail" type="email" autocomplete="email" required aria-describedby="e-mail">
+        <p class="hint" id="e-mail">需要一个能收到回信的邮箱地址。</p>
+      </div>
+      <div class="field">
+        <label for="f-type">想聊的事</label>
+        <select id="f-type" name="type" required aria-describedby="e-type">
+          <option value="">请选择一项</option>
+          <option>品牌策略与识别</option>
+          <option>网站与数字体验</option>
+          <option>编辑与包装</option>
+          <option>还不确定，先聊聊</option>
+        </select>
+        <p class="hint" id="e-type">选一项就好，选错也没关系。</p>
+      </div>
+      <div class="field field--full">
+        <label for="f-msg">几句话说明背景</label>
+        <textarea id="f-msg" name="msg" rows="4" required aria-describedby="e-msg"></textarea>
+        <p class="hint" id="e-msg">写两三句就够，说清品牌和现在的问题即可。</p>
+      </div>
+      <div class="ct-actions">
+        <button class="btn-primary" type="button" id="enquiry-submit">整理合作意向</button>
+        <p class="ct-note">仅在本页整理意向，不会发送邮件。</p>
+      </div>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p class="foot-mark">FORM<span class="reg">®</span></p>
+  <div class="foot-cols">
+    <p>独立设计工作室 · 上海 / 远程协作</p>
+    <p>hello@form-studio.example</p>
+  </div>
+  <p class="foot-fine">MUSE 原创概念样板 · FORM 工作室、项目、报价与活动均为虚构示例，不代表真实客户或成绩。</p>
+</footer>
+
+
+<script>/* FORM · 交互层
+   1) 项目筛选：标准 tablist 键盘模式（← → Home End）
+   2) 服务原位展开（D4）
+   3) 项目 ↔ 服务跨区语义联动（M4）
+   4) 联系表单校验 / 错误 / 提交态
+*/
+(function () {
+  'use strict';
+
+  /* ---------- 1. 筛选 ---------- */
+  var tabs   = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var cards  = Array.prototype.slice.call(document.querySelectorAll('#grid .card'));
+  var empty  = document.getElementById('empty');
+  var status = document.getElementById('status');
+
+  function filter(cat, label) {
+    var shown = 0;
+    cards.forEach(function (card) {
+      var show = cat === 'all' || card.dataset.cat === cat;
+      card.hidden = !show;
+      if (show) shown++;
+    });
+    if (status) {
+      status.textContent = cat === 'all'
+        ? '显示全部 ' + shown + ' 个项目'
+        : '显示「' + label + '」类别的 ' + shown + ' 个项目';
+    }
+    if (empty) empty.hidden = shown !== 0;
+  }
+
+  function selectTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    filter(tab.dataset.cat, tab.textContent.trim());
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { selectTab(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var k = e.key, next = -1;
+      if (k === 'ArrowRight' || k === 'ArrowDown') next = (i + 1) % tabs.length;
+      else if (k === 'ArrowLeft' || k === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+      else if (k === 'Home') next = 0;
+      else if (k === 'End') next = tabs.length - 1;
+      if (next > -1) { e.preventDefault(); tabs[next].focus(); selectTab(tabs[next]); }
+    });
+  });
+
+  /* ---------- 2 & 3. 服务展开 + 跨区联动 ---------- */
+  var svcBtns  = Array.prototype.slice.call(document.querySelectorAll('.svc-btn'));
+  var svcItems = Array.prototype.slice.call(document.querySelectorAll('.svc'));
+
+  svcBtns.forEach(function (btn) {
+    var body = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (body) body.hidden = open;
+    });
+  });
+
+  // M4：悬停 / 聚焦项目 → 对应服务行亮起，建立隐形呼应
+  cards.forEach(function (card) {
+    var kind = card.dataset.cat;
+    function link(on) {
+      svcItems.forEach(function (item) {
+        if (item.dataset.svc === kind) item.classList.toggle('is-linked', on);
+      });
+    }
+    card.addEventListener('mouseenter', function () { link(true); });
+    card.addEventListener('mouseleave', function () { link(false); });
+    card.addEventListener('focusin',    function () { link(true); });
+    card.addEventListener('focusout',   function () { link(false); });
+  });
+
+  /* ---------- 4. 表单 ---------- */
+  var form = document.getElementById('enquiry');
+  if (!form) return;
+
+  var fStatus = document.getElementById('form-status');
+  var fields = [
+    { el: document.getElementById('f-name'), test: function (v) { return v.trim().length >= 2; } },
+    { el: document.getElementById('f-mail'), test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); } },
+    { el: document.getElementById('f-type'), test: function (v) { return v !== ''; } },
+    { el: document.getElementById('f-msg'),  test: function (v) { return v.trim().length >= 8; } }
+  ];
+
+  function wrapOf(el) { return el.closest('.field'); }
+
+  function check(f, quiet) {
+    var ok = f.test(f.el.value);
+    var wrap = wrapOf(f.el);
+    if (ok) { wrap.dataset.state = 'ok'; f.el.removeAttribute('aria-invalid'); }
+    else if (!quiet) { wrap.dataset.state = 'error'; f.el.setAttribute('aria-invalid', 'true'); }
+    return ok;
+  }
+
+  fields.forEach(function (f) {
+    if (!f.el) return;
+    f.el.addEventListener('blur',  function () { check(f); });
+    f.el.addEventListener('input', function () {
+      if (wrapOf(f.el).dataset.state === 'error') check(f);
+    });
+  });
+
+  document.getElementById('enquiry-submit').addEventListener('click', function (e) {
+    e.preventDefault();
+    var firstBad = null;
+    fields.forEach(function (f) { if (f.el && !check(f) && !firstBad) firstBad = f.el; });
+
+    if (firstBad) {
+      fStatus.dataset.tone = 'error';
+      fStatus.textContent = '还有一处需要补充，已为你定位到那一条。';
+      firstBad.focus();
+      return;
+    }
+    fStatus.dataset.tone = 'ok';
+    fStatus.textContent = '已在本页整理合作意向：' +
+      form.elements.namedItem('name').value.trim() + ' / ' + form.elements.namedItem('mail').value.trim() + '。未发送邮件。';
+    form.reset();
+    fields.forEach(function (f) { if (f.el) delete wrapOf(f.el).dataset.state; });
+  });
+})();
+
+document.getElementById('enquiry').addEventListener('keydown', function(e) { if (e.key === 'Enter' && e.target.tagName === 'INPUT') { e.preventDefault(); document.getElementById('enquiry-submit').click(); } });
+</script></body>
+</html>
+</body></html>

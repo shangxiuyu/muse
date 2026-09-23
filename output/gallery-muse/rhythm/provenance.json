@@ -1,0 +1,96 @@
+{
+  "sampleId": "rhythm",
+  "engine": "Muse Studio / Pi",
+  "skillVersion": "6.0.0",
+  "skillSha256": "9875c844939329ed3aa143a94f38efad2196e7603adccb29301df99703a4c3da",
+  "model": "deepseek-v4-flash",
+  "generatedAt": "2026-09-21T19:26:28.729Z",
+  "artifactSha256": "ebce9e8e4a59de80c136a3a4cbc04da2665fd4c47b47e4109069cc74951e277e",
+  "toolSteps": [
+    {
+      "tool": "get_task_context",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "read_muse_reference",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    },
+    {
+      "tool": "submit_artifact",
+      "success": true
+    },
+    {
+      "tool": "inspect_artifact",
+      "success": true
+    }
+  ],
+  "referencesRequested": [
+    "references/visual_grammar.md",
+    "references/acceptance_protocol.md",
+    "references/image_styles/flat-vector.md",
+    "references/archetypes.md",
+    "references/archetypes/neo_bauhaus_pastel.md"
+  ],
+  "verification": {
+    "format": true,
+    "rendered": true,
+    "interaction": false
+  },
+  "message": "The full poster now renders completely within the visible area. Everything checks out:\n\n- **Header rail** — both ends visible, 「季节构成 · 02」left, 「MUSE 内置样板 ／ CONCEPT SAMPLE」right.\n- **Hero type** — 「春日」in dark-on-朱红 blue block, uncropped, with the red accent circle anchoring the lower-right corner of the block.\n- **Secondary title** — 「自有节奏」held between two hairlines, creating the big-type/hairline contrast that carries the theme.\n- **Spec chip** — four cells complete, disclosure line 「概念示例 · 非真实项目」legible.\n- **Beat band** — original and structurally sound: five blue barlines with the pink 「柔板」mass in measure 01, three-beat groups, the 朱红 breakout beat rising well clear of measure 03 with its leader line to 「这一拍，自己走」, the rest block in measure 04, and the closing 收束 line.\n- **Labels** — 小节 01–04 and 休止 all readable.\n- **Footer** — the required disclosure 「概念示例：品牌、项目与数据均为虚构，不代表真实客户案例」sits safely inside the frame.\n\nThe poster is delivered. A few notes on what's verified and what isn't:\n\n**Verified by actual rendering:** the full 1440×900 composition is visible with no content clipped; all 中文 titles («春日», «自有节奏») render correctly and legibly; the measure structure reads left-to-right as intended; the disclosure and concept labels are present and readable at this scale.\n\n**Not verified:** narrow-screen/mobile behavior and any interactive path — this is a static poster, so there is no interaction to test. I also chose to keep all essential content inside a ~1280px-wide safety box after the first two renders showed the host cropping the right edge; that decision is based on observed rendering, not assumption.\n\n**Where you can take it next:** the poster's geometry is parameterized by hand — you can ask me to change the number of measures, shift the breakout beat to a different position, swap the 朱红/钴蓝 roles, or add a version at square/portrait ratios, and I'll keep the same measure-line logic and three-color discipline."
+}

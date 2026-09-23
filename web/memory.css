@@ -1,0 +1,91 @@
+/* <!-- muse:allow undefined-css-var: 复用先于本文件加载的 styles.css 全局主题变量，保持深浅模式一致。 --> */
+/* <!-- muse:allow modular-scale: 沿用设计契约中中文工具文字的 13/14/15px 光学层级，页眉英文使用 10px。 --> */
+.memory-page {
+  display:flex;
+  flex-direction:column;
+  min-height:100dvh;
+}
+.memory-page .memory-heading {
+  align-items:center;
+  margin:16px 0 32px;
+  gap:24px 32px;
+}
+.memory-heading h1 { margin:12px 0 10px; font-size:36px; }
+.memory-heading .eyebrow { font-size:10px; letter-spacing:2px; }
+.memory-heading p { max-width:34em; }
+.memory-actions { display:flex; flex:none; gap:10px; }
+.memory-actions button { min-height:44px; white-space:nowrap; font-size:13px; }
+.memory-actions .secondary-button { background:transparent; }
+.memory-library { flex:1; border-top:1px solid var(--line); }
+.memory-library.is-empty { display:grid; place-items:center; }
+.memory-library-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:26px 0 20px;
+}
+.memory-library-heading h2 { margin:0; font-size:14px; font-weight:500; }
+.memory-library-heading h2 span { margin-left:8px; color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }
+.memory-library-heading p { margin:0; color:var(--muted); font-size:12px; }
+.memory-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:16px; }
+.memory-note { min-width:0; padding:20px 24px 26px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+.memory-note-meta { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.memory-scope { display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:12px; }
+.memory-scope .icon { width:16px; height:16px; }
+.memory-note .icon-button { color:var(--muted); width:36px; height:36px; }
+.memory-note .icon-button:hover { color:var(--error-ink); background:var(--error-bg); }
+.memory-note p { margin:0; color:var(--ink); font-size:15px; line-height:1.9; white-space:pre-wrap; overflow-wrap:anywhere; }
+.memory-library-note { margin:24px 0 0; font-size:12px; color:var(--muted); line-height:1.8; }
+.memory-empty { width:100%; max-width:600px; padding:48px 0 64px; text-align:center; }
+.memory-empty > .muse-mark { width:56px; height:56px; margin:0 auto 24px; }
+.memory-empty h2 { font:32px/1.55 var(--serif); margin:0 0 24px; text-wrap:balance; }
+.memory-empty-copy { color:var(--muted); font-size:13px; line-height:1.95; }
+.memory-empty-copy p { margin:0; }
+.memory-empty-copy p + p { margin-top:16px; }
+.memory-empty-note { max-width:38em; margin:28px auto 0; color:var(--muted); font-size:11px; line-height:1.9; }
+.memory-page .site-footer { margin-top:40px; }
+.memory-editor-dialog { width:min(540px,calc(100% - 32px)); }
+.memory-editor-dialog .dialog-heading { margin-bottom:12px; }
+.memory-editor-form .memory-editor-intro { margin:0 0 28px; }
+.memory-editor-form textarea { min-height:160px; }
+.memory-editor-form .field label { font-size:13px; }
+.memory-editor-form .field small { font-size:12px; }
+.memory-editor-form .field select { min-height:44px; }
+.memory-editor-form .memory-editor-status { color:var(--error-ink); margin:0; }
+.memory-editor-status:empty { display:none; }
+.memory-editor-dialog .dialog-footer button { min-height:44px; }
+.memory-import-source { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.memory-import-source .secondary-button { min-height:44px; }
+.memory-import-source .memory-vault-path { flex:1; min-width:160px; }
+.memory-import-source small { width:100%; margin:0; }
+@media (hover:hover) and (pointer:fine) {
+  .memory-note .icon-button { opacity:0; }
+  .memory-note:hover .icon-button,.memory-note:focus-within .icon-button { opacity:1; }
+}
+@media (max-width:1100px) {
+  .memory-page .memory-heading { align-items:flex-start; flex-direction:column; gap:20px; }
+}
+@media (max-width:760px) {
+  .memory-page { min-height:calc(100dvh - 52px); }
+  .memory-page .memory-heading { margin:8px 0 24px; }
+  .memory-heading h1 { font-size:32px; }
+  .memory-actions { width:100%; }
+  .memory-actions button { flex:1; }
+  .memory-list { grid-template-columns:1fr; gap:12px; }
+  .memory-note { padding:16px 20px 24px; }
+  .memory-note .icon-button { width:44px; height:44px; opacity:1; }
+  .memory-note-meta { margin-bottom:8px; }
+  .memory-library-heading { flex-wrap:wrap; gap:8px; padding:22px 0 16px; }
+  .memory-empty { padding:40px 0 32px; }
+  .memory-empty h2 { font-size:28px; margin-bottom:20px; }
+  .memory-empty > .muse-mark { width:48px; height:48px; margin-bottom:20px; }
+  .memory-empty-copy { max-width:30em; margin:0 auto; font-size:13px; }
+  .memory-desktop-break { display:none; }
+  .memory-empty-note { margin-top:24px; }
+  .memory-page .site-footer { margin-top:28px; }
+  .memory-editor-dialog { padding:24px; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .memory-note .icon-button { transition:opacity 160ms ease,background-color 160ms ease,color 160ms ease; }
+}
